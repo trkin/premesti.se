@@ -1,12 +1,5 @@
-class User 
+class User
   include Neo4j::ActiveNode
-  #
-  # Neo4j.rb needs to have property definitions before any validations. So, the property block needs to come before
-  # loading your devise modules.
-  #
-  # If you add another devise module (such as :lockable, :confirmable, or :token_authenticatable), be sure to
-  # uncomment the property definitions for those modules. Otherwise, the unused property definitions can be deleted.
-  #
 
   property :created_at, type: DateTime
   property :updated_at, type: DateTime
@@ -31,13 +24,13 @@ class User
   validates :sign_in_count, presence: true
   property :current_sign_in_at, type: DateTime
   property :last_sign_in_at, type: DateTime
-  property :current_sign_in_ip, type:  String
+  property :current_sign_in_ip, type: String
   property :last_sign_in_ip, type: String
 
   ## Confirmable
-  # property :confirmation_token
-  # property :confirmed_at, type: DateTime
-  # property :confirmation_sent_at, type: DateTime
+  property :confirmation_token
+  property :confirmed_at, type: DateTime
+  property :confirmation_sent_at, type: DateTime
   # property :unconfirmed_email # Only if using reconfirmable
 
   ## Lockable
@@ -52,7 +45,7 @@ class User
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
 
 

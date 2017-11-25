@@ -1,0 +1,8 @@
+rs:
+  where_do_you_want_to_move: Где хоћеш да се преместиш ?
+  landing-signup:
+    current_location: Која је твоја тренутна локација ?
+    prefered_locations: На коју локацију тражиш премештај ?
+    current_group: Којој групи припадаш ?
+    email: Који је твој имејл ?
+    submit: Обавести ме

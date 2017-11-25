@@ -10,3 +10,12 @@ Style/StringLiterals:
 # 'class ActionDispatch::IntegrationTest' in single line, no need two lines
 Style/ClassAndModuleChildren:
   Enabled: false
+
+# tasks for setup data could be very long
+Metrics/BlockLength:
+  Exclude:
+    - "lib/tasks/*"
+
+# I like to put comma after each line
+Style/TrailingCommaInLiteral:
+  Enabled: false

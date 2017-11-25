@@ -5,5 +5,7 @@ class Location
   property :latitude, type: Float
   property :longitude, type: Float
 
+  has_many :out, :groups, type: :HAS_GROUPS
+
   validates :name, presence: true
 end

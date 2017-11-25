@@ -7,6 +7,7 @@ class User
   ## Database authenticatable
   property :email, type: String, default: ''
   validates :email, presence: true
+  property :name, type: String
 
   property :encrypted_password
 
@@ -47,7 +48,5 @@ class User
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-
-
-
+  has_many :out, :moves, type: :WANTS
 end

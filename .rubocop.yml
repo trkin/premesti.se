@@ -1,1 +1,12 @@
 inherit_from: .rubocop_todo.yml
+
+Style/Documentation:
+  Enabled: false
+
+# it is ok to write 'string' and "string"
+Style/StringLiterals:
+  Enabled: false
+
+# 'class ActionDispatch::IntegrationTest' in single line, no need two lines
+Style/ClassAndModuleChildren:
+  Enabled: false

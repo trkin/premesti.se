@@ -17,3 +17,6 @@
 /yarn-error.log
 
 .byebug_history
+
+db/neo4j/development
+db/neo4j/test

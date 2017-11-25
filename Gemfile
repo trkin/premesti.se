@@ -55,3 +55,4 @@ end
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'neo4j', '~> 9.0.0'
+gem 'neo4j-rake_tasks'

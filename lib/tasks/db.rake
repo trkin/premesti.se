@@ -84,5 +84,20 @@ namespace :db do
     Rake::Task["neo4j:stop"].execute
     puts sh 'rm -rf db/neo4j/development/data/databases/graph.db'
     Rake::Task["neo4j:start"].execute
+    puts "http://" +
+         Rails.application.secrets.neo4j_host.to_s + ":" +
+         (Rails.application.secrets.neo4j_bolt_port.to_i + 2).to_s
+  end
+
+  desc 'migrate'
+  task migrate: :environment do
+    puts "running neo4j:migrate"
+    Rake::Task["neo4j:migrate"].execute
+  end
+
+  desc 'setup = drop, migrate and seed'
+  task setup: :environment do
+    puts 'this is not implemented'
+    puts 'since drop need some time to bootup, and migrate raises exception'
   end
 end

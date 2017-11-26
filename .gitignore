@@ -20,3 +20,4 @@
 
 db/neo4j/development
 db/neo4j/test
+.rake_tasks~

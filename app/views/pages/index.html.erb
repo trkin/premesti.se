@@ -1,12 +1,14 @@
 <h1><%= t :where_do_you_want_to_move %></h1>
 
 <% unless current_user %>
-  <%= form_for @landing_signup, url: landing_signup_path do |f| %>
-    <%= f.select :current_location, options_from_collection_for_select(Location.all, :name, :uuid), placeholder: t('landing-signup.current_location') %>
-    <%= f.select :current_group, option_groups_from_collection_for_select(Location.all, :groups, :name, :uuid, :name) %>
-    <%= f.select :prefered_locations, options_from_collection_for_select(Location.all, :name, :uuid), placeholder: t('landing-signup.prefered_locations') %>
-    <%= f.submit t('landing-signup.submit') %>
-  <% end %>
+  <div id="signup-form">
+    <%= form_for @landing_signup, url: landing_signup_path do |f| %>
+      <%= f.select :current_location, options_from_collection_for_select(Location.all, :name, :uuid), placeholder: t('landing-signup.current_location') %>
+      <%= f.select :current_group, option_groups_from_collection_for_select(Location.all, :groups, :name, :uuid, :name) %>
+      <%= f.select :prefered_locations, options_from_collection_for_select(Location.all, :name, :uuid), placeholder: t('landing-signup.prefered_locations') %>
+      <%= f.submit t('landing-signup.submit') %>
+    <% end %>
+  </div>
 <% end %>
 List of locations
 <% @locations.each do |location| %>

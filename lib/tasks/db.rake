@@ -81,10 +81,10 @@ namespace :db do
 
   desc 'drop'
   task drop: :environment do
-    Rake::Task["neo4j:stop"].execute
-    puts sh 'rm -rf db/neo4j/development/data/databases/graph.db'
-    Rake::Task["neo4j:start"].execute
-    puts "http://" +
+    Rake::Task["neo4j:stop"].invoke Rails.env
+    puts sh "rm -rf db/neo4j/#{Rails.env}/data/databases/graph.db"
+    Rake::Task["neo4j:start"].invoke Rails.env
+    puts "Find database on http://" +
          Rails.application.secrets.neo4j_host.to_s + ":" +
          (Rails.application.secrets.neo4j_bolt_port.to_i + 2).to_s
   end
@@ -92,7 +92,7 @@ namespace :db do
   desc 'migrate'
   task migrate: :environment do
     puts "running neo4j:migrate"
-    Rake::Task["neo4j:migrate"].execute
+    Rake::Task["neo4j:migrate"].invoke Rails.env
   end
 
   desc 'setup = drop, migrate and seed'

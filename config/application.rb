@@ -28,13 +28,14 @@ module PremestiSe
     # config.neo4j.session.type = :http
     # config.neo4j.session.url = 'http://localhost:7474'
     #  or
-    config.neo4j.session.type = :bolt
+    config.neo4j.session.type = Rails.application.secrets.neo4j_type == 'bolt' ? :bolt : :http
     config.neo4j.session.url =
-      "bolt://" +
+      "#{Rails.application.secrets.neo4j_type}://" +
       Rails.application.secrets.neo4j_username.to_s + ":" +
       Rails.application.secrets.neo4j_password.to_s + "@" +
       Rails.application.secrets.neo4j_host.to_s + ":" +
-      Rails.application.secrets.neo4j_bolt_port.to_s
+      Rails.application.secrets.neo4j_port.to_s
+    # puts config.neo4j.session.url
     #  or
     # config.neo4j.session.type = :embedded
     # config.neo4j.session.path = Rails.root.join('neo4j-db').to_s

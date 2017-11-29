@@ -1,5 +1,13 @@
 {
   "name": "premesti_se",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.2.1"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "dule@trk.in.rs",
+  "license": "MIT"
 }

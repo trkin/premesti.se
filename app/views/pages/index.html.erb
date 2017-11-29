@@ -2,11 +2,15 @@
 
 <% unless current_user %>
   <div id="signup-form">
-    <%= form_for @landing_signup, url: landing_signup_path do |f| %>
+    <%= bootstrap_form_for @landing_signup, url: landing_signup_path do |f| %>
       <%= f.select :current_location, options_from_collection_for_select(Location.all, :name, :uuid), placeholder: t('landing-signup.current_location') %>
       <%= f.select :current_group, option_groups_from_collection_for_select(Location.all, :groups, :name, :uuid, :name) %>
       <%= f.select :prefered_locations, options_from_collection_for_select(Location.all, :name, :uuid), placeholder: t('landing-signup.prefered_locations') %>
-      <%= f.submit t('landing-signup.submit') %>
+      <%= f.button type: :submit, class: 'btn' do %>
+        <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+        <%= t('landing-signup.submit') %>
+        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+      <% end %>
     <% end %>
   </div>
 <% end %>

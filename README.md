@@ -2,6 +2,10 @@
 
 Premesti.Se
 
+* Rails 5
+* Neo4j database
+* yarn installed: bootstrap 3, jquery 3, font awesome 4
+
 Database is Neo4j. To install use this rails tasks
 
 ~~~

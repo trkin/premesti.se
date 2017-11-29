@@ -59,3 +59,5 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'devise-neo4j'
 gem 'neo4j', '~> 9.0.0'
 gem 'neo4j-rake_tasks'
+# adding bootstrap_form_for
+gem 'bootstrap_form'

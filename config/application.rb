@@ -35,6 +35,9 @@ module PremestiSe
       Rails.application.secrets.neo4j_password.to_s + "@" +
       Rails.application.secrets.neo4j_host.to_s + ":" +
       Rails.application.secrets.neo4j_port.to_s
+    raise "Please set env variables for NEO4J server #{config.neo4j.session.url}" unless Rails.application.secrets.values_at(
+      :neo4j_type, :neo4j_username, :neo4j_password, :neo4j_host, :neo4j_port
+    ).all?
     # puts config.neo4j.session.url
     #  or
     # config.neo4j.session.type = :embedded

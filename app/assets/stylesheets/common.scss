@@ -1,0 +1,6 @@
+.hide-not-important {
+  display: none;
+  &.active {
+    display: initial;
+  }
+}

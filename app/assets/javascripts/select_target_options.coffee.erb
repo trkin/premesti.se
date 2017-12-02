@@ -1,0 +1,11 @@
+$(document).on 'change', '[data-select-target]', ->
+  $target = $($(this).data('selectTarget'))
+  $target.find('option').remove().end()
+    .append('<option value=""><%= I18n.t 'please_select' %></option>')
+  for option in $(this).data('selectOptions')[this.value]
+    $target.append $('<option>',
+      value: option.id
+      text: option.name
+    )
+  $target.show()
+  # while target has target, hide them

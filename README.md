@@ -26,3 +26,11 @@ echo http://localhost:$(expr $NEO4J_TEST_BOLT_PORT + 2)
 
 Note that when you are changing the ports, then run `spring stop` to reload new
 env.
+
+Drop migrate and seed
+
+~~~
+rake db:drop
+rake db:migrate
+rake db:seed
+~~~

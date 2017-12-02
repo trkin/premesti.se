@@ -2,19 +2,20 @@
 
 <% unless current_user %>
   <div id="signup-form">
-    <%= bootstrap_form_for @landing_signup, url: landing_signup_path do |f| %>
-      <%= f.select :current_location, options_from_collection_for_select(Location.all, :name, :uuid), placeholder: t('landing-signup.current_location') %>
-      <%= f.select :current_group, option_groups_from_collection_for_select(Location.all, :groups, :name, :uuid, :name) %>
-      <%= f.select :prefered_locations, options_from_collection_for_select(Location.all, :name, :uuid), placeholder: t('landing-signup.prefered_locations') %>
+    <%= bootstrap_form_for @landing_signup, url: landing_signup_path, builder: MyFormBuilder do |f| %>
+
+      <%= f.select :current_city, options_from_collection_for_select(City.all, :id, :name), { label: t('landing_signup.current_city'), prompt: t('please_select') }, 'data-select-target': '#current-location', 'data-select-options': LandingSignup.locations_by_city_id.to_json %>
+
+      <%= f.select :current_location, [], { label: t('landing_signup.current_location') }, id: 'current-location', 'data-select-target': '#current-group', 'data-select-options': LandingSignup.groups_by_location_id.to_json, class: 'hide-not-important' %>
+
+      <%= f.select :current_group, [], { label: t('landing_signup.current_group')}, 'data-select-target': '#prefered-groups', 'data-select-options': LandingSignup.groups_by_group_id.to_json, id: 'current-group', class: 'hide-not-important' %>
+
+      <%= f.select :prefered_groups, options_from_collection_for_select(Location.all, :name, :id), { label: t('landing_signup.prefered_locations') }, id: 'prefered-groups', class: 'hide-not-important' %>
       <%= f.button type: :submit, class: 'btn' do %>
         <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-        <%= t('landing-signup.submit') %>
+        <%= t('landing_signup.submit') %>
         <i class="fa fa-envelope-o" aria-hidden="true"></i>
       <% end %>
     <% end %>
   </div>
-<% end %>
-List of locations
-<% @locations.each do |location| %>
-  <%= location.name %>
 <% end %>

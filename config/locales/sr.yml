@@ -1,6 +1,8 @@
 rs:
+  please_select: Молим изаберите
   where_do_you_want_to_move: Где хоћеш да се преместиш ?
-  landing-signup:
+  landing_signup:
+    current_city: Који је твој град ?
     current_location: Која је твоја тренутна локација ?
     prefered_locations: На коју локацију тражиш премештај ?
     current_group: Којој групи припадаш ?

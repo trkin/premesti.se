@@ -17,13 +17,27 @@ namespace :db do
       b[doc[:var]] = user if doc[:var]
     end
 
+    # City
+    [
+      { var: :city1 },
+      { var: :city2 },
+    ].each do |doc|
+      params = doc.except(:var).merge(name: doc[:var])
+      city = City.find_by params
+      if city.blank?
+        city = City.create! params
+        puts "City #{city.name}"
+      end
+      b[doc[:var]] = city if doc[:var]
+    end
+
     # Location
     [
-      { var: :location1 },
-      { var: :location2 },
-      { var: :location3 },
-      { var: :location4 },
-      { var: :location5 },
+      { var: :loc1_city1, city: b[:city1] },
+      { var: :loc2_city1, city: b[:city1] },
+      { var: :loc3_city1, city: b[:city1] },
+      { var: :loc1_city2, city: b[:city2] },
+      { var: :loc2_city2, city: b[:city2] },
     ].each do |doc|
       params = doc.except(:var).merge(name: doc[:var])
       location = Location.find_by params
@@ -36,18 +50,12 @@ namespace :db do
 
     # Group
     [
-      { var: :g2_l1, location: b[:location1], age_min: 2,
-        age_max: 2 },
-      { var: :g2_l2, location: b[:location2], age_min: 2,
-        age_max: 2 },
-      { var: :g2_l3, location: b[:location3], age_min: 2,
-        age_max: 2 },
-      { var: :g2_l4, location: b[:location4], age_min: 2,
-        age_max: 2 },
-      { var: :g2_l5, location: b[:location5], age_min: 2,
-        age_max: 2 },
-      { var: :g4_l1, location: b[:location1], age_min: 4,
-        age_max: 4 },
+      { var: :g2_l1, location: b[:loc1_city1], age: 2 },
+      { var: :g2_l2, location: b[:loc2_city1], age: 2 },
+      { var: :g2_l3, location: b[:loc3_city1], age: 2 },
+      { var: :g2_l4, location: b[:loc1_city2], age: 2 },
+      { var: :g2_l5, location: b[:loc2_city2], age: 2 },
+      { var: :g4_l1, location: b[:loc1_city1], age: 2 },
     ].each do |doc|
       params = doc.except(:var).merge(name: doc[:var])
       group = Group.find_by params

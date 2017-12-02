@@ -1,6 +1,8 @@
 en:
+  please_select: Please select
   where_do_you_want_to_move: Where do you want to Move?
-  landing-signup:
+  landing_signup:
+    current_city: What is your city ?
     current_location: What is your current location ?
     prefered_locations: Where do you want to move ?
     current_group: Which group do you belong ?

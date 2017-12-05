@@ -8,9 +8,13 @@
 
       <%= f.select :current_location, [], { label: t('landing_signup.current_location') }, id: 'current-location', 'data-select-target': '#current-group', 'data-select-options': LandingSignup.groups_by_location_id.to_json, class: 'hide-not-important' %>
 
-      <%= f.select :current_group, [], { label: t('landing_signup.current_group')}, 'data-select-target': '#prefered-groups', 'data-select-options': LandingSignup.groups_by_group_id.to_json, id: 'current-group', class: 'hide-not-important' %>
+      <%= f.select :from_group, [], { label: t('landing_signup.from_group')}, 'data-select-target': '#prefered-groups', 'data-select-options': LandingSignup.groups_by_group_id.to_json, id: 'current-group', class: 'hide-not-important' %>
 
-      <%= f.select :prefered_groups, options_from_collection_for_select(Location.all, :name, :id), { label: t('landing_signup.prefered_locations') }, id: 'prefered-groups', class: 'hide-not-important' %>
+      <%= f.select :prefered_group, options_from_collection_for_select(Location.all, :name, :id), { label: t('landing_signup.prefered_location') }, id: 'prefered-groups', class: 'hide-not-important' %>
+
+      <%= f.email_field :email, label: t('landing_signup.email') %>
+      <%= f.password_field :password, label: t('landing_signup.password') %>
+
       <%= f.button type: :submit, class: 'btn' do %>
         <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
         <%= t('landing_signup.submit') %>

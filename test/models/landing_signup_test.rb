@@ -1,6 +1,43 @@
 require 'test_helper'
 
 class LocationTest < ActiveSupport::TestCase
+  def valid_params(group)
+    {
+      email: 'my@email.com',
+      password: '123456',
+      current_city: group.location.city.id,
+      current_location: group.location.id,
+      from_group: group.id
+    }
+  end
+
+  def valid?(h = {})
+    group = create :group
+    LandingSignup.new(valid_params(group).merge(h)).valid?
+  end
+
+  test 'validation' do
+    assert valid?
+    refute valid?(email: nil)
+    refute valid?(email: '')
+    refute valid?(from_group: nil)
+    refute valid?(from_group: '')
+  end
+
+  test 'email format valid' do
+    assert valid?(email: 'my@email.com')
+    refute valid?(email: 'my@@email.com')
+    refute valid?(email: 'my.email.com')
+  end
+
+  test 'create user and move' do
+    group = create :group
+    landing_signup = LandingSignup.new(valid_params(group))
+    landing_signup.perform
+    assert_equal valid_params(group)[:email], landing_signup.user.email
+    assert_equal valid_params(group)[:from_group], landing_signup.move.from_group.id
+  end
+
   test '#locations_by_city_id' do
     c1 = create :city
     l1_c1 = create :location, city: c1

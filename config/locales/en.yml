@@ -4,8 +4,12 @@ en:
   landing_signup:
     current_city: What is your city ?
     current_location: What is your current location ?
-    prefered_locations: Where do you want to move ?
-    current_group: Which group do you belong ?
-    emeil: What is your email ?
+    from_group: Which group do you belong ?
+    prefered_location: Where do you want to move ?
+    email: What is your email ?
+    password: Your password for this site ?
     submit: Notify me
 
+  user_mailer:
+    landing_signup:
+      subject: Thanks for registration!

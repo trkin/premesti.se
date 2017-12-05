@@ -6,6 +6,7 @@ Dir[Rails.root.join('test/support/**/*.rb')].each { |f| require f }
 
 class ActiveSupport::TestCase
   include FactoryBot::Syntax::Methods
+  include AbstractController::Translation
 
   # http://neo4jrb.readthedocs.io/en/8.0.x/Miscellany.html#cleaning-your-database-for-testing
   teardown do

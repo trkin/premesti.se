@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   devise_for :users
 
   post 'landing-signup', to: 'pages#landing_signup'
+
+  get 'dashboard', to: 'dashboard#index'
 end

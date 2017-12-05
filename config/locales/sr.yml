@@ -4,7 +4,12 @@ rs:
   landing_signup:
     current_city: Који је твој град ?
     current_location: Која је твоја тренутна локација ?
-    prefered_locations: На коју локацију тражиш премештај ?
-    current_group: Којој групи припадаш ?
+    from_group: Којој групи припадаш ?
+    prefered_location: На коју локацију тражиш премештај ?
     email: Који је твој имејл ?
+    password: Лозинка за овај сајт ?
     submit: Обавести ме
+
+  user_mailer:
+    landing_signup:
+      subject: Хвала на регистрацији!

@@ -64,4 +64,4 @@ gem 'devise-neo4j'
 gem 'neo4j', '~> 9.0.0'
 gem 'neo4j-rake_tasks'
 # adding bootstrap_form_for
-gem 'bootstrap_form'
+gem 'bootstrap_form', git: 'git@github.com:duleorlovic/rails-bootstrap-forms.git'

@@ -13,5 +13,6 @@ FactoryBot.define do
   factory :group do
     location
     sequence(:name) { |i| "GroupName#{i}" }
+    age 1
   end
 end

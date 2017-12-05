@@ -1,3 +1,9 @@
+GIT
+  remote: git@github.com:duleorlovic/rails-bootstrap-forms.git
+  revision: e6b7d9c1e71729f210cfcdd2e559ddc51e956d7b
+  specs:
+    bootstrap_form (2.7.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -45,7 +51,6 @@ GEM
     arel (8.0.0)
     bcrypt (3.1.11)
     bindex (0.5.0)
-    bootstrap_form (2.7.0)
     builder (3.2.3)
     byebug (9.1.0)
     capybara (2.16.1)
@@ -138,6 +143,7 @@ GEM
       tilt
     letter_opener (1.4.1)
       launchy (~> 2.2)
+    libv8 (3.16.14.19)
     libv8 (3.16.14.19-x86_64-linux)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -286,7 +292,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap_form
+  bootstrap_form!
   byebug
   capybara (~> 2.13)
   chromedriver-helper

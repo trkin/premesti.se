@@ -33,4 +33,26 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     post landing_signup_path, params: { landing_signup: params }
     assert_response :success
   end
+
+  test 'landing signup already existing email and valid password' do
+    email = 'my@email.com'
+    password = '1234567'
+    create :user, email: email, password: password
+    group = create :group
+    params = {
+      email: email,
+      password: password,
+      from_group: group.id,
+    }
+    assert_difference "User.count", 0 do
+      assert_difference "Move.count", 1 do
+        assert_difference "ActionMailer::Base.deliveries.size", 1 do
+          post landing_signup_path, params: { landing_signup: params }
+        end
+      end
+    end
+    assert_response :redirect
+    assert_redirected_to dashboard_path
+    ActionMailer::Base.deliveries.clear
+  end
 end

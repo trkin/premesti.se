@@ -1,7 +1,7 @@
 class UserMailer < ApplicationMailer
-  def landing_signup(move = nil, user_password = nil)
-    @greeting = "Hi"
+  def landing_signup(move)
+    @move = move
 
-    mail to: "to@example.org"
+    mail to: @move.user.email
   end
 end

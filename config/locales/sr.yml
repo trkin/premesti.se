@@ -1,4 +1,4 @@
-rs:
+sr:
   please_select: Молим изаберите
   where_do_you_want_to_move: Где хоћеш да се преместиш ?
   landing_signup:
@@ -13,3 +13,9 @@ rs:
   user_mailer:
     landing_signup:
       subject: Хвала на регистрацији!
+  sign_in: Пријавите се
+  sign_out: Одјавите се
+  register: Региструј се
+  my_devise:
+    registration_headline: Региструјте се
+    characters_minimum: Најмање %{count} слова. бројева или других знакова

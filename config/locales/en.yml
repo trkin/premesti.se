@@ -13,3 +13,10 @@ en:
   user_mailer:
     landing_signup:
       subject: Thanks for registration!
+  sign_in: Sign in
+  sign_out: Sign out
+  register: Register
+  my_devise:
+    registration_headline: Register here
+    characters_minimum: Minimum %{count} characters
+

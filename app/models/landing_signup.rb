@@ -14,7 +14,7 @@ class LandingSignup
     return false unless _create_user
     _create_move!
 
-    UserMailer.landing_signup(@move, @password).deliver_now
+    UserMailer.landing_signup(@move).deliver_now
     true
   end
 

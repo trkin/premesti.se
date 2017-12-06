@@ -34,3 +34,7 @@ rake db:drop
 rake db:migrate
 rake db:seed
 ~~~
+
+# Locale
+
+You can see in Serbian language by visiting <http://sr.localhost:3000>

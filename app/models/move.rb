@@ -12,5 +12,5 @@ class Move
   # property :priority, is on relationship, and not so important for now
   has_one :in, :user, origin: :moves
 
-  validates :from_group, presence: true
+  validates :from_group, :user, presence: true
 end

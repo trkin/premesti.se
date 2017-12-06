@@ -1,0 +1,18 @@
+sr:
+  errors:
+    format: Поље "%{attribute}" %{message}
+    messages:
+      blank: не сме бити празно
+  neo4j:
+    errors:
+      messages:
+        required: мора постојати
+        taken: је већ заузет
+    attributes:
+      user:
+        email: Имејл
+        password: Лозинка
+        password_confirmation: Потврда лозинке
+    errors:
+      models:
+

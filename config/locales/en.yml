@@ -19,4 +19,11 @@ en:
   my_devise:
     registration_headline: Register here
     characters_minimum: Minimum %{count} characters
-
+    sign_in_headline: Log in
+    forgot_password: Forgot your password?
+    did_not_receive_confirmation_instructions: "Didn't receive confirmation instructions?"
+    did_not_receive_unlock_instructions: "Didn't receive unlock instructions?"
+    sign_in_with: Sign in with %{provider}
+    send_me_reset_password_instructions: Send me reset password instructions
+    resend_confirmation_instructions: Resend confirmation instructions
+    resend_unlock_instructions: Resend unlock instructions

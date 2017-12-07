@@ -19,3 +19,11 @@ sr:
   my_devise:
     registration_headline: Региструјте се
     characters_minimum: Најмање %{count} слова. бројева или других знакова
+    sign_in_headline: Пријавите се
+    forgot_password: Заборавили сте лозинку ?
+    did_not_receive_confirmation_instructions: Нисте примили упутство за потврду налога ?
+    did_not_receive_unlock_instructions: Нисте примили упутство за откључавање налога ?
+    sign_in_with: Пријавите се преко %{provider}
+    send_me_reset_password_instructions: Пошаљите ми упутство за промену лозинке
+    resend_confirmation_instructions: Поново пошаљи упутства за потврду налога
+    resend_unlock_instructions: Поново пошаљи упутства за откључавање налога

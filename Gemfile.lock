@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:duleorlovic/rails-bootstrap-forms.git
+  remote: https://github.com/duleorlovic/rails-bootstrap-forms.git
   revision: e6b7d9c1e71729f210cfcdd2e559ddc51e956d7b
   specs:
     bootstrap_form (2.7.0)
@@ -144,7 +144,6 @@ GEM
     letter_opener (1.4.1)
       launchy (~> 2.2)
     libv8 (3.16.14.19)
-    libv8 (3.16.14.19-x86_64-linux)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)

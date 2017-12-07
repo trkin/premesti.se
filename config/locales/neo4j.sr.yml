@@ -8,11 +8,11 @@ sr:
       messages:
         required: мора постојати
         taken: је већ заузет
+    models:
+      user: корисник
     attributes:
       user:
         email: Имејл
         password: Лозинка
         password_confirmation: Потврда лозинке
-    errors:
-      models:
-
+        remember_me: Запамти ме

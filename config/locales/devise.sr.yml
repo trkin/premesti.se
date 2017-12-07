@@ -7,7 +7,7 @@ sr:
     failure:
       already_authenticated: Већ сте пријављени.
       inactive: Ваш налог још није активиран.
-      invalid: Неисправан %{authentication_keys} или лозинка.
+      envalid: Неисправан %{authentication_keys} или лозинка.
       locked: Ваш налог је закључан.
       last_attempt: Имате још један покушај пре него што Ваш налог буде закључан.
       not_found_in_database: Неисправан %{authentication_keys} или лозинка.
@@ -58,5 +58,5 @@ sr:
       not_found: није пронађено
       not_locked: није закључан
       not_saved:
-        one: '1 грешка спречава снимање %{resource}:'
-        other: "%{count} грешке спречавају снимање %{resource}:"
+        one: '1 грешка спречава %{resource}а:'
+        other: "%{count} грешке спречавају %{resource}a:"

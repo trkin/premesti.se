@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   def _set_locale_from_domain
     locale = case request.host
-             when 'premesti.localhost', 'sr.localhost'
+             when 'www.premesti.se', 'sr.localhost'
                'sr'
              else
                I18n.default_locale

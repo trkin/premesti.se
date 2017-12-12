@@ -4,33 +4,57 @@ class LandingSignup
   OPTIONAL_FIELDS = %i[prefered_group].freeze
   FIELDS = REQUIRED_FIELDS + OPTIONAL_FIELDS
   attr_accessor(*FIELDS)
-  attr_reader :user, :move
+  attr_reader :user, :move, :existing_user
+  # other helpers: :notice, :alert
 
   validates(*REQUIRED_FIELDS, presence: true)
+  # rubocop:disable  Style/ColonMethodCall
   validates_format_of :email, with: Devise::email_regexp
 
   def perform
     return false unless valid?
-    return false unless _create_user
+    return false unless _create_or_find_user?
     _create_move!
 
     UserMailer.landing_signup(@move).deliver_now
     true
   end
 
-  def _create_user
-    @user = User.new email: @email, password: @password
-    @user.skip_confirmation! # we will manually send confirmation
-    @user.valid?
+  def _create_or_find_user?
+    if User.find_by email: @email
+      _valid_existing_user?
+    else
+      @user = User.new email: @email, password: @password
+      @user.skip_confirmation! # we will manually send confirmation
+      @user.valid?
+    end
+  end
+
+  def _valid_existing_user?
+    user = User.find_by email: @email
+    if user.valid_password? password
+      @user = user
+      @existing_user = true
+      true
+    else
+      errors.add :password, I18n.t("errors.messages.invalid")
+      errors.add :base, I18n.t("landing_signup.user_registered_but_password_is_invalid")
+      false
+    end
   end
 
   def _create_move!
     from_group = Group.find @from_group
     @move = Move.create! user: @user, from_group: from_group
-    if @prefered_group.present?
-      prefered_group = Group.find @prefered_group
-      @move.prefered_groups << prefered_group
-    end
+    return unless @prefered_group.present?
+    prefered_group = Group.find @prefered_group
+    @move.prefered_groups << prefered_group
+  end
+
+  def notice
+    notice = I18n.t("landing_signup.success_notice")
+    notice += I18n.t("devise.registration.signed_up_but_unconfirmed") unless user.confirmed?
+    notice
   end
 
   # return hash {city_id: [{id: l1.id, name: l1.name}, ...], ...}
@@ -63,7 +87,9 @@ class LandingSignup
       groups = group
                .query_as(:g)
                .match(
-                 '(g)<-[:HAS_GROUPS]-(l), (l)-[:IN_CITY]->(c),(c)<-[:IN_CITY]-(other_loc), (other_loc)-[:HAS_GROUPS]->(other_group)'
+                 '(g)<-[:HAS_GROUPS]-(l),
+                 (l)-[:IN_CITY]->(c),(c)<-[:IN_CITY]-(other_loc),
+                 (other_loc)-[:HAS_GROUPS]->(other_group)'
                )
                .where('g <> other_group').where('g.age = other_group.age').pluck(:other_group)
                .map { |g| { id: g.id, name: g.location.name } }

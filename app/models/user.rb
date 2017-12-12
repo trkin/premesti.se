@@ -46,7 +46,46 @@ class User
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable,
+         :omniauthable
+
+  property :facebook_uid, type: String
+  property :google_uid, type: String
 
   has_many :out, :moves, type: :WANTS
+
+  def self.find_existing(provider, email, uid)
+    user = find_by(email: email)
+    return user if user
+    # user changed his email on facebook
+    user = if provider == 'facebook'
+             find_by(facebook_uid: uid)
+           else
+             find_by(google_uid: uid)
+           end
+    user
+  end
+
+  def self.create_new_with_some_password(provider, email, uid)
+    params = {
+      email: email, password: Devise.friendly_token[0, 20], confirmed_at:
+      Time.zone.now,
+    }
+    if provider == 'facebook'
+      params.merge facebook_uid: uid
+    else
+      params.merge google_uid: uid
+    end
+    User.create! params
+  end
+
+  def self.from_omniauth!(auth)
+    user = find_existing(auth.provider, auth.info.email, auth.uid)
+    return user if user
+    user = create_new_with_some_password(auth.provider, auth.info.email, auth.uid)
+    user.skip_confirmation! # this will just add confirmed_at = Time.now
+    # user.name = auth.info.name # assuming the user model has a name
+    # user.image = auth.info.image # assuming the user model has an image
+    user
+  end
 end

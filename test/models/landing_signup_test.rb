@@ -30,12 +30,16 @@ class LocationTest < ActiveSupport::TestCase
     refute valid?(email: 'my.email.com')
   end
 
-  test 'create user and move' do
-    group = create :group
-    landing_signup = LandingSignup.new(valid_params(group))
-    landing_signup.perform
-    assert_equal valid_params(group)[:email], landing_signup.user.email
-    assert_equal valid_params(group)[:from_group], landing_signup.move.from_group.id
+  test 'create new user and move' do
+    assert_difference "User.count", 1 do
+      assert_difference "Move.count", 1 do
+        group = create :group
+        landing_signup = LandingSignup.new(valid_params(group))
+        landing_signup.perform
+        assert_equal valid_params(group)[:email], landing_signup.user.email
+        assert_equal valid_params(group)[:from_group], landing_signup.move.from_group.id
+      end
+    end
   end
 
   test '#locations_by_city_id' do

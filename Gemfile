@@ -65,3 +65,7 @@ gem 'neo4j', '~> 9.0.0'
 gem 'neo4j-rake_tasks'
 # adding bootstrap_form_for
 gem 'bootstrap_form', github: 'duleorlovic/rails-bootstrap-forms'
+
+# omniauth
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'

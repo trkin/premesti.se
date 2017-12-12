@@ -42,6 +42,8 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     params = {
       email: email,
       password: password,
+      current_city: group.location.city.id,
+      current_location: group.location.id,
       from_group: group.id,
     }
     assert_difference "User.count", 0 do

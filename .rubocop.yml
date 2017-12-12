@@ -19,3 +19,10 @@ Metrics/BlockLength:
 # I like to put comma after each line
 Style/TrailingCommaInLiteral:
   Enabled: false
+# also in arguments
+Style/TrailingCommaInArguments:
+  Enabled: false
+
+# I like methods in 10 lines but some are bigger
+Metrics/MethodLength:
+  Max: 15

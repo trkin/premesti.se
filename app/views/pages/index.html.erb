@@ -6,11 +6,11 @@
 
       <%= f.select :current_city, options_from_collection_for_select(City.all, :id, :name), { label: t('landing_signup.current_city'), prompt: t('please_select') }, 'data-select-target': '#current-location', 'data-select-options': LandingSignup.locations_by_city_id.to_json %>
 
-      <%= f.select :current_location, [], { label: t('landing_signup.current_location') }, id: 'current-location', 'data-select-target': '#current-group', 'data-select-options': LandingSignup.groups_by_location_id.to_json, class: 'hide-not-important' %>
+      <%= f.select :current_location, (f.object.current_city.present? ? LandingSignup.locations_by_city_id[f.object.current_city].map{ |r| [r[:name],r[:id]]} : []), { label: t('landing_signup.current_location') }, id: 'current-location', 'data-select-target': '#current-group', 'data-select-options': LandingSignup.groups_by_location_id.to_json, class: ('hide-not-important' unless f.object.current_city.present?) %>
 
-      <%= f.select :from_group, [], { label: t('landing_signup.from_group')}, 'data-select-target': '#prefered-groups', 'data-select-options': LandingSignup.groups_by_group_id.to_json, id: 'current-group', class: 'hide-not-important' %>
+      <%= f.select :from_group, (f.object.current_location.present? ? LandingSignup.groups_by_location_id[f.object.current_location].map{ |r| [r[:name],r[:id]]} : []), { label: t('landing_signup.from_group')}, 'data-select-target': '#prefered-groups', 'data-select-options': LandingSignup.groups_by_group_id.to_json, id: 'current-group', class: ('hide-not-important' unless f.object.current_location.present?) %>
 
-      <%= f.select :prefered_group, options_from_collection_for_select(Location.all, :name, :id), { label: t('landing_signup.prefered_location') }, id: 'prefered-groups', class: 'hide-not-important' %>
+      <%= f.select :prefered_group, options_from_collection_for_select(Location.all, :name, :id), { label: t('landing_signup.prefered_location') }, id: 'prefered-groups', class: ('hide-not-important' unless f.object.from_group.present?) %>
 
       <%= f.email_field :email, label: t('landing_signup.email') %>
       <%= f.password_field :password, label: t('landing_signup.password') %>

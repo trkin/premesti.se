@@ -10,19 +10,21 @@
 
   <body>
     <% if login_layout? %>
-      <%= notice %>
-      <%= alert %>
+      <div><%= notice %></div>
+      <div><%= alert %></div>
       <%= yield %>
     <% else %>
       <% if current_user %>
-        <strong><%= current_user.email %></strong>
+        <span><%= current_user.email %></span>
         <%= link_to t("sign_out"), destroy_user_session_path, method: :delete %>
       <% else %>
         <%= link_to t("register"), new_user_registration_path %>
         <%= link_to t("sign_in"), new_user_session_path %>
+        <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
+        <%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %>
       <% end %>
-      <%= notice %>
-      <%= alert %>
+      <div><%= notice %></div>
+      <div><%= alert %></div>
       <%= yield %>
     <% end %>
   </body>

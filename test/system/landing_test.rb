@@ -3,7 +3,7 @@ require "application_system_test_case"
 class LandingTest < ApplicationSystemTestCase
   test 'create user and relationships' do
     group = create :group
-    prefered_location= create :location, city: group.location.city
+    prefered_location = create :location, city: group.location.city
     prefered_group = create :group, location: prefered_location
     email = 'my@email.com'
 

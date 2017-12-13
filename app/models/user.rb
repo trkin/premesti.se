@@ -54,7 +54,7 @@ class User
 
   has_many :out, :moves, type: :WANTS
 
-  def self.find_existing(provider, email, uid)
+  def self._find_existing(provider, email, uid)
     user = find_by(email: email)
     return user if user
     # user changed his email on facebook
@@ -80,7 +80,7 @@ class User
   end
 
   def self.from_omniauth!(auth)
-    user = find_existing(auth.provider, auth.info.email, auth.uid)
+    user = _find_existing(auth.provider, auth.info.email, auth.uid)
     return user if user
     user = create_new_with_some_password(auth.provider, auth.info.email, auth.uid)
     user.skip_confirmation! # this will just add confirmed_at = Time.now

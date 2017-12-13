@@ -18,6 +18,9 @@ en:
   sign_in: Sign in
   sign_out: Sign out
   register: Register
+  provider:
+    facebook: Facebook
+    google_oauth2: Google
   my_devise:
     registration_headline: Register here
     characters_minimum: Minimum %{count} characters
@@ -29,3 +32,4 @@ en:
     send_me_reset_password_instructions: Send me reset password instructions
     resend_confirmation_instructions: Resend confirmation instructions
     resend_unlock_instructions: Resend unlock instructions
+    can_not_sign_in: "Can't sign in"

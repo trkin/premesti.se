@@ -18,6 +18,9 @@ sr:
   sign_in: Пријавите се
   sign_out: Одјавите се
   register: Региструј се
+  provider:
+    facebook: Фејсбук
+    google_oauth2: Гугл
   my_devise:
     registration_headline: Региструјте се
     characters_minimum: Најмање %{count} слова. бројева или других знакова
@@ -25,7 +28,8 @@ sr:
     forgot_password: Заборавили сте лозинку ?
     did_not_receive_confirmation_instructions: Нисте примили упутство за потврду налога ?
     did_not_receive_unlock_instructions: Нисте примили упутство за откључавање налога ?
-    sign_in_with: Пријавите се преко %{provider}
+    sign_in_with: Пријавите се преко %{provider}-а
     send_me_reset_password_instructions: Пошаљите ми упутство за промену лозинке
     resend_confirmation_instructions: Поново пошаљи упутства за потврду налога
     resend_unlock_instructions: Поново пошаљи упутства за откључавање налога
+    can_not_sign_in: Није успела пријава.

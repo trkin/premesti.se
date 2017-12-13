@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class UserOmniauthTest < ActionDispatch::IntegrationTest
+class OmniauthCallbacksControllerTest < ActionDispatch::IntegrationTest
   def setup
     OmniAuth.config.test_mode = true
   end
@@ -34,6 +34,7 @@ class UserOmniauthTest < ActionDispatch::IntegrationTest
     follow_redirect!
     follow_redirect!
     assert_select 'span', user.email
+    assert_select 'div', t("devise.omniauth_callbacks.success", kind: t("provider.google_oauth2"))
   end
 
   test 'facebook signup' do
@@ -58,6 +59,16 @@ class UserOmniauthTest < ActionDispatch::IntegrationTest
       follow_redirect!
       follow_redirect!
       assert_select 'span', email
+    end
+  end
+
+  test 'failure' do
+    OmniAuth.config.mock_auth[:facebook] = :invalid_credentials
+    assert_difference "User.count", 0 do
+      get user_facebook_omniauth_authorize_path
+      follow_redirect!
+      follow_redirect!
+      assert_select 'div', /invalid_credentials/
     end
   end
 

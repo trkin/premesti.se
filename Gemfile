@@ -69,3 +69,6 @@ gem 'bootstrap_form', github: 'duleorlovic/rails-bootstrap-forms'
 # omniauth
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
+
+# mail style and generate txt from html
+gem 'premailer-rails'

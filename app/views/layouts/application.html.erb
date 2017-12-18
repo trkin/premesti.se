@@ -9,6 +9,7 @@
   </head>
 
   <body>
+    <%= link_to t("site_title"), root_path %>
     <% if login_layout? %>
       <div><%= notice %></div>
       <div><%= alert %></div>
@@ -16,6 +17,7 @@
     <% else %>
       <% if current_user %>
         <span><%= current_user.email %></span>
+        <%= link_to t("change_password"), edit_user_password_path %>
         <%= link_to t("sign_out"), destroy_user_session_path, method: :delete %>
       <% else %>
         <%= link_to t("register"), new_user_registration_path %>

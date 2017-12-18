@@ -25,7 +25,7 @@ class LandingSignup
       _valid_existing_user?
     else
       @user = User.new email: @email, password: @password
-      @user.skip_confirmation! # we will manually send confirmation
+      @user.skip_confirmation_notification! # we will manually send confirmation
       @user.valid?
     end
   end
@@ -53,7 +53,7 @@ class LandingSignup
 
   def notice
     notice = I18n.t("landing_signup.success_notice")
-    notice += I18n.t("devise.registration.signed_up_but_unconfirmed") unless user.confirmed?
+    notice += I18n.t("devise.registrations.signed_up_but_unconfirmed") unless user.confirmed?
     notice
   end
 

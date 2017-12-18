@@ -21,7 +21,7 @@ class UsersTest < ApplicationSystemTestCase
   test 'register new user' do
     register 'new@email.com'
 
-    assert_text t("devise.registrations.signed_up_but_unconfirmed")
+    assert_text t("devise.registrations.signed_up")
   end
 
   test 'register user already exists' do

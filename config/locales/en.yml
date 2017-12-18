@@ -1,4 +1,5 @@
 en:
+  site_title: Move your place
   please_select: Please select
   where_do_you_want_to_move: Where do you want to Move?
   landing_signup:
@@ -15,9 +16,14 @@ en:
   user_mailer:
     landing_signup:
       subject: Thanks for registration!
+      title: Hi %{name}
+      description_of_service: We registered your move. You will receive email when there is a match with others.
+      confirmation_text: Please follow the link below in order to confirm your email
   sign_in: Sign in
   sign_out: Sign out
   register: Register
+  confirm_email: Confirm my email address
+  change_password: Change Password
   provider:
     facebook: Facebook
     google_oauth2: Google

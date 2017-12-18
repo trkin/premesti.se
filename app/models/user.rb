@@ -88,4 +88,9 @@ class User
     # user.image = auth.info.image # assuming the user model has an image
     user
   end
+
+  def generate_new_confirmation_token!
+    generate_confirmation_token!
+    @raw_confirmation_token
+  end
 end

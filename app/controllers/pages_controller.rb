@@ -7,6 +7,7 @@ class PagesController < ApplicationController
     landing_signup_params = params.require(:landing_signup).permit(LandingSignup::FIELDS)
     @landing_signup = LandingSignup.new landing_signup_params
     if @landing_signup.perform
+      sign_in @landing_signup.user
       redirect_to dashboard_path, notice: @landing_signup.notice
     else
       flash.now[:alert] = @landing_signup.errors.full_messages.join(', ')

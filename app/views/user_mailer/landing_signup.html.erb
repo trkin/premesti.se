@@ -1,5 +1,14 @@
-<h1>Welcome</h1>
+<%
+  subject_line @move.from_group.name
+%>
+<h1><%= t "user_mailer.landing_signup.title", name: @move.user.email %></h1>
 
 <p>
-  <%= @greeting %>, find me in app/views/user_mailer/landing_signup.html.erb
+  <%= t("user_mailer.landing_signup.description_of_service") %>
+  <% unless @move.user.confirmed? %>
+    <p>
+      <%= t("user_mailer.landing_signup.confirmation_text") %>
+    </p>
+    <p><%= link_to t("confirm_email"), confirmation_url(@move.user, confirmation_token: @confirmation_token) %></p>
+  <% end %>
 </p>

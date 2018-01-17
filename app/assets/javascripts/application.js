@@ -13,5 +13,6 @@
 //= require rails-ujs
 //= require jquery/dist/jquery
 //= require bootstrap/dist/js/bootstrap
+//= require snapsvg/dist/snap.svg.js
 //= require turbolinks
 //= require_tree .

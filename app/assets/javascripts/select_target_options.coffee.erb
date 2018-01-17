@@ -9,3 +9,6 @@ $(document).on 'change', '[data-select-target]', ->
     )
   $target.show()
   # while target has target, hide them
+
+$(document).on 'change', '[data-increase-abc]', ->
+  $('.abc').addClass("increase-#{$(this).data('increaseAbc')}")

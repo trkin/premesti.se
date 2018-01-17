@@ -3,6 +3,10 @@ en:
   please_select: Please select
   where_do_you_want_to_move: Where do you want to Move?
   landing_signup:
+    abc:
+      a: A
+      b: B
+      c: C
     current_city: What is your city ?
     current_location: What is your current location ?
     from_group: Which group do you belong ?

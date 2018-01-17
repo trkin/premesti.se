@@ -3,6 +3,10 @@ sr:
   please_select: Молим изаберите
   where_do_you_want_to_move: Где хоћеш да се преместиш ?
   landing_signup:
+    abc:
+      a: А
+      b: Б
+      c: В
     current_city: Који је твој град ?
     current_location: Која је твоја тренутна локација ?
     from_group: Којој групи припадаш ?

@@ -1,25 +1,45 @@
-<h1><%= t :where_do_you_want_to_move %></h1>
+<svg id="abc" class="abc" preserveAspectRatio="none" viewBox="0 0 100 100">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#f00" />
+  </defs>
+  <text class="text abc__color-a abc__color-fill-a" x="48" y="5"><%= t 'landing_signup.abc.a' %></text>
+  <text class="text abc__color-b abc__color-fill-b" x="95" y="75"><%= t 'landing_signup.abc.b' %></text>
+  <text class="text abc__color-c abc__color-fill-c" x="1" y="75"><%= t 'landing_signup.abc.c' %></text>
+  <circle class="abc__color-a" cx="50" cy="3" r="3"/>
+  <circle class="abc__color-b" cx="97" cy="73" r="3"/>
+  <circle class="abc__color-c" cx="3" cy="73" r="3"/>
+  <g class="abc__line">
+    <path id="ab" class="abc__color-a" d="M 53 3 Q 97 3, 97 70" marker-end="url(#arrow)"/>
+    <path class="abc__color-b" d="M 97 76 C 97 100, 3 100, 3 76"/>
+    <path class="abc__color-c" d="M 3 70 Q 3 3, 47 3 "/>
+  </g>
+</svg>
 
-<% unless current_user %>
-  <div id="signup-form">
-    <%= bootstrap_form_for @landing_signup, url: landing_signup_path, builder: MyFormBuilder do |f| %>
+<div class="landing-page">
+  <h1><%= t :where_do_you_want_to_move %></h1>
 
-      <%= f.select :current_city, options_from_collection_for_select(City.all, :id, :name), { label: t('landing_signup.current_city'), prompt: t('please_select') }, 'data-select-target': '#current-location', 'data-select-options': LandingSignup.locations_by_city_id.to_json %>
+  <% unless current_user %>
+    <div id="signup-form">
+      <%= bootstrap_form_for @landing_signup, url: landing_signup_path, builder: MyFormBuilder do |f| %>
 
-      <%= f.select :current_location, (f.object.current_city.present? ? LandingSignup.locations_by_city_id[f.object.current_city].map{ |r| [r[:name],r[:id]]} : []), { label: t('landing_signup.current_location') }, id: 'current-location', 'data-select-target': '#current-group', 'data-select-options': LandingSignup.groups_by_location_id.to_json, class: ('hide-not-important' unless f.object.current_city.present?) %>
+        <%= f.select :current_city, options_from_collection_for_select(City.all, :id, :name), { label: t('landing_signup.current_city'), prompt: t('please_select') }, 'data-select-target': '#current-location', 'data-select-options': LandingSignup.locations_by_city_id.to_json, 'data-increase-abc': 1 %>
 
-      <%= f.select :from_group, (f.object.current_location.present? ? LandingSignup.groups_by_location_id[f.object.current_location].map{ |r| [r[:name],r[:id]]} : []), { label: t('landing_signup.from_group')}, 'data-select-target': '#prefered-groups', 'data-select-options': LandingSignup.groups_by_group_id.to_json, id: 'current-group', class: ('hide-not-important' unless f.object.current_location.present?) %>
+        <%= f.select :current_location, (f.object.current_city.present? ? LandingSignup.locations_by_city_id[f.object.current_city].map{ |r| [r[:name],r[:id]]} : []), { label: t('landing_signup.current_location') }, id: 'current-location', 'data-select-target': '#current-group', 'data-select-options': LandingSignup.groups_by_location_id.to_json, class: ('hide-not-important' unless f.object.current_city.present?), 'data-increase-abc': 2 %>
 
-      <%= f.select :prefered_group, options_from_collection_for_select(Location.all, :name, :id), { label: t('landing_signup.prefered_location') }, id: 'prefered-groups', class: ('hide-not-important' unless f.object.from_group.present?) %>
+        <%= f.select :from_group, (f.object.current_location.present? ? LandingSignup.groups_by_location_id[f.object.current_location].map{ |r| [r[:name],r[:id]]} : []), { label: t('landing_signup.from_group')}, 'data-select-target': '#prefered-groups', 'data-select-options': LandingSignup.groups_by_group_id.to_json, id: 'current-group', class: ('hide-not-important' unless f.object.current_location.present?), 'data-increase-abc': 3 %>
 
-      <%= f.email_field :email, label: t('landing_signup.email') %>
-      <%= f.password_field :password, label: t('landing_signup.password') %>
+        <%= f.select :prefered_group, options_from_collection_for_select(Location.all, :name, :id), { label: t('landing_signup.prefered_location') }, id: 'prefered-groups', class: ('hide-not-important' unless f.object.from_group.present?), 'data-increase-abc': 4 %>
 
-      <%= f.button type: :submit, class: 'btn' do %>
-        <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-        <%= t('landing_signup.submit') %>
-        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+        <%= f.email_field :email, label: t('landing_signup.email') %>
+        <%= f.password_field :password, label: t('landing_signup.password') %>
+
+        <%= f.button type: :submit, class: 'btn' do %>
+          <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+          <%= t('landing_signup.submit') %>
+          <i class="fa fa-envelope-o" aria-hidden="true"></i>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
-<% end %>
+    </div>
+  <% end %>
+</div>

@@ -40,9 +40,11 @@ group :development, :test do
   gem 'chromedriver-helper'
   gem 'factory_bot_rails'
   gem 'guard'
+  gem 'guard-livereload', require: false
   gem 'guard-minitest'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
+  gem "rack-livereload"
   gem 'selenium-webdriver'
 end
 
@@ -72,3 +74,6 @@ gem 'omniauth-google-oauth2'
 
 # mail style and generate txt from html
 gem 'premailer-rails'
+
+# inline svg inside html
+gem 'inline_svg'

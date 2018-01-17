@@ -19,27 +19,6 @@ $color-c: #fdcc00;
   stroke-width: 0.6;
   fill: none;
 
-  .abc__line {
-    path {
-      transition: all 1s ease 0s;
-      stroke-dasharray: 110;
-      stroke-dashoffset: 110;
-    }
-  }
-
-  &.increase-1 .abc__line path {
-    stroke-dashoffset: 90;
-  }
-  &.increase-2 .abc__line path {
-    stroke-dashoffset: 60;
-  }
-  &.increase-3 .abc__line path {
-    stroke-dashoffset: 30;
-  }
-  &.increase-4 .abc__line path {
-    stroke-dashoffset: 0;
-  }
-
   .text {
     font-size: 6px;
     stroke-width: 0.2;

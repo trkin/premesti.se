@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :_set_locale_from_domain
+  before_action :authenticate_user!
 
   def _set_locale_from_domain
     locale = case request.host

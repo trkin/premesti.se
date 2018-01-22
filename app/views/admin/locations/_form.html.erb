@@ -1,0 +1,24 @@
+<div id='new-edit-holder'>
+  <%= bootstrap_form_for @location, url: (@location.new_record? ? admin_locations_path : admin_location_path(@location)), layout: :horizontal, remote: true do |f| %>
+    <div class="modal-body">
+      <%= f.text_field :name %>
+      <%= f.text_field :address %>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default pull-left" data-dismiss="modal"><%= t('close') %></button>
+      <% if @location.new_record? %>
+        <%= hidden_field_tag :city, params[:city] %>
+        <button type="submit" class="btn btn-primary" data-disable-with="<i class='fa fa-spinner fa-spin'></i> <%= t('create') %>"><%= t('create') %></button>
+      <% else %>
+        <%= link_to admin_location_path(@location), remote: true, class: "btn btn-danger", method: :delete, "data-confirm": t('are_you_sure_to_remove_item', item: Location.model_name.human) do %>
+          <i class="fa fa-trash" aria-hidden="true"></i>
+          <%= t('delete') %>
+        <% end %>
+        <button type="submit" class="btn btn-primary" data-disable-with="<i class='fa fa-spinner fa-spin'></i> <%= t('save') %>">
+          <i class="fa fa-floppy-o" aria-hidden="true"></i>
+          <%= t('save') %>
+        </button>
+      <% end %>
+    </div>
+  <% end %>
+</div>

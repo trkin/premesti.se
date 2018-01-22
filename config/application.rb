@@ -65,5 +65,7 @@ module PremestiSe
     config.after_initialize do
       Rails.application.routes.default_url_options = Rails.application.config.action_mailer.default_url_options
     end
+
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
   end
 end

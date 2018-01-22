@@ -1,0 +1,14 @@
+sr:
+  show: Прикажи
+  create: Направи
+  close: Затвори
+  delete: Обриши
+  cancel: Одустани
+  save: Сачувај
+  create_group: Направи групу
+  edit_group: Измени групу
+  create_location: Направи локацију
+  update_location: Измени локацију
+  edit_location: Измени локацију
+  group_with_that_age_already_exists: Група са тим годиштем већ постоји
+  year: год

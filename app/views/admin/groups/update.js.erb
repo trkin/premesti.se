@@ -1,0 +1,6 @@
+<% if @group.errors.present? %>
+  $('#new-edit-holder').replaceWith('<%=j render 'form' %>');
+<% else %>
+  $('#group-<%= @group.id %>').replaceWith('<%=j render partial: 'admin/locations/group_line_item', locals: { group: @group } %>');
+  $('#new-modal').modal('toggle');
+<% end %>

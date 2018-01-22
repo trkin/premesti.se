@@ -5,6 +5,8 @@ sr:
     messages:
       blank: не сме бити празно
       invalid: није исправно
+      not_a_number: мора бити број
+      greater_than: мора бити већи од %{count}
   neo4j:
     errors:
       messages:
@@ -12,9 +14,25 @@ sr:
         taken: је већ заузет
     models:
       user: корисник
+      location:
+        one: локација
+        other: локације
+      group:
+        one: група
+        other: групе
+      city: град
     attributes:
       user:
         email: Имејл
         password: Лозинка
         password_confirmation: Потврда лозинке
         remember_me: Запамти ме
+      location:
+        city: Град
+        name: Назив
+        address: Адреса
+        map: Мапа
+      group:
+        name: Назив
+        age: Пуни година
+

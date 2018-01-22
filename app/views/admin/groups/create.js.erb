@@ -1,0 +1,5 @@
+<% if @group.errors.present? %>
+  $('#new-edit-holder').replaceWith('<%=j render 'form' %>');
+<% else %>
+  window.location.assign('<%= admin_location_path @group.location %>');
+<% end %>

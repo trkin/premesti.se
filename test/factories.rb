@@ -6,6 +6,9 @@ FactoryBot.define do
     factory :unconfirmed_user do
       confirmed_at nil
     end
+    trait :admin do
+      admin true
+    end
   end
   factory :city do
     sequence(:name) { |i| "CityName#{i}" }
@@ -17,7 +20,7 @@ FactoryBot.define do
   factory :group do
     location
     sequence(:name) { |i| "GroupName#{i}" }
-    age 1
+    sequence(:age) { |i| i }
   end
   factory :move do
     association :from_group, factory: :group

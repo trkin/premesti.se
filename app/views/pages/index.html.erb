@@ -19,7 +19,7 @@
     <div id="signup-form">
       <%= bootstrap_form_for @landing_signup, url: landing_signup_path, builder: MyFormBuilder do |f| %>
 
-        <%= f.select :current_city, options_from_collection_for_select(City.all, :id, :name), { label: t('landing_signup.current_city'), prompt: t('please_select') }, 'data-select-target': '#current-location', 'data-select-options': LandingSignup.locations_by_city_id.to_json, 'data-increase-abc': 1 %>
+        <%= f.select :current_city, options_from_collection_for_select(City.all, :id, :name), { label: t('landing_signup.current_city'), prompt: t('please_select') }, id: 'current-city', 'data-select-target': '#current-location', 'data-select-options': LandingSignup.locations_by_city_id.to_json, 'data-increase-abc': 1 %>
 
         <%= f.select :current_location, (f.object.current_city.present? ? LandingSignup.locations_by_city_id[f.object.current_city].map{ |r| [r[:name],r[:id]]} : []), { label: t('landing_signup.current_location') }, id: 'current-location', 'data-select-target': '#current-group', 'data-select-options': LandingSignup.groups_by_location_id.to_json, class: ('hide-not-important' unless f.object.current_city.present?), 'data-increase-abc': 2 %>
 
@@ -39,3 +39,7 @@
     </div>
   <% end %>
 </div>
+<script>
+  var firstOption = $('#current-city option[value!=""]').first();
+  $('#current-city').val(firstOption.val()).trigger('change');
+</script>

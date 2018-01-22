@@ -4,8 +4,27 @@ en:
       messages:
         required: must exist
         taken: has already been taken
+        not_a_number: is not a number
+        greater_than: must be greater than %{count}
+    models:
+      user: user
+      location:
+        one: location
+        other: locations
+      group:
+        one: group
+        other: groups
     attributes:
       user:
         email: Email
         password: Password
         password_confirmation: Password confirmation
+      location:
+        city: City
+        name: Name
+        address: Address
+        map: Map
+      group:
+        name: Name
+        age: Age
+

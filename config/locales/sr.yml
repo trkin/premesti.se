@@ -43,3 +43,6 @@ sr:
     resend_confirmation_instructions: Поново пошаљи упутства за потврду налога
     resend_unlock_instructions: Поново пошаљи упутства за откључавање налога
     can_not_sign_in: Није успела пријава.
+  admin_dashboard: Администраторска страна
+  dashboard: Почетна
+  are_you_sure_to_remove_item: Да ли сте сигурни да желите да обришете %{item} ?

@@ -1,0 +1,11 @@
+<%#
+  group
+%>
+<li id="group-<%= group.id %>">
+  <%= link_to edit_admin_group_path(group), "data-toggle": "modal", "data-target": "#new-modal" do %>
+    <b>
+      <%= group.age %>
+    </b> <%= t('year') %>
+    <%= group.name %>
+  <% end %>
+</li>

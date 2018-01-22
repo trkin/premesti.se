@@ -14,7 +14,8 @@ Style/ClassAndModuleChildren:
 # tasks for setup data could be very long
 Metrics/BlockLength:
   Exclude:
-    - "lib/tasks/*"
+    - "lib/**/*"
+    - 'test/**/*'
 
 # I like to put comma after each line
 Style/TrailingCommaInLiteral:

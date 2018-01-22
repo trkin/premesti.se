@@ -1,0 +1,26 @@
+<%
+  breadcrumb t('dashboard') => admin_dashboard_path, Location.model_name.human(count: 2).mb_chars.capitalize => admin_locations_path(city: @location.city.name), t('show') => nil
+%>
+<dl class='dl-horizontal'>
+  <dt><%= Location.human_attribute_name(:name).mb_chars.capitalize %>:</dt>
+  <dd><%= @location.name %></dd>
+  <dt><%= Location.human_attribute_name(:address).mb_chars.capitalize %>:</dt>
+  <dd><%= @location.address %></dd>
+  <dt><%= Location.human_attribute_name(:map).mb_chars.capitalize %>:</dt>
+  <dd>map</dd>
+</dl>
+<%= modal id: 'edit-modal', title: t('update_location') %>
+<%= link_to edit_admin_location_path(location: @location.name), "data-toggle": "modal", "data-target": "#edit-modal" do %>
+  <%= t('update_location') %>
+<% end %>
+<h1><%= Group.model_name.human(count: 2) %></h1>
+<%= modal id: 'new-modal', title: t('create_group') %>
+<%= link_to new_admin_group_path(location: @location.name), class: 'btn btn-default', "data-toggle": "modal", "data-target": "#new-modal" do %>
+  <i class="fa fa-plus" aria-hidden="true"></i>
+  <%= t('create_group') %>
+<% end %>
+<ul>
+  <% @location.groups.each do |group| %>
+    <%= render partial: 'group_line_item', locals: { group: group } %>
+  <% end %>
+</ul>

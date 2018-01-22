@@ -4,7 +4,7 @@ class LandingTest < ApplicationSystemTestCase
   test 'create user and relationships' do
     group = create :group
     prefered_location = create :location, city: group.location.city
-    prefered_group = create :group, location: prefered_location
+    prefered_group = create :group, location: prefered_location, age: group.age
     email = 'my@email.com'
 
     visit root_url

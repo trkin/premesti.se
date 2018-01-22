@@ -8,4 +8,10 @@ Rails.application.routes.draw do
   post 'landing-signup', to: 'pages#landing_signup'
 
   get 'dashboard', to: 'dashboard#index'
+
+  namespace :admin do
+    get :dashboard
+    resources :locations
+    resources :groups
+  end
 end

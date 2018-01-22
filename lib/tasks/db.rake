@@ -4,6 +4,7 @@ namespace :db do
     b = {}
     # User
     [
+      { var: :admin, email: 'admin@asdf.asdf', admin: true },
       { var: :user1, email: 'asdf1@asdf.asdf' },
       { var: :user2, email: 'asdf2@asdf.asdf' },
       { var: :user3, email: 'asdf3@asdf.asdf' },

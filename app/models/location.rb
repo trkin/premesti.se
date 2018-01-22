@@ -9,4 +9,8 @@ class Location
   has_one :out, :city, type: :IN_CITY
 
   validates :name, :city, presence: true
+
+  def to_param
+    name
+  end
 end

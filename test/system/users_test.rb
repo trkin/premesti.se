@@ -1,25 +1,11 @@
 require "application_system_test_case"
+require 'helpers/system_login_helpers'
 
 class UsersTest < ApplicationSystemTestCase
-  def register(email)
-    visit new_user_registration_path
-    fill_in t("neo4j.attributes.user.email"), with: email
-    fill_in t("neo4j.attributes.user.password"), with: 'password'
-    fill_in t("neo4j.attributes.user.password_confirmation"), with: 'password'
-
-    click_on t("register")
-  end
-
-  def login(email, password)
-    visit new_user_session_path
-    fill_in t("neo4j.attributes.user.email"), with: email
-    fill_in t("neo4j.attributes.user.password"), with: password
-
-    click_on t("sign_in")
-  end
+  include SystemLoginHelpers
 
   test 'register new user' do
-    register 'new@email.com'
+    manual_register 'new@email.com', 'some_password'
 
     assert_text t("devise.registrations.signed_up")
   end
@@ -27,19 +13,19 @@ class UsersTest < ApplicationSystemTestCase
   test 'register user already exists' do
     email = 'my@email.com'
     create :user, email: email
-    register email
+    manual_register email, 'some_password'
     assert_text t("neo4j.attributes.user.email") + " " + t("neo4j.errors.messages.taken")
   end
 
   test 'register already exists, email upercased' do
     create :user, email: 'my@email.com'
-    register 'mY@email.com'
+    manual_register 'mY@email.com', 'some_password'
     assert_text t("neo4j.attributes.user.email") + " " + t("neo4j.errors.messages.taken")
   end
 
   test 'register already exists, email not striped' do
     create :user, email: 'my@email.com'
-    register ' my@email.com '
+    manual_register ' my@email.com ', 'some_password'
     assert_text t("neo4j.attributes.user.email") + " " + t("neo4j.errors.messages.taken")
   end
 
@@ -47,21 +33,21 @@ class UsersTest < ApplicationSystemTestCase
     email = 'my@email.com'
     password = '12345678'
     create :user, email: email, password: password
-    login email, password
+    manual_login email, password
     assert_text t("sign_out")
   end
 
   test 'login, email upercased' do
     password = '12345678'
     create :user, email: 'my@email.com', password: password
-    login 'my@eMail.com', password
+    manual_login 'my@eMail.com', password
     assert_text t("sign_out")
   end
 
   test 'login, email not striped' do
     password = '12345678'
     create :user, email: 'my@email.com', password: password
-    login ' my@email.com ', password
+    manual_login ' my@email.com ', password
     assert_text t("sign_out")
   end
 

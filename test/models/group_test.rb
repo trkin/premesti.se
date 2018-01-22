@@ -3,7 +3,7 @@ require 'test_helper'
 class GroupTest < ActiveSupport::TestCase
   test 'should not save without name' do
     group = build :group
-    group.name = ''
+    group.age = nil
     assert_not group.valid?
   end
 

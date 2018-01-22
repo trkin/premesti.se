@@ -43,3 +43,6 @@ en:
     resend_confirmation_instructions: Resend confirmation instructions
     resend_unlock_instructions: Resend unlock instructions
     can_not_sign_in: "Can't sign in"
+  admin_dashboard: Admin Dashboard
+  dashboard: Dashboard
+  are_you_sure_to_remove_item: Are you sure you want to delete %{item} ?

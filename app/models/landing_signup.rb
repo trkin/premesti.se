@@ -80,8 +80,7 @@ class LandingSignup
   end
 
   # return hash {group_id: [id: group.id, name: group.location.name}, ...]...}
-  # groups on other locations from same city
-  # TODO: sometimes age is not provided, but birth_date_min birth_date_max
+  # groups on other locations from same city, with same age
   def self.groups_by_group_id
     Group.all.each_with_object({}) do |group, result|
       groups = group

@@ -52,6 +52,8 @@ class User
   property :facebook_uid, type: String
   property :google_uid, type: String
 
+  property :admin, type: Boolean
+
   has_many :out, :moves, type: :WANTS
 
   def self._find_existing(provider, email, uid)

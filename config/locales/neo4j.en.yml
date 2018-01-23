@@ -1,11 +1,5 @@
 en:
   neo4j:
-    errors:
-      messages:
-        required: must exist
-        taken: has already been taken
-        not_a_number: is not a number
-        greater_than: must be greater than %{count}
     models:
       user: user
       location:

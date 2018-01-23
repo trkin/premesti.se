@@ -1,17 +1,9 @@
 sr:
-  # https://github.com/rails/rails/blob/master/activemodel/lib/active_model/locale/en.yml#L8
-  errors:
-    format: Поље "%{attribute}" %{message}
-    messages:
-      blank: не сме бити празно
-      invalid: није исправно
-      not_a_number: мора бити број
-      greater_than: мора бити већи од %{count}
   neo4j:
     errors:
       messages:
         required: мора постојати
-        taken: је већ заузет
+        taken: је већ заузето
     models:
       user: корисник
       location:

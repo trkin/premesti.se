@@ -79,3 +79,6 @@ gem 'premailer-rails'
 
 # inline svg inside html
 gem 'inline_svg'
+
+# sending emails
+gem 'sparkpost_rails'

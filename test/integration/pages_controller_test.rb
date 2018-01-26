@@ -4,6 +4,7 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get '/'
     assert_response :success
+    assert_select 'label', t('neo4j.attributes.landing_signup.current_city')
   end
 
   test 'landing signup success' do
@@ -28,10 +29,11 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     ActionMailer::Base.deliveries.clear
   end
 
-  test 'landing signup missing params' do
-    params = { email: 'a' }
+  test 'landing signup missing params render errors' do
+    params = { email: '' }
     post landing_signup_path, params: { landing_signup: params }
     assert_response :success
+    assert_select 'span', text: t('errors.messages.blank')
   end
 
   test 'landing signup already existing email and valid password' do
@@ -56,5 +58,12 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     assert_redirected_to dashboard_path
     ActionMailer::Base.deliveries.clear
+  end
+
+  test 'redirect to dashboard for authenticated users' do
+    user = create :user
+    login_as user
+    get '/'
+    assert_redirected_to dashboard_path
   end
 end

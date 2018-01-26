@@ -12,4 +12,10 @@ class ApplicationController < ActionController::Base
              end
     I18n.locale = locale
   end
+
+  def after_sign_in_path_for(resource)
+    redirect_url = stored_location_for(resource)
+    return redirect_url if redirect_url.present?
+    dashboard_path
+  end
 end

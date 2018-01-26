@@ -15,7 +15,7 @@ module OmniauthHelper
       },
       credentials: {
         token: 'ABCDEF...', # OAuth 2.0 access_token, which you may wish to store
-        expires_at: 1321747205, # when the access token expires (it always will)
+        expires_at: '1321747205', # when the access token expires (it always will)
         expires: true # this will always be true
       },
     }
@@ -27,5 +27,13 @@ module OmniauthHelper
   def mock_facebook_invalid_auth
     OmniAuth.config.test_mode = true
     OmniAuth.config.mock_auth[:facebook] = :invalid_credentials
+  end
+
+  def silence_omniauth
+    previous_logger = OmniAuth.config.logger
+    OmniAuth.config.logger = Logger.new("/dev/null")
+    yield
+  ensure
+    OmniAuth.config.logger = previous_logger
   end
 end

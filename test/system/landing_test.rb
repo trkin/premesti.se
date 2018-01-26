@@ -9,12 +9,12 @@ class LandingTest < ApplicationSystemTestCase
 
     visit root_url
     within '#signup-form' do
-      select group.location.city.name, from: t('landing_signup.current_city')
-      select group.location.name, from: t('landing_signup.current_location')
-      select group.name, from: t('landing_signup.from_group')
-      select prefered_location.name, from: t('landing_signup.prefered_location')
-      fill_in t('landing_signup.email'), with: email
-      fill_in t('landing_signup.password'), with: '1234567'
+      select group.location.city.name, from: t('neo4j.attributes.landing_signup.current_city')
+      select group.location.name, from: t('neo4j.attributes.landing_signup.current_location')
+      select group.name, from: t('neo4j.attributes.landing_signup.from_group')
+      select prefered_location.name, from: t('neo4j.attributes.landing_signup.prefered_location')
+      fill_in t('neo4j.attributes.landing_signup.email'), with: email
+      fill_in t('neo4j.attributes.landing_signup.password'), with: '1234567'
       assert_difference "User.count", 1 do
         assert_difference "ActionMailer::Base.deliveries.size", 1 do
           click_on t('landing_signup.submit')

@@ -1,5 +1,9 @@
 en:
   neo4j:
+    errors:
+      messages:
+        required: must exists
+        taken: has already been taken
     models:
       user: user
       location:
@@ -21,4 +25,10 @@ en:
       group:
         name: Name
         age: Age
-
+      landing_signup:
+        current_city: What is your city ?
+        current_location: What is your current location ?
+        from_group: Which group do you belong ?
+        prefered_location: Where do you want to move ?
+        email: What is your email ?
+        password: Your password for this site ?

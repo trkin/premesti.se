@@ -22,7 +22,6 @@ class OmniauthCallbacksControllerTest < ActionDispatch::IntegrationTest
     follow_redirect!
     follow_redirect!
     assert_select 'span', user.email
-    assert_select 'h1', 'dashboard'
   end
 
   test 'google login' do
@@ -63,11 +62,19 @@ class OmniauthCallbacksControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  def silence_omniauth
+    previous_logger = OmniAuth.config.logger
+    OmniAuth.config.logger = Logger.new("/dev/null")
+    yield
+  ensure
+    OmniAuth.config.logger = previous_logger
+  end
+
   test 'failure' do
     OmniAuth.config.mock_auth[:facebook] = :invalid_credentials
     assert_difference "User.count", 0 do
       get user_facebook_omniauth_authorize_path
-      follow_redirect!
+      silence_omniauth { follow_redirect! }
       follow_redirect!
       assert_select 'div', /invalid_credentials/
     end

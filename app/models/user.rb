@@ -6,7 +6,6 @@ class User
 
   ## Database authenticatable
   property :email, type: String, default: ''
-  validates :email, presence: true
   property :name, type: String
 
   property :encrypted_password

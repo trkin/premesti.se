@@ -7,12 +7,6 @@ en:
       a: A
       b: B
       c: C
-    current_city: What is your city ?
-    current_location: What is your current location ?
-    from_group: Which group do you belong ?
-    prefered_location: Where do you want to move ?
-    email: What is your email ?
-    password: Your password for this site ?
     submit: Notify me
     success_notice: Thank you for registering your move. We will send you an email when match happens.
     user_registered_but_password_is_invalid: You already registered but did not use this password. If you forgot your password, please reset it first.

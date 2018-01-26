@@ -27,4 +27,12 @@ sr:
       group:
         name: Назив
         age: Пуни година
+      landing_signup:
+        current_city: Који је твој град ?
+        current_location: Која је твоја тренутна локација ?
+        from_group: Којој групи припадаш ?
+        prefered_location: На коју локацију тражиш премештај ?
+        email: Који је твој имејл ?
+        password: Лозинка за овај сајт ?
+        submit: Обавести ме
 

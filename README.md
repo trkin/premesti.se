@@ -52,3 +52,6 @@ bin/rails test
 bin/rails test:system
 guard
 ~~~
+
+If guard or test runner does not see `<class:Application>': Please set env
+variables for NEO4J server ://:@: (RuntimeError)` than `spring stop` can help.

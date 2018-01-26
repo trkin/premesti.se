@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!
+  before_action :_redirect_to_dashboard_for_authenticated_users
 
   def index
     @landing_signup = LandingSignup.new
@@ -18,5 +19,9 @@ class PagesController < ApplicationController
 
   def landing_signup_params
     params.require(:landing_signup).permit(LandingSignup::FIELDS)
+  end
+
+  def _redirect_to_dashboard_for_authenticated_users
+    redirect_to dashboard_path if current_user
   end
 end

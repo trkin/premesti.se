@@ -1,1 +1,14 @@
-<h1>dashboard</h1>
+<%
+  breadcrumb t('dashboard') => nil
+%>
+<%= t('my_requests') %>
+<% @moves.each do |move| %>
+  <%= link_to move do %>
+    <%= move.from_group.age %>
+    <%= move.from_group.location.name %>
+    <%= move.prefered_groups.each do |group| %>
+      --> <%= group.location.name %>
+      <br>
+    <% end %>
+  <% end %>
+<% end %>

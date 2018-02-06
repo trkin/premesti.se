@@ -7,7 +7,7 @@
   <dt><%= Location.human_attribute_name(:address).mb_chars.capitalize %>:</dt>
   <dd><%= @location.address %></dd>
   <dt><%= Location.human_attribute_name(:map).mb_chars.capitalize %>:</dt>
-  <dd>map</dd>
+  <dd><%= show_static_map @location %></dd>
 </dl>
 <%= modal id: 'edit-modal', title: t('update_location') %>
 <%= link_to edit_admin_location_path(location: @location.name), "data-toggle": "modal", "data-target": "#edit-modal" do %>

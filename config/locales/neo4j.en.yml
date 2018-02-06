@@ -12,6 +12,10 @@ en:
       group:
         one: group
         other: groups
+      city: city
+      move:
+        one: move
+        other: moves
     attributes:
       user:
         email: Email

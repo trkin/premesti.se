@@ -95,7 +95,7 @@ namespace :db do
     Rake::Task["neo4j:start"].invoke Rails.env
     puts "Find database on http://" +
          Rails.application.secrets.neo4j_host.to_s + ":" +
-         (Rails.application.secrets.neo4j_bolt_port.to_i + 2).to_s
+         (Rails.application.secrets.neo4j_port.to_i + 2).to_s
   end
 
   desc 'migrate'

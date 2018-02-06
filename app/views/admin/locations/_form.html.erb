@@ -3,6 +3,9 @@
     <div class="modal-body">
       <%= f.text_field :name %>
       <%= f.text_field :address %>
+      <%= f.text_field :latitude, id: 'latitude-input' %>
+      <%= f.text_field :longitude, id: 'longitude-input' %>
+      <%= edit_map f.object, "#latitude-input", "#longitude-input" %>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-default pull-left" data-dismiss="modal"><%= t('close') %></button>

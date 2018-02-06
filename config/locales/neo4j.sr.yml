@@ -13,6 +13,9 @@ sr:
         one: група
         other: групе
       city: град
+      move:
+        one: премештај
+        other: премештаји
     attributes:
       user:
         email: Имејл

@@ -73,10 +73,30 @@ module MapHelper
         }
         function initialize_google() {
           console.log('initializing google autocomplete');
+          // https://wiki.openstreetmap.org/wiki/Google_Maps_Example
+          var mapTypeIds = [];
+          for(var type in google.maps.MapTypeId) {
+           mapTypeIds.push(google.maps.MapTypeId[type]);
+          }
+          mapTypeIds.push("OSM");
           var map = new google.maps.Map(document.getElementById('#{map_id}'), {
             center: {lat: #{latitude}, lng: #{longitude} },
             zoom: #{zoom_level},
+            mapTypeId: "OSM",
+            mapTypeControlOptions: {
+              mapTypeIds: mapTypeIds
+            },
           });
+
+          map.mapTypes.set("OSM", new google.maps.ImageMapType({
+            getTileUrl: function(coord, zoom) {
+              // See above example if you need smooth wrapping at 180th meridian
+              return "http://tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
+              },
+            tileSize: new google.maps.Size(256, 256),
+            name: "OpenStreetMap",
+            maxZoom: 18,
+          }));
           var autocomplete = new google.maps.places.Autocomplete(
             document.getElementById('#{address_id}'),
             { componentRestrictions: {country: 'rs'} }

@@ -8,7 +8,7 @@ class Location
   has_many :out, :groups, type: :HAS_GROUPS
   has_one :out, :city, type: :IN_CITY
 
-  validates :name, :city, presence: true
+  validates :name, :city, :address, presence: true
 
   def to_param
     name

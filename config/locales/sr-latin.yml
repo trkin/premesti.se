@@ -1,0 +1,59 @@
+sr-latin:
+  site_title: Premesti Se
+  please_select: Molim izaberite
+  where_do_you_want_to_move: Gde hoćeš da se premestiš ?
+  landing_signup:
+    abc:
+      a: A
+      b: B
+      c: V
+    submit: Obavesti me
+    success_notice: Hvala na registraciji vaše namere za premeštaj. Poslaćemo Vam imejl kada se desi poklapanje.
+    user_registered_but_password_is_invalid: Već ste se bili registrovali ali ne sa ovom lozinkom. Ako ste zaboravili lozinku, molim Vas da je promenite.
+
+  user_mailer:
+    landing_signup:
+      subject: Hvala na registraciji!
+      title: Zdravo %{name}
+      description_of_service: Registrovali smo Vašu nameru za premeštaj. Dobićete imejl kada se desi poklapanje sa drugim premeštanjima.
+      confirmation_text: Molim Vas da pratite vezu za potvrdu Vaše imejl adrese
+  sign_in: Prijavite se
+  sign_out: Odjavite se
+  register: Registruj se
+  confirm_email: Potvrdi moju imejl adresu
+  change_password: Promeni lozinku
+  provider:
+    facebook: Fejsbuk
+    google_oauth2: Gugl
+  my_devise:
+    registration_headline: Registrujte se
+    characters_minimum: Najmanje %{count} slova. brojeva ili drugih znakova
+    sign_in_headline: Prijavite se
+    forgot_password: Zaboravili ste lozinku ?
+    did_not_receive_confirmation_instructions: Niste primili uputstvo za potvrdu naloga ?
+    did_not_receive_unlock_instructions: Niste primili uputstvo za otključavanje naloga ?
+    sign_in_with: Prijavite se preko %{provider}-a
+    send_me_reset_password_instructions: Pošaljite mi uputstvo za promenu lozinke
+    resend_confirmation_instructions: Ponovo pošalji uputstva za potvrdu naloga
+    resend_unlock_instructions: Ponovo pošalji uputstva za otključavanje naloga
+    can_not_sign_in: Nije uspela prijava.
+  admin_dashboard: Administratorska strana
+  dashboard: Početna
+  are_you_sure_to_remove_item: Da li ste sigurni da želite da obrišete %{item} ?
+  write_address_than_move_marker: Napišite adresu i onda podesite marker ikonu
+  autocomplete_contains_no_geometry: Traženi pojam nema položaj na mapi
+  change_language: Promeni jezik
+  show: Prikaži
+  create: Napravi
+  close: Zatvori
+  delete: Obriši
+  cancel: Odustani
+  save: Sačuvaj
+  create_group: Napravi grupu
+  edit_group: Izmeni grupu
+  create_location: Napravi lokaciju
+  update_location: Izmeni lokaciju
+  edit_location: Izmeni lokaciju
+  group_with_that_age_already_exists: Grupa sa tim godištem već postoji
+  year: god
+  my_requests: Moje želje

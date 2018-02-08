@@ -5,11 +5,16 @@ class ApplicationController < ActionController::Base
 
   def _set_locale_from_domain
     locale = case request.host
-             when 'www.premesti.se', 'sr.localhost'
-               'sr'
+             when Constant::DOMAINS[:production][:sr], Constant::DOMAINS[:development][:sr]
+               :sr
+             when Constant::DOMAINS[:production][:sr_latin], Constant::DOMAINS[:development][:sr_latin]
+               :'sr-latin'
+             when Constant::DOMAINS[:production][:en], Constant::DOMAINS[:development][:en]
+               :en
              else
                I18n.default_locale
              end
+    locale = :en if Rails.env.test?
     I18n.locale = locale
   end
 

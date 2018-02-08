@@ -2,6 +2,9 @@
   <%= bootstrap_form_for @location, url: (@location.new_record? ? admin_locations_path : admin_location_path(@location)), layout: :horizontal, remote: true do |f| %>
     <div class="modal-body">
       <%= f.text_field :name %>
+      <% if @location.new_record? %>
+        <%= f.text_field :group_ages %>
+      <% end %>
       <%= f.text_field :address, required: true %>
       <%= f.text_field :latitude, id: 'latitude-input' %>
       <%= f.text_field :longitude, id: 'longitude-input' %>

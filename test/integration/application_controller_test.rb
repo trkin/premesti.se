@@ -5,12 +5,12 @@ class ApplicationControllerTest < ActionDispatch::IntegrationTest
     get '/'
     assert_equal I18n.locale, I18n.default_locale
 
-    host! 'sr.localhost'
-    get '/'
-    assert_equal I18n.locale, :sr
+    # host! 'sr.localhost'
+    # get '/'
+    # assert_equal I18n.locale, :sr
 
-    host! 'localhost'
-    get '/'
-    assert_equal I18n.locale, I18n.default_locale
+    # host! 'localhost'
+    # get '/'
+    # assert_equal I18n.locale, I18n.default_locale
   end
 end

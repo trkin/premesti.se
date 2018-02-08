@@ -1,0 +1,36 @@
+sr-latin:
+  # https://github.com/rails/rails/blob/master/activemodel/lib/active_model/locale/en.yml#L8
+  errors:
+    format: Polje "%{attribute}" %{message}
+
+    # The values :model, :attribute and :value are always available for interpolation
+    # The value :count is available when applicable. Can be used for pluralization.
+    messages:
+      # model_invalid: validacija nije uspela: %{errors}
+      inclusion: ne pripada listi
+      exclusion: je rezervisano
+      invalid: nije ispravno
+      confirmation: se ne poklapa sa %{attribute}
+      accepted: mora biti prihvaćeno
+      empty: ne sme biti prazno
+      blank: ne sme biti prazno
+      present: mora biti prazno
+      too_long:
+        one: je predugačko (najviše dozvoljeno je 1 znak)
+        other: je predugačko (najviše dozvoljeno je %{count} znakova
+      too_short:
+        one: je previše kratko (najmanje dozvoljeno je 1 znak)
+        other: je previše kratko (najmanje dozvoljeno je %{count} znakova)
+      wrong_length:
+        one: je pogrešne dužine (treba da je dužine 1)
+        other: je pogrešne dužine (treba da je dužine %{count})
+      not_a_number: mora biti broj
+      not_an_integer: mora biti ceo broj
+      greater_than: mora biti veći od %{count}
+      greater_than_or_equal_to: mora biti veći ili jednak sa %{count}
+      equal_to: mora biti jednak sa %{count}
+      less_than: mora biti manji od %{count}
+      less_than_or_equal_to: mora biti manji ili jednak sa %{count}
+      other_than: mora biti različit od %{count}
+      odd: mora biti neparan
+      even: mora biti paran

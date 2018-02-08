@@ -13,7 +13,8 @@ class Admin::LocationsController < AdminController
     @location = Location.new location_params.merge(
       city: @city
     )
-    @location.save
+    return unless @location.save
+    @location.create_groups params.dig(:location, :group_ages).to_s.tr(",", "").split(" ").map(&:to_i)
   end
 
   def show; end
@@ -35,7 +36,7 @@ class Admin::LocationsController < AdminController
   private
 
   def set_city
-    redirect_to admin_dashboard_path and return unless params[:city_id].present?
+    redirect_to(admin_dashboard_path) && return unless params[:city_id].present?
     @city = City.find params[:city_id]
   end
 

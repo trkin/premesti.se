@@ -42,3 +42,18 @@ en:
   are_you_sure_to_remove_item: Are you sure you want to delete %{item} ?
   write_address_than_move_marker: Write approximate address and than move the marker icon
   autocomplete_contains_no_geometry: Autocomplete's returned place contains no geometry
+  change_language: Change language
+  show: Show
+  create: Create
+  close: Close
+  delete: Delete
+  cancel: Cancel
+  save: Save
+  create_group: Create group
+  edit_group: Edit group
+  create_location: Create location
+  update_location: Update location
+  edit_location: Edit location
+  group_with_that_age_already_exists: Group with that age already exists
+  year: year
+  my_requests: My Requests

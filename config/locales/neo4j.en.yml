@@ -26,6 +26,7 @@ en:
         name: Name
         address: Address
         map: Map
+        group_ages: Groups by ages
       group:
         name: Name
         age: Age

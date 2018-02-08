@@ -10,4 +10,13 @@ class Location
   has_one :out, :city, type: :IN_CITY
 
   validates :name, :city, :address, presence: true
+
+  attr_accessor :group_ages
+
+  def create_groups(ages)
+    ages.each do |age|
+      next unless age > 0
+      Group.create location: self, age: age
+    end
+  end
 end

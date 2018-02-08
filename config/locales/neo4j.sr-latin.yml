@@ -1,0 +1,41 @@
+sr-latin:
+  neo4j:
+    errors:
+      messages:
+        required: mora postojati
+        taken: je već zauzeto
+    models:
+      user: korisnik
+      location:
+        one: lokacija
+        other: lokacije
+      group:
+        one: grupa
+        other: grupe
+      city: grad
+      move:
+        one: premeštaj
+        other: premeštaji
+    attributes:
+      user:
+        email: Imejl
+        password: Lozinka
+        password_confirmation: Potvrda lozinke
+        remember_me: Zapamti me
+      location:
+        city: Grad
+        name: Naziv
+        address: Adresa
+        map: Mapa
+        group_ages: Grupe po godinama
+      group:
+        name: Naziv
+        age: Puni godina
+      landing_signup:
+        current_city: Koji je tvoj grad ?
+        current_location: Koja je tvoja trenutna lokacija ?
+        from_group: Kojoj grupi pripadaš ?
+        prefered_location: Na koju lokaciju tražiš premeštaj ?
+        email: Koji je tvoj imejl ?
+        password: Lozinka za ovaj sajt ?
+        submit: Obavesti me

@@ -1,0 +1,62 @@
+sr-latin:
+  devise:
+    confirmations:
+      confirmed: Vaša imejl adresa je uspešno potvrđena.
+      send_instructions: U roku od nekoliko minuta primićete imejl sa uputstvom za potvrdu Vašeg naloga.
+      send_paranoid_instructions: Ukoliko se Vaša imejl adresa nalazi u našoj bazi u roku od nekoliko minuta primićete imejl sa uputstvom kako da potvrdite Vaš nalog.
+    failure:
+      already_authenticated: Već ste prijavljeni.
+      inactive: Vaš nalog još nije aktiviran.
+      envalid: Neispravan %{authentication_keys} ili lozinka.
+      locked: Vaš nalog je zaključan.
+      last_attempt: Imate još jedan pokušaj pre nego što Vaš nalog bude zaključan.
+      not_found_in_database: Neispravan %{authentication_keys} ili lozinka.
+      timeout: Vreme trajanja Vaše sesije je isteklo. Za nastavak prijavite se ponovo.
+      unauthenticated: Za nastavak se morate prijaviti ili registrovati.
+      unconfirmed: Pre nastavka morate potvrditi svoj nalog.
+    mailer:
+      confirmation_instructions:
+        subject: Uputstvo za potvrdu korisničkog naloga
+      reset_password_instructions:
+        subject: Uputstvo za promenu lozinke
+      unlock_instructions:
+        subject: Uputstvo za otključavanje korisničkog naloga
+      email_changed:
+        subject: Imejl adresa promenjena
+      password_change:
+        subject: Lozinka promenjena
+    omniauth_callbacks:
+      failure: Nismo u mogućnosti autorizovati Vas sa %{kind} nalogom zbog "%{reason}".
+      success: Uspešna autorizacija sa %{kind} naloga.
+    passwords:
+      no_token: Ne možete pristupiti ovoj stranici ako niste pratili vezu u imejlu za resetovanje lozinke. Ukoliko ste pratili vezu u imejlu za resetovanje lozinke, molimo Vas da proverite da li ste koristili ceo URL.
+      send_instructions: U roku od nekoliko minuta primitićete imejl sa uputstvom za promenu Vaše lozinke.
+      send_paranoid_instructions: Ukoliko se Vaša imejl adresa nalazi u našoj bazi u roku od nekoliko minuta primićete imejl sa uputstvom za promenu Vaše lozinke.
+      updated: Vaša lozinka je uspešno promenjena. Sada ste prijavljeni.
+      updated_not_active: Vaša lozinka je uspešno promenjena.
+    registrations:
+      destroyed: Ćao! Vaš nalog je uspešno obrisan. Nadamo se da ćete se uskoro vratiti.
+      signed_up: Dobrodošli! Uspešno ste se registrovali.
+      signed_up_but_inactive: Uspešno ste se registrovali. Nažalost ne možete se prijaviti zato što Vaš nalog još nije aktiviran.
+      signed_up_but_locked: Uspešno ste se registrovali. Nažalost ne možete se prijaviti zato što je Vaš nalog zaključan.
+      signed_up_but_unconfirmed: Poruka za potvrdu Vašeg naloga je poslata na Vašu imejl adresu. Kliknite na vezu u imejlu da potvrdite svoj nalog.
+      update_needs_confirmation: Uspešno ste ažurirali svoj nalog, ali treba da potvrdimo Vašu novu imejl adresu. Molimo Vas da proverite Vaš imejl i pratite vezu za potvrdu Vašeg nove imejl adrese.
+      updated: Vaš nalog je uspešno ažuriran.
+    sessions:
+      signed_in: Uspešno ste se prijavili.
+      signed_out: Uspešno ste se odjavili.
+      already_signed_out: Uspešno ste se odjavili.
+    unlocks:
+      send_instructions: U roku od nekoliko minuta primićete imejl sa uputstvom za otključavanje Vašeg naloga.
+      send_paranoid_instructions: Ukoliko se Vaša imejl adresa nalazi u našoj bazi u roku od nekoliko minuta primićete imejl sa uputstvom kako da otključate Vaš nalog.
+      unlocked: Vaš nalog je uspešno otključan. Molimo Vas da se prijavite da bi ste nastavili.
+  errors:
+    messages:
+      already_confirmed: je već potvrđen, molimo Vas da se prijavite
+      confirmation_period_expired: je trebao biti potvrđen tokom perioda %{period}, molimo Vas da zatražite novi
+      expired: je istekao, molimo Vas da zatražite novi
+      not_found: nije pronađeno
+      not_locked: nije zaključan
+      not_saved:
+        one: '1 greška sprečava %{resource}a:'
+        other: "%{count} greške sprečavaju %{resource}a:"

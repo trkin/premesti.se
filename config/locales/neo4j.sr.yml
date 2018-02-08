@@ -27,6 +27,7 @@ sr:
         name: Назив
         address: Адреса
         map: Мапа
+        group_ages: Групе по годинама
       group:
         name: Назив
         age: Пуни година

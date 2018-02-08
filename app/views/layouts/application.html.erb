@@ -12,49 +12,62 @@
   </head>
 
   <body>
-    <%= link_to t("site_title"), root_path %>
-    <% if login_layout? %>
-      <div><%= notice %></div>
-      <div><%= alert %></div>
-      <%= yield %>
-    <% else %>
-      <% if current_user %>
-        <span><%= current_user.email %></span>
-        <%= link_to t("change_password"), edit_user_password_path %>
-        <% if current_user.admin? %>
-          <%= link_to t("admin_dashboard"), admin_dashboard_path %>
-        <% end %>
-        <%= link_to t("sign_out"), destroy_user_session_path, method: :delete %>
+    <div class="container">
+      <%= t("site_title") %>
+      <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="caret"></span>
+          <span class="sr-only"><%= t("change_language") %></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="<%= root_url subdomain: nil, domain: Constant::DOMAINS[Rails.env.to_sym][:sr] %>">Премести се</a></li>
+          <li><a href="<%= root_url subdomain: nil, domain: Constant::DOMAINS[Rails.env.to_sym][:sr_latin] %>">Premesti se (latinica)</a></li>
+          <li><a href="<%= root_url subdomain: nil, domain: Constant::DOMAINS[Rails.env.to_sym][:en] %>">Move Your Place (english)</a></li>
+        </ul>
+      </div>
+      <% if login_layout? %>
+        <div><%= notice %></div>
+        <div><%= alert %></div>
+        <%= yield %>
       <% else %>
-        <%= link_to t("register"), new_user_registration_path %>
-        <%= link_to t("sign_in"), new_user_session_path %>
-        <%= link_to t("my_devise.sign_in_with", provider: t('provider.facebook')), user_facebook_omniauth_authorize_path %>
-        <%= link_to t("my_devise.sign_in_with", provider: t('provider.google_oauth2')), user_google_oauth2_omniauth_authorize_path %>
-      <% end %>
-      <div><%= notice %></div>
-      <div><%= alert %></div>
+        <% if current_user %>
+          <span><%= current_user.email %></span>
+          <%= link_to t("change_password"), edit_user_password_path %>
+          <% if current_user.admin? %>
+            <%= link_to t("admin_dashboard"), admin_dashboard_path %>
+          <% end %>
+          <%= link_to t("sign_out"), destroy_user_session_path, method: :delete %>
+        <% else %>
+          <%= link_to t("register"), new_user_registration_path %>
+          <%= link_to t("sign_in"), new_user_session_path %>
+          <%= link_to t("my_devise.sign_in_with", provider: t('provider.facebook')), user_facebook_omniauth_authorize_path %>
+          <%= link_to t("my_devise.sign_in_with", provider: t('provider.google_oauth2')), user_google_oauth2_omniauth_authorize_path %>
+        <% end %>
+        <div><%= notice %></div>
+        <div><%= alert %></div>
 
-      <ol class="breadcrumb">
-        <% find_breadcrumb_list.each_with_index do |(text, link), i| %>
-          <li class="<%= 'active' if i == find_breadcrumb_list.length - 1 %>">
-            <% if link.present? %>
-              <%= link_to link do %>
+        <ol class="breadcrumb">
+          <% find_breadcrumb_list.each_with_index do |(text, link), i| %>
+            <li class="<%= 'active' if i == find_breadcrumb_list.length - 1 %>">
+              <% if link.present? %>
+                <%= link_to link do %>
+                  <% if i == 0 %>
+                    <i class="fa fa-dashboard"></i>
+                  <% end %>
+                  <%= text %>
+                <% end %>
+              <% else %>
                 <% if i == 0 %>
                   <i class="fa fa-dashboard"></i>
                 <% end %>
                 <%= text %>
               <% end %>
-            <% else %>
-              <% if i == 0 %>
-                <i class="fa fa-dashboard"></i>
-              <% end %>
-              <%= text %>
-            <% end %>
-          </li>
-        <% end %>
-      </ol>
+            </li>
+          <% end %>
+        </ol>
 
-      <%= yield %>
-    <% end %>
+        <%= yield %>
+      <% end %>
+    </div>
   </body>
 </html>

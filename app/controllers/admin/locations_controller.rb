@@ -35,13 +35,12 @@ class Admin::LocationsController < AdminController
   private
 
   def set_city
-    city_name = params[:city]
-    redirect_to admin_dashboard_path unless city_name
-    @city = City.find_by name: city_name
+    redirect_to admin_dashboard_path and return unless params[:city_id].present?
+    @city = City.find params[:city_id]
   end
 
   def set_location
-    @location = Location.find_by name: params[:id]
+    @location = Location.find params[:id]
   end
 
   def location_params

@@ -10,7 +10,7 @@
     <div class="modal-footer">
       <button type="button" class="btn btn-default pull-left" data-dismiss="modal"><%= t('close') %></button>
       <% if @location.new_record? %>
-        <%= hidden_field_tag :city, params[:city] %>
+        <%= hidden_field_tag :city_id, params[:city_id] %>
         <button type="submit" class="btn btn-primary" data-disable-with="<i class='fa fa-spinner fa-spin'></i> <%= t('create') %>"><%= t('create') %></button>
       <% else %>
         <%= link_to admin_location_path(@location), remote: true, class: "btn btn-danger", method: :delete, "data-confirm": t('are_you_sure_to_remove_item', item: Location.model_name.human) do %>

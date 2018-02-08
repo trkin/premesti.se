@@ -1,7 +1,8 @@
 class Location
   include Neo4j::ActiveNode
-  property :name, type: String
-  property :address, type: String
+  include TranslatedProperty
+  translate_property :name, type: String
+  translate_property :address, type: String
   property :latitude, type: Float
   property :longitude, type: Float
 
@@ -9,8 +10,4 @@ class Location
   has_one :out, :city, type: :IN_CITY
 
   validates :name, :city, :address, presence: true
-
-  def to_param
-    name
-  end
 end

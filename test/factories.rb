@@ -15,6 +15,7 @@ FactoryBot.define do
   end
   factory :location do
     sequence(:name) { |i| "LocationName#{i}" }
+    sequence(:address) { |i| "LocationAddress#{i}" }
     city
   end
   factory :group do

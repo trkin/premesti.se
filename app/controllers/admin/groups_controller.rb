@@ -33,8 +33,8 @@ class Admin::GroupsController < AdminController
   private
 
   def set_location
-    redirect_to admin_dashboard_path unless params[:location]
-    @location = Location.find_by name: params[:location]
+    redirect_to admin_dashboard_path unless params[:location_id]
+    @location = Location.find params[:location_id]
   end
 
   def set_group

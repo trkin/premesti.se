@@ -15,8 +15,8 @@ module MapHelper
   #  <%= f.text_field :longitude, id: 'longitude-input' %>
   #  <%= edit_map f.object, "#latitude-input", "#longitude-input" %>
   #
-  # if you are showing inside bootstrap tab or modal than you need to trigger
-  # if you do not have map object, you can trigger resize on window
+  # If you are showing inside bootstrap tab or modal than you need to trigger
+  # resize. If you do not have map object, you can trigger resize on window
   # google.maps.event.trigger(window, 'resize')
   # but the problem is when map is initialized to hidden element, than center is
   # on top right corner, so when you trigger resize, pin will be on top-right
@@ -24,8 +24,30 @@ module MapHelper
   # did it using addDomListener on window object and fire that resize on modal
   # show:
   #
+  # somewhere inside function initialize_google() {
+  #        google.maps.event.addDomListener(window, "resize", function() {
+  #          var center = map.getCenter();
+  #          google.maps.event.trigger(map, "resize");
+  #          map.setCenter(center);
+  #          console.log('map resize');
+  #        });
+  # somewhere in your javascript/coffeescript:
   # $(document).on 'shown.bs.modal', ->
   #   window.dispatchEvent(new Event('resize'))
+  #
+  # If you are destroying modal on hide (so it loads new content based on
+  # response), than map will be destroyed too.
+  #
+  # $(document).on 'hidden.bs.modal', '.modal', ->
+  #   $(this).removeData('bs.modal')
+  #
+  # Problem is that javascript in form response (on this page) is run only once,
+  # so you can not trigger initialize_google() from this page. but only on shown
+  # good is that you do not need to trigger resize since we draw map again:
+  #
+  # $(document).on 'shown.bs.modal', '.modal', ->
+  #   if this.innerHTML.indexOf('initialize_google') > -1
+  #     initialize_google()
   def edit_map(object, latitude_input, longitude_input)
     if object.latitude
       latitude = object.latitude
@@ -36,12 +58,12 @@ module MapHelper
       longitude = INITIAL_LONGITUDE
       zoom_level = INITIAL_ZOOM
     end
-    address_id = "address-suggestion-#{SecureRandom.hex 3}"
+    address_id = "address-suggestion" # -#{SecureRandom.hex 3}"
     content = text_field_tag(
       address_id, nil, placeholder:
       I18n.t('write_address_than_move_marker'), size: 50
     )
-    map_id = "preview-map-#{SecureRandom.hex 3}"
+    map_id = "preview-map" #-#{SecureRandom.hex 3}"
     content << content_tag(:div, nil, id: map_id, class: 'edit-map-container')
     content << %(
       <script>
@@ -54,12 +76,6 @@ module MapHelper
           var map = new google.maps.Map(document.getElementById('#{map_id}'), {
             center: {lat: #{latitude}, lng: #{longitude} },
             zoom: #{zoom_level},
-          });
-          google.maps.event.addDomListener(window, "resize", function() {
-            var center = map.getCenter();
-            google.maps.event.trigger(map, "resize");
-            map.setCenter(center);
-            console.log('map resize');
           });
           var autocomplete = new google.maps.places.Autocomplete(
             document.getElementById('#{address_id}'),
@@ -81,7 +97,7 @@ module MapHelper
             marker.setVisible(false);
             var place = autocomplete.getPlace();
             if (!place.geometry) {
-             window.alert("Autocomplete's returned place contains no geometry");
+             window.alert("#{I18n.t('autocomplete_contains_no_geometry')}");
              return;
             }
             // If the place has a geometry, then present it on a map.
@@ -101,7 +117,6 @@ module MapHelper
             updateFields(marker.getPosition());
           });
         } // function initialize_google
-
       </script>
     ).html_safe
     content << async_load

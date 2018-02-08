@@ -41,3 +41,4 @@ sr:
   dashboard: Почетна
   are_you_sure_to_remove_item: Да ли сте сигурни да желите да обришете %{item} ?
   write_address_than_move_marker: Напишите адресу и онда подесите маркер икону
+  autocomplete_contains_no_geometry: Тражени појам нема положај на мапи

@@ -19,4 +19,8 @@ class Location
       Group.create location: self, age: age
     end
   end
+
+  def description
+    "#{address} #{groups.map(&:name).join(',')}"
+  end
 end

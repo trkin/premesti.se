@@ -191,6 +191,7 @@ module MapHelper
     content << async_load
   end
 
+  # all objects need to have 'description'
   def show_all_map(objects, options = {})
     data = objects.map do |object|
       next if !object.latitude.present? || !object.longitude.present?
@@ -201,7 +202,7 @@ module MapHelper
         },
         name: object.name,
         description: object.description,
-        url: location_node_path(object),
+        url: admin_location_path(object),
       }
     end.compact
     content = content_tag(:div, nil, id: 'preview-map', class: "show-all-map-container #{options[:class]}")

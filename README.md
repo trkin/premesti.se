@@ -7,10 +7,12 @@ Premesti.Se
 * yarn installed: bootstrap 3, jquery 3, font awesome 4, snapsvg
 * svg animations
 
-
 # Database
 
-Database is Neo4j. To install use this rails tasks
+Database is Neo4j. It runs on Java 8 so download SDK from
+http://www.oracle.com/technetwork/java/javase/downloads/index.html.
+
+To install Neo4j use this rails tasks
 
 ~~~
 rails neo4j:install[community-latest,development]
@@ -37,6 +39,12 @@ Drop migrate and seed with custom rake tasks.
 rake db:drop
 rake db:migrate
 rake db:seed
+~~~
+
+Get assets with
+
+~~~
+npm install
 ~~~
 
 # Locale

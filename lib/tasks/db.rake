@@ -34,11 +34,11 @@ namespace :db do
 
     # Location
     [
-      { var: :loc1_city1, city: b[:city1] },
-      { var: :loc2_city1, city: b[:city1] },
-      { var: :loc3_city1, city: b[:city1] },
-      { var: :loc1_city2, city: b[:city2] },
-      { var: :loc2_city2, city: b[:city2] },
+      { var: :loc1_city1, city: b[:city1], address: 'address1' },
+      { var: :loc2_city1, city: b[:city1], address: 'address2' },
+      { var: :loc3_city1, city: b[:city1], address: 'address3' },
+      { var: :loc1_city2, city: b[:city2], address: 'address4' },
+      { var: :loc2_city2, city: b[:city2], address: 'address5' },
     ].each do |doc|
       params = doc.except(:var).merge(name: doc[:var])
       location = Location.find_by params
@@ -56,7 +56,7 @@ namespace :db do
       { var: :g2_l3, location: b[:loc3_city1], age: 2 },
       { var: :g2_l4, location: b[:loc1_city2], age: 2 },
       { var: :g2_l5, location: b[:loc2_city2], age: 2 },
-      { var: :g4_l1, location: b[:loc1_city1], age: 2 },
+      { var: :g4_l1, location: b[:loc1_city1], age: 4 },
     ].each do |doc|
       params = doc.except(:var).merge(name: doc[:var])
       group = Group.find_by params

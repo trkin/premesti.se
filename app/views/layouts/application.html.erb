@@ -43,6 +43,7 @@
           <%= link_to t("my_devise.sign_in_with", provider: t('provider.facebook')), user_facebook_omniauth_authorize_path %>
           <%= link_to t("my_devise.sign_in_with", provider: t('provider.google_oauth2')), user_google_oauth2_omniauth_authorize_path %>
         <% end %>
+        <%= link_to t("privacy_policy"), privacy_policy_path %>
         <div><%= notice %></div>
         <div><%= alert %></div>
 

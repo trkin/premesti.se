@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :_redirect_to_dashboard_for_authenticated_users
+  before_action :_redirect_to_dashboard_for_authenticated_users, only: [:index]
 
   def index
     @landing_signup = LandingSignup.new
@@ -24,4 +24,6 @@ class PagesController < ApplicationController
   def _redirect_to_dashboard_for_authenticated_users
     redirect_to dashboard_path if current_user
   end
+
+  def privacy_policy; end
 end

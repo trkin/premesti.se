@@ -230,7 +230,8 @@ module MapHelper
             });
             bounds.extend(marker.getPosition());
             markers[i] = marker;
-            setTimeout(dropMarker(i), i * 100);
+            var interval = 2000 / (data.length + 1);
+            setTimeout(dropMarker(i), i * interval);
             google.maps.event.addListener(marker, 'click', function() {
               infoWindow.open(map, this);
               $('#info-name').html(this.name);

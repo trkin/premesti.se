@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   }
 
   post 'landing-signup', to: 'pages#landing_signup'
+  get 'privacy-policy', to: 'pages#privacy_policy'
 
   get 'dashboard', to: 'dashboard#index'
   resources :moves

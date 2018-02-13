@@ -4,7 +4,7 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get '/'
     assert_response :success
-    assert_select 'label', t('neo4j.attributes.landing_signup.current_city')
+    assert_select 'label', t('neo4j.attributes.landing_signup.current_location')
   end
 
   test 'landing signup success' do

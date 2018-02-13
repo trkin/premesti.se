@@ -4,3 +4,11 @@
     display: initial;
   }
 }
+.no-padding-relative {
+  position: relative;
+  padding: 0;
+}
+.hide-to-up {
+  position:absolute;
+  top: -1000px;
+}

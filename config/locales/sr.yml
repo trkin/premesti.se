@@ -17,8 +17,8 @@ sr:
       title: Здраво %{name}
       description_of_service: Регистровали смо Вашу намеру за премештај. Добићете имејл када се деси поклапање са другим премештањима.
       confirmation_text: Молим Вас да пратите везу за потврду Ваше имејл адресе
-  sign_in: Пријавите се
-  sign_out: Одјавите се
+  sign_in: Пријави се
+  sign_out: Одјави се
   register: Региструј се
   confirm_email: Потврди моју имејл адресу
   change_password: Промени лозинку
@@ -58,3 +58,13 @@ sr:
   year: год
   my_requests: Моје жеље
   privacy_policy: Политика приватности
+  group_name_for_age_1: Бебе
+  group_name_for_age_2: Млађа јаслена
+  group_name_for_age_3: Старија јаслена
+  group_name_for_age_4: Млађа
+  group_name_for_age_5: Средња
+  group_name_for_age_6: Старија
+  group_name_for_age_7: Предшколска
+  born: рођени
+  or: или
+  find_on_map: Пронађи на мапи

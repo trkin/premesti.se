@@ -17,8 +17,8 @@ sr-latin:
       title: Zdravo %{name}
       description_of_service: Registrovali smo Vašu nameru za premeštaj. Dobićete imejl kada se desi poklapanje sa drugim premeštanjima.
       confirmation_text: Molim Vas da pratite vezu za potvrdu Vaše imejl adrese
-  sign_in: Prijavite se
-  sign_out: Odjavite se
+  sign_in: Prijavi se
+  sign_out: Odjavi se
   register: Registruj se
   confirm_email: Potvrdi moju imejl adresu
   change_password: Promeni lozinku
@@ -58,3 +58,13 @@ sr-latin:
   year: god
   my_requests: Moje želje
   privacy_policy: Politika privatnosti
+  group_name_for_age_1: Bebe
+  group_name_for_age_2: Mlađa jaslena
+  group_name_for_age_3: Starija jaslena
+  group_name_for_age_4: Mlađa
+  group_name_for_age_5: Srednja
+  group_name_for_age_6: Starija
+  group_name_for_age_7: Predškolska
+  born: rođeni
+  or: ili
+  find_on_map: Pronađi na mapi

@@ -4,10 +4,12 @@ class PagesController < ApplicationController
 
   def index
     @landing_signup = LandingSignup.new
+    @landing_signup.current_city = City.first
   end
 
   def landing_signup
     @landing_signup = LandingSignup.new landing_signup_params
+    @landing_signup.current_city = City.first
     if @landing_signup.perform
       sign_in @landing_signup.user
       redirect_to dashboard_path, notice: @landing_signup.notice

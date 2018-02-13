@@ -3,6 +3,7 @@
   <head>
     <title>PremestiSe</title>
     <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">'
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -12,24 +13,28 @@
   </head>
 
   <body>
-    <div class="container">
-      <%= t("site_title") %>
-      <div class="btn-group">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="caret"></span>
-          <span class="sr-only"><%= t("change_language") %></span>
-        </button>
-        <ul class="dropdown-menu">
-          <li><a href="<%= root_url subdomain: nil, domain: Constant::DOMAINS[Rails.env.to_sym][:sr] %>">Премести се</a></li>
-          <li><a href="<%= root_url subdomain: nil, domain: Constant::DOMAINS[Rails.env.to_sym][:sr_latin] %>">Premesti se (latinica)</a></li>
-          <li><a href="<%= root_url subdomain: nil, domain: Constant::DOMAINS[Rails.env.to_sym][:en] %>">Move Your Place (english)</a></li>
-        </ul>
+    <% if landing_layout? %>
+      <div><%= notice %></div>
+      <div><%= alert %></div>
+      <div class="pull-right">
+        <%= link_to t("register"), new_user_registration_path %>
+        <%= link_to t("sign_in"), new_user_session_path %>
+        <%= link_to user_facebook_omniauth_authorize_path, title: t("my_devise.sign_in_with", provider: t('provider.facebook')), class: 'btn btn-social' do %>
+          <i class="fa fa-facebook-official"></i>
+        <% end %>
+        <%= link_to user_google_oauth2_omniauth_authorize_path, title: t("my_devise.sign_in_with", provider: t('provider.google_oauth2')), class: 'btn btn-social' do %>
+          <i class="fa fa-google" aria-hidden="true"></i>
+        <% end %>
       </div>
-      <% if login_layout? %>
+      <%= yield %>
+    <% elsif login_layout? %>
         <div><%= notice %></div>
         <div><%= alert %></div>
-        <%= yield %>
-      <% else %>
+      <%= render 'layouts/choose_language' %>
+      <%= yield %>
+    <% else %>
+      <div class="container">
+        <%= render 'layouts/choose_language' %>
         <% if current_user %>
           <span><%= current_user.email %></span>
           <%= link_to t("change_password"), edit_user_password_path %>
@@ -40,35 +45,41 @@
         <% else %>
           <%= link_to t("register"), new_user_registration_path %>
           <%= link_to t("sign_in"), new_user_session_path %>
-          <%= link_to t("my_devise.sign_in_with", provider: t('provider.facebook')), user_facebook_omniauth_authorize_path %>
-          <%= link_to t("my_devise.sign_in_with", provider: t('provider.google_oauth2')), user_google_oauth2_omniauth_authorize_path %>
+          <%= link_to user_facebook_omniauth_authorize_path, title: t("my_devise.sign_in_with", provider: t('provider.facebook')), class: 'btn btn-social' do %>
+            <i class="fa fa-facebook-official"></i>
+          <% end %>
+          <%= link_to user_google_oauth2_omniauth_authorize_path, title: t("my_devise.sign_in_with", provider: t('provider.google_oauth2')), class: 'btn btn-social' do %>
+            <i class="fa fa-google" aria-hidden="true"></i>
+          <% end %>
         <% end %>
         <%= link_to t("privacy_policy"), privacy_policy_path %>
         <div><%= notice %></div>
         <div><%= alert %></div>
 
-        <ol class="breadcrumb">
-          <% find_breadcrumb_list.each_with_index do |(text, link), i| %>
-            <li class="<%= 'active' if i == find_breadcrumb_list.length - 1 %>">
-              <% if link.present? %>
-                <%= link_to link do %>
+        <% if find_breadcrumb_list.present? %>
+          <ol class="breadcrumb">
+            <% find_breadcrumb_list.each_with_index do |(text, link), i| %>
+              <li class="<%= 'active' if i == find_breadcrumb_list.length - 1 %>">
+                <% if link.present? %>
+                  <%= link_to link do %>
+                    <% if i == 0 %>
+                      <i class="fa fa-dashboard"></i>
+                    <% end %>
+                    <%= text %>
+                  <% end %>
+                <% else %>
                   <% if i == 0 %>
                     <i class="fa fa-dashboard"></i>
                   <% end %>
                   <%= text %>
                 <% end %>
-              <% else %>
-                <% if i == 0 %>
-                  <i class="fa fa-dashboard"></i>
-                <% end %>
-                <%= text %>
-              <% end %>
-            </li>
-          <% end %>
-        </ol>
+              </li>
+            <% end %>
+          </ol>
+        <% end %>
 
         <%= yield %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </body>
 </html>

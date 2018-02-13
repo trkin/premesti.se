@@ -16,13 +16,4 @@ class Constant
       en: "en.localhost",
     },
   }.freeze
-
-  GROUP_NAMES = {
-    two: 'Mladja jaslena grupa',
-    three: 'Starija jaslena grupa',
-    four: 'Mladja grupa',
-    five: 'Srednja grupa',
-    six: 'Starija grupa',
-    seven: 'Predskolska grupa',
-  }
 end

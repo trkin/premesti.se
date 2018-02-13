@@ -49,8 +49,8 @@ class LocationTest < ActiveSupport::TestCase
     c2 = create :city
     l1_c2 = create :location, city: c2
     result = {
-      c1.id => [{ id: l1_c1.id, name: l1_c1.name }, { id: l2_c1.id, name: l2_c1.name }],
-      c2.id => [{ id: l1_c2.id, name: l1_c2.name }]
+      c1.id => [{ id: l1_c1.id, name: l1_c1.name_with_address }, { id: l2_c1.id, name: l2_c1.name_with_address }],
+      c2.id => [{ id: l1_c2.id, name: l1_c2.name_with_address }]
     }
     assert_equal result, LandingSignup.locations_by_city_id
   end
@@ -62,8 +62,8 @@ class LocationTest < ActiveSupport::TestCase
     l2 = create :location
     g1_l2 = create :group, location: l2
     result = {
-      l1.id => [{ id: g1_l1.id, name: g1_l1.name }, { id: g2_l1.id, name: g2_l1.name }],
-      l2.id => [{ id: g1_l2.id, name: g1_l2.name }]
+      l1.id => [{ id: g1_l1.id, name: g1_l1.age_with_title }, { id: g2_l1.id, name: g2_l1.age_with_title }],
+      l2.id => [{ id: g1_l2.id, name: g1_l2.age_with_title }]
     }
     assert_equal result, LandingSignup.groups_by_location_id
   end
@@ -82,10 +82,10 @@ class LocationTest < ActiveSupport::TestCase
     other_location = create :location, city: other_city
     other_group = create :group, location: other_location, age: age
     result = {
-      g1_l1.id => [{ id: g1_l2.id, name: l2.name }],
-      g2_l1.id => [{ id: g1_l3.id, name: l3.name }],
-      g1_l2.id => [{ id: g1_l1.id, name: l1.name }],
-      g1_l3.id => [{ id: g2_l1.id, name: l1.name }],
+      g1_l1.id => [{ id: g1_l2.id, name: l2.name_with_address }],
+      g2_l1.id => [{ id: g1_l3.id, name: l3.name_with_address }],
+      g1_l2.id => [{ id: g1_l1.id, name: l1.name_with_address }],
+      g1_l3.id => [{ id: g2_l1.id, name: l1.name_with_address }],
       other_group.id => []
     }
     assert_equal result, LandingSignup.groups_by_group_id

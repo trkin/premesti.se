@@ -1,3 +1,6 @@
+<%
+  landing_layout
+%>
 <svg id="abc" class="abc" preserveAspectRatio="none" viewBox="0 0 100 100">
   <text class="text abc__color-a abc__color-fill-a" x="48" y="5"><%= t 'landing_signup.abc.a' %></text>
   <text class="text abc__color-b abc__color-fill-b" x="95" y="75"><%= t 'landing_signup.abc.b' %></text>
@@ -12,32 +15,55 @@
   </g>
 </svg>
 
+<%= render 'layouts/choose_language' %>
 <div class="landing-page">
   <h1><%= t :where_do_you_want_to_move %></h1>
 
-  <% unless current_user %>
-    <div id="signup-form">
-      <%= bootstrap_form_for @landing_signup, url: landing_signup_path, builder: MyFormBuilder do |f| %>
+  <div id="signup-form">
+    <%= bootstrap_form_for @landing_signup, url: landing_signup_path, builder: MyFormBuilder do |f| %>
 
-        <%= f.select :current_city, options_from_collection_for_select(City.all, :id, :name), { label: t('neo4j.attributes.landing_signup.current_city'), prompt: t('please_select') }, id: 'current-city', 'data-select-target': '#current-location', 'data-select-options': LandingSignup.locations_by_city_id.to_json, 'data-increase-abc': 1 %>
+      <%= f.hidden_field :current_city %>
+      <%#= f.select :current_city, options_from_collection_for_select(City.all, :id, :name), { label: t('neo4j.attributes.landing_signup.current_city'), prompt: t('please_select') }, id: 'current-city', 'data-select-target': '#current-location', 'data-select-options': LandingSignup.locations_by_city_id.to_json, 'data-increase-abc': 1 %>
 
-        <%= f.select :current_location, (f.object.current_city.present? ? LandingSignup.locations_by_city_id[f.object.current_city].map{ |r| [r[:name],r[:id]]} : []), { label: t('neo4j.attributes.landing_signup.current_location') }, id: 'current-location', 'data-select-target': '#current-group', 'data-select-options': LandingSignup.groups_by_location_id.to_json, class: ('hide-not-important' unless f.object.current_city.present?), 'data-increase-abc': 2 %>
+      <div class="carouselbox">
+        <ol class="no-padding-relative">
+          <li class="current">
+            <%= f.select :current_location, (f.object.current_city.present? ? LandingSignup.locations_by_city_id[f.object.current_city.id].map{ |r| [r[:name],r[:id]]} : []), { label: t('neo4j.attributes.landing_signup.current_location') }, id: 'current-location', 'data-select-target': '#current-group', 'data-select-options': LandingSignup.groups_by_location_id.to_json, 'data-increase-abc': 2 %>
+            <div class="text-center"><%= t('or') %></div>
+            <a href="#"><%= t('find_on_map') %></a>
+          </li>
+          <li class="">
+            <%= f.select :from_group, (f.object.current_location.present? ? LandingSignup.groups_by_location_id[f.object.current_location.id].map{ |r| [r[:name],r[:id]]} : []), { label: t('neo4j.attributes.landing_signup.from_group')}, 'data-select-target': '#prefered-groups', 'data-select-options': LandingSignup.groups_by_group_id.to_json, id: 'current-group', 'data-increase-abc': 3 %>
+          </li>
+          <li>
+            <%= f.select :prefered_group, options_from_collection_for_select(Location.all, :name, :id), { label: t('neo4j.attributes.landing_signup.prefered_location') }, id: 'prefered-groups', 'data-select-target': '#contact-fields', 'data-increase-abc': 4 %>
+            <div class="text-center"><%= t('or') %></div>
+            <a href="#"><%= t('find_on_map') %></a>
+          </li>
+          <li>
+            <div id="contact-fields">
+              <%= f.email_field :email, label: t('neo4j.attributes.landing_signup.email') %>
+              <%= f.password_field :password, label: t('neo4j.attributes.landing_signup.password') %>
 
-        <%= f.select :from_group, (f.object.current_location.present? ? LandingSignup.groups_by_location_id[f.object.current_location].map{ |r| [r[:name],r[:id]]} : []), { label: t('neo4j.attributes.landing_signup.from_group')}, 'data-select-target': '#prefered-groups', 'data-select-options': LandingSignup.groups_by_group_id.to_json, id: 'current-group', class: ('hide-not-important' unless f.object.current_location.present?), 'data-increase-abc': 3 %>
-
-        <%= f.select :prefered_group, options_from_collection_for_select(Location.all, :name, :id), { label: t('neo4j.attributes.landing_signup.prefered_location') }, id: 'prefered-groups', class: ('hide-not-important' unless f.object.from_group.present?), 'data-increase-abc': 4 %>
-
-        <%= f.email_field :email, label: t('neo4j.attributes.landing_signup.email') %>
-        <%= f.password_field :password, label: t('neo4j.attributes.landing_signup.password') %>
-
-        <%= f.button type: :submit, class: 'btn' do %>
-          <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-          <%= t('landing_signup.submit') %>
-          <i class="fa fa-envelope-o" aria-hidden="true"></i>
-        <% end %>
-      <% end %>
-    </div>
-  <% end %>
+              <%= f.button type: :submit, class: 'btn' do %>
+                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                <%= t('landing_signup.submit') %>
+                <i class="fa fa-envelope-o" aria-hidden="true"></i>
+              <% end %>
+            </div>
+          </li>
+        </ol>
+        <a class="left carousel-control <%= 'hide-not-important' %>" href="javascript:void(0)" role="button" id="left-arrow">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control <%= 'hide-not-important' %>" href="javascript:void(0)" role="button" id="right-arrow">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    <% end %>
+  </div>
 </div>
 <script>
   var firstOption = $('#current-city option[value!=""]').first();

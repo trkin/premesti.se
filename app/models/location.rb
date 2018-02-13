@@ -23,4 +23,8 @@ class Location
   def description
     "#{address} #{groups.map(&:name).join(',')}"
   end
+
+  def name_with_address
+    "#{name}, #{address}"
+  end
 end

@@ -55,6 +55,6 @@ Rails.application.configure do
   # if guard is not running, there is an error in js console
   # Cross-origin plugin content from  must have a visible size larger than 400 x
   # 300 pixels, or it will be blocked. Invisible content is always blocked.
-  # config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload
+  config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload
   # run with rails s -p b 0.0.0.0 to allow local network, allow remote requests
 end

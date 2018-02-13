@@ -57,29 +57,29 @@ class LandingSignup
     notice
   end
 
-  # return hash {city_id: [{id: l1.id, name: l1.name}, ...], ...}
+  # return hash {city_id: [{id: l1.id, name: l1.name_with_address}, ...], ...}
   def self.locations_by_city_id
     Location.all.each_with_object({}) do |location, result|
       if result[location.city_id].present?
-        result[location.city_id].append(id: location.id, name: location.name)
+        result[location.city_id].append(id: location.id, name: location.name_with_address)
       else
-        result[location.city_id] = [{ id: location.id, name: location.name }]
+        result[location.city_id] = [{ id: location.id, name: location.name_with_address }]
       end
     end
   end
 
-  # return hash {location_id: [{id: group.id, name: group.name}, ...], ...}
+  # return hash {location_id: [{id: group.id, name: group.age_with_title}, ...], ...}
   def self.groups_by_location_id
     Group.all.each_with_object({}) do |group, result|
       if result[group.location_id].present?
-        result[group.location_id].append(id: group.id, name: group.name)
+        result[group.location_id].append(id: group.id, name: group.age_with_title)
       else
-        result[group.location_id] = [{ id: group.id, name: group.name }]
+        result[group.location_id] = [{ id: group.id, name: group.age_with_title }]
       end
     end
   end
 
-  # return hash {group_id: [id: group.id, name: group.location.name}, ...]...}
+  # return hash {group_id: [id: group.id, name: group.location.name_with_address}, ...]...}
   # groups on other locations from same city, with same age
   def self.groups_by_group_id
     Group.all.each_with_object({}) do |group, result|
@@ -91,7 +91,7 @@ class LandingSignup
                  (other_loc)-[:HAS_GROUPS]->(other_group)'
                )
                .where('g <> other_group').where('g.age = other_group.age').pluck(:other_group)
-               .map { |g| { id: g.id, name: g.location.name } }
+               .map { |g| { id: g.id, name: g.location.name_with_address } }
       result[group.id] = groups
     end
   end

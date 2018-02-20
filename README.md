@@ -4,7 +4,7 @@ Premesti.Se
 
 * Rails 5
 * Neo4j database
-* yarn installed: bootstrap 3, jquery 3, font awesome 4, snapsvg
+* yarn installed: bootstrap 3, jquery 3, font awesome 4, snapsvg, select2
 * svg animations
 
 # Database

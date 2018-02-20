@@ -14,5 +14,8 @@
 //= require jquery/dist/jquery
 //= require bootstrap/dist/js/bootstrap
 //= require snapsvg/dist/snap.svg.js
+//= require select2/dist/js/select2
+//= require select2/dist/js/i18n/sr.js
+//= require select2/dist/js/i18n/sr-Cyrl.js
 //= require turbolinks
 //= require_tree .

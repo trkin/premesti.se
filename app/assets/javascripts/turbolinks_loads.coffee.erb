@@ -1,0 +1,17 @@
+determine_language = ->
+  switch window.location.hostname
+    when '<%= Constant::DOMAINS[Rails.env.to_sym][:sr] %>' then 'sr-Cyrl'
+    when '<%= Constant::DOMAINS[Rails.env.to_sym][:sr_latin] %>' then 'sr'
+    when '<%= Constant::DOMAINS[Rails.env.to_sym][:en] %>' then 'en'
+
+$(document).on 'turbolinks:load', ->
+  console.log 'turbolinks:load'
+  $('[data-select2-initialize]').each ->
+    options = {}
+    if $(this).attr 'placeholder'
+      options['placeholder'] = $(this).attr 'placeholder'
+    else
+      options['placeholder'] = '<%= I18n.translate 'please_select' %>'
+
+    options['language'] = determine_language()
+    $(this).select2 options

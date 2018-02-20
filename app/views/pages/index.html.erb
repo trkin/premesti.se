@@ -17,7 +17,7 @@
 
 <%= render 'layouts/choose_language' %>
 <div class="landing-page">
-  <h1><%= t :where_do_you_want_to_move %></h1>
+  <h3 class="text-center"><%= t :where_do_you_want_to_move %></h3>
 
   <div id="signup-form">
     <%= bootstrap_form_for @landing_signup, url: landing_signup_path, builder: MyFormBuilder do |f| %>
@@ -28,15 +28,15 @@
       <div class="carouselbox">
         <ol class="no-padding-relative">
           <li class="current">
-            <%= f.select :current_location, (f.object.current_city.present? ? LandingSignup.locations_by_city_id[f.object.current_city.id].map{ |r| [r[:name],r[:id]]} : []), { label: t('neo4j.attributes.landing_signup.current_location') }, id: 'current-location', 'data-select-target': '#current-group', 'data-select-options': LandingSignup.groups_by_location_id.to_json, 'data-increase-abc': 2 %>
+            <%= f.select :current_location, (f.object.current_city.present? ? LandingSignup.locations_by_city_id[f.object.current_city.id].map{ |r| [r[:name],r[:id]]} : []), { label: t('neo4j.attributes.landing_signup.current_location') }, id: 'current-location', 'data-select-target': '#current-group', 'data-select-options': LandingSignup.groups_by_location_id.to_json, 'data-increase-abc': 2, 'data-select2-initialize': true %>
             <div class="text-center"><%= t('or') %></div>
             <a href="#"><%= t('find_on_map') %></a>
           </li>
-          <li class="">
+          <li>
             <%= f.select :from_group, (f.object.current_location.present? ? LandingSignup.groups_by_location_id[f.object.current_location.id].map{ |r| [r[:name],r[:id]]} : []), { label: t('neo4j.attributes.landing_signup.from_group')}, 'data-select-target': '#prefered-groups', 'data-select-options': LandingSignup.groups_by_group_id.to_json, id: 'current-group', 'data-increase-abc': 3 %>
           </li>
           <li>
-            <%= f.select :prefered_group, options_from_collection_for_select(Location.all, :name, :id), { label: t('neo4j.attributes.landing_signup.prefered_location') }, id: 'prefered-groups', 'data-select-target': '#contact-fields', 'data-increase-abc': 4 %>
+            <%= f.select :prefered_group, options_from_collection_for_select(Location.all, :name, :id), { label: t('neo4j.attributes.landing_signup.prefered_location') }, id: 'prefered-groups', 'data-select-target': '#contact-fields', 'data-increase-abc': 4, 'data-select2-initialize': true %>
             <div class="text-center"><%= t('or') %></div>
             <a href="#"><%= t('find_on_map') %></a>
           </li>

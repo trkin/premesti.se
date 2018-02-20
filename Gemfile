@@ -82,3 +82,6 @@ gem 'inline_svg'
 
 # sending emails
 gem 'sparkpost_rails'
+
+# for automatic translation
+gem 'cyrillizer'

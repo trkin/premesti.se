@@ -6,7 +6,7 @@
   </button>
   <ul class="dropdown-menu">
     <li><a href="<%= root_url subdomain: nil, domain: Constant::DOMAINS[Rails.env.to_sym][:sr] %>">Премести се (ћирилица)</a></li>
-    <li><a href="<%= root_url subdomain: nil, domain: Constant::DOMAINS[Rails.env.to_sym][:sr_latin] %>">Premesti se (latinica)</a></li>
+    <li><a href="<%= root_url subdomain: nil, domain: Constant::DOMAINS[Rails.env.to_sym][:'sr-latin'] %>">Premesti se (latinica)</a></li>
     <li><a href="<%= root_url subdomain: nil, domain: Constant::DOMAINS[Rails.env.to_sym][:en] %>">Move Your Place (english)</a></li>
   </ul>
 </div>

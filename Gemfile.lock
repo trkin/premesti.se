@@ -102,6 +102,7 @@ GEM
     crass (1.0.3)
     css_parser (1.6.0)
       addressable
+    cyrillizer (0.2.3)
     devise (4.3.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -355,6 +356,7 @@ DEPENDENCIES
   capybara (~> 2.13)
   chromedriver-helper
   coffee-rails (~> 4.2)
+  cyrillizer
   devise-neo4j
   factory_bot_rails
   guard

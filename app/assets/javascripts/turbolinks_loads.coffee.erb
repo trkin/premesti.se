@@ -1,7 +1,7 @@
 determine_language = ->
   switch window.location.hostname
     when '<%= Constant::DOMAINS[Rails.env.to_sym][:sr] %>' then 'sr-Cyrl'
-    when '<%= Constant::DOMAINS[Rails.env.to_sym][:sr_latin] %>' then 'sr'
+    when '<%= Constant::DOMAINS[Rails.env.to_sym][:'sr-latin'] %>' then 'sr'
     when '<%= Constant::DOMAINS[Rails.env.to_sym][:en] %>' then 'en'
 
 $(document).on 'turbolinks:load', ->

@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     locale = case request.host
              when Constant::DOMAINS[:production][:sr], Constant::DOMAINS[:development][:sr]
                :sr
-             when Constant::DOMAINS[:production][:sr_latin], Constant::DOMAINS[:development][:sr_latin]
+             when Constant::DOMAINS[:production][:'sr-latin'], Constant::DOMAINS[:development][:'sr-latin']
                :'sr-latin'
              when Constant::DOMAINS[:production][:en], Constant::DOMAINS[:development][:en]
                :en

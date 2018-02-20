@@ -8,7 +8,7 @@ class Move
   property :updated_at, type: DateTime
 
   has_one :in, :from_group, type: :CURRENT, model_class: :Group, unique: true
-  has_many :out, :prefered_groups, type: :PREFER, model_class: :Group
+  has_many :out, :to_groups, type: :PREFER, model_class: :Group
   # property :priority, is on relationship, and not so important for now
   has_one :in, :user, origin: :moves
 

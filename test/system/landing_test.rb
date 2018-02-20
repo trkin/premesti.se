@@ -3,8 +3,8 @@ require "application_system_test_case"
 class LandingTest < ApplicationSystemTestCase
   test 'create user and relationships' do
     group = create :group
-    prefered_location = create :location, city: group.location.city
-    prefered_group = create :group, location: prefered_location, age: group.age
+    to_location = create :location, city: group.location.city
+    to_group = create :group, location: to_location, age: group.age
     email = 'my@email.com'
 
     visit root_url
@@ -12,7 +12,7 @@ class LandingTest < ApplicationSystemTestCase
       # select group.location.city.name, from: t('neo4j.attributes.landing_signup.current_city')
       select group.location.name_with_address, from: t('neo4j.attributes.landing_signup.current_location')
       select group.age_with_title, from: t('neo4j.attributes.landing_signup.from_group')
-      select prefered_location.name_with_address, from: t('neo4j.attributes.landing_signup.prefered_location')
+      select to_location.name_with_address, from: t('neo4j.attributes.landing_signup.to_location')
       fill_in t('neo4j.attributes.landing_signup.email'), with: email
       fill_in t('neo4j.attributes.landing_signup.password'), with: '1234567'
       assert_difference "User.count", 1 do
@@ -27,7 +27,7 @@ class LandingTest < ApplicationSystemTestCase
     refute user.confirmed?
     move = user.moves.last
     assert_equal group, move.from_group
-    assert_equal [prefered_group], move.prefered_groups
+    assert_equal [to_group], move.to_groups
     assert_selector 'a', text: t("sign_out")
     refute_selector 'a', text: t("register")
     click_on t("sign_out")

@@ -35,7 +35,7 @@ sr-latin:
         current_city: Koji je tvoj grad ?
         current_location: Koja je tvoja trenutna lokacija ?
         from_group: Kojoj grupi pripadaš ?
-        prefered_location: Na koju lokaciju tražiš premeštaj ?
+        to_location: Na koju lokaciju tražiš premeštaj ?
         email: Koji je tvoj imejl ?
         password: Lozinka za ovaj sajt ?
         submit: Obavesti me

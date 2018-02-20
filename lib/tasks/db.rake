@@ -69,14 +69,14 @@ namespace :db do
 
     # Move
     [
-      { var: :m1_l1_l2, from_group: b[:g2_l1], prefered_groups: b[:g2_l2],
+      { var: :m1_l1_l2, from_group: b[:g2_l1], to_groups: b[:g2_l2],
         user: b[:user1] },
-      { var: :m1_l1_l3, from_group: b[:g2_l1], prefered_groups: b[:g2_l3],
+      { var: :m1_l1_l3, from_group: b[:g2_l1], to_groups: b[:g2_l3],
         user: b[:user1] },
-      { var: :m2_l3_l4, from_group: b[:g2_l3], prefered_groups: b[:g2_l4],
+      { var: :m2_l3_l4, from_group: b[:g2_l3], to_groups: b[:g2_l4],
         user: b[:user2], available_from_date:
         Date.today.end_of_month },
-      { var: :m3_l4_l1, from_group: b[:g2_l4], prefered_groups: b[:g2_l1],
+      { var: :m3_l4_l1, from_group: b[:g2_l4], to_groups: b[:g2_l1],
         user: b[:user3], }
     ].each do |doc|
       params = doc.except(:var).merge(name: doc[:var])

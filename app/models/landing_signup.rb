@@ -1,7 +1,7 @@
 class LandingSignup
   include ActiveModel::Model
   REQUIRED_FIELDS = %i[current_city current_location from_group email password].freeze
-  OPTIONAL_FIELDS = %i[prefered_group].freeze
+  OPTIONAL_FIELDS = %i[to_group].freeze
   FIELDS = REQUIRED_FIELDS + OPTIONAL_FIELDS
   attr_accessor(*FIELDS)
   attr_reader :user, :move, :existing_user
@@ -46,9 +46,9 @@ class LandingSignup
   def _create_move!
     from_group = Group.find @from_group
     @move = Move.create! user: @user, from_group: from_group
-    return unless @prefered_group.present?
-    prefered_group = Group.find @prefered_group
-    @move.prefered_groups << prefered_group
+    return unless @to_group.present?
+    to_group = Group.find @to_group
+    @move.to_groups << to_group
   end
 
   def notice

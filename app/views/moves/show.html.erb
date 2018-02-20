@@ -4,7 +4,7 @@
 
 <%= @move.from_group.age %>
 <%= @move.from_group.location.name %>
-<%= @move.prefered_groups.each do |group| %>
+<%= @move.to_groups.each do |group| %>
   --> <%= group.location.name %>
   <br>
 <% end %>

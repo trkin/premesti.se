@@ -34,6 +34,6 @@ en:
         current_city: What is your city ?
         current_location: What is your current location ?
         from_group: Which group do you belong ?
-        prefered_location: Where do you want to move ?
+        to_location: Where do you want to move ?
         email: What is your email ?
         password: Your password for this site ?

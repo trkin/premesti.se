@@ -12,4 +12,15 @@ class LocationTest < ActiveSupport::TestCase
     location.city = nil
     assert_not location.valid?
   end
+
+  test 'on destroy should destroy groups that belongs to location' do
+    location = create :location
+    create :group, location: location
+    create :group, location: location
+    assert_difference "Location.count", -1 do
+      assert_difference "Group.count", -2 do
+        location.destroy
+      end
+    end
+  end
 end

@@ -1,6 +1,7 @@
 sr:
   site_title: Премести Се
   please_select: Молим изаберите
+  select: Изаберите
   where_do_you_want_to_move: Где хоћеш да се преместиш ?
   landing_signup:
     abc:

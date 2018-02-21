@@ -35,16 +35,18 @@ module MapHelper
   # $(document).on 'shown.bs.modal', ->
   #   window.dispatchEvent(new Event('resize'))
   #
-  # If you are destroying modal on hide (so it loads new content based on
-  # response), than map will be destroyed too.
+  # This works but if you are destroying modal on hide (so it loads new content
+  # based on response), than map will be destroyed too.
   #
   # $(document).on 'hidden.bs.modal', '.modal', ->
   #   $(this).removeData('bs.modal')
   #
-  # Problem is that javascript in form response (on this page) is run only once,
-  # so you can not trigger initialize_google() from this page. but only on shown
-  # good is that you do not need to trigger resize since we draw map again:
-  #
+  # If you have two nested modal-content than there is a problem that javascript
+  # in modal response is run only once (you can put alert inside script and it
+  # will be shown only first time modal is opened)
+  # So you can not trigger initialize_google() from this page but only on modal
+  # shown event. Good is that you do not need to trigger resize since we draw
+  # map again:
   # $(document).on 'shown.bs.modal', '.modal', ->
   #   if this.innerHTML.indexOf('initialize_google') > -1
   #     initialize_google()
@@ -72,7 +74,7 @@ module MapHelper
           $("#{longitude_input}").val(position.lng());
         }
         function initialize_google() {
-          console.log('initializing google autocomplete');
+          console.log('initialize_google edit_map #{Time.zone.now}');
           // https://wiki.openstreetmap.org/wiki/Google_Maps_Example
           var mapTypeIds = [];
           for(var type in google.maps.MapTypeId) {
@@ -169,7 +171,7 @@ module MapHelper
     content << %(
       <script>
         function initialize_google() {
-          console.log('initializing google autocomplete');
+          console.log('initialize_google show_map');
           var previewMapElement = document.getElementById('preview-map');
           var map = new google.maps.Map(previewMapElement, {
             center: {lat: #{latitude}, lng: #{longitude} },
@@ -191,7 +193,8 @@ module MapHelper
     content << async_load
   end
 
-  # all objects need to have 'description'
+  # all objects should have: name
+  # optional: description_for_map, url_for_map, script_for_map
   def show_all_map(objects, options = {})
     data = objects.map do |object|
       next if !object.latitude.present? || !object.longitude.present?
@@ -201,15 +204,16 @@ module MapHelper
           lng: object.longitude,
         },
         name: object.name,
-        description: object.description,
-        url: admin_location_path(object),
+        description_for_map: object.description_for_map,
+        url_for_map: object.respond_to?("url_for_map") ? object.url_for_map : '',
       }
     end.compact
     content = content_tag(:div, nil, id: 'preview-map', class: "show-all-map-container #{options[:class]}")
     content << %(
       <script>
+        #{options[:script_for_map]}
         function initialize_google() {
-          console.log('initializing google autocomplete');
+          console.log('initialize_google show_all_map');
           var map = new google.maps.Map(document.getElementById('preview-map'), {
             center: {lat: #{INITIAL_LATITUDE}, lng: #{INITIAL_LONGITUDE}},
             zoom: #{INITIAL_ZOOM},
@@ -225,18 +229,22 @@ module MapHelper
               animation: google.maps.Animation.DROP,
               position: data[i].position,
               name: data[i].name,
-              description: data[i].description,
-              url: data[i].url,
+              description_for_map: data[i].description_for_map,
+              url_for_map: data[i].url_for_map,
             });
             bounds.extend(marker.getPosition());
             markers[i] = marker;
-            var interval = 2000 / (data.length + 1);
+            var interval = 1000 / (data.length + 1);
             setTimeout(dropMarker(i), i * interval);
             google.maps.event.addListener(marker, 'click', function() {
               infoWindow.open(map, this);
-              $('#info-name').html(this.name);
-              $('#info-description').html(this.description);
-              $('#info-url').attr('href', this.url);
+              $('#info-description').html(this.description_for_map);
+              if (this.url_for_map) {
+                $('#info-url').attr('href', this.url_for_map);
+                $('#info-name').html(this.name);
+              } else {
+                $('#info-url').replaceWith('<div>' + this.name + '</div>');
+              }
             });
           }
           map.fitBounds(bounds);

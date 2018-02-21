@@ -28,4 +28,8 @@ class PagesController < ApplicationController
   end
 
   def privacy_policy; end
+
+  def find_on_map
+    render layout: false
+  end
 end

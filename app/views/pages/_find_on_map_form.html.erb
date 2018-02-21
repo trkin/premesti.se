@@ -1,0 +1,16 @@
+<%= show_all_map(Location.all.map do |location|
+  location.description_for_map = %(
+    <button onclick='select_value_and_toggle_modal(event, "#{location.id}", "#{params[:select_element]}", "#find-on-map-modal")'>
+      #{I18n.t('select')}
+    </button>
+  )
+  location
+end, script_for_map: %(
+  function select_value_and_toggle_modal(e, selectValue, selectTarget, closeModal) {
+    e.preventDefault();
+    $(closeModal).modal('toggle');
+    $(selectTarget).val(selectValue)
+      .trigger('change');
+  })
+)
+%>

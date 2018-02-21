@@ -34,9 +34,12 @@ namespace :db do
 
     # Location
     [
-      { var: :loc1_city1, city: b[:city1], address: 'address1' },
-      { var: :loc2_city1, city: b[:city1], address: 'address2' },
-      { var: :loc3_city1, city: b[:city1], address: 'address3' },
+      { var: :loc1_city1, city: b[:city1], address: 'address1', latitude:
+        MapHelper::INITIAL_LATITUDE, longitude: MapHelper::INITIAL_LONGITUDE },
+      { var: :loc2_city1, city: b[:city1], address: 'address2', latitude:
+        MapHelper::INITIAL_LATITUDE + 0.01, longitude: MapHelper::INITIAL_LONGITUDE + 0.01 },
+      { var: :loc3_city1, city: b[:city1], address: 'address3', latitude:
+        MapHelper::INITIAL_LATITUDE - 0.01, longitude: MapHelper::INITIAL_LONGITUDE + 0.01 },
       { var: :loc1_city2, city: b[:city2], address: 'address4' },
       { var: :loc2_city2, city: b[:city2], address: 'address5' },
     ].each do |doc|
@@ -86,6 +89,7 @@ namespace :db do
         puts "Move #{move.name}"
       end
     end
+    Rake::Task["translate:copy"].invoke Rails.env
   end
 
   desc 'drop'

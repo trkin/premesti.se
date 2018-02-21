@@ -12,6 +12,7 @@ class Location
   validates :name, :city, :address, presence: true
 
   attr_accessor :group_ages
+  attr_accessor :description_for_map, :url_for_map
 
   def create_groups(ages)
     ages.each do |age|

@@ -24,6 +24,6 @@ class Group
 
   def age_with_title
     age_interval = "01.03.#{Time.zone.today.year - age - 1}-28.02.#{Time.zone.today.year - age}"
-    "#{I18n.t("group_name_for_age_#{age}")} (#{I18n.t('born')} #{age_interval}"
+    "#{I18n.t("group_name_for_age_#{age}")} (#{I18n.t('born')} #{age_interval})"
   end
 end

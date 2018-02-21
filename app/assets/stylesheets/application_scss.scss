@@ -1,3 +1,9 @@
 // $fa-font-path: "//netdna.bootstrapcdn.com/font-awesome/4.7.0/fonts" !default; // for referencing Bootstrap CDN font files directly
 $fa-font-path: "font-awesome/fonts";
 @import "font-awesome/scss/font-awesome";
+
+@import url('https://fonts.googleapis.com/css?family=Pangolin');
+
+body {
+  font-family: 'Pangolin', cursive;
+}

@@ -3,7 +3,7 @@ class Group
   property :name, type: String
   # age range is fixed, every year admin will update birth date range and send
   # notification to existing users about new chances, for example two new groups
-  property :age, type: Integer
+  property :age, type: Integer # 1, 2, 3, 4, 5, 6, 7
   # property :birth_date_min, type: Date
   # property :birth_date_max, type: Date
   has_one :in, :location, origin: :groups

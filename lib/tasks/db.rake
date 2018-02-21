@@ -113,4 +113,17 @@ namespace :db do
     puts 'this is not implemented'
     puts 'since drop need some time to bootup, and migrate raises exception'
   end
+
+  desc 'create groups for all locations without groups'
+  task create_groups: :environment do
+    Location.all.each do |location|
+      next if location.groups.present?
+      (1..7).each do |age|
+        Group.create!(
+          age: age,
+          location: location
+        )
+      end
+    end
+  end
 end

@@ -17,6 +17,8 @@ To install Neo4j use this rails tasks
 ~~~
 rails neo4j:install[community-latest,development]
 rails neo4j:install[community-latest,test]
+
+# this will change db/neo4j/development/conf/neo4j.conf
 rails neo4j:config[development,$(expr $NEO4J_PORT + 2)]
 rails neo4j:config[test,$(expr $NEO4J_TEST_PORT + 2)]
 ~~~
@@ -49,7 +51,12 @@ npm install
 
 # Locale
 
-You can see in Serbian language by visiting <http://sr.localhost:3000>
+Serbian cyrillic is default. You can translate to latin and en with
+
+~~~
+rails translate:missing
+rails translate:copy
+~~~
 
 # Test
 

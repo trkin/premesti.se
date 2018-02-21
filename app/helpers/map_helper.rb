@@ -222,7 +222,7 @@ module MapHelper
           var markers = [];
           var bounds = new google.maps.LatLngBounds();
           var infoWindow = new google.maps.InfoWindow({
-            content: "<div><a href='' id='info-url'><h4 id='info-name'></h4></a><p id='info-description'></p></div>"
+            content: "<div><a href='' id='info-url'><h4></h4></a><div id='info-name'></div><p id='info-description'></p></div>"
           });
           for(var i = 0; i < data.length; i++ ) {
             var marker = new google.maps.Marker({
@@ -240,10 +240,12 @@ module MapHelper
               infoWindow.open(map, this);
               $('#info-description').html(this.description_for_map);
               if (this.url_for_map) {
-                $('#info-url').attr('href', this.url_for_map);
-                $('#info-name').html(this.name);
+                $('#info-url').attr('href', this.url_for_map)
+                .html('<h4>'+this.name+'</h4>');
+                $('#info-name').html();
               } else {
-                $('#info-url').replaceWith('<div>' + this.name + '</div>');
+                $('#info-name').html('<h4>'+this.name+'</h4>');
+                $('#info-url').html();
               }
             });
           }

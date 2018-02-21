@@ -90,8 +90,9 @@ class LandingSignup
                  (l)-[:IN_CITY]->(c),(c)<-[:IN_CITY]-(other_loc),
                  (other_loc)-[:HAS_GROUPS]->(other_group)'
                )
-               .where('g <> other_group').where('g.age = other_group.age').pluck(:other_group)
-               .map { |g| { id: g.id, name: g.location.name_with_address } }
+               .where('g <> other_group').where('g.age = other_group.age')
+               .pluck(:other_group, :other_loc)
+               .map { |g, l| { id: g.id, name: l.name_with_address } }
       result[group.id] = groups
     end
   end

@@ -17,6 +17,7 @@ namespace :translate do
 
   desc 'copy translation from another'
   task copy: :environment do
+    I18n.default_locale = :sr
     TRANSLATED_FIELDS.each do |klass:, properties:|
       klass.constantize.all.each do |item|
         properties.each do |property|

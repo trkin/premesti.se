@@ -1,6 +1,12 @@
 <%
   landing_layout
+  cache_key = [
+    'landing',
+    Group.query_as(:g).where('g.updated_at IS NOT NULL').order('g.updated_at DESC').limit(1).pluck('g').first.updated_at,
+    Location.query_as(:l).where('l.updated_at IS NOT NULL').order('l.updated_at DESC').limit(1).pluck('l').first.updated_at,
+  ]
 %>
+<% cache cache_key do %>
 <svg id="abc" class="abc" preserveAspectRatio="none" viewBox="0 0 100 100">
   <text class="text abc__color-a abc__color-fill-a" x="48" y="5"><%= t 'landing_signup.abc.a' %></text>
   <text class="text abc__color-b abc__color-fill-b" x="95" y="75"><%= t 'landing_signup.abc.b' %></text>
@@ -70,3 +76,4 @@
   var firstOption = $('#current-city option[value!=""]').first();
   $('#current-city').val(firstOption.val()).trigger('change');
 </script>
+<% end # cache %>

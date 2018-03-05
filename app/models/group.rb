@@ -6,6 +6,8 @@ class Group
   property :age, type: Integer # 1, 2, 3, 4, 5, 6, 7
   # property :birth_date_min, type: Date
   # property :birth_date_max, type: Date
+  property :updated_at, type: DateTime
+
   has_one :in, :location, origin: :groups
   has_many :in, :move, origin: :group
 

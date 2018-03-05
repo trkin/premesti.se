@@ -5,6 +5,7 @@ class Location
   translate_property :address, type: String
   property :latitude, type: Float
   property :longitude, type: Float
+  property :updated_at, type: DateTime
 
   has_many :out, :groups, type: :HAS_GROUPS, dependent: :destroy
   has_one :out, :city, type: :IN_CITY

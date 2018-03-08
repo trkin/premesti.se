@@ -39,3 +39,4 @@ sr-latin:
         email: Koji je tvoj imejl ?
         password: Lozinka za ovaj sajt ?
         submit: Obavesti me
+        group_not_exists_for_age: Ne postoji grupa (%{age}god) na ovoj lokaciji

@@ -19,6 +19,11 @@ class PagesController < ApplicationController
     end
   end
 
+  def select2_locations
+    results = Select2LocationsService.new(params[:term]).perform
+    render json: { results: results }
+  end
+
   def landing_signup_params
     params.require(:landing_signup).permit(LandingSignup::FIELDS)
   end

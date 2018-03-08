@@ -2,8 +2,9 @@ require "application_system_test_case"
 
 class LandingTest < ApplicationSystemTestCase
   test 'see admin links' do
-    user = create :user, admin: true
-    login_as user
+    password = 'asdfasdf'
+    user = create :user, password: password, admin: true
+    manual_login user.email, password
     visit root_path
 
     assert_text t('admin_dashboard')
@@ -12,8 +13,9 @@ class LandingTest < ApplicationSystemTestCase
   end
 
   test 'non admin does not see admin links' do
-    user = create :user
-    login_as user
+    password = 'asdfasdf'
+    user = create :user, password: password
+    manual_login user.email, password
     visit root_path
 
     refute_text t('admin_dashboard')
@@ -24,8 +26,9 @@ class LandingTest < ApplicationSystemTestCase
 
   test 'create location and group' do
     create :city
-    user = create :user, admin: true
-    login_as user
+    password = 'asdfasdf'
+    user = create :user, password: password, admin: true
+    manual_login user.email, password
     visit root_path
 
     visit admin_dashboard_path
@@ -50,8 +53,9 @@ class LandingTest < ApplicationSystemTestCase
 
   test 'create location with position on map' do
     create :city
-    user = create :user, admin: true
-    login_as user
+    password = 'asdfasdf'
+    user = create :user, password: password, admin: true
+    manual_login user.email, password
     visit root_path
 
     visit admin_dashboard_path

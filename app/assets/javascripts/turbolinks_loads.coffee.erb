@@ -15,3 +15,13 @@ $(document).on 'turbolinks:load', ->
 
     options['language'] = determine_language()
     $(this).select2 options
+
+  $('[data-select2-ajax-initialize]').each ->
+    url = $(this).data('select2AjaxInitialize')
+    options = {
+      ajax: {
+        url: url
+        dataType: 'json'
+      }
+    }
+    $(this).select2 options

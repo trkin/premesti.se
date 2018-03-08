@@ -7,7 +7,7 @@ class LocationTest < ActiveSupport::TestCase
       password: '123456',
       current_city: group.location.city.id,
       current_location: group.location.id,
-      from_group: group.id
+      from_group_age: group.age
     }
   end
 
@@ -20,8 +20,8 @@ class LocationTest < ActiveSupport::TestCase
     assert valid?
     refute valid?(email: nil)
     refute valid?(email: '')
-    refute valid?(from_group: nil)
-    refute valid?(from_group: '')
+    refute valid?(from_group_age: nil)
+    refute valid?(from_group_age: '')
   end
 
   test 'email format valid' do
@@ -37,7 +37,7 @@ class LocationTest < ActiveSupport::TestCase
         landing_signup = LandingSignup.new(valid_params(group))
         landing_signup.perform
         assert_equal valid_params(group)[:email], landing_signup.user.email
-        assert_equal valid_params(group)[:from_group], landing_signup.move.from_group.id
+        assert_equal group.id, landing_signup.move.from_group.id
       end
     end
   end

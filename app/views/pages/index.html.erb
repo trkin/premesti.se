@@ -1,12 +1,6 @@
 <%
   landing_layout
-  cache_key = [
-    'landing',
-    Group.query_as(:g).where('g.updated_at IS NOT NULL').order('g.updated_at DESC').limit(1).pluck('g').first.updated_at,
-    Location.query_as(:l).where('l.updated_at IS NOT NULL').order('l.updated_at DESC').limit(1).pluck('l').first.updated_at,
-  ]
 %>
-<% cache cache_key do %>
 <svg id="abc" class="abc" preserveAspectRatio="none" viewBox="0 0 100 100">
   <text class="text abc__color-a abc__color-fill-a" x="48" y="5"><%= t 'landing_signup.abc.a' %></text>
   <text class="text abc__color-b abc__color-fill-b" x="95" y="75"><%= t 'landing_signup.abc.b' %></text>
@@ -30,22 +24,21 @@
     <%= bootstrap_form_for @landing_signup, url: landing_signup_path, builder: MyFormBuilder do |f| %>
 
       <%= f.hidden_field :current_city %>
-      <%#= f.select :current_city, options_from_collection_for_select(City.all, :id, :name), { label: t('neo4j.attributes.landing_signup.current_city'), prompt: t('please_select') }, id: 'current-city', 'data-select-target': '#current-location', 'data-select-options': LandingSignup.locations_by_city_id.to_json, 'data-increase-abc': 1 %>
 
       <div class="carouselbox">
         <ol class="no-padding-relative">
           <li class="current">
-            <%= f.select :current_location, (f.object.current_city.present? ? LandingSignup.locations_by_city_id[f.object.current_city.id].map{ |r| [r[:name],r[:id]]} : []), { label: t('neo4j.attributes.landing_signup.current_location') }, id: 'current-location', 'data-select-target': '#current-group', 'data-select-options': LandingSignup.groups_by_location_id.to_json, 'data-increase-abc': 2, 'data-select2-initialize': true %>
+            <%= f.select :current_location, [], { label: t('neo4j.attributes.landing_signup.current_location') }, id: 'current-location', 'data-select2-ajax-initialize': select2_locations_path, 'data-increase-abc': 1, 'data-select-target': '#from-group' %>
             <div class="text-center"><%= t('or') %></div>
             <%= link_to t('find_on_map'), find_on_map_path(select_element: '#current-location'), "data-toggle": "modal", "data-target": "#find-on-map-modal" %>
           </li>
           <li>
-            <%= f.select :from_group, (f.object.current_location.present? ? LandingSignup.groups_by_location_id[f.object.current_location.id].map{ |r| [r[:name],r[:id]]} : []), { label: t('neo4j.attributes.landing_signup.from_group')}, 'data-select-target': '#to-groups', 'data-select-options': LandingSignup.groups_by_group_id.to_json, id: 'current-group', 'data-increase-abc': 3 %>
+            <%= f.select :from_group_age, 1.upto(7).map {|a| [Group.title_for_age(a), a]}, { label: t('neo4j.attributes.landing_signup.from_group')}, id: 'from-group', 'data-increase-abc': 2, 'data-select-target': '#to-location' %>
           </li>
           <li>
-            <%= f.select :to_group, options_from_collection_for_select(Location.all, :name, :id), { label: t('neo4j.attributes.landing_signup.to_location') }, id: 'to-groups', 'data-select-target': '#contact-fields', 'data-increase-abc': 4, 'data-select2-initialize': true %>
+            <%= f.select :to_location, [], { label: t('neo4j.attributes.landing_signup.to_location') }, id: 'to-location', 'data-select2-ajax-initialize': select2_locations_path, 'data-increase-abc': 3, 'data-select-target': '#contact-fields' %>
             <div class="text-center"><%= t('or') %></div>
-            <%= link_to t('find_on_map'), find_on_map_path(select_element: '#to-groups'), "data-toggle": "modal", "data-target": "#find-on-map-modal" %>
+            <%= link_to t('find_on_map'), find_on_map_path(select_element: '#to-location'), "data-toggle": "modal", "data-target": "#find-on-map-modal" %>
           </li>
           <li>
             <div id="contact-fields">
@@ -76,4 +69,3 @@
   var firstOption = $('#current-city option[value!=""]').first();
   $('#current-city').val(firstOption.val()).trigger('change');
 </script>
-<% end # cache %>

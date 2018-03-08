@@ -1,19 +1,10 @@
 $(document).on 'change', '[data-select-target]', ->
   $target = $($(this).data('selectTarget'))
-  if $(this).data('selectOptions')
-    $target.find('option').remove().end()
-      .append('<option value="" disabled="true" selected="selected"><%= I18n.t 'please_select' %></option>')
-    for option in $(this).data('selectOptions')[this.value]
-      $target.append $('<option>',
-        value: option.id
-        text: option.name
-      )
-    $('#left-arrow').show()
-  else
-    $('#right-arrow').hide()
   $(this).parents('li').removeClass('current')
-  $target.parents('li').addClass('current')
-  # while target has target, hide them
+  next = $target.parents('li').addClass('current')
+  unless next.next()[0]
+    $('#right-arrow').hide()
+  $('#left-arrow').show()
 
 $ ->
   $('#left-arrow').click ->

@@ -1,7 +1,7 @@
 class LandingSignup
   include ActiveModel::Model
-  REQUIRED_FIELDS = %i[current_city current_location from_group email password].freeze
-  OPTIONAL_FIELDS = %i[to_group].freeze
+  REQUIRED_FIELDS = %i[current_city current_location from_group_age email password].freeze
+  OPTIONAL_FIELDS = %i[to_location].freeze
   FIELDS = REQUIRED_FIELDS + OPTIONAL_FIELDS
   attr_accessor(*FIELDS)
   attr_reader :user, :move, :existing_user
@@ -14,7 +14,7 @@ class LandingSignup
   def perform
     return false unless valid?
     return false unless _create_or_find_user?
-    _create_move!
+    return false unless _create_move!
 
     UserMailer.landing_signup(@move).deliver_now
     true
@@ -44,11 +44,19 @@ class LandingSignup
   end
 
   def _create_move!
-    from_group = Group.find @from_group
+    current_location = Location.find @current_location
+    from_group = current_location.groups.find_by(age: @from_group_age)
+    unless from_group.present?
+      errors.add :from_group_age, I18n.t("landing_signup.group_not_exists_for_age", @from_group_age)
+      return false
+    end
     @move = Move.create! user: @user, from_group: from_group
-    return unless @to_group.present?
-    to_group = Group.find @to_group
-    @move.to_groups << to_group
+    if @to_location.present?
+      to_location = Location.find @to_location
+      to_group = to_location.groups.find_by age: @from_group_age
+      @move.to_groups << to_group
+    end
+    true
   end
 
   def notice

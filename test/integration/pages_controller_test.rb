@@ -15,7 +15,7 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
       password: '1234567',
       current_city: group.location.city.id,
       current_location: group.location.id,
-      from_group: group.id,
+      from_group_age: group.age,
     }
     assert_difference "User.count", 1 do
       assert_difference "Move.count", 1 do
@@ -46,7 +46,7 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
       password: password,
       current_city: group.location.city.id,
       current_location: group.location.id,
-      from_group: group.id,
+      from_group_age: group.age,
     }
     assert_difference "User.count", 0 do
       assert_difference "Move.count", 1 do

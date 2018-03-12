@@ -1,15 +1,19 @@
 <%
   breadcrumb t('dashboard') => nil
 %>
+<h1>
 <%= t('my_requests') %>
-<% @moves.each do |move| %>
-  <%= link_to move do %>
-    <%= move.from_group.age %>
-    <%= move.from_group.location.name %>
-    <%= move.to_groups.each do |group| %>
-      <% next unless group %>
-      --> <%= group.location.name %>
-      <br>
-    <% end %>
+</h1>
+<ul class="list-unstyled">
+  <% @moves.each do |move| %>
+    <li>
+      <%= link_to move do %>
+        <%= move.from_group.location.name %>
+        (<%= move.from_group.age_with_short_title %>)
+        (<% move.to_groups.each do |group| %>
+          <%= group.location.name %>
+        <% end %>)
+      <% end %>
+    </li>
   <% end %>
-<% end %>
+</ul>

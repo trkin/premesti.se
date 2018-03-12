@@ -32,4 +32,8 @@ class Group
   def age_with_title
     self.class.title_for_age age
   end
+
+  def age_with_short_title
+    "#{age} #{I18n.t("year")}"
+  end
 end

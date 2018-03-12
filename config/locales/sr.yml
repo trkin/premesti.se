@@ -50,6 +50,7 @@ sr:
   delete: Обриши
   cancel: Одустани
   save: Сачувај
+  add: Додај
   create_group: Направи групу
   edit_group: Измени групу
   create_location: Направи локацију

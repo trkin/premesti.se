@@ -50,6 +50,7 @@ en:
   delete: Delete
   cancel: Cancel
   save: Save
+  add: Add
   create_group: Create group
   edit_group: Edit group
   create_location: Create location

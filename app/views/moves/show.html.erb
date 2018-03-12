@@ -1,10 +1,28 @@
 <%
-  breadcrumb t('dashboard') => dashboard_path, Move.model_name.human => nil
+  breadcrumb t('dashboard') => dashboard_path, "#{Move.model_name.human.mb_chars.capitalize} #{@move.from_group.location.name}" => nil
 %>
 
-<%= @move.from_group.age %>
-<%= @move.from_group.location.name %>
-<%= @move.to_groups.each do |group| %>
-  --> <%= group.location.name %>
-  <br>
-<% end %>
+<h1>
+  <%= t('my_requests') %>
+  <%= @move.from_group.location.name %>
+  (<%= @move.from_group.age_with_short_title %>)
+</h1>
+<ul class="list-unstyled">
+  <% @move.to_groups.each do |group| %>
+    <li class="show-on-hover">
+      &emsp; ↪ <span><%= group.location.name %></span>
+      <%= link_to t("delete"), destroy_to_group_move_path(@move, to_group_id: group.id), method: :delete, class: "danger show-on-hover-target" %>
+    </li>
+  <% end %>
+</ul>
+<%= modal id: 'find-on-map-modal', title: t('find_on_map'), fade: false %>
+<input type="checkbox" id="toggle-active" class="toggle-active" />
+<label for="toggle-active"><%= t('add') %></label>
+<span class="toggle-active-target">
+  <%= form_tag create_to_group_move_path(@move), class: 'inline' do %>
+    <%= select_tag :to_location_id, [], label: t('neo4j.attributes.landing_signup.current_location'), id: 'to_location_id', 'data-select2-ajax-initialize': select2_locations_path, class: 'add-new-to-groups' %>
+    <span><%= t('or') %></span>
+    <%= link_to t('find_on_map'), find_on_map_path(select_element: '#to_location_id'), "data-toggle": "modal", "data-target": "#find-on-map-modal" %>
+    <%= button_tag t("add"), class: 'btn btn-primary' %>
+  <% end %>
+</span>

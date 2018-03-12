@@ -50,6 +50,7 @@ sr-latin:
   delete: Obriši
   cancel: Odustani
   save: Sačuvaj
+  add: Dodaj
   create_group: Napravi grupu
   edit_group: Izmeni grupu
   create_location: Napravi lokaciju

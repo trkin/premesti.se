@@ -12,3 +12,21 @@
   position:absolute;
   top: -1000px;
 }
+
+.inline {
+  display: inline;
+}
+
+// show on hover
+//
+//  <li class="show-on-hover">
+//    Text<a href="" class="show-on-hover-target">X</a>
+//  </li>
+.show-on-hover-target {
+  visibility: hidden;
+}
+.show-on-hover:hover {
+  .show-on-hover-target {
+    visibility: visible;
+  }
+}

@@ -27,3 +27,7 @@ Style/TrailingCommaInArguments:
 # I like methods in 10 lines but some are bigger
 Metrics/MethodLength:
   Max: 15
+
+# I use double quotes in all places
+Style/StringLiteralsInInterpolation:
+  Enabled: false

@@ -50,12 +50,12 @@ en:
   delete: Delete
   cancel: Cancel
   save: Save
+  update: Update
   add: Add
-  create_group: Create group
-  edit_group: Edit group
-  create_location: Create location
-  update_location: Update location
-  edit_location: Edit location
+  edit: Edit
+  success_update: Successfully updated
+  success_create: Successfully created
+  success_delete: Successfully deleted
   group_with_that_age_already_exists: Group with that age already exists
   year: year
   my_requests: My Requests

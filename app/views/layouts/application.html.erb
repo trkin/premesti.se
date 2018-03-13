@@ -3,7 +3,7 @@
   <head>
     <title>PremestiSe</title>
     <%= csrf_meta_tags %>
-    <meta name="viewport" content="width=device-width, initial-scale=1">'
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -14,8 +14,8 @@
 
   <body>
     <% if landing_layout? %>
-      <div><%= notice %></div>
-      <div><%= alert %></div>
+      <div class="alert alert-info"><%= notice %></div>
+      <div class="alert alert-danger"><%= alert %></div>
       <div class="pull-right">
         <%= link_to t("register"), new_user_registration_path %>
         <%= link_to t("sign_in"), new_user_session_path %>
@@ -28,8 +28,8 @@
       </div>
       <%= yield %>
     <% elsif login_layout? %>
-        <div><%= notice %></div>
-        <div><%= alert %></div>
+      <div class="alert alert-info"><%= notice %></div>
+      <div class="alert alert-danger"><%= alert %></div>
       <%= render 'layouts/choose_language' %>
       <%= yield %>
     <% else %>
@@ -53,8 +53,8 @@
           <% end %>
         <% end %>
         <%= link_to t("privacy_policy"), privacy_policy_path %>
-        <div><%= notice %></div>
-        <div><%= alert %></div>
+        <div class="alert alert-info"><%= notice %></div>
+        <div class="alert alert-danger"><%= alert %></div>
 
         <% if find_breadcrumb_list.present? %>
           <ol class="breadcrumb">

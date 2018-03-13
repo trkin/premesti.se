@@ -10,17 +10,17 @@
 <ul class="list-unstyled">
   <% @move.to_groups.each do |group| %>
     <li class="show-on-hover">
-      &emsp; ↪ <span><%= group.location.name %></span>
-      <%= link_to t("delete"), destroy_to_group_move_path(@move, to_group_id: group.id), method: :delete, class: "danger show-on-hover-target" %>
+      &emsp; ↪  <span><%= group.location.name_with_address %></span>
+      <%= link_to t("delete"), destroy_to_group_move_path(@move, to_group_id: group.id), method: :delete, class: "text-danger show-on-hover-target", 'data-confirm': t_crud('are_you_sure_to_remove_item', item: Group) %>
     </li>
   <% end %>
 </ul>
 <%= modal id: 'find-on-map-modal', title: t('find_on_map'), fade: false %>
-<input type="checkbox" id="toggle-active" class="toggle-active" />
 <label for="toggle-active"><%= t('add') %></label>
-<span class="toggle-active-target">
+<input type="checkbox" id="toggle-active" class="toggle-active" />
+<span class="toggle-active-target hide-not-important">
   <%= form_tag create_to_group_move_path(@move), class: 'inline' do %>
-    <%= select_tag :to_location_id, [], label: t('neo4j.attributes.landing_signup.current_location'), id: 'to_location_id', 'data-select2-ajax-initialize': select2_locations_path, class: 'add-new-to-groups' %>
+    <%= select_tag :to_location_id, "", include_blank: t('neo4j.attributes.landing_signup.to_location'), id: 'to_location_id', 'data-select2-ajax-initialize': select2_locations_path, class: 'add-new-to-groups' %>
     <span><%= t('or') %></span>
     <%= link_to t('find_on_map'), find_on_map_path(select_element: '#to_location_id'), "data-toggle": "modal", "data-target": "#find-on-map-modal" %>
     <%= button_tag t("add"), class: 'btn btn-primary' %>

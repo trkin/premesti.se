@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include TranslateHelper
   protect_from_forgery with: :exception
   before_action :_set_locale_from_domain
   before_action :authenticate_user!

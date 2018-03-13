@@ -4,18 +4,22 @@ sr:
       messages:
         required: мора постојати
         taken: је већ заузето
+        already_exists: већ постоји
     models:
       user: корисник
       location:
         one: локација
         other: локације
+        accusative: локацију
       group:
         one: група
         other: групе
+        accusative: групу
       city: град
       move:
         one: премештај
         other: премештаји
+        accusative: премештај
     attributes:
       user:
         email: Имејл
@@ -40,3 +44,5 @@ sr:
         password: Лозинка за овај сајт ?
         submit: Обавести ме
         group_not_exists_for_age: Не постоји група (%{age}год) на овој локацији
+      move:
+        to_groups: Жељене групе

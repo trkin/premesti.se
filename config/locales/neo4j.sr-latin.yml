@@ -4,18 +4,22 @@ sr-latin:
       messages:
         required: mora postojati
         taken: je već zauzeto
+        already_exists: već postoji
     models:
       user: korisnik
       location:
         one: lokacija
         other: lokacije
+        accusative: lokaciju
       group:
         one: grupa
         other: grupe
+        accusative: grupu
       city: grad
       move:
         one: premeštaj
         other: premeštaji
+        accusative: premeštaj
     attributes:
       user:
         email: Imejl
@@ -40,3 +44,5 @@ sr-latin:
         password: Lozinka za ovaj sajt ?
         submit: Obavesti me
         group_not_exists_for_age: Ne postoji grupa (%{age}god) na ovoj lokaciji
+      move:
+        to_groups: Željene grupe

@@ -9,15 +9,15 @@
   <dt><%= Location.human_attribute_name(:map).mb_chars.capitalize %>:</dt>
   <dd><%= show_static_map @location %></dd>
 </dl>
-<%= modal id: 'edit-modal', title: t('update_location') %>
+<%= modal id: 'edit-modal', title: t_crud('update', Location) %>
 <%= link_to edit_admin_location_path(location_id: @location.id), "data-toggle": "modal", "data-target": "#edit-modal" do %>
-  <%= t('update_location') %>
+  <%= t_crud('update', Location) %>
 <% end %>
 <h1><%= Group.model_name.human(count: 2) %></h1>
-<%= modal id: 'new-modal', title: t('create_group') %>
+<%= modal id: 'new-modal', title: t_crud('create', Group) %>
 <%= link_to new_admin_group_path(location_id: @location.id), class: 'btn btn-default', "data-toggle": "modal", "data-target": "#new-modal" do %>
   <i class="fa fa-plus" aria-hidden="true"></i>
-  <%= t('create_group') %>
+  <%= t_crud('create', Group) %>
 <% end %>
 <ul>
   <% @location.groups.each do |group| %>

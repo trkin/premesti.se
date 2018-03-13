@@ -50,12 +50,12 @@ sr-latin:
   delete: Obriši
   cancel: Odustani
   save: Sačuvaj
+  update: Izmeni
   add: Dodaj
-  create_group: Napravi grupu
-  edit_group: Izmeni grupu
-  create_location: Napravi lokaciju
-  update_location: Izmeni lokaciju
-  edit_location: Izmeni lokaciju
+  edit: Izmeni
+  success_update: Uspešno ste izmenili
+  success_create: Uspešno ste dodali
+  success_delete: Uspešno ste obrisali
   group_with_that_age_already_exists: Grupa sa tim godištem već postoji
   year: god
   my_requests: Moje želje

@@ -3,11 +3,11 @@
 %>
 <h1><%= @city.name %></h1>
 <%= show_all_map @city.locations %>
-<%= modal id: 'new-modal', title: t('create_location') %>
+<%= modal id: 'new-modal', title: t_crud('create', Location) %>
 <h2><%= Location.model_name.human(count: 2).mb_chars.capitalize %></h2>
 <%= link_to new_admin_location_path(city_id: @city.id), class: 'btn btn-default', "data-toggle": "modal", "data-target": "#new-modal" do %>
   <i class="fa fa-plus" aria-hidden="true"></i>
-  <%= t('create_location') %>
+  <%= t_crud('create', Location) %>
 <% end %>
 <ol>
   <% @city.locations.each do |location| %>

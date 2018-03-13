@@ -10,7 +10,7 @@
         <%= hidden_field_tag :location_id, params[:location_id] %>
         <button type="submit" class="btn btn-primary" data-disable-with="<i class='fa fa-spinner fa-spin'></i> <%= t('create') %>"><%= t('create') %></button>
       <% else %>
-        <%= link_to admin_group_path(@group), remote: true, class: "btn btn-danger", method: :delete, "data-confirm": t('are_you_sure_to_remove_item', item: Group.model_name.human) do %>
+        <%= link_to admin_group_path(@group), remote: true, class: "btn btn-danger", method: :delete, "data-confirm": t_crud('are_you_sure_to_remove_item', item: Group) do %>
           <i class="fa fa-trash" aria-hidden="true"></i>
           <%= t('delete') %>
         <% end %>

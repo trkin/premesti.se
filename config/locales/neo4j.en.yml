@@ -4,18 +4,22 @@ en:
       messages:
         required: must exists
         taken: has already been taken
+        already_exists: already exists
     models:
       user: user
       location:
         one: location
         other: locations
+        accusative: location
       group:
         one: group
         other: groups
+        accusative: group
       city: city
       move:
         one: move
         other: moves
+        accusative: move
     attributes:
       user:
         email: Email
@@ -38,3 +42,6 @@ en:
         email: What is your email ?
         password: Your password for this site ?
         group_not_exists_for_age: There is no group (%{age}years) for this location
+      move:
+        to_groups: Requested groups
+

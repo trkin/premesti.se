@@ -1,5 +1,9 @@
 sr-latin:
   site_title: Premesti Se
+  site_description: Sajt za komunikaciju roditelja radi lakšeg pronalaženja zamene mesta u vrtićima
+  site_description_1: Sajt za komunikaciju roditelja
+  site_description_2: radi lakšeg pronalaženja
+  site_description_3: zamene mesta u vrtićima
   please_select: Molim izaberite
   select: Izaberite
   where_do_you_want_to_move: Gde hoćeš da se premestiš ?

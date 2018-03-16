@@ -1,5 +1,9 @@
 sr:
   site_title: Премести Се
+  site_description: Сајт за комуникацију родитеља ради лакшег проналажења замене места у вртићима
+  site_description_1: Сајт за комуникацију родитеља
+  site_description_2: ради лакшег проналажења
+  site_description_3: замене места у вртићима
   please_select: Молим изаберите
   select: Изаберите
   where_do_you_want_to_move: Где хоћеш да се преместиш ?

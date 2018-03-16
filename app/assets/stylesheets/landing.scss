@@ -64,6 +64,21 @@ $color-c: #fdcc00;
   fill: $color-c;
 }
 
+$offset: -5px;
+.abc__description {
+  font-size: 6px;
+  stroke: none;
+  .abc__description--ca {
+    transform: translate(-$offset,-$offset);
+  }
+  .abc__description--ab {
+    transform: translate($offset,-$offset);
+  }
+  .abc__description--bc {
+    transform: translate(0px,$offset);
+  }
+}
+
 .square,
 .circle {
   pointer-events: none;

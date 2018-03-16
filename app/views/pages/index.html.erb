@@ -10,8 +10,13 @@
   <circle class="abc__color-c" cx="3" cy="73" r="3"/>
   <g class="abc__line">
     <path id="ab" class="abc__color-a" d="M 53 3 Q 97 3, 97 70"/>
-    <path class="abc__color-b" d="M 97 76 C 97 100, 3 100, 3 76"/>
-    <path class="abc__color-c" d="M 3 70 Q 3 3, 47 3 "/>
+    <path id="bc" class="abc__color-b" d="M 97 76 C 97 100, 3 100, 3 76"/>
+    <path id="ca" class="abc__color-c" d="M 3 70 Q 3 3, 47 3 "/>
+  </g>
+  <g class="abc__description">
+    <text class="abc__description--ca abc__color-fill-c"><textPath xlink:href="#ca" startOffset="6%"><%= t 'site_description_1' %></textPath></text>
+    <text class="abc__description--ab abc__color-fill-a"><textPath xlink:href="#ab" startOffset="10%"><%= t 'site_description_2' %></textPath></text>
+    <text class="abc__description--bc abc__color-fill-b"><textPath xlink:href="#bc" startOffset="13%"><%= t 'site_description_3' %></textPath></text>
   </g>
 </svg>
 

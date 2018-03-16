@@ -1,10 +1,19 @@
 <%
   landing_layout
+  font_drift = 1.7
+
+  # short (~5) text should close to 50
+  # long (~30) close to 0
+  # x / 50 = (30-l) / 30
+  def startOffset(string)
+    max = 38
+    (max - string.length) * 50.0 / 30
+  end
 %>
-<svg id="abc" class="abc" preserveAspectRatio="none" viewBox="0 0 100 100">
-  <text class="text abc__color-a abc__color-fill-a" x="48" y="5"><%= t 'landing_signup.abc.a' %></text>
-  <text class="text abc__color-b abc__color-fill-b" x="95" y="75"><%= t 'landing_signup.abc.b' %></text>
-  <text class="text abc__color-c abc__color-fill-c" x="1" y="75"><%= t 'landing_signup.abc.c' %></text>
+<svg id="abc" class="abc" preserveAspectRatio="none" viewBox="-1 0 102 100">
+  <text class="text abc__color-a abc__color-fill-a" x="50" y="3" dx="-<%= font_drift %>" dy="<%= font_drift %>"><%= t 'landing_signup.abc.a' %></text>
+  <text class="text abc__color-b abc__color-fill-b" x="97" y="73" dx="-<%= font_drift %>" dy="<%= font_drift %>"><%= t 'landing_signup.abc.b' %></text>
+  <text class="text abc__color-c abc__color-fill-c" x="3" y="73" dx="-<%= font_drift %>" dy="<%= font_drift %>"><%= t 'landing_signup.abc.c' %></text>
   <circle class="abc__color-a" cx="50" cy="3" r="3"/>
   <circle class="abc__color-b" cx="97" cy="73" r="3"/>
   <circle class="abc__color-c" cx="3" cy="73" r="3"/>
@@ -15,26 +24,29 @@
     <path id="ca" class="abc__color-c" d="M 3 70 Q 3 3, 47 3 "/>
   </g>
   <g class="abc__description">
-    <text class="abc__title--ca abc__color-fill-black"><textPath xlink:href="#ca" startOffset="46%"><%= t 'site_title' %></textPath></text>
-    <text class="abc__description--ca abc__color-fill-c"><textPath xlink:href="#ca" startOffset="6%"><%= t 'site_description_1' %></textPath></text>
+    <text class="abc__title--ca abc__color-multistroke-1"><textPath xlink:href="#ca" startOffset="<%= startOffset t 'site_title' %>%"><%= t 'site_title' %></textPath></text>
+    <text class="abc__title--ca abc__color-multistroke-2"><textPath xlink:href="#ca" startOffset="<%= startOffset t 'site_title' %>%"><%= t 'site_title' %></textPath></text>
+    <text class="abc__title--ca abc__color-multistroke-3"><textPath xlink:href="#ca" startOffset="<%= startOffset t 'site_title' %>%"><%= t 'site_title' %></textPath></text>
+    <text class="abc__description--ca abc__color-fill-c"><textPath xlink:href="#ca" startOffset="<%= startOffset t 'site_description_1' %>%"><%= t 'site_description_1' %></textPath></text>
 
     <text class="abc__title--ab abc__color-fill-link"><textPath xlink:href="#ab" startOffset="10%">
     </textPath></text>
-    <text class="abc__description--ab abc__color-fill-a"><textPath xlink:href="#ab" startOffset="10%"><%= t 'site_description_2' %></textPath></text>
-    <text class="abc__description--bc abc__color-fill-b"><textPath xlink:href="#bc-inverse" startOffset="20%"><%= t 'site_description_3' %></textPath></text>
+    <text class="abc__description--ab abc__color-fill-a"><textPath xlink:href="#ab" startOffset="<%= startOffset t 'site_description_2' %>%"><%= t 'site_description_2' %></textPath></text>
+    <text class="abc__description--bc abc__color-fill-b"><textPath xlink:href="#bc-inverse" startOffset="<%= startOffset t 'site_description_3' %>%"><%= t 'site_description_3' %></textPath></text>
   </g>
 </svg>
 <%= render 'layouts/choose_language' %>
 <div class="alert alert-info"><%= notice %></div>
 <div class="alert alert-danger"><%= alert %></div>
 <div class="login-buttons">
-  <%= link_to user_facebook_omniauth_authorize_path, title: t("my_devise.sign_in_with", provider: t('provider.facebook')), class: 'btn btn-social' do %>
-    <i class="fa fa-facebook-official"></i>
-  <% end %>
-  <%= link_to user_google_oauth2_omniauth_authorize_path, title: t("my_devise.sign_in_with", provider: t('provider.google_oauth2')), class: 'btn btn-social' do %>
-    <i class="fa fa-google" aria-hidden="true"></i>
-  <% end %>
-  <br>
+  <div class="login-buttons__social">
+    <%= link_to user_facebook_omniauth_authorize_path, title: t("my_devise.sign_in_with", provider: t('provider.facebook')), class: 'btn btn-social' do %>
+      <i class="fa fa-facebook-official"></i>
+    <% end %>
+    <%= link_to user_google_oauth2_omniauth_authorize_path, title: t("my_devise.sign_in_with", provider: t('provider.google_oauth2')), class: 'btn btn-social' do %>
+      <i class="fa fa-google" aria-hidden="true"></i>
+    <% end %>
+  </div>
   <%= link_to t("register"), new_user_registration_path %>
   |
   <%= link_to t("sign_in"), new_user_session_path %>
@@ -42,7 +54,7 @@
 
 <%= modal id: 'find-on-map-modal', title: t('find_on_map'), fade: false %>
 <div class="landing-page">
-  <h3 class="text-center landing-header"><%= t :where_do_you_want_to_move %></h3>
+  <h3 class="text-center"><%= t :where_do_you_want_to_move %></h3>
 
   <div id="signup-form">
     <%= bootstrap_form_for @landing_signup, url: landing_signup_path, builder: MyFormBuilder do |f| %>

@@ -1,12 +1,16 @@
 <div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <%= t("site_title") %>
+  <button type="button" class="btn btn-xs btn-default dropdown-toggle rotate_40" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <% if I18n.locale == :en %>
+      <%= image_tag 'flag-usa.png' %>
+    <% else %>
+      <%= image_tag 'flag-serbia.png' %>
+    <% end %>
     <span class="caret"></span>
     <span class="sr-only"><%= t("change_language") %></span>
   </button>
   <ul class="dropdown-menu">
-    <li><a href="<%= root_url subdomain: nil, domain: Constant::DOMAINS[Rails.env.to_sym][:sr] %>">Премести се (ћирилица)</a></li>
-    <li><a href="<%= root_url subdomain: nil, domain: Constant::DOMAINS[Rails.env.to_sym][:'sr-latin'] %>">Premesti se (latinica)</a></li>
-    <li><a href="<%= root_url subdomain: nil, domain: Constant::DOMAINS[Rails.env.to_sym][:en] %>">Move Your Place (english)</a></li>
+    <li><a href="<%= root_url subdomain: nil, domain: Constant::DOMAINS[Rails.env.to_sym][:sr] %>"><%= image_tag 'flag-serbia.png' %> Премести се (ћирилица)</a></li>
+    <li><a href="<%= root_url subdomain: nil, domain: Constant::DOMAINS[Rails.env.to_sym][:'sr-latin'] %>"><%= image_tag 'flag-serbia.png' %> Premesti se (latinica)</a></li>
+    <li><a href="<%= root_url subdomain: nil, domain: Constant::DOMAINS[Rails.env.to_sym][:en] %>"><%= image_tag 'flag-usa.png' %> Move Your Place (english)</a></li>
   </ul>
 </div>

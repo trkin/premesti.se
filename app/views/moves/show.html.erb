@@ -16,8 +16,8 @@
   <% end %>
 </ul>
 <%= modal id: 'find-on-map-modal', title: t('find_on_map'), fade: false %>
-<label for="toggle-active"><%= t('add') %></label>
 <input type="checkbox" id="toggle-active" class="toggle-active" />
+<label for="toggle-active"><%= t('add') %></label>
 <span class="toggle-active-target hide-not-important">
   <%= form_tag create_to_group_move_path(@move), class: 'inline' do %>
     <%= select_tag :to_location_id, "", include_blank: t('neo4j.attributes.landing_signup.to_location'), id: 'to_location_id', 'data-select2-ajax-initialize': select2_locations_path, class: 'add-new-to-groups' %>

@@ -11,19 +11,38 @@
   <g class="abc__line">
     <path id="ab" class="abc__color-a" d="M 53 3 Q 97 3, 97 70"/>
     <path id="bc" class="abc__color-b" d="M 97 76 C 97 100, 3 100, 3 76"/>
+    <path id="bc-inverse" class="abc__color-none" d="M 3 76 C 3 100, 97 100, 97 76"/>
     <path id="ca" class="abc__color-c" d="M 3 70 Q 3 3, 47 3 "/>
   </g>
   <g class="abc__description">
+    <text class="abc__title--ca abc__color-fill-black"><textPath xlink:href="#ca" startOffset="46%"><%= t 'site_title' %></textPath></text>
     <text class="abc__description--ca abc__color-fill-c"><textPath xlink:href="#ca" startOffset="6%"><%= t 'site_description_1' %></textPath></text>
+
+    <text class="abc__title--ab abc__color-fill-link"><textPath xlink:href="#ab" startOffset="10%">
+    </textPath></text>
     <text class="abc__description--ab abc__color-fill-a"><textPath xlink:href="#ab" startOffset="10%"><%= t 'site_description_2' %></textPath></text>
-    <text class="abc__description--bc abc__color-fill-b"><textPath xlink:href="#bc" startOffset="13%"><%= t 'site_description_3' %></textPath></text>
+    <text class="abc__description--bc abc__color-fill-b"><textPath xlink:href="#bc-inverse" startOffset="20%"><%= t 'site_description_3' %></textPath></text>
   </g>
 </svg>
-
 <%= render 'layouts/choose_language' %>
+<div class="alert alert-info"><%= notice %></div>
+<div class="alert alert-danger"><%= alert %></div>
+<div class="login-buttons">
+  <%= link_to user_facebook_omniauth_authorize_path, title: t("my_devise.sign_in_with", provider: t('provider.facebook')), class: 'btn btn-social' do %>
+    <i class="fa fa-facebook-official"></i>
+  <% end %>
+  <%= link_to user_google_oauth2_omniauth_authorize_path, title: t("my_devise.sign_in_with", provider: t('provider.google_oauth2')), class: 'btn btn-social' do %>
+    <i class="fa fa-google" aria-hidden="true"></i>
+  <% end %>
+  <br>
+  <%= link_to t("register"), new_user_registration_path %>
+  |
+  <%= link_to t("sign_in"), new_user_session_path %>
+</div>
+
 <%= modal id: 'find-on-map-modal', title: t('find_on_map'), fade: false %>
 <div class="landing-page">
-  <h3 class="text-center"><%= t :where_do_you_want_to_move %></h3>
+  <h3 class="text-center landing-header"><%= t :where_do_you_want_to_move %></h3>
 
   <div id="signup-form">
     <%= bootstrap_form_for @landing_signup, url: landing_signup_path, builder: MyFormBuilder do |f| %>
@@ -45,7 +64,7 @@
             <div class="text-center"><%= t('or') %></div>
             <%= link_to t('find_on_map'), find_on_map_path(select_element: '#to-location'), "data-toggle": "modal", "data-target": "#find-on-map-modal" %>
           </li>
-          <li>
+          <li class="contact-fields">
             <div id="contact-fields">
               <%= f.email_field :email, label: t('neo4j.attributes.landing_signup.email') %>
               <%= f.password_field :password, label: t('neo4j.attributes.landing_signup.password') %>
@@ -53,7 +72,6 @@
               <%= f.button type: :submit, class: 'btn' do %>
                 <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
                 <%= t('landing_signup.submit') %>
-                <i class="fa fa-envelope-o" aria-hidden="true"></i>
               <% end %>
             </div>
           </li>

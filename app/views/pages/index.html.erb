@@ -61,7 +61,7 @@
 
       <%= f.hidden_field :current_city %>
 
-      <div class="carouselbox">
+      <div class="carouselbox no-transition">
         <ol class="no-padding-relative">
           <li class="current">
             <%= f.select :current_location, [], { label: t('neo4j.attributes.landing_signup.current_location') }, id: 'current-location', 'data-select2-ajax-initialize': select2_locations_path, 'data-increase-abc': 1, 'data-select-target': '#from-group' %>

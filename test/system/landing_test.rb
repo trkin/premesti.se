@@ -8,17 +8,15 @@ class LandingTest < ApplicationSystemTestCase
     email = 'my@email.com'
 
     visit root_url
-    within '#signup-form' do
-      # select group.location.city.name, from: t('neo4j.attributes.landing_signup.current_city')
-      select group.location.name_with_address, from: t('neo4j.attributes.landing_signup.current_location')
-      select group.age_with_title, from: t('neo4j.attributes.landing_signup.from_group')
-      select to_location.name_with_address, from: t('neo4j.attributes.landing_signup.to_location')
-      fill_in t('neo4j.attributes.landing_signup.email'), with: email
-      fill_in t('neo4j.attributes.landing_signup.password'), with: '1234567'
-      assert_difference "User.count", 1 do
-        assert_difference "ActionMailer::Base.deliveries.size", 1 do
-          click_on t('landing_signup.submit')
-        end
+    # select group.location.city.name, from: t('neo4j.attributes.landing_signup.current_city')
+    select2_ajax group.location.name_with_address, from: t('neo4j.attributes.landing_signup.current_location')
+    select group.age_with_title, from: t('neo4j.attributes.landing_signup.from_group')
+    select2_ajax to_location.name_with_address, from: t('neo4j.attributes.landing_signup.to_location')
+    fill_in t('neo4j.attributes.landing_signup.email'), with: email
+    fill_in t('neo4j.attributes.landing_signup.password'), with: '1234567'
+    assert_difference "User.count", 1 do
+      assert_difference "ActionMailer::Base.deliveries.size", 1 do
+        click_on t('landing_signup.submit')
       end
     end
 

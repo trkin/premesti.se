@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'pages#index'
+  root to: 'pages#home'
   devise_for :users, controllers: {
     omniauth_callbacks: :omniauth_callbacks,
     confirmations: :confirmations

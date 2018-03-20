@@ -6,33 +6,41 @@
   # long (~30) close to 0
   # x / 50 = (30-l) / 30
   def startOffset(string)
-    max = 38
-    (max - string.length) * 50.0 / 30
+    max = 35
+    (max - string.length) * 50.0 / max
   end
+  y = 63
 %>
-<svg id="abc" class="abc" preserveAspectRatio="none" viewBox="-1 0 102 100">
+<svg id="abc" class="abc" preserveAspectRatio="none" viewBox="-1 -1 102 102">
   <text class="text abc__color-a abc__color-fill-a" x="50" y="3" dx="-<%= font_drift %>" dy="<%= font_drift %>"><%= t 'landing_signup.abc.a' %></text>
-  <text class="text abc__color-b abc__color-fill-b" x="97" y="73" dx="-<%= font_drift %>" dy="<%= font_drift %>"><%= t 'landing_signup.abc.b' %></text>
-  <text class="text abc__color-c abc__color-fill-c" x="3" y="73" dx="-<%= font_drift %>" dy="<%= font_drift %>"><%= t 'landing_signup.abc.c' %></text>
+  <text class="text abc__color-b abc__color-fill-b" x="97" y="<%= y %>" dx="-<%= font_drift %>" dy="<%= font_drift %>"><%= t 'landing_signup.abc.b' %></text>
+  <text class="text abc__color-c abc__color-fill-c" x="3" y="<%= y %>" dx="-<%= font_drift %>" dy="<%= font_drift %>"><%= t 'landing_signup.abc.c' %></text>
   <circle class="abc__color-a" cx="50" cy="3" r="3"/>
-  <circle class="abc__color-b" cx="97" cy="73" r="3"/>
-  <circle class="abc__color-c" cx="3" cy="73" r="3"/>
+  <circle class="abc__color-b" cx="97" cy="<%= y %>" r="3"/>
+  <circle class="abc__color-c" cx="3" cy="<%= y %>" r="3"/>
   <g class="abc__line">
-    <path id="ab" class="abc__color-a" d="M 53 3 Q 97 3, 97 70"/>
-    <path id="bc" class="abc__color-b" d="M 97 76 C 97 100, 3 100, 3 76"/>
-    <path id="bc-inverse" class="abc__color-none" d="M 3 76 C 3 100, 97 100, 97 76"/>
-    <path id="ca" class="abc__color-c" d="M 3 70 Q 3 3, 47 3 "/>
+    <path id="ab" class="abc__color-a" d="M 53 3 Q 97 3, 97 <%= y - 3 %>"/>
+    <path id="bc" class="abc__color-b" d="M 97 <%= y + 3 %> Q 97 100, 50 100 T 3 <%= y + 3 %>"/>
+    <path id="bc-inverse" class="abc__color-none" d="M 3 <%= y + 3 %> Q 3 100, 50 100 T 97 <%= y + 3 %>"/>
+    <path id="ca" class="abc__color-c" d="M 3 <%= y - 3 %> Q 3 3, 47 3 "/>
   </g>
+  <defs>
+    <filter id="f1" x="0" y="0">
+      <feGaussianBlur stdDeviation="0.15" />
+    </filter>
+  </defs>
   <g class="abc__description">
     <text class="abc__title--ca abc__color-multistroke-1"><textPath xlink:href="#ca" startOffset="<%= startOffset t 'site_title' %>%"><%= t 'site_title' %></textPath></text>
     <text class="abc__title--ca abc__color-multistroke-2"><textPath xlink:href="#ca" startOffset="<%= startOffset t 'site_title' %>%"><%= t 'site_title' %></textPath></text>
     <text class="abc__title--ca abc__color-multistroke-3"><textPath xlink:href="#ca" startOffset="<%= startOffset t 'site_title' %>%"><%= t 'site_title' %></textPath></text>
+    <text class="abc__description--ca abc__color-fill-c" filter="url(#f1)"><textPath xlink:href="#ca" startOffset="<%= startOffset t 'site_description_1' %>%"><%= t 'site_description_1' %></textPath></text>
     <text class="abc__description--ca abc__color-fill-c"><textPath xlink:href="#ca" startOffset="<%= startOffset t 'site_description_1' %>%"><%= t 'site_description_1' %></textPath></text>
 
-    <text class="abc__title--ab abc__color-fill-link"><textPath xlink:href="#ab" startOffset="10%">
-    </textPath></text>
+    <text class="abc__description--ab abc__color-fill-a" filter="url(#f1)"><textPath xlink:href="#ab" startOffset="<%= startOffset t 'site_description_2' %>%"><%= t 'site_description_2' %></textPath></text>
     <text class="abc__description--ab abc__color-fill-a"><textPath xlink:href="#ab" startOffset="<%= startOffset t 'site_description_2' %>%"><%= t 'site_description_2' %></textPath></text>
-    <text class="abc__description--bc abc__color-fill-b"><textPath xlink:href="#bc-inverse" startOffset="<%= startOffset t 'site_description_3' %>%"><%= t 'site_description_3' %></textPath></text>
+
+    <text class="abc__description--bc abc__color-fill-b" filter="url(#f1)"><textPath xlink:href="#bc-inverse" startOffset="<%= startOffset(t('site_description_3')) + 15 %>%"><%= t 'site_description_3' %></textPath></text>
+    <text class="abc__description--bc abc__color-fill-b"><textPath xlink:href="#bc-inverse" startOffset="<%= startOffset(t('site_description_3')) + 15 %>%"><%= t 'site_description_3' %></textPath></text>
   </g>
 </svg>
 <%= render 'layouts/choose_language' %>

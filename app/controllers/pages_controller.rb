@@ -1,8 +1,8 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :_redirect_to_dashboard_for_authenticated_users, only: [:index]
+  before_action :_redirect_to_dashboard_for_authenticated_users, only: [:home]
 
-  def index
+  def home
     @landing_signup = LandingSignup.new
     @landing_signup.current_city = City.first
   end
@@ -15,7 +15,7 @@ class PagesController < ApplicationController
       redirect_to dashboard_path, notice: @landing_signup.notice
     else
       flash.now[:alert] = @landing_signup.errors.full_messages.join(', ')
-      render :index
+      render :home
     end
   end
 

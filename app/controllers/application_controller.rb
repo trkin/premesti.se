@@ -3,6 +3,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :_set_locale_from_domain
   before_action :authenticate_user!
+  # before_action :sleep_some_time # add delay for testing real conditions
+
+  def sleep_some_time
+    sleep 1
+  end
 
   def _set_locale_from_domain
     locale = case request.host

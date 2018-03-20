@@ -9,7 +9,7 @@
     max = 35
     (max - string.length) * 50.0 / max
   end
-  y = 63
+  y = 55
 %>
 <svg id="abc" class="abc" preserveAspectRatio="none" viewBox="-1 -1 102 102">
   <text class="text abc__color-a abc__color-fill-a" x="50" y="3" dx="-<%= font_drift %>" dy="<%= font_drift %>"><%= t 'landing_signup.abc.a' %></text>
@@ -30,8 +30,8 @@
     </filter>
   </defs>
   <g class="abc__description">
-    <text class="abc__title--ca abc__color-multistroke-1"><textPath xlink:href="#ca" startOffset="<%= startOffset t 'site_title' %>%"><%= t 'site_title' %></textPath></text>
-    <text class="abc__title--ca abc__color-multistroke-2"><textPath xlink:href="#ca" startOffset="<%= startOffset t 'site_title' %>%"><%= t 'site_title' %></textPath></text>
+    <%# <text class="abc__title--ca abc__color-multistroke-1"><textPath xlink:href="#ca" startOffset="<%= startOffset t 'site_title' %1>%"><%= t 'site_title' %1></textPath></text> %>
+    <%# <text class="abc__title--ca abc__color-multistroke-2"><textPath xlink:href="#ca" startOffset="<%= startOffset t 'site_title' %1>%"><%= t 'site_title' %1></textPath></text> %>
     <text class="abc__title--ca abc__color-multistroke-3"><textPath xlink:href="#ca" startOffset="<%= startOffset t 'site_title' %>%"><%= t 'site_title' %></textPath></text>
     <text class="abc__description--ca abc__color-fill-c" filter="url(#f1)"><textPath xlink:href="#ca" startOffset="<%= startOffset t 'site_description_1' %>%"><%= t 'site_description_1' %></textPath></text>
     <text class="abc__description--ca abc__color-fill-c"><textPath xlink:href="#ca" startOffset="<%= startOffset t 'site_description_1' %>%"><%= t 'site_description_1' %></textPath></text>
@@ -62,14 +62,14 @@
 
 <%= modal id: 'find-on-map-modal', title: t('find_on_map'), fade: false, modal_dialog_class: 'modal-lg' %>
 <div class="landing-page">
-  <h3 class="text-center"><%= t :where_do_you_want_to_move %></h3>
+  <h3 class="hide-le-sm text-center"><%= t :where_do_you_want_to_move %></h3>
 
   <div id="signup-form">
     <%= bootstrap_form_for @landing_signup, url: landing_signup_path, builder: MyFormBuilder do |f| %>
 
       <%= f.hidden_field :current_city %>
 
-      <div class="carouselbox no-transition">
+      <div class="carouselbox <%= 'no-transition' if Rails.env.test? %>">
         <ol class="no-padding-relative">
           <li class="current">
             <%= f.select :current_location, [], { label: t('neo4j.attributes.landing_signup.current_location') }, id: 'current-location', 'data-select2-ajax-initialize': select2_locations_path, 'data-increase-abc': 1, 'data-select-target': '#from-group' %>

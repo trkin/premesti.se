@@ -46,6 +46,7 @@
 <%= render 'layouts/choose_language' %>
 <div class="alert alert-info"><%= notice %></div>
 <div class="alert alert-danger"><%= alert %></div>
+
 <div class="login-buttons">
   <div class="login-buttons__social">
     <%= link_to user_facebook_omniauth_authorize_path, title: t("my_devise.sign_in_with", provider: t('provider.facebook')), class: 'btn btn-social' do %>
@@ -58,6 +59,9 @@
   <%= link_to t("register"), new_user_registration_path %>
   |
   <%= link_to t("sign_in"), new_user_session_path %>
+</div>
+<div class="faq-buttons">
+  <%= link_to t("faq"), faq_path %>
 </div>
 
 <%= modal id: 'find-on-map-modal', title: t('find_on_map'), fade: false, modal_dialog_class: 'modal-lg' %>

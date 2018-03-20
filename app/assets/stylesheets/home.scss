@@ -207,3 +207,10 @@ $offset: -4.5px;
     padding-left: 10px;
   }
 }
+
+.faq-buttons {
+  position: fixed;
+  right: 5px;
+  bottom: 0px;
+  transform: rotate(-45deg) translate(4vh,-3vh) ;
+}

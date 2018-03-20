@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   post 'landing-signup', to: 'pages#landing_signup'
   get 'privacy-policy', to: 'pages#privacy_policy'
+  get 'faq', to: 'pages#faq'
   get 'find_on_map', to: 'pages#find_on_map'
   get 'select2_locations', to: 'pages#select2_locations'
 

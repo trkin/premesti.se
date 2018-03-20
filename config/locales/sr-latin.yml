@@ -16,6 +16,7 @@ sr-latin:
     success_notice: Hvala na registraciji vaše namere za premeštaj. Poslaćemo Vam imejl kada se desi poklapanje.
     user_registered_but_password_is_invalid: Već ste se bili registrovali ali ne sa ovom lozinkom. Ako ste zaboravili lozinku, molim Vas da je promenite.
 
+  faq: Česta pitanja
   user_mailer:
     landing_signup:
       subject: Hvala na registraciji!

@@ -1,9 +1,9 @@
 # rubocop:disable Metrics/MethodLength
 module ModalHelper
-  def modal(id:, title:, fade: true)
+  def modal(id:, title:, fade: true, modal_dialog_class: '')
     %(
       <div id="#{id}" class="modal #{fade ? 'fade' : ''}" role="dialog" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog #{modal_dialog_class}">
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>

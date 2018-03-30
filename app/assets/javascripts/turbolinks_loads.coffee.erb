@@ -1,9 +1,3 @@
-determine_language = ->
-  switch window.location.hostname
-    when '<%= Constant::DOMAINS[Rails.env.to_sym][:sr] %>' then 'sr-Cyrl'
-    when '<%= Constant::DOMAINS[Rails.env.to_sym][:'sr-latin'] %>' then 'sr'
-    when '<%= Constant::DOMAINS[Rails.env.to_sym][:en] %>' then 'en'
-
 $(document).on 'turbolinks:load', ->
   console.log 'turbolinks:load'
   $('[data-select2-initialize]').each ->
@@ -25,3 +19,10 @@ $(document).on 'turbolinks:load', ->
       }
     }
     $(this).select2 options
+
+determine_language = ->
+  switch window.location.hostname
+    when '<%= Constant::DOMAINS[Rails.env.to_sym][:sr] %>' then 'sr-Cyrl'
+    when '<%= Constant::DOMAINS[Rails.env.to_sym][:'sr-latin'] %>' then 'sr'
+    when '<%= Constant::DOMAINS[Rails.env.to_sym][:en] %>' then 'en'
+

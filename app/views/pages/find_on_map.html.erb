@@ -1,1 +1,25 @@
-<%= render_modal_partial 'find_on_map_form', title: t('find_on_map') + ": " + (params[:select_element] == '#current-location' ? t('neo4j.attributes.landing_signup.current_location') : t('neo4j.attributes.landing_signup.to_location'))%>
+<%= show_all_map(Location.all.map do |location|
+  location.description_for_map = %(
+    <p>
+      #{location.address}
+    </p>
+    <button onclick='select_value_and_toggle_modal(event, "#{location.name_with_address}", "#{location.id}", "#{params[:select_element]}", "#find-on-map-modal")'>
+      #{I18n.t('select')}
+    </button>
+  )
+  location
+end, script_for_map: %(
+  function select_value_and_toggle_modal(e, selectText, selectValue, selectTarget, closeModal) {
+    e.preventDefault();
+    $(closeModal).modal('toggle');
+    $(selectTarget).select2({
+      data: [{id: selectValue, text: selectText}],
+      ajax: {
+        url: $(selectTarget).data('select2AjaxInitialize'),
+        dataType: 'json'
+      }
+    });
+    $(selectTarget).val(selectValue).trigger('change');
+  })
+)
+%>

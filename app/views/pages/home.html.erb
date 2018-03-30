@@ -1,16 +1,42 @@
 <%
   landing_layout
   font_drift = 1.7
-
-  # short (~5) text should close to 50
-  # long (~30) close to 0
-  # x / 50 = (30-l) / 30
-  def startOffset(string)
-    max = 35
-    (max - string.length) * 50.0 / max
-  end
   y = 55
 %>
+<%= render 'layouts/alerts' %>
+<nav class="navbar p-0">
+  <%= render 'layouts/choose_language' %>
+  <a class="navbar-brand" href="/">
+    <%= t 'site_title' %>
+  </a>
+  <div class="login-buttons ml-auto">
+    <%= link_to t("register"), new_user_registration_path %>
+    |
+    <%= link_to t("sign_in"), new_user_session_path %>
+    <%= link_to user_facebook_omniauth_authorize_path, title: t("my_devise.sign_in_with", provider: t('provider.facebook')), class: 'btn btn-social' do %>
+      <i class="fa fa-facebook-official"></i>
+    <% end %>
+    <%= link_to user_google_oauth2_omniauth_authorize_path, title: t("my_devise.sign_in_with", provider: t('provider.google_oauth2')), class: 'btn btn-social' do %>
+      <i class="fa fa-google" aria-hidden="true"></i>
+    <% end %>
+  </div>
+</nav>
+<div class="container landing-page-header">
+  <div class="text-center">
+    <h1 class="mb-5">
+      <%= t 'site_description_1' %>
+      <br>
+      <%= t 'site_description_2' %>
+      <br>
+      <%= t 'site_description_3' %>
+    </h1>
+    <a class="btn btn-primary btn-xl" data-scroll-into-view="landing-page-form" href="#landing-page-form"><%= t :where_do_you_want_to_move %></a>
+    <br>
+    <a class='' href="<%= faq_path %>"><%= t 'faq' %></a>
+  </div>
+</div>
+
+
 <svg id="abc" class="abc" preserveAspectRatio="none" viewBox="-1 -1 102 102">
   <text class="text abc__color-a abc__color-fill-a" x="50" y="3" dx="-<%= font_drift %>" dy="<%= font_drift %>"><%= t 'landing_signup.abc.a' %></text>
   <text class="text abc__color-b abc__color-fill-b" x="97" y="<%= y %>" dx="-<%= font_drift %>" dy="<%= font_drift %>"><%= t 'landing_signup.abc.b' %></text>
@@ -29,90 +55,53 @@
       <feGaussianBlur stdDeviation="0.15" />
     </filter>
   </defs>
-  <g class="abc__description">
-    <%# <text class="abc__title--ca abc__color-multistroke-1"><textPath xlink:href="#ca" startOffset="<%= startOffset t 'site_title' %1>%"><%= t 'site_title' %1></textPath></text> %>
-    <%# <text class="abc__title--ca abc__color-multistroke-2"><textPath xlink:href="#ca" startOffset="<%= startOffset t 'site_title' %1>%"><%= t 'site_title' %1></textPath></text> %>
-    <text class="abc__title--ca abc__color-multistroke-3"><textPath xlink:href="#ca" startOffset="<%= startOffset t 'site_title' %>%"><%= t 'site_title' %></textPath></text>
-    <text class="abc__description--ca abc__color-fill-c" filter="url(#f1)"><textPath xlink:href="#ca" startOffset="<%= startOffset t 'site_description_1' %>%"><%= t 'site_description_1' %></textPath></text>
-    <text class="abc__description--ca abc__color-fill-c"><textPath xlink:href="#ca" startOffset="<%= startOffset t 'site_description_1' %>%"><%= t 'site_description_1' %></textPath></text>
-
-    <text class="abc__description--ab abc__color-fill-a" filter="url(#f1)"><textPath xlink:href="#ab" startOffset="<%= startOffset t 'site_description_2' %>%"><%= t 'site_description_2' %></textPath></text>
-    <text class="abc__description--ab abc__color-fill-a"><textPath xlink:href="#ab" startOffset="<%= startOffset t 'site_description_2' %>%"><%= t 'site_description_2' %></textPath></text>
-
-    <text class="abc__description--bc abc__color-fill-b" filter="url(#f1)"><textPath xlink:href="#bc-inverse" startOffset="<%= startOffset(t('site_description_3')) + 15 %>%"><%= t 'site_description_3' %></textPath></text>
-    <text class="abc__description--bc abc__color-fill-b"><textPath xlink:href="#bc-inverse" startOffset="<%= startOffset(t('site_description_3')) + 15 %>%"><%= t 'site_description_3' %></textPath></text>
-  </g>
 </svg>
-<%= render 'layouts/choose_language' %>
-<div class="alert alert-info"><%= notice %></div>
-<div class="alert alert-danger"><%= alert %></div>
-
-<div class="login-buttons">
-  <div class="login-buttons__social">
-    <%= link_to user_facebook_omniauth_authorize_path, title: t("my_devise.sign_in_with", provider: t('provider.facebook')), class: 'btn btn-social' do %>
-      <i class="fa fa-facebook-official"></i>
-    <% end %>
-    <%= link_to user_google_oauth2_omniauth_authorize_path, title: t("my_devise.sign_in_with", provider: t('provider.google_oauth2')), class: 'btn btn-social' do %>
-      <i class="fa fa-google" aria-hidden="true"></i>
-    <% end %>
-  </div>
-  <%= link_to t("register"), new_user_registration_path %>
-  |
-  <%= link_to t("sign_in"), new_user_session_path %>
-</div>
-<div class="faq-buttons">
-  <%= link_to t("faq"), faq_path %>
-</div>
 
 <%= modal id: 'find-on-map-modal', title: t('find_on_map'), fade: false, modal_dialog_class: 'modal-lg' %>
-<div class="landing-page">
-  <h3 class="hide-le-sm text-center"><%= t :where_do_you_want_to_move %></h3>
+<div class="landing-page-form" id="landing-page-form">
+  <%= bootstrap_form_for @landing_signup, url: landing_signup_path, builder: MyFormBuilder do |f| %>
 
-  <div id="signup-form">
-    <%= bootstrap_form_for @landing_signup, url: landing_signup_path, builder: MyFormBuilder do |f| %>
+    <%= f.hidden_field :current_city %>
 
-      <%= f.hidden_field :current_city %>
+    <div class="carouselbox <%= 'no-transition' if Rails.env.test? %>">
+      <ol class="no-padding-relative">
+        <li class="current">
+          <%= f.select :current_location, [], { label: t('neo4j.attributes.landing_signup.current_location') }, id: 'current-location', 'data-select2-ajax-initialize': select2_locations_path, 'data-increase-abc': 1, 'data-select-target': '#from-group' %>
+          <div class="text-center"><%= t('or') %></div>
+          <%= link_to t('find_on_map'), find_on_map_path(select_element: '#current-location'), "data-toggle": "modal", "data-target": "#find-on-map-modal" %>
+        </li>
+        <li>
+          <%= f.select :from_group_age, 1.upto(7).map {|a| [Group.title_for_age(a), a]}, { label: t('neo4j.attributes.landing_signup.from_group')}, id: 'from-group', 'data-increase-abc': 2, 'data-select-target': '#to-location' %>
+        </li>
+        <li>
+          <%= f.select :to_location, [], { label: t('neo4j.attributes.landing_signup.to_location') }, id: 'to-location', 'data-select2-ajax-initialize': select2_locations_path, 'data-increase-abc': 3, 'data-select-target': '#contact-fields' %>
+          <div class="text-center"><%= t('or') %></div>
+          <%= link_to t('find_on_map'), find_on_map_path(select_element: '#to-location'), "data-toggle": "modal", "data-target": "#find-on-map-modal" %>
+        </li>
+        <li class="contact-fields">
+          <div id="contact-fields">
+            <%= f.email_field :email, label: t('neo4j.attributes.landing_signup.email'), required: true %>
+            <%= f.password_field :password, label: t('neo4j.attributes.landing_signup.password'), required: true %>
 
-      <div class="carouselbox <%= 'no-transition' if Rails.env.test? %>">
-        <ol class="no-padding-relative">
-          <li class="current">
-            <%= f.select :current_location, [], { label: t('neo4j.attributes.landing_signup.current_location') }, id: 'current-location', 'data-select2-ajax-initialize': select2_locations_path, 'data-increase-abc': 1, 'data-select-target': '#from-group' %>
-            <div class="text-center"><%= t('or') %></div>
-            <%= link_to t('find_on_map'), find_on_map_path(select_element: '#current-location'), "data-toggle": "modal", "data-target": "#find-on-map-modal" %>
-          </li>
-          <li>
-            <%= f.select :from_group_age, 1.upto(7).map {|a| [Group.title_for_age(a), a]}, { label: t('neo4j.attributes.landing_signup.from_group')}, id: 'from-group', 'data-increase-abc': 2, 'data-select-target': '#to-location' %>
-          </li>
-          <li>
-            <%= f.select :to_location, [], { label: t('neo4j.attributes.landing_signup.to_location') }, id: 'to-location', 'data-select2-ajax-initialize': select2_locations_path, 'data-increase-abc': 3, 'data-select-target': '#contact-fields' %>
-            <div class="text-center"><%= t('or') %></div>
-            <%= link_to t('find_on_map'), find_on_map_path(select_element: '#to-location'), "data-toggle": "modal", "data-target": "#find-on-map-modal" %>
-          </li>
-          <li class="contact-fields">
-            <div id="contact-fields">
-              <%= f.email_field :email, label: t('neo4j.attributes.landing_signup.email') %>
-              <%= f.password_field :password, label: t('neo4j.attributes.landing_signup.password') %>
-
-              <%= f.button type: :submit, class: 'btn' do %>
-                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                <%= t('landing_signup.submit') %>
-              <% end %>
-            </div>
-          </li>
-        </ol>
-        <a class="left carousel-control <%= 'hide-not-important' %>" href="javascript:void(0)" role="button" id="left-arrow">
-          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control <%= 'hide-not-important' %>" href="javascript:void(0)" role="button" id="right-arrow">
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
-    <% end %>
-  </div>
+            <%= f.button type: :submit, class: 'btn' do %>
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+              <%= t('landing_signup.submit') %>
+            <% end %>
+          </div>
+        </li>
+      </ol>
+      <a class="carousel-control-prev <%= 'hide-not-important' %>" href="javascript:void(0)" role="button" id="left-arrow">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next <%= 'hide-not-important' %>" href="javascript:void(0)" role="button" id="right-arrow">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  <% end %>
 </div>
-<script>
-  var firstOption = $('#current-city option[value!=""]').first();
-  $('#current-city').val(firstOption.val()).trigger('change');
-</script>
+<%# <script> %>
+<%#   var firstOption = $('#current-city option[value!=""]').first(); %>
+<%#   $('#current-city').val(firstOption.val()).trigger('change'); %>
+<%# </script> %>

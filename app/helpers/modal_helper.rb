@@ -6,28 +6,20 @@ module ModalHelper
         <div class="modal-dialog #{modal_dialog_class}">
           <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
               <h4 class="modal-title">#{title || 'Create'}</h4>
             </div>
-            <div class="modal-body">
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">#{t('close')}</button>
+            <div class="modal-body-footer">
+              <div class="modal-body">
+                <p><i class="fa fa-spinner fa-spin" style="font-size:24px"></i> Processing...</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">#{t('close')}</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    ).html_safe
-  end
-
-  def render_modal_partial(partial_name, title:)
-    %(
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">#{title || 'Create'}</h4>
-      </div>
-      #{render partial_name}
     ).html_safe
   end
 end

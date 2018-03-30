@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= I18n.locale %>">
   <head>
-    <title>PremestiSe</title>
+    <title><%= t('site_title') %></title>
     <%= csrf_meta_tags %>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -16,8 +17,7 @@
     <% if landing_layout? %>
       <%= yield %>
     <% elsif login_layout? %>
-      <div class="alert alert-info"><%= notice %></div>
-      <div class="alert alert-danger"><%= alert %></div>
+      <%= render 'layouts/alerts' %>
       <%= render 'layouts/choose_language' %>
       <%= yield %>
     <% else %>
@@ -41,8 +41,7 @@
           <% end %>
         <% end %>
         <%= link_to t("privacy_policy"), privacy_policy_path %>
-        <div class="alert alert-info"><%= notice %></div>
-        <div class="alert alert-danger"><%= alert %></div>
+        <%= render 'layouts/alerts' %>
 
         <% if find_breadcrumb_list.present? %>
           <ol class="breadcrumb">

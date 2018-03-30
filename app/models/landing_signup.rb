@@ -26,7 +26,12 @@ class LandingSignup
     else
       @user = User.new email: @email, password: @password
       @user.skip_confirmation_notification! # we will manually send confirmation
-      @user.valid?
+      if @user.valid?
+        true
+      else
+        errors.add :base, @user.errors.full_messages.join(', ')
+        false
+      end
     end
   end
 

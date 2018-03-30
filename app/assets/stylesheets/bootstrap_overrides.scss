@@ -1,0 +1,28 @@
+@import "bootstrap/scss/variables";
+
+.edit-map-container,.show-all-map-container {
+  height: 80vh;
+  width: 100%;
+}
+.show-map-container {
+  height: 30px;
+}
+// autocomplete suggestions inside modal should have higher z index
+.pac-container {
+  z-index: ($zindex-modal + 1);
+}
+
+// .alert {
+//   display: inline-block;
+//   position: fixed;
+//   bottom: 10px;
+//   right: 10px;
+//   padding: 0px;
+// }
+
+.carousel-control-prev {
+  background: linear-gradient(90deg, $primary, rgba(0, 0, 0, .001));
+}
+.carousel-control-next {
+  background: linear-gradient(270deg, $primary, rgba(0, 0, 0, .001));
+}

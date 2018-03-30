@@ -17,10 +17,19 @@ $max-abc-length: 145;
   stroke-opacity: 0.5;
 }
 
-.landing-page {
+.login-buttons {
+  
+}
+
+.landing-page-form {
   width: 70vw;
   margin: 20vh auto;
   max-width: 400px;
+}
+
+.landing-page-header {
+  height: 100vh;
+  margin-top: 20vh;
 }
 
 .abc {
@@ -28,7 +37,7 @@ $max-abc-length: 145;
   height: 100vh;
   min-height: $min-abc-height;
   position: absolute;
-  top: 0px;
+  // top: 0px;
   z-index: -1;
   padding-top: 20px;
   stroke: blue;
@@ -121,21 +130,6 @@ $max-abc-length: 145;
 }
 
 $offset: -4.5px;
-.abc__description {
-  stroke: none;
-  .abc__title--ca {
-    transform: translate($offset,$offset);
-  }
-  .abc__description--ca {
-    transform: translate(-$offset,-$offset);
-  }
-  .abc__description--ab {
-    transform: translate($offset,-$offset);
-  }
-  .abc__description--bc {
-    transform: translate(0px,$offset);
-  }
-}
 
 .square,
 .circle {
@@ -192,25 +186,4 @@ $offset: -4.5px;
   &.no-transition li {
     transition: 0.01s;
   }
-}
-
-.rotate_40 {
-  transform: rotate(-40deg);
-}
-.login-buttons {
-  position: fixed;
-  right: 5px;
-  top: 0px;
-  transform: rotate(45deg) translate(5vh,0.5vh) ;
-
-  .login-buttons__social {
-    padding-left: 10px;
-  }
-}
-
-.faq-buttons {
-  position: fixed;
-  right: 5px;
-  bottom: 0px;
-  transform: rotate(-45deg) translate(4vh,-3vh) ;
 }

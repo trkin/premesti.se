@@ -3,22 +3,22 @@ $(document).on 'change', '[data-select-target]', ->
   $(this).parents('li').removeClass('current')
   next = $target.parents('li').addClass('current')
   unless next.next()[0]
-    $('#right-arrow').hide()
-  $('#left-arrow').show()
+    $('#right-arrow').addClass('hide-not-important')
+  $('#left-arrow').removeClass('hide-not-important')
 
 $ ->
   $('#left-arrow').click ->
-    $('#right-arrow').show()
+    $('#right-arrow').removeClass('hide-not-important')
     prev = $('.current').removeClass('current').prev()
     unless prev.prev()[0]
-      $('#left-arrow').hide()
+      $('#left-arrow').addClass('hide-not-important')
     prev.addClass('current')
 
   $('#right-arrow').click ->
-    $('#left-arrow').show()
+    $('#left-arrow').removeClass('hide-not-important')
     next = $('.current').removeClass('current').next()
     unless next.next()[0]
-      $('#right-arrow').hide()
+      $('#right-arrow').addClass('hide-not-important')
     next.addClass('current')
 
 $(document).on 'change', '[data-increase-abc]', ->

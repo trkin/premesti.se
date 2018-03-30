@@ -11,8 +11,6 @@ gem 'rails', '~> 5.1.4'
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
-# also need less for bootstrap
-gem 'less-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -67,8 +65,11 @@ gem 'devise-neo4j'
 gem 'neo4j', github: 'neo4jrb/neo4j'
 gem 'neo4j-core', github: 'neo4jrb/neo4j-core'
 gem 'neo4j-rake_tasks'
-# adding bootstrap_form_for
-gem 'bootstrap_form', github: 'duleorlovic/rails-bootstrap-forms'
+
+# bootstrap_form_for
+gem "bootstrap_form",
+    git: "https://github.com/bootstrap-ruby/bootstrap_form.git",
+    branch: "master"
 
 # omniauth
 gem 'omniauth-facebook'

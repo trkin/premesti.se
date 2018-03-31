@@ -1,7 +1,7 @@
 <%
   landing_layout
   font_drift = 1.7
-  y = 55
+  bc_y_offset = 65
 %>
 <%= render 'layouts/alerts' %>
 <nav class="navbar p-0">
@@ -9,7 +9,7 @@
   <a class="navbar-brand" href="/">
     <%= t 'site_title' %>
   </a>
-  <div class="login-buttons ml-auto">
+  <div class="ml-auto">
     <%= link_to t("register"), new_user_registration_path %>
     |
     <%= link_to t("sign_in"), new_user_session_path %>
@@ -21,7 +21,7 @@
     <% end %>
   </div>
 </nav>
-<div class="container landing-page-header">
+<div class="landing-page-header">
   <div class="text-center">
     <h1 class="mb-5">
       <%= t 'site_description_1' %>
@@ -30,7 +30,7 @@
       <br>
       <%= t 'site_description_3' %>
     </h1>
-    <a class="btn btn-primary btn-xl" data-scroll-into-view="landing-page-form" href="#landing-page-form"><%= t :where_do_you_want_to_move %></a>
+    <a class="btn btn-primary btn-xl" data-scroll-into-view="carousel-box" href="#carousel-box"><%= t :where_do_you_want_to_move %></a>
     <br>
     <a class='' href="<%= faq_path %>"><%= t 'faq' %></a>
   </div>
@@ -39,16 +39,15 @@
 
 <svg id="abc" class="abc" preserveAspectRatio="none" viewBox="-1 -1 102 102">
   <text class="text abc__color-a abc__color-fill-a" x="50" y="3" dx="-<%= font_drift %>" dy="<%= font_drift %>"><%= t 'landing_signup.abc.a' %></text>
-  <text class="text abc__color-b abc__color-fill-b" x="97" y="<%= y %>" dx="-<%= font_drift %>" dy="<%= font_drift %>"><%= t 'landing_signup.abc.b' %></text>
-  <text class="text abc__color-c abc__color-fill-c" x="3" y="<%= y %>" dx="-<%= font_drift %>" dy="<%= font_drift %>"><%= t 'landing_signup.abc.c' %></text>
+  <text class="text abc__color-b abc__color-fill-b" x="97" y="<%= bc_y_offset %>" dx="-<%= font_drift %>" dy="<%= font_drift %>"><%= t 'landing_signup.abc.b' %></text>
+  <text class="text abc__color-c abc__color-fill-c" x="3" y="<%= bc_y_offset %>" dx="-<%= font_drift %>" dy="<%= font_drift %>"><%= t 'landing_signup.abc.c' %></text>
   <circle class="abc__color-a" cx="50" cy="3" r="3"/>
-  <circle class="abc__color-b" cx="97" cy="<%= y %>" r="3"/>
-  <circle class="abc__color-c" cx="3" cy="<%= y %>" r="3"/>
+  <circle class="abc__color-b" cx="97" cy="<%= bc_y_offset %>" r="3"/>
+  <circle class="abc__color-c" cx="3" cy="<%= bc_y_offset %>" r="3"/>
   <g class="abc__line">
-    <path id="ab" class="abc__color-a" d="M 53 3 Q 97 3, 97 <%= y - 3 %>"/>
-    <path id="bc" class="abc__color-b" d="M 97 <%= y + 3 %> Q 97 100, 50 100 T 3 <%= y + 3 %>"/>
-    <path id="bc-inverse" class="abc__color-none" d="M 3 <%= y + 3 %> Q 3 100, 50 100 T 97 <%= y + 3 %>"/>
-    <path id="ca" class="abc__color-c" d="M 3 <%= y - 3 %> Q 3 3, 47 3 "/>
+    <path id="ab" class="abc__color-a" d="M 53 3 Q 97 3, 97 <%= bc_y_offset - 3 %>"/>
+    <path id="bc" class="abc__color-b" d="M 97 <%= bc_y_offset + 3 %> Q 80 96, 50 96 T 3 <%= bc_y_offset + 3 %>"/>
+    <path id="ca" class="abc__color-c" d="M 3 <%= bc_y_offset - 3 %> Q 3 3, 47 3 "/>
   </g>
   <defs>
     <filter id="f1" x="0" y="0">
@@ -58,16 +57,16 @@
 </svg>
 
 <%= modal id: 'find-on-map-modal', title: t('find_on_map'), fade: false, modal_dialog_class: 'modal-lg' %>
-<div class="landing-page-form" id="landing-page-form">
-  <%= bootstrap_form_for @landing_signup, url: landing_signup_path, builder: MyFormBuilder do |f| %>
+<div class="landing-page-footer">
+  <%= bootstrap_form_for @landing_signup, url: landing_signup_path, builder: MyFormBuilder, html: { class: 'landing-page-form' } do |f| %>
 
     <%= f.hidden_field :current_city %>
 
     <div class="carouselbox <%= 'no-transition' if Rails.env.test? %>">
       <ol class="no-padding-relative">
-        <li class="current">
+        <li class="current" id="carousel-box">
           <%= f.select :current_location, [], { label: t('neo4j.attributes.landing_signup.current_location') }, id: 'current-location', 'data-select2-ajax-initialize': select2_locations_path, 'data-increase-abc': 1, 'data-select-target': '#from-group' %>
-          <div class="text-center"><%= t('or') %></div>
+          <div class="text-center d-none d-md-block"><%= t('or') %></div>
           <%= link_to t('find_on_map'), find_on_map_path(select_element: '#current-location'), "data-toggle": "modal", "data-target": "#find-on-map-modal" %>
         </li>
         <li>

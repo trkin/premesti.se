@@ -1,14 +1,12 @@
 <div class="nav-item dropdown">
-  <a type="button" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <a role="button" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <% if I18n.locale == :en %>
       <%= image_tag 'flag-usa.png' %>
     <% else %>
       <%= image_tag 'flag-serbia.png' %>
     <% end %>
-    <span class="caret"></span>
-    <span class="sr-only"><%= t("change_language") %></span>
   </a>
-  <ul class="dropdown-menu">
+  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
     <li class="dropdown-item"><a href="<%= root_url subdomain: nil, domain: Constant::DOMAINS[Rails.env.to_sym][:sr] %>"><%= image_tag 'flag-serbia.png' %> Премести се (ћирилица)</a></li>
     <li class="dropdown-item"><a href="<%= root_url subdomain: nil, domain: Constant::DOMAINS[Rails.env.to_sym][:'sr-latin'] %>"><%= image_tag 'flag-serbia.png' %> Premesti se (latinica)</a></li>
     <li class="dropdown-item"><a href="<%= root_url subdomain: nil, domain: Constant::DOMAINS[Rails.env.to_sym][:en] %>"><%= image_tag 'flag-usa.png' %> Move Your Place (english)</a></li>

@@ -25,7 +25,7 @@ $max-abc-length: 145;
 }
 
 .landing-page-footer {
-  background-image: url(cityscape.png);
+  background-image: asset-url('cityscape.png');
   background-color: #feff99;
   background-size: cover;
   height: 100vw;
@@ -37,13 +37,13 @@ $max-abc-length: 145;
 }
 
 .navbar, .landing-page-header {
-  background-image: url(paper.jpg);
+  background-image: asset-url('paper.jpg');
   background-color: #cdebeb;
 }
 
 .fag-page {
   height: 100vh;
-  background-image: url(cute.jpg);
+  background-image: asset-url('cute.jpg');
   background-color: #feff99;
 }
 

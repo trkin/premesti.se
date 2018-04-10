@@ -25,6 +25,7 @@ sr:
         email: Имејл
         password: Лозинка
         password_confirmation: Потврда лозинке
+        confirmation_token: Кључ за потврду
         remember_me: Запамти ме
       location:
         city: Град

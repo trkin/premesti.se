@@ -6,12 +6,12 @@
 <%= render 'layouts/alerts' %>
 <nav class="navbar p-0">
   <%= render 'layouts/choose_language' %>
-  <a class="navbar-brand" href="/">
+  <a class="navbar-brand d-none d-sm-block" href="/">
     <%= t 'site_title' %>
   </a>
   <div class="ml-auto">
-    <%= link_to t("register"), new_user_registration_path %>
-    |
+    <%# <%= link_to t("register"), new_user_registration_path %1> %>
+    <%# | %>
     <%= link_to t("sign_in"), new_user_session_path %>
     <%= link_to user_facebook_omniauth_authorize_path, title: t("my_devise.sign_in_with", provider: t('provider.facebook')), class: 'btn btn-social' do %>
       <i class="fa fa-facebook-official"></i>
@@ -74,7 +74,7 @@
         </li>
         <li>
           <%= f.select :to_location, [], { label: t('neo4j.attributes.landing_signup.to_location') }, id: 'to-location', 'data-select2-ajax-initialize': select2_locations_path, 'data-increase-abc': 3, 'data-select-target': '#contact-fields' %>
-          <div class="text-center"><%= t('or') %></div>
+          <div class="text-center d-none d-md-block"><%= t('or') %></div>
           <%= link_to t('find_on_map'), find_on_map_path(select_element: '#to-location'), "data-toggle": "modal", "data-target": "#find-on-map-modal" %>
         </li>
         <li class="contact-fields">

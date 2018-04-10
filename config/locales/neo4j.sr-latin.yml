@@ -25,6 +25,7 @@ sr-latin:
         email: Imejl
         password: Lozinka
         password_confirmation: Potvrda lozinke
+        confirmation_token: Ključ za potvrdu
         remember_me: Zapamti me
       location:
         city: Grad

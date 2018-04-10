@@ -38,7 +38,7 @@ sr:
     forgot_password: Заборавили сте лозинку ?
     did_not_receive_confirmation_instructions: Нисте примили упутство за потврду налога ?
     did_not_receive_unlock_instructions: Нисте примили упутство за откључавање налога ?
-    sign_in_with: Пријавите се преко %{provider}-а
+    sign_in_with: Пријави се преко %{provider}-а
     send_me_reset_password_instructions: Пошаљите ми упутство за промену лозинке
     resend_confirmation_instructions: Поново пошаљи упутства за потврду налога
     resend_unlock_instructions: Поново пошаљи упутства за откључавање налога
@@ -75,3 +75,5 @@ sr:
   born: рођени
   or: или
   find_on_map: Пронађи на мапи
+  problem_with_account: Проблем са налогом ?
+  send: Пошаљи

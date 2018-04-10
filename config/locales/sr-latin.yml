@@ -38,7 +38,7 @@ sr-latin:
     forgot_password: Zaboravili ste lozinku ?
     did_not_receive_confirmation_instructions: Niste primili uputstvo za potvrdu naloga ?
     did_not_receive_unlock_instructions: Niste primili uputstvo za otključavanje naloga ?
-    sign_in_with: Prijavite se preko %{provider}-a
+    sign_in_with: Prijavi se preko %{provider}-a
     send_me_reset_password_instructions: Pošaljite mi uputstvo za promenu lozinke
     resend_confirmation_instructions: Ponovo pošalji uputstva za potvrdu naloga
     resend_unlock_instructions: Ponovo pošalji uputstva za otključavanje naloga
@@ -75,3 +75,5 @@ sr-latin:
   born: rođeni
   or: ili
   find_on_map: Pronađi na mapi
+  problem_with_account: Problem sa nalogom ?
+  send: Pošalji

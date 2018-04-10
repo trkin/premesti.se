@@ -1,0 +1,72 @@
+body, html
+  font-family: 'Pangolin', cursive
+  // default bootstrap font size
+  font-size: 16px
+  height: 100%
+
+.hide-not-important
+  display: none
+
+  &.active
+    display: initial
+
+.no-padding-relative
+  position: relative
+  padding: 0
+
+.hide-to-up
+  position: absolute
+  top: -1000px
+
+.inline
+  display: inline
+
+// show on hover
+//
+//  <li class="show-on-hover">
+//    Text<a href="" class="show-on-hover-target">X</a>
+//  </li>
+.show-on-hover-target
+  visibility: hidden
+
+.show-on-hover:hover
+  .show-on-hover-target
+    visibility: visible
+
+// toggle active without javascript
+// <input type="checkbox" id="toggle-active" class="toggle-active" />
+// <label for="toggle-active"><%= t('add') %></label>
+// <div class="toggle-active-target hide-not-important">
+// </div>
+// https://www.sitepoint.com/pure-css-off-screen-navigation-menu/
+.toggle-active
+  position: absolute
+  clip: rect(0, 0, 0, 0)
+
+  &:checked ~ .toggle-active-target
+    display: initial
+
+label[for="toggle-active"]
+  cursor: pointer
+
+details
+  margin: 1rem
+
+summary
+  font-weight: bold
+
+.btn-facebook
+  color: #fff
+  background-color: #3b5998
+  border-color: rgba(0,0,0,0.2)
+  &:hover
+    color: #fff
+    background-color: #2d4373
+
+.btn-google
+  color: #fff
+  background-color: #dd4b39
+  border-color: rgba(0,0,0,0.2)
+  &:hover
+    color: #fff
+    background-color: #c23321

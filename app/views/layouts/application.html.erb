@@ -17,9 +17,13 @@
     <% if landing_layout? %>
       <%= yield %>
     <% elsif login_layout? %>
-      <%= render 'layouts/alerts' %>
-      <%= render 'layouts/choose_language' %>
-      <%= yield %>
+      <div class="login-page d-flex flex-column align-items-center">
+        <%= render 'layouts/alerts' %>
+        <%= render 'layouts/choose_language' %>
+        <div class='login-box mx-auto ml-5 p-3 bg-light text-center border rounded'>
+          <%= yield %>
+        </div>
+      </div>
     <% else %>
       <div class="container">
         <%= render 'layouts/choose_language' %>

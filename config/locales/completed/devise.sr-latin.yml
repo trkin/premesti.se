@@ -14,6 +14,8 @@ sr-latin:
       timeout: Vreme trajanja Vaše sesije je isteklo. Za nastavak prijavite se ponovo.
       unauthenticated: Za nastavak se morate prijaviti ili registrovati.
       unconfirmed: Pre nastavka morate potvrditi svoj nalog.
+      user:
+        invalid: Nevažeći korisnik.
     mailer:
       confirmation_instructions:
         subject: Uputstvo za potvrdu korisničkog naloga

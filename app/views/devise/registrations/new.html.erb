@@ -1,12 +1,22 @@
 <% login_layout %>
 <h2><%= t "my_devise.registration_headline" %></h2>
 
+<%= link_to user_facebook_omniauth_authorize_path, class: 'btn btn-block btn-facebook text-left' do %>
+  <i class="fa fa-facebook"></i>
+  <%= t("my_devise.sign_in_with", provider: t('provider.facebook')) %>
+<% end %>
+<%= link_to user_google_oauth2_omniauth_authorize_path, class: 'btn btn-block btn-google text-left' do %>
+  <i class="fa fa-google" aria-hidden="true"></i>
+  <%= t("my_devise.sign_in_with", provider: t('provider.google_oauth2')) %>
+<% end %>
+- <%= t('or') %> - 
+
 <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <%= f.email_field :email, autofocus: true %>
+  <%= f.email_field :email, autofocus: true, required: true %>
 
-  <%= f.password_field :password, autocomplete: "off" %>
+  <%= f.password_field :password, autocomplete: "off", required: true %>
   <% if @minimum_password_length %>
     <em>(<%= t "my_devise.characters_minimum", count: @minimum_password_length %>)</em>
   <% end %><br />

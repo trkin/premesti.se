@@ -33,7 +33,7 @@ class OmniauthCallbacksControllerTest < ActionDispatch::IntegrationTest
     follow_redirect!
     follow_redirect!
     assert_select 'span', user.email
-    assert_select 'div', t("devise.omniauth_callbacks.success", kind: t("provider.google_oauth2"))
+    assert_select '#notice-debug', t("devise.omniauth_callbacks.success", kind: t("provider.google_oauth2"))
   end
 
   test 'facebook signup' do

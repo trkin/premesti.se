@@ -10,6 +10,7 @@
 //= require select2/dist/js/select2.js
 //= require select2/dist/js/i18n/sr.js
 //= require select2/dist/js/i18n/sr-Cyrl.js
+//= require alert-text-show-hide/dist/element_text.js
 //
 // app/assets/javascripts
 //= require_tree .

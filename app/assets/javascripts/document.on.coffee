@@ -10,6 +10,7 @@ $(document).on 'click', '[data-scroll-into-view]', (e) ->
   else
     e.preventDefault()
     target.scrollIntoView behavior: 'smooth'
+    target.classList.add 'shake'
 
 $(document).on 'click', '[data-toggle="modal"]', (e) ->
   console.log 'data-toggle="modal"'

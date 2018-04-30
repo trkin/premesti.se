@@ -8,7 +8,7 @@ class DeviseControllerTest < ActionDispatch::IntegrationTest
       assert_difference "ActionMailer::Base.deliveries.size", 1 do
         post user_registration_path, params: { user: { email: email, password: password, password_confirmation: password } }
         follow_redirect!
-        assert_select 'div', t("devise.registrations.signed_up")
+        assert_select '#notice-debug', t("devise.registrations.signed_up")
         assert_select 'span', text: email
       end
     end

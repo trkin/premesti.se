@@ -11,7 +11,7 @@
 <% end %>
 - <%= t('or') %> - 
 
-<%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%= bootstrap_form_for resource, as: resource_name, url: session_path(resource_name)  do |f| %>
 
   <%= f.email_field :email, label: t('neo4j.attributes.user.email'), autofocus: true, required: true %>
 

@@ -96,15 +96,20 @@ It is currently deployed to Heroku using free services.
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of
-conduct, and the process for submitting pull requests to us.
+Bug reports and pull requests are welcome on GitHub at
+[github.com/duleorlovic/premesti.se/issues].
+Thank you [contributors]!
+
+[github.com/duleorlovic/premesti.se/issues]: https://github.com/duleorlovic/premesti.se/issues
+[contributors]: https://github.com/duleorlovic/premesti.se/graphs/contributors
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+The project is available as open source under the terms of the
+[MIT License](http://opensource.org/licenses/MIT).
 
 ## Authors
 
-This project is designed and created at TRK INNOVATION llc by:
+This project is designed and created at TRK INNOVATIONS LLC by:
 
-* by [duleorlovic](https://github.com/duleorlovic)
+* [duleorlovic](https://github.com/duleorlovic)

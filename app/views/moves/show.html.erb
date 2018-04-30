@@ -1,5 +1,5 @@
 <%
-  breadcrumb t('dashboard') => dashboard_path, "#{Move.model_name.human.mb_chars.capitalize} #{@move.from_group.location.name}" => nil
+  breadcrumb "#{Move.model_name.human.mb_chars.capitalize} #{@move.from_group.location.name}" => nil
 %>
 
 <h1>
@@ -17,7 +17,7 @@
 </ul>
 <%= modal id: 'find-on-map-modal', title: t('find_on_map'), fade: false %>
 <input type="checkbox" id="toggle-active" class="toggle-active" />
-<label for="toggle-active"><%= t('add') %></label>
+<label for="toggle-active" class='btn btn-default'><%= t('add') %></label>
 <span class="toggle-active-target hide-not-important">
   <%= form_tag create_to_group_move_path(@move), class: 'inline' do %>
     <%= select_tag :to_location_id, "", include_blank: t('neo4j.attributes.landing_signup.to_location'), id: 'to_location_id', 'data-select2-ajax-initialize': select2_locations_path, class: 'add-new-to-groups' %>

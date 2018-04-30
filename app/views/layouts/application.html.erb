@@ -9,68 +9,72 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=Cabin+Sketch:700|Modak" rel="stylesheet">
-
-
   </head>
 
   <body>
     <% if landing_layout? %>
       <%= yield %>
-    <% elsif login_layout? %>
+    <% elsif login_layout? # if login_layout? %>
       <div class="login-page d-flex flex-column align-items-center">
-        <%= render 'layouts/alerts' %>
         <%= render 'layouts/choose_language' %>
+        <span class='px-2 background-same-as-image'>
+          <%= link_to '/' do %>
+            <%= image_tag 'favicon.ico', class: 'root-icon' %>
+            <%= t('site_title') %>
+          <% end %>
+        </span>
         <div class='login-box mx-auto ml-5 p-3 bg-light text-center border rounded'>
           <%= yield %>
+          <%= render 'layouts/alerts' %>
         </div>
       </div>
-    <% else %>
+    <% else # elsif login_layout? # if login_layout? %>
+      <%# here we are only when current_user exists %>
       <div class="container">
-        <%= render 'layouts/choose_language' %>
-        <% if current_user %>
-          <span><%= current_user.email %></span>
-          <%= link_to t("change_password"), edit_user_password_path %>
-          <% if current_user.admin? %>
-            <%= link_to t("admin_dashboard"), admin_dashboard_path %>
-          <% end %>
-          <%= link_to t("sign_out"), destroy_user_session_path, method: :delete %>
-        <% else %>
-          <%= link_to t("register"), new_user_registration_path %>
-          <%= link_to t("sign_in"), new_user_session_path %>
-          <%= link_to user_facebook_omniauth_authorize_path, title: t("my_devise.sign_in_with", provider: t('provider.facebook')), class: 'btn btn-social' do %>
-            <i class="fa fa-facebook-official"></i>
-          <% end %>
-          <%= link_to user_google_oauth2_omniauth_authorize_path, title: t("my_devise.sign_in_with", provider: t('provider.google_oauth2')), class: 'btn btn-social' do %>
-            <i class="fa fa-google" aria-hidden="true"></i>
-          <% end %>
-        <% end %>
-        <%= link_to t("privacy_policy"), privacy_policy_path %>
-        <%= render 'layouts/alerts' %>
-
-        <% if find_breadcrumb_list.present? %>
-          <ol class="breadcrumb">
-            <% find_breadcrumb_list.each_with_index do |(text, link), i| %>
-              <li class="<%= 'active' if i == find_breadcrumb_list.length - 1 %>">
+        <nav class='navbar navbar-expand-md navbar-light bg-light'>
+          <div class='navbar-nav mr-auto'>
+            <%= link_to '/', class: 'navbar-brand' do %>
+              <%= image_tag 'favicon.ico', class: 'root-icon' %>
+              <span class='d-none d-sm-inline'>
+                <%= t('site_title') %>
+              </span>
+            <% end %>
+            <div class='d-none d-md-block'>
+              <% find_breadcrumb_list.each_with_index do |(text, link), i| %>
                 <% if link.present? %>
-                  <%= link_to link do %>
-                    <% if i == 0 %>
-                      <i class="fa fa-dashboard"></i>
-                    <% end %>
+                  <%= link_to link, class: 'nav-item nav-link' do %>
                     <%= text %>
                   <% end %>
                 <% else %>
-                  <% if i == 0 %>
-                    <i class="fa fa-dashboard"></i>
-                  <% end %>
-                  <%= text %>
+                  <span class='navbar-text'>
+                    <%= text %>
+                  </span>
                 <% end %>
-              </li>
-            <% end %>
-          </ol>
-        <% end %>
-
+              <% end %>
+            </div>
+          </div>
+          <div class='navbar-nav'>
+            <div class='nav-item dropdown'>
+              <a class='nav-link dropdown-toggle' href="#" id='userDropdown' role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= current_user.email %>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="userDropdown">
+                <%= link_to t("change_password"), edit_user_password_path, class: 'dropdown-item' %>
+                <% if current_user.admin? %>
+                  <%= link_to t("admin_dashboard"), admin_dashboard_path, class: 'dropdown-item' %>
+                <% end %>
+                <%= link_to t("privacy_policy"), privacy_policy_path, class: 'dropdown-item' %>
+                <div class='dropdown-item'>
+                  <%= render 'layouts/choose_language' %>
+                </div>
+                <%= link_to t("sign_out"), destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <%= render 'layouts/alerts' %>
         <%= yield %>
       </div>
-    <% end %>
+    <% end # else # elsif login_layout? # if login_layout? %>
   </body>
 </html>

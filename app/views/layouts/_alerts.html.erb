@@ -1,6 +1,8 @@
-<% if notice.present? %>
-  <div class="alert alert-info"><%= notice %></div>
-<% end %>
-<% if alert.present? %>
-  <div class="alert alert-danger"><%= alert %></div>
-<% end %>
+<span class="alert alert-info" id="notice"></span>
+<span class="alert alert-danger" id="alert"></span>
+<span class="hide-to-up" id='notice-debug'><%= notice %></span>
+<span class="hide-to-up" id='alert-debug'><%= alert %></span>
+<script>
+  <%=raw "alertTextShowHide.element_text(document.getElementById('notice'), '#{j notice}', 10000);" if notice %>
+  <%=raw "alertTextShowHide.element_text(document.getElementById('alert'), '#{j alert}', 10000);" if alert %>
+</script>

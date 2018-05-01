@@ -21,7 +21,7 @@ class OmniauthCallbacksControllerTest < ActionDispatch::IntegrationTest
     get user_facebook_omniauth_authorize_path
     follow_redirect!
     follow_redirect!
-    assert_select 'span', user.email
+    assert_select '#userDropdown', user.email
   end
 
   test 'google login' do
@@ -32,7 +32,7 @@ class OmniauthCallbacksControllerTest < ActionDispatch::IntegrationTest
     get user_google_oauth2_omniauth_authorize_path
     follow_redirect!
     follow_redirect!
-    assert_select 'span', user.email
+    assert_select '#userDropdown', user.email
     assert_select '#notice-debug', t("devise.omniauth_callbacks.success", kind: t("provider.google_oauth2"))
   end
 
@@ -44,7 +44,7 @@ class OmniauthCallbacksControllerTest < ActionDispatch::IntegrationTest
         get user_facebook_omniauth_authorize_path
         follow_redirect!
         follow_redirect!
-        assert_select 'span', email
+        assert_select '#userDropdown', email
       end
     end
     ActionMailer::Base.deliveries.clear
@@ -58,7 +58,7 @@ class OmniauthCallbacksControllerTest < ActionDispatch::IntegrationTest
       get user_facebook_omniauth_authorize_path
       follow_redirect!
       follow_redirect!
-      assert_select 'span', email
+      assert_select '#userDropdown', email
     end
   end
 

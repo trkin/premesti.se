@@ -19,7 +19,10 @@ $(document).on 'click', '[data-toggle="modal"]', (e) ->
   targetModalId = targetModalId.substring(1) if targetModalId.substring(0,1) == '#'
 
   modalBodyFooter = document.getElementById(targetModalId).getElementsByClassName("modal-body-footer")[0]
-  fetch(url)
+  fetch(
+    url,
+    credentials: 'same-origin'
+  )
     .then (response) -> response.text()
     .then (html) ->
       # modalBodyFooter.innerHTML = html

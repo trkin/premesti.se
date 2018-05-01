@@ -7,7 +7,7 @@ class LandingTest < ApplicationSystemTestCase
     manual_login user.email, password
     visit root_path
 
-    assert_text t('admin_dashboard')
+    click_on user.email
     click_on t('admin_dashboard')
     assert_equal admin_dashboard_path, page.current_path
   end

@@ -2,6 +2,7 @@ require "application_system_test_case"
 
 class LandingTest < ApplicationSystemTestCase
   test 'create user and relationships' do
+    skip
     group = create :group
     to_location = create :location, city: group.location.city
     to_group = create :group, location: to_location, age: group.age

@@ -39,19 +39,17 @@
                 <%= t('site_title') %>
               </span>
             <% end %>
-            <div class='d-none d-md-block'>
-              <% find_breadcrumb_list.each_with_index do |(text, link), i| %>
-                <% if link.present? %>
-                  <%= link_to link, class: 'nav-item nav-link' do %>
-                    <%= text %>
-                  <% end %>
-                <% else %>
-                  <span class='navbar-text'>
-                    <%= text %>
-                  </span>
+            <% find_breadcrumb_list.each_with_index do |(text, link), i| %>
+              <% if link.present? %>
+                <%= link_to link, class: 'nav-item nav-link' do %>
+                  <%= text %>
                 <% end %>
+              <% else %>
+                <span class='navbar-text'>
+                  <%= text %>
+                </span>
               <% end %>
-            </div>
+            <% end %>
           </div>
           <div class='navbar-nav'>
             <div class='nav-item dropdown'>

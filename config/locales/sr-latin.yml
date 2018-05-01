@@ -45,6 +45,7 @@ sr-latin:
     can_not_sign_in: Nije uspela prijava.
   admin_dashboard: Administratorska strana
   dashboard: Početna
+  home_page: Naslovna strana
   are_you_sure_to_remove_item: Da li ste sigurni da želite da obrišete %{item} ?
   write_address_than_move_marker: Napišite adresu i onda podesite marker ikonu
   autocomplete_contains_no_geometry: Traženi pojam nema položaj na mapi
@@ -77,3 +78,19 @@ sr-latin:
   find_on_map: Pronađi na mapi
   problem_with_account: Problem sa nalogom ?
   send: Pošalji
+  contact: Kontakt
+  contact_description: Unapred smo zahvalni za sve nedostatke na sajtu koje nam javite. Za bilo koja pitanja, slobodno nam se obratite putem ovog formulara
+  contact_thanks: Hvala na poruci
+  we_will_reply_back_soon: Uskoro ćemo se javiti
+  faq_1: Kome je namenjen ovaj sajt ?
+  faq_1_a: Premesti.se je namenjen roditeljima koji tragaju za premeštajem svoje dece iz jednog vrtića u drugi.
+  faq_2: Kako radi ovaj sajt ?
+  faq_2_a: Kada se nađe poklapanje sa namerama drugih roditelja, roditelji dobiju imejl i mogu da stupe u međusobni kontakt i da zajedno podnesu zahtev za premeštaj.
+  faq_3: Da li ovaj sajt ima veze sa zahtevom koji se podnosti ustavi, npr. Radosno Detinjstvo ?
+  faq_3_a: Ovaj sajt nema nikakve veze sa nadležnim ustanovama, sajt je namenjen isključivo da olakša komunikaciju među roditeljima. Roditelji moraju da podnesu zahtev u pismenoj formi nadležnoj ustanovi.
+  faq_4: U čemu je onda prednost ovog sajta ?
+  faq_4_a: "Iako nadležna ustanova brzo rešava zahteve kada se stvori mogućnost premeštanja, ovaj sajt može da pomogne tako što koristi grafičku bazu podataka koja omogućava da se nađu odgovarajuća slobodna mesta: A->B i B->A, kao i A->B, B->C, C->A."
+  faq_5: Koliko je sigurna moja privatnost ?
+  faq_5_a: Korišćenje sajta ne zahteva unos imena niti bilo koje druge informacije osim imejl adrese (pošto se ona koristi za slanje poruka o poklapanjima). Pročitaj više na <%= link_to 'politika privatnost', privacy_policy_path %>.
+  faq_6: Ko je napravio ovaj sajt ?
+  faq_6_a: Sajt je napravila kompanija TRK INOVACIJE DOO NOVI SAD.

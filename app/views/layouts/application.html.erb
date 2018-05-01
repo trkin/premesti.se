@@ -35,7 +35,7 @@
           <div class='navbar-nav mr-auto'>
             <%= link_to '/', class: 'navbar-brand' do %>
               <%= image_tag 'favicon.ico', class: 'root-icon' %>
-              <span class='d-none d-sm-inline'>
+              <span class='d-none d-sm-inline colorize-text-background-radial'>
                 <%= t('site_title') %>
               </span>
             <% end %>
@@ -63,10 +63,13 @@
                 <% if current_user.admin? %>
                   <%= link_to t("admin_dashboard"), admin_dashboard_path, class: 'dropdown-item' %>
                 <% end %>
-                <%= link_to t("privacy_policy"), privacy_policy_path, class: 'dropdown-item' %>
                 <div class='dropdown-item'>
                   <%= render 'layouts/choose_language' %>
                 </div>
+                <div class="dropdown-divider"></div>
+                <%= link_to t("privacy_policy"), privacy_policy_path, class: 'dropdown-item' %>
+                <%= link_to t('faq'), faq_path, class: 'dropdown-item' %>
+                <%= link_to t('contact'), contact_path, class: 'dropdown-item' %>
                 <%= link_to t("sign_out"), destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
               </div>
             </div>

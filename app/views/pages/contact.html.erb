@@ -1,0 +1,10 @@
+<%
+  login_layout
+%>
+<h2><%= t 'contact' %></h2>
+<p><%= t 'contact_description' %></p>
+<%= bootstrap_form_for @contact_form, url: contact_path do |f| %>
+  <%= f.email_field :email, required: true, disabled: current_user.present? %>
+  <%= f.text_area :text, required: true %>
+  <%= f.submit t('send'), class: 'btn btn-block btn-primary' %>
+<% end %>

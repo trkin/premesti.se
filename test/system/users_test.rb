@@ -34,21 +34,21 @@ class UsersTest < ApplicationSystemTestCase
     password = '12345678'
     create :user, email: email, password: password
     manual_login email, password
-    assert_text t("sign_out")
+    assert_selector '#userDropdown', text: 'my@email.com'
   end
 
   test 'login, email upercased' do
     password = '12345678'
     create :user, email: 'my@email.com', password: password
     manual_login 'my@eMail.com', password
-    assert_text t("sign_out")
+    assert_selector '#userDropdown', text: 'my@email.com'
   end
 
   test 'login, email not striped' do
     password = '12345678'
     create :user, email: 'my@email.com', password: password
     manual_login ' my@email.com ', password
-    assert_text t("sign_out")
+    assert_selector '#userDropdown', text: 'my@email.com'
   end
 
   test 'forgot password' do
@@ -66,7 +66,7 @@ class UsersTest < ApplicationSystemTestCase
     create :user, email: email, confirmed_at: nil
     visit new_user_confirmation_path
     fill_in t("neo4j.attributes.user.email"), with: email
-    click_on t("my_devise.resend_confirmation_instructions")
+    click_on t("send")
 
     assert_text t("devise.confirmations.send_instructions")
   end

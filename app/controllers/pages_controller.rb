@@ -37,4 +37,24 @@ class PagesController < ApplicationController
   def find_on_map
     render layout: false
   end
+
+  def contact
+    @contact_form = ContactForm.new(
+      email: current_user&.email
+    )
+  end
+
+  def submit_contact
+    @contact_form = ContactForm.new(
+      email: current_user&.email || params[:contact_form][:email],
+      text: params[:contact_form][:text],
+    )
+    if @contact_form.perform
+      flash.now[:notice] = t('contact_thanks')
+      render :contact_thanks
+    else
+      flash.now[:alert] = @contact_form.errors.full_messages.join(', ')
+      render :contact
+    end
+  end
 end

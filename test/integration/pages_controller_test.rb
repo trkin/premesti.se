@@ -33,7 +33,7 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     params = { email: '' }
     post landing_signup_path, params: { landing_signup: params }
     assert_response :success
-    assert_select 'span', text: t('errors.messages.blank')
+    assert_select '#alert-debug', /#{t('errors.messages.blank')}/
   end
 
   test 'landing signup already existing email and valid password' do

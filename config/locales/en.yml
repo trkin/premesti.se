@@ -45,6 +45,7 @@ en:
     can_not_sign_in: "Can't sign in"
   admin_dashboard: Admin Dashboard
   dashboard: Dashboard
+  home_page: Home Page
   are_you_sure_to_remove_item: Are you sure you want to delete %{item} ?
   write_address_than_move_marker: Write approximate address and than move the marker icon
   autocomplete_contains_no_geometry: Autocomplete's returned place contains no geometry
@@ -77,3 +78,19 @@ en:
   find_on_map: Find on map
   problem_with_account: Problem with account ?
   send: Send
+  contact: Contact
+  contact_description: We are grateful for all the shortcomings on the site that you report to us. For any questions, feel free to contact us with this form
+  contact_thanks: Thank You for the message
+  we_will_reply_back_soon: We will reply back soon
+  faq_1: Who is this site for ?
+  faq_1_a: Move-index is for parents who are looking for moving their children from one to another institution.
+  faq_2: What does this website do ?
+  faq_2_a: When there is a matching with some other move intentions, parents receive emails and can continue communication off-site.
+  faq_3: Does this site have something with official procedure that is needed to be submitted to competent institution ?
+  faq_3_a: This site has nothing to do with the relevant institutions. The site is intended exclusively to facilitate communication between parents. Parents must submit written request to the competent institution.
+  faq_4: What's the advantage of this site then?
+  faq_4_a: "Although the authority quickly resolves the requirements when there is a free place, this site can help by using a graphical database that allows to find the appropriate free places: A-> B and B-> A, as well as A-> B, B -> C, C-> A."
+  faq_5: How secure is my privacy ?
+  faq_5_a: Use of the site does not require name or any other information except email (since it sends messages using email). Read more about <a href='/privacy-policy'>privacy policy</a>.
+  faq_6: Who created this site ?
+  faq_6_a: Site is create by TRK INNOVATIONS company.

@@ -1,3 +1,4 @@
+@import variables
 body, html
   font-family: 'Pangolin', cursive
   // default bootstrap font size
@@ -73,3 +74,18 @@ summary
 
 .root-icon
   width: 30px
+
+.colorize-text-background-radial
+  background: radial-gradient($color-a, $color-b 60%, $color-c %20)
+  -webkit-background-clip: text
+  -webkit-text-fill-color: transparent
+
+.colorize-text-background
+  background: linear-gradient($color-a, $color-b, $color-c)
+  -webkit-background-clip: text
+  -webkit-text-fill-color: transparent
+
+.colorize-text-background-vertical
+  background: repeating-linear-gradient(to right, $color-a, $color-b 5%, $color-c 15%)
+  -webkit-background-clip: text
+  -webkit-text-fill-color: transparent

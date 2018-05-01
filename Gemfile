@@ -86,3 +86,9 @@ gem 'sparkpost_rails'
 
 # for automatic translation
 gem 'cyrillizer'
+
+# adding vendor prefixes (webkit) to css rules
+gem "autoprefixer-rails"
+
+# error notification to EXCEPTION_RECIPIENTS emails
+gem 'exception_notification'

@@ -1,0 +1,13 @@
+<%
+  login_layout
+%>
+<% (1..6).each do |i| %>
+  <details>
+    <summary>
+      <%= t("faq_#{i}").html_safe %>
+    </summary>
+    <%= t("faq_#{i}_a").html_safe %>
+  </details>
+<% end %>
+<%= link_to t('contact'), contact_path %>
+

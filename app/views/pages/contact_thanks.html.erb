@@ -1,0 +1,7 @@
+<% login_layout %>
+<h2><%= t('contact_thanks')%></h2>
+<% if current_user %>
+  <%= link_to t('dashboard'), dashboard_path, class: 'btn btn-block btn-primary' %>
+<% else %>
+  <%= link_to t('home_page'), root_path, class: 'btn btn-block btn-primary' %>
+<% end %>

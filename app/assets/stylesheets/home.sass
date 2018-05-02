@@ -23,14 +23,23 @@ $max-abc-length: 145
   z-index: 2
 
 .landing-page-footer
-  background-image: asset-url("cityscape.png")
-  background-color: #feff99
-  background-size: cover
   height: 100vw
-
-  +media-breakpoint-down(sm)
-    // background-image: asset-url("cityscape_bigger_circle_without_shadow.png")
-    background-image: asset-url('cityscape_bigger_circle.png')
+  position: relative
+  &::after
+    content: ''
+    background-image: asset-url("cityscape.png")
+    background-color: #feff99
+    background-size: cover
+    top: 0
+    left: 0
+    bottom: 0
+    right: 0
+    position: absolute
+    z-index: -1
+    opacity: 0.6
+    +media-breakpoint-down(sm)
+      // background-image: asset-url("cityscape_bigger_circle_without_shadow.png")
+      background-image: asset-url('cityscape_bigger_circle.png')
 
 .landing-page-header
   height: 100vh

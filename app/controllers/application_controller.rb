@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   include TranslateHelper
   protect_from_forgery with: :exception
   before_action :_set_locale_from_domain
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:sign_in_as]
   # before_action :sleep_some_time # add delay for testing real conditions
 
   def sleep_some_time
@@ -28,5 +28,12 @@ class ApplicationController < ActionController::Base
     redirect_url = stored_location_for(resource)
     return redirect_url if redirect_url.present?
     dashboard_path
+  end
+
+  def sign_in_as
+    return unless Rails.env.development?
+    user = User.find params[:user_id]
+    sign_in :user, user, byepass: true
+    redirect_to root_path
   end
 end

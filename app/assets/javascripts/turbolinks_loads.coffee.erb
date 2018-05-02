@@ -19,6 +19,10 @@ $(document).on 'turbolinks:load', ->
       }
     }
     $(this).select2 options
+    # click on label should trigger open and focus
+    # https://github.com/select2/select2/issues/2311#issuecomment-180666626
+    $(this).focus ->
+      $(this).select2('open')
 
 determine_language = ->
   switch window.location.hostname

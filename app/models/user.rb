@@ -95,4 +95,8 @@ class User
     generate_confirmation_token!
     @raw_confirmation_token
   end
+
+  def email_username
+    email.split('@').first
+  end
 end

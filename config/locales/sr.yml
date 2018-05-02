@@ -63,6 +63,8 @@ sr:
   success_create: Успешно сте направили
   success_delete: Успешно сте обрисали
   continue: Настави
+  add_current_location: Додај тренутну локацију
+  add_requested_location: Додај жељени вртић
   group_with_that_age_already_exists: Група са тим годиштем већ постоји
   year: год
   my_requests: Моје жеље

@@ -16,3 +16,19 @@
     </li>
   <% end %>
 </ul>
+<%= modal id: 'find-on-map-modal', title: t('find_on_map'), fade: false %>
+<input type="checkbox" id="toggle-active" class="toggle-active" />
+<label for="toggle-active" class='btn btn-default'>
+  <i class="fa fa-plus" aria-hidden="true"></i>
+  <%= t('add_current_location') %>
+</label>
+<span class="toggle-active-target hide-not-important">
+  <%= form_tag create_from_group_moves_path, class: 'inline' do %>
+    <%= select_tag :from_location_id, "", include_blank: t('neo4j.attributes.landing_signup.current_location'), id: 'from_location_id', 'data-select2-ajax-initialize': select2_locations_path, class: 'add-new-to-groups', required: true %>
+    <span><%= t('or') %></span>
+    <%= link_to t('find_on_map'), find_on_map_path(select_element: '#from_location_id'), "data-toggle": "modal", "data-target": "#find-on-map-modal" %>
+
+    <%= select_tag :from_group_age, options_for_select(1.upto(7).map {|a| [Group.title_for_age(a), a]}), label: t('neo4j.attributes.landing_signup.from_group'), required: true %>
+    <%= button_tag t("add"), class: 'btn btn-primary' %>
+  <% end %>
+</span>

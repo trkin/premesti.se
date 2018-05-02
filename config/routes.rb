@@ -16,6 +16,9 @@ Rails.application.routes.draw do
 
   get 'dashboard', to: 'dashboard#index'
   resources :moves do
+    collection do
+      post :create_from_group
+    end
     member do
       post :create_to_group
       delete :destroy_to_group

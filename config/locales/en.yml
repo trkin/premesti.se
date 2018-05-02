@@ -63,6 +63,8 @@ en:
   success_create: Successfully created
   success_delete: Successfully deleted
   continue: Continue
+  add_current_location: Add current location
+  add_requested_location: Add requested location
   group_with_that_age_already_exists: Group with that age already exists
   year: year
   my_requests: My Requests

@@ -9,7 +9,7 @@ class DeviseControllerTest < ActionDispatch::IntegrationTest
         post user_registration_path, params: { user: { email: email, password: password, password_confirmation: password } }
         follow_redirect!
         assert_select '#notice-debug', t("devise.registrations.signed_up")
-        assert_select '#userDropdown', text: email
+        assert_select '#userDropdown', text: 'my'
       end
     end
     ActionMailer::Base.deliveries.clear

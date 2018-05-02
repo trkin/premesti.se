@@ -63,6 +63,8 @@ sr-latin:
   success_create: Uspešno ste dodali
   success_delete: Uspešno ste obrisali
   continue: Nastavi
+  add_current_location: Dodaj trenutnu lokaciju
+  add_requested_location: Dodaj željeni vrtić
   group_with_that_age_already_exists: Grupa sa tim godištem već postoji
   year: god
   my_requests: Moje želje

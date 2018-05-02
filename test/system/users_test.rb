@@ -34,21 +34,21 @@ class UsersTest < ApplicationSystemTestCase
     password = '12345678'
     create :user, email: email, password: password
     manual_login email, password
-    assert_selector '#userDropdown', text: 'my@email.com'
+    assert_selector '#userDropdown', text: 'my'
   end
 
   test 'login, email upercased' do
     password = '12345678'
     create :user, email: 'my@email.com', password: password
     manual_login 'my@eMail.com', password
-    assert_selector '#userDropdown', text: 'my@email.com'
+    assert_selector '#userDropdown', text: 'my'
   end
 
   test 'login, email not striped' do
     password = '12345678'
     create :user, email: 'my@email.com', password: password
     manual_login ' my@email.com ', password
-    assert_selector '#userDropdown', text: 'my@email.com'
+    assert_selector '#userDropdown', text: 'my'
   end
 
   test 'forgot password' do

@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get :dashboard
+    get :users
     resources :locations
     resources :groups
   end

@@ -6,7 +6,10 @@ sr:
         taken: је већ заузето
         already_exists: већ постоји
     models:
-      user: корисник
+      user:
+        one: корисник
+        other: корисници
+        accusative: корисника
       location:
         one: локација
         other: локације

@@ -1,8 +1,10 @@
 class AdminController < ApplicationController
   before_action :check_admin
 
-  def dashboard
-    redirect_to(admin_locations_path(city_id: City.last.id)) && return if City.all.size == 1
+  def dashboard; end
+
+  def users
+    @users = User.all
   end
 
   def check_admin

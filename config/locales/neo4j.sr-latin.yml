@@ -6,7 +6,10 @@ sr-latin:
         taken: je već zauzeto
         already_exists: već postoji
     models:
-      user: korisnik
+      user:
+        one: korisnik
+        other: korisnici
+        accusative: korisnika
       location:
         one: lokacija
         other: lokacije

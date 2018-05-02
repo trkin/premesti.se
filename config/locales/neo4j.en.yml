@@ -6,7 +6,10 @@ en:
         taken: has already been taken
         already_exists: already exists
     models:
-      user: user
+      user:
+        one: user
+        other: users
+        accusative: user
       location:
         one: location
         other: locations

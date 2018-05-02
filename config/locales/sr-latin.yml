@@ -62,6 +62,7 @@ sr-latin:
   success_update: Uspešno ste izmenili
   success_create: Uspešno ste dodali
   success_delete: Uspešno ste obrisali
+  continue: Nastavi
   group_with_that_age_already_exists: Grupa sa tim godištem već postoji
   year: god
   my_requests: Moje želje

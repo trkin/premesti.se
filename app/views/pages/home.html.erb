@@ -77,13 +77,18 @@
           <%= f.select :from_group_age, 1.upto(7).map {|a| [Group.title_for_age(a), a]}, { label: t('neo4j.attributes.landing_signup.from_group')}, id: 'from-group', 'data-increase-abc': 2, 'data-select-target': '#to-location' %>
         </li>
         <li>
-          <%= f.select :to_location, [], { label: t('neo4j.attributes.landing_signup.to_location') }, id: 'to-location', 'data-select2-ajax-initialize': select2_locations_path, 'data-increase-abc': 3, 'data-select-target': '#contact-fields' %>
+          <%= f.select :to_location, [], { label: t('neo4j.attributes.landing_signup.to_location') }, id: 'to-location', 'data-select2-ajax-initialize': select2_locations_path, 'data-increase-abc': 3, 'data-select-target': '#user-email' %>
           <div class="text-center d-none d-md-block"><%= t('or') %></div>
           <%= link_to t('find_on_map'), find_on_map_path(select_element: '#to-location'), "data-toggle": "modal", "data-target": "#find-on-map-modal" %>
         </li>
-        <li class="contact-fields">
-          <div id="contact-fields">
-            <%= f.email_field :email, label: t('neo4j.attributes.landing_signup.email'), required: true %>
+        <li>
+          <div id="user-email">
+            <%= f.email_field :email, label: t('neo4j.attributes.landing_signup.email'), required: true, 'data-select-target': '#user-password' %>
+            <a href="javascript:void(0)" onclick="$('#user-email input').trigger('change')"><%= t('continue') %></a>
+          </div>
+        </li>
+        <li>
+          <div id="user-password">
             <%= f.password_field :password, label: t('neo4j.attributes.landing_signup.password'), required: true %>
 
             <%= f.button type: :submit, class: 'btn' do %>

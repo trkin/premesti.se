@@ -62,6 +62,7 @@ sr:
   success_update: Успешно сте изменили
   success_create: Успешно сте направили
   success_delete: Успешно сте обрисали
+  continue: Настави
   group_with_that_age_already_exists: Група са тим годиштем већ постоји
   year: год
   my_requests: Моје жеље

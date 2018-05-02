@@ -25,7 +25,7 @@ class Group
   scope :for_age, ->(age, except_id) { where(age: age).where_not(id: except_id) }
 
   def self.title_for_age(age)
-    age_interval = "01.03.#{Time.zone.today.year - age - 1}-28.02.#{Time.zone.today.year - age}"
+    age_interval = "01.03.#{Time.zone.today.year - age}-28.02.#{Time.zone.today.year - age + 1}"
     "#{I18n.t("group_name_for_age_#{age}")} (#{I18n.t('born')} #{age_interval})"
   end
 

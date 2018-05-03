@@ -88,7 +88,38 @@ namespace :db do
         move = Move.create! params
         puts "Move #{move.name}"
       end
+      b[doc[:var]] = move if doc[:var]
     end
+
+    # Chat
+    [
+      { var: :c1_m1_m2, moves: [b[:m1_l1_l3], b[:m2_l3_l4]] },
+      { var: :c2_m1_m2_m3, moves: [b[:m1_l1_l3], b[:m2_l3_l4], b[:m3_l4_l1]] },
+    ].each do |doc|
+      chat = Chat.find_existing_for_moves doc[:moves]
+      unless chat.present?
+        chat = Chat.create_for_moves doc[:moves]
+        chat.name = doc[:var]
+        puts "Chat #{chat.name}"
+      end
+      b[doc[:var]] = chat if doc[:var]
+    end
+
+    # Message
+    [
+      { var: :me1_c1, chat: b[:c1_m1_m2], text: 'sometext1_user1', user: b[:user1] },
+      { var: :me2_c1, chat: b[:c1_m1_m2], text: 'sometext2_user1', user: b[:user1] },
+      { var: :me3_c1, chat: b[:c1_m1_m2], text: 'sometext2_user2', user: b[:user2] },
+      { var: :me1_c2, chat: b[:c2_m1_m2_m3], text: 'sometext1_user1', user: b[:user1] },
+    ].each do |doc|
+      message = Message.find_by doc.except(:var)
+      unless message.present?
+        message = Message.create! doc.except(:var)
+        puts "Message #{message.text}"
+      end
+      b[doc[:var]] = message if doc[:var]
+    end
+
     Rake::Task["translate:copy"].invoke Rails.env
   end
 

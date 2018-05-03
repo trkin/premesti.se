@@ -27,4 +27,10 @@ FactoryBot.define do
     association :from_group, factory: :group
     user
   end
+  factory :chat do
+  end
+  factory :message do
+    sequence(:text) { |i| "Text#{i}" }
+    chat
+  end
 end

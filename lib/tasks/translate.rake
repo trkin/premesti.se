@@ -28,37 +28,38 @@ namespace :translate do
             if locale == :sr
               if item.send("#{property}_en").present?
                 item.send("#{method}=", item.send("#{property}_en").to_cyr)
-                item.save!
+                # item.save!
                 puts "from #{property}_en we got #{item.send(method)}"
               elsif item.send("#{property}_sr-latin").present?
                 item.send("#{method}=", item.send("#{property}_sr-latin").to_cyr)
-                item.save!
+                # item.save!
                 puts "from #{property}_sr-latin we got #{item.send(method)}"
               end
             elsif locale == :'sr-latin'
               if item.send("#{property}_sr").present?
                 item.send("#{method}=", item.send("#{property}_sr").to_lat)
-                item.save!
+                # item.save!
                 puts "from #{property}_sr we got #{item.send(method)}"
               elsif item.send("#{property}_en").present?
                 item.send("#{method}=", item.send("#{property}_en"))
-                item.save!
+                # item.save!
                 puts "from #{property}_en we got #{item.send(method)}"
               end
             elsif locale == :en
               if item.send("#{property}_sr").present?
                 item.send("#{method}=", item.send("#{property}_sr").to_lat)
-                item.save!
+                # item.save!
                 puts "from #{property}_sr we got #{item.send(method)}"
               elsif item.send("#{property}_sr-latin").present?
                 item.send("#{method}=", item.send("#{property}_sr-latin"))
-                item.save!
+                # item.save!
                 puts "from #{property}_sr-latin we got #{item.send(method)}"
               end
             end
           end
-        end
-      end
+        end # properties.each do |property|
+        item.save!
+      end # klass.constantize.all.each do |item|
     end
   end
 end

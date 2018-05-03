@@ -32,3 +32,17 @@
     <%= button_tag t("add"), class: 'btn btn-primary' %>
   <% end %>
 </span>
+
+
+<h1>
+<%= t('my_chats') %>
+</h1>
+<ul class="list-unstyled">
+  <% @chats.each do |chat| %>
+    <li>
+      <%= link_to chat do %>
+        <%= chat.name_with_moves %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

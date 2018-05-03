@@ -14,9 +14,11 @@
 :constraints:
 - CONSTRAINT ON ( `neo4j::migrations::schemamigration`:`Neo4j::Migrations::SchemaMigration`
   ) ASSERT `neo4j::migrations::schemamigration`.migration_id IS UNIQUE
+- CONSTRAINT ON ( chat:Chat ) ASSERT chat.uuid IS UNIQUE
 - CONSTRAINT ON ( city:City ) ASSERT city.uuid IS UNIQUE
 - CONSTRAINT ON ( group:Group ) ASSERT group.uuid IS UNIQUE
 - CONSTRAINT ON ( location:Location ) ASSERT location.uuid IS UNIQUE
+- CONSTRAINT ON ( message:Message ) ASSERT message.uuid IS UNIQUE
 - CONSTRAINT ON ( move:Move ) ASSERT move.uuid IS UNIQUE
 - CONSTRAINT ON ( user:User ) ASSERT user.uuid IS UNIQUE
 :indexes:
@@ -31,3 +33,5 @@
 - '20171125214952'
 - '20171125215337'
 - '20171201142350'
+- '20180502104256'
+- '20180502104851'

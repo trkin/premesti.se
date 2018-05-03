@@ -14,7 +14,11 @@ Style/ClassAndModuleChildren:
 # tasks for setup data could be very long
 Metrics/BlockLength:
   Exclude:
-    - "lib/**/*"
+    - 'test/**/*'
+
+# big test big ABC size
+Metrics/AbcSize:
+  Exclude:
     - 'test/**/*'
 
 # I like to put comma after each line
@@ -26,7 +30,9 @@ Style/TrailingCommaInArguments:
 
 # I like methods in 10 lines but some are bigger
 Metrics/MethodLength:
-  Max: 15
+  Max: 20
+  Exclude:
+    - 'test/**/*'
 
 # I use double quotes in all places
 Style/StringLiteralsInInterpolation:

@@ -1,0 +1,3 @@
+class SendNotifications
+
+end

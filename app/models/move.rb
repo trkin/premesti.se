@@ -7,10 +7,11 @@ class Move
   property :created_at, type: DateTime
   property :updated_at, type: DateTime
 
-  has_one :in, :from_group, type: :CURRENT, model_class: :Group, unique: true
+  has_one :out, :from_group, type: :CURRENT, model_class: :Group, unique: true
   has_many :out, :to_groups, type: :PREFER, model_class: :Group, unique: true
   # property :priority, is on relationship, and not so important for now
   has_one :in, :user, origin: :moves
+  has_many :in, :chats, origin: :moves
 
   validates :from_group, :user, presence: true
 

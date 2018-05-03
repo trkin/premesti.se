@@ -23,6 +23,14 @@ sr:
         one: премештај
         other: премештаји
         accusative: премештај
+      chat:
+        one: договор
+        other: договор
+        accusative: договор
+      message:
+        one: порука
+        other: поруке
+        accusative: поруку
     attributes:
       user:
         email: Имејл

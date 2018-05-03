@@ -23,6 +23,8 @@ sr-latin:
       title: Zdravo %{name}
       description_of_service: Registrovali smo Vašu nameru za premeštaj. Dobićete imejl kada se desi poklapanje sa drugim premeštanjima.
       confirmation_text: Molim Vas da pratite vezu za potvrdu Vaše imejl adrese
+    new_match:
+      chat_link: Idite i pokušajte da se dogovorite oko premeštaja
   sign_in: Prijavi se
   sign_out: Odjavi se
   register: Registruj se
@@ -68,6 +70,7 @@ sr-latin:
   group_with_that_age_already_exists: Grupa sa tim godištem već postoji
   year: god
   my_requests: Moje želje
+  my_chats: Moja dogovaranja
   privacy_policy: Politika privatnosti
   group_name_for_age_1: Bebe
   group_name_for_age_2: Mlađa jaslena
@@ -97,3 +100,4 @@ sr-latin:
   faq_5_a: Korišćenje sajta ne zahteva unos imena niti bilo koje druge informacije osim imejl adrese (pošto se ona koristi za slanje poruka o poklapanjima). Pročitaj više na <%= link_to 'politika privatnost', privacy_policy_path %>.
   faq_6: Ko je napravio ovaj sajt ?
   faq_6_a: Sajt je napravila kompanija TRK INOVACIJE DOO NOVI SAD.
+  new_match: Novo poklapanje

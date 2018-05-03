@@ -7,4 +7,10 @@ class UserMailer < ApplicationMailer
 
     mail to: @move.user.email
   end
+
+  def new_match(move, chat)
+    @move = move
+    @chat = chat
+    mail to: @move.user.email
+  end
 end

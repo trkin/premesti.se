@@ -23,6 +23,8 @@ en:
       title: Hi %{name}
       description_of_service: We registered your move. You will receive email when there is a match with others.
       confirmation_text: Please follow the link below in order to confirm your email
+    new_match:
+      chat_link: Go and try to negotiate move
   sign_in: Sign in
   sign_out: Sign out
   register: Register
@@ -68,6 +70,7 @@ en:
   group_with_that_age_already_exists: Group with that age already exists
   year: year
   my_requests: My Requests
+  my_chats: My Chats
   privacy_policy: Privacy Policy
   group_name_for_age_1: Babies
   group_name_for_age_2: Younger crib
@@ -97,3 +100,4 @@ en:
   faq_5_a: Use of the site does not require name or any other information except email (since it sends messages using email). Read more about <a href='/privacy-policy'>privacy policy</a>.
   faq_6: Who created this site ?
   faq_6_a: Site is create by TRK INNOVATIONS company.
+  new_match: New match

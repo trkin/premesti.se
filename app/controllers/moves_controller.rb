@@ -35,5 +35,6 @@ class MovesController < ApplicationController
 
   def set_move
     @move = current_user.moves.where(id: params[:id]).first
+    raise Neo4j::ActiveNode::Labels::RecordNotFound unless @move
   end
 end

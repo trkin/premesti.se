@@ -23,6 +23,14 @@ sr-latin:
         one: premeštaj
         other: premeštaji
         accusative: premeštaj
+      chat:
+        one: dogovor
+        other: dogovori
+        accusative: dogovor
+      message:
+        one: poruka
+        other: poruke
+        accusative: poruku
     attributes:
       user:
         email: Imejl

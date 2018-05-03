@@ -7,7 +7,7 @@ class Move
   property :created_at, type: DateTime
   property :updated_at, type: DateTime
 
-  has_one :out, :from_group, type: :CURRENT, model_class: :Group, unique: true
+  has_one :in, :from_group, type: :CURRENT, model_class: :Group, unique: true
   has_many :out, :to_groups, type: :PREFER, model_class: :Group, unique: true
   # property :priority, is on relationship, and not so important for now
   has_one :in, :user, origin: :moves
@@ -23,5 +23,11 @@ class Move
       to_groups << group
       true
     end
+  end
+
+  def group_age_and_locations
+    from_group.location.name + " " +
+      from_group.age_with_short_title + "(" +
+      to_groups.map { |group| group.location.name }.join(',') + ")"
   end
 end

@@ -7,11 +7,7 @@
   <% @moves.each do |move| %>
     <li>
       <%= link_to move do %>
-        <%= move.from_group.location.name %>
-        (<%= move.from_group.age_with_short_title %>)
-        (<% move.to_groups.each do |group| %>
-          <%= group.location.name %>
-        <% end %>)
+        <%= move.group_age_and_locations %>
       <% end %>
     </li>
   <% end %>

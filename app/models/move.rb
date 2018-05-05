@@ -27,13 +27,9 @@ class Move
     end
   end
 
-  def self.build_move_from_location_id_and_age(location_id, age)
-    Move.new from_group: from_group
-  end
-
   def group_age_and_locations
     from_group.location.name + " " +
-      from_group.age_with_short_title + "(" +
+      from_group.age_with_short_title + "(↪ " +
       to_groups.map { |group| group.location.name }.join(',') + ")"
   end
 

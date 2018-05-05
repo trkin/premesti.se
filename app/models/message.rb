@@ -15,7 +15,7 @@ class Message
      if move
         move.from_group.location.name
      else
-        I18n.t('message_of_deleted_move')
+       I18n.t('message_of_deleted_move')
      end
     else
       I18n.t('system_message')

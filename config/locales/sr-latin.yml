@@ -69,6 +69,7 @@ sr-latin:
   add_requested_location: Dodaj željeni vrtić
   group_with_that_age_already_exists: Grupa sa tim godištem već postoji
   year: god
+  my_moves: Moji vrtići
   my_requests: Moje želje
   my_chats: Moja dogovaranja
   privacy_policy: Politika privatnosti
@@ -101,3 +102,4 @@ sr-latin:
   faq_6: Ko je napravio ovaj sajt ?
   faq_6_a: Sajt je napravila kompanija TRK INOVACIJE DOO NOVI SAD.
   new_match: Novo poklapanje
+  chats_empty_new_will_show_up_automatically: Trenutno nema dogovaranja. Nova dogovaranja će se pojaviti kada se desi poklapanje

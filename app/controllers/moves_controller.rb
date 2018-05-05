@@ -5,9 +5,7 @@ class MovesController < ApplicationController
 
   def create_to_group
     redirect_to move_path(@move), alert: t_crud('please_select', Location) and return unless params[:to_location_id].present?
-    location = Location.find params[:to_location_id]
-    group = location.groups.find_by age: @move.from_group.age
-    if @move.add_to_group group
+    if @move.add_to_group Group.find_or_create_by_location_id_and_age(params[:to_location_id], @move.from_group.age)
       redirect_to move_path(@move), notice: t_crud('success_create', Group)
     else
       redirect_to move_path(@move), alert: @move.errors.full_messages.join(', ')
@@ -21,9 +19,10 @@ class MovesController < ApplicationController
   end
 
   def create_from_group
-    from_location = Location.find params[:from_location_id]
-    from_group = from_location.groups.find_by age: params[:from_group_age]
-    move = Move.new user: current_user, from_group: from_group
+    move = Move.new(
+      from_group: Group.find_or_create_by_location_id_and_age(params[:from_location_id], params[:from_group_age]),
+      user: current_user,
+    )
     if move.save
       redirect_to move_path(move), notice: t_crud('success_create', Location)
     else

@@ -1,7 +1,7 @@
 <%
 %>
 <h1>
-<%= t('my_requests') %>
+<%= t('my_moves') %>
 </h1>
 <ul class="list-unstyled">
   <% @moves.each do |move| %>
@@ -20,11 +20,11 @@
 </label>
 <span class="toggle-active-target hide-not-important">
   <%= form_tag create_from_group_moves_path, class: 'inline' do %>
+    <%= select_tag :from_group_age, options_for_select(1.upto(7).map {|a| [Group.title_for_age(a), a]}), label: t('neo4j.attributes.landing_signup.from_group'), required: true %>
     <%= select_tag :from_location_id, "", include_blank: t('neo4j.attributes.landing_signup.current_location'), id: 'from_location_id', 'data-select2-ajax-initialize': select2_locations_path, class: 'add-new-to-groups', required: true %>
     <span><%= t('or') %></span>
     <%= link_to t('find_on_map'), find_on_map_path(select_element: '#from_location_id'), "data-toggle": "modal", "data-target": "#find-on-map-modal" %>
 
-    <%= select_tag :from_group_age, options_for_select(1.upto(7).map {|a| [Group.title_for_age(a), a]}), label: t('neo4j.attributes.landing_signup.from_group'), required: true %>
     <%= button_tag t("add"), class: 'btn btn-primary' %>
   <% end %>
 </span>
@@ -33,12 +33,16 @@
 <h1>
 <%= t('my_chats') %>
 </h1>
-<ul class="list-unstyled">
-  <% @chats.each do |chat| %>
-    <li>
-      <%= link_to chat do %>
-        <%= chat.name_with_moves %>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+<% if @chats.present? %>
+  <ul class="list-unstyled">
+    <% @chats.each do |chat| %>
+      <li>
+        <%= link_to chat do %>
+          <%= chat.name_with_moves %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <%= t('chats_empty_new_will_show_up_automatically') %>
+<% end %>

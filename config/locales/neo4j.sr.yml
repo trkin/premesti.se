@@ -57,4 +57,5 @@ sr:
         submit: Обавести ме
         group_not_exists_for_age: Не постоји група (%{age}год) на овој локацији
       move:
+        from_group: тренутна група
         to_groups: Жељене групе

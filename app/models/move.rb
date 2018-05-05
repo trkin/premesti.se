@@ -16,13 +16,19 @@ class Move
   validates :from_group, :user, presence: true
 
   def add_to_group(group)
-    if to_groups.include? group
+    if !group.present?
+      errors.add(:to_groups, ApplicationController.helpers.t('neo4j.errors.messages.required'))
+    elsif to_groups.include? group
       errors.add(:to_groups, ApplicationController.helpers.t('neo4j.errors.messages.already_exists'))
       false
     else
       to_groups << group
       true
     end
+  end
+
+  def self.build_move_from_location_id_and_age(location_id, age)
+    Move.new from_group: from_group
   end
 
   def group_age_and_locations

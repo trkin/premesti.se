@@ -77,8 +77,10 @@
             </div> <!--<div class='nav-item dropdown'>-->
           </div>
         </nav>
+        <div class='container mt-1'>
+          <%= yield %>
+        </div>
         <%= render 'layouts/alerts' %>
-        <%= yield %>
       </div>
     <% end # else # elsif login_layout? # if login_layout? %>
   </body>

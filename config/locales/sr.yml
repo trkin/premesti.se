@@ -69,6 +69,7 @@ sr:
   add_requested_location: Додај жељени вртић
   group_with_that_age_already_exists: Група са тим годиштем већ постоји
   year: год
+  my_moves: Моји вртићи
   my_requests: Моје жеље
   my_chats: Моја договарања
   privacy_policy: Политика приватности
@@ -101,3 +102,4 @@ sr:
   faq_6: Ко је направио овај сајт ?
   faq_6_a: Сајт је направила компанија ТРК ИНОВАЦИЈЕ ДОО НОВИ САД.
   new_match: Ново поклапање
+  chats_empty_new_will_show_up_automatically: Тренутно нема договарања. Нова договарања ће се појавити када се деси поклапање

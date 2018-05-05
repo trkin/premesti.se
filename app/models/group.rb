@@ -36,4 +36,12 @@ class Group
   def age_with_short_title
     "#{age} #{I18n.t("year")}"
   end
+
+  def self.find_or_create_by_location_id_and_age(location_id, age)
+    from_location = Location.find location_id
+    from_group = from_location.groups.find_by age: age
+    # if_not_exists_create_new
+    from_group ||= Group.create! location: from_location, age: age
+    from_group
+  end
 end

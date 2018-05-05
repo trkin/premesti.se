@@ -69,6 +69,7 @@ en:
   add_requested_location: Add requested location
   group_with_that_age_already_exists: Group with that age already exists
   year: year
+  my_moves: My places
   my_requests: My Requests
   my_chats: My Chats
   privacy_policy: Privacy Policy
@@ -101,3 +102,4 @@ en:
   faq_6: Who created this site ?
   faq_6_a: Site is create by TRK INNOVATIONS company.
   new_match: New match
+  chats_empty_new_will_show_up_automatically: There are no chats currently. Chat will show up when there is a match

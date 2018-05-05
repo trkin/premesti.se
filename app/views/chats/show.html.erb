@@ -2,8 +2,7 @@
   breadcrumb "#{Chat.model_name.human.mb_chars.capitalize} #{@chat.name_with_moves}" => nil
 %>
 <%= bootstrap_form_for @message, url: create_message_chat_path(@chat) do |f| %>
-  <%= f.text_field :text, required: true %>
-  <%= f.submit t_crud('create', Message) %>
+  <%= f.text_field :text, skip_label: true, required: true, append: f.primary(t_crud('create', Message)) %>
 <% end %>
 <ul class="list-unstyled">
   <% @chat.messages.each do |message| %>

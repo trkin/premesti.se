@@ -57,4 +57,4 @@ en:
         group_not_exists_for_age: There is no group (%{age}years) for this location
       move:
         to_groups: Requested groups
-
+        from_group: from group

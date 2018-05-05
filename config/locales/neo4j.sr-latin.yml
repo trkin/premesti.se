@@ -57,4 +57,5 @@ sr-latin:
         submit: Obavesti me
         group_not_exists_for_age: Ne postoji grupa (%{age}god) na ovoj lokaciji
       move:
+        from_group: trenutna grupa
         to_groups: Željene grupe

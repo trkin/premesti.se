@@ -72,6 +72,8 @@ sr-latin:
   my_moves: Moji vrtići
   my_requests: Moje želje
   my_chats: Moja dogovaranja
+  one_user_deleted_move: Jedan korisnik je obrisao premeštaj
+  message_of_deleted_move: Obrisan premeštaj
   privacy_policy: Politika privatnosti
   group_name_for_age_1: Bebe
   group_name_for_age_2: Mlađa jaslena
@@ -101,5 +103,6 @@ sr-latin:
   faq_5_a: Korišćenje sajta ne zahteva unos imena niti bilo koje druge informacije osim imejl adrese (pošto se ona koristi za slanje poruka o poklapanjima). Pročitaj više na <%= link_to 'politika privatnost', privacy_policy_path %>.
   faq_6: Ko je napravio ovaj sajt ?
   faq_6_a: Sajt je napravila kompanija TRK INOVACIJE DOO NOVI SAD.
+  system_message: Poruka sistema
   new_match: Novo poklapanje
   chats_empty_new_will_show_up_automatically: Trenutno nema dogovaranja. Nova dogovaranja će se pojaviti kada se desi poklapanje

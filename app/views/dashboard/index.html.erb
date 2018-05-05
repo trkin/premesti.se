@@ -5,9 +5,10 @@
 </h1>
 <ul class="list-unstyled">
   <% @moves.each do |move| %>
-    <li>
+    <li class="show-on-hover">
       <%= link_to move do %>
         <%= move.group_age_and_locations %>
+        <%= link_to t("delete"), move_path(move), method: :delete, class: "text-danger show-on-hover-target", 'data-confirm': t_crud('are_you_sure_to_remove_item', item: Move) %>
       <% end %>
     </li>
   <% end %>

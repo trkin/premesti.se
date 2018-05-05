@@ -8,7 +8,7 @@
   <% @chat.messages.each do |message| %>
     <li class="show-on-hover">
       <%= message.text %>
-      <small><%= message.user_location.name %></small>
+      <small><%= message.user_location_name %></small>
       <% if message.user == current_user %>
         <%= link_to t("delete"), destroy_message_chat_path(@chat, message_id: message.id), method: :delete, class: "text-danger show-on-hover-target", 'data-confirm': t_crud('are_you_sure_to_remove_item', item: Message) %>
       <% end %>

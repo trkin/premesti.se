@@ -30,6 +30,14 @@ class MovesController < ApplicationController
     end
   end
 
+  def destroy
+    if @move.destroy_and_update_chats
+      redirect_to dashboard_path, notice: t_crud('success_delete', Move)
+    else
+      redirect_to dashboard_path, alert: @move.errors.full_messages.join(', ')
+    end
+  end
+
   private
 
   def set_move

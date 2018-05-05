@@ -36,4 +36,12 @@ class Move
       from_group.age_with_short_title + "(" +
       to_groups.map { |group| group.location.name }.join(',') + ")"
   end
+
+  def destroy_and_update_chats
+    chats.each do |chat|
+      Message.create chat: chat, text: I18n.t('one_user_deleted_move')
+      chat.moves.delete(self)
+    end
+    destroy
+  end
 end

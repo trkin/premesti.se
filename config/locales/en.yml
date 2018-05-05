@@ -72,6 +72,8 @@ en:
   my_moves: My places
   my_requests: My Requests
   my_chats: My Chats
+  one_user_deleted_move: One user deleted move
+  message_of_deleted_move: Deleted move
   privacy_policy: Privacy Policy
   group_name_for_age_1: Babies
   group_name_for_age_2: Younger crib
@@ -101,5 +103,6 @@ en:
   faq_5_a: Use of the site does not require name or any other information except email (since it sends messages using email). Read more about <a href='/privacy-policy'>privacy policy</a>.
   faq_6: Who created this site ?
   faq_6_a: Site is create by TRK INNOVATIONS company.
+  system_message: System message
   new_match: New match
   chats_empty_new_will_show_up_automatically: There are no chats currently. Chat will show up when there is a match

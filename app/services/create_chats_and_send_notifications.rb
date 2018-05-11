@@ -1,4 +1,5 @@
 class CreateChatsAndSendNotifications
+  # moves are from one match
   def initialize(moves)
     @moves = moves
   end
@@ -22,7 +23,7 @@ class CreateChatsAndSendNotifications
   end
 
   def self.perform_all
-    matches = FindMatches.perform
+    matches = FindMatchesInAllMoves.perform
     matches.each do |moves|
       new(moves).perform
     end

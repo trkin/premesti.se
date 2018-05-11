@@ -1,7 +1,6 @@
 # rubocop:disable Naming/VariableName
 require 'test_helper'
-class FindMatchesTest < ActiveSupport::TestCase
-  include PauseHelper
+class FindMatchesInAllMovesTest < ActiveSupport::TestCase
   def test_ab
     city = create :city
     locationA = create :location, city: city
@@ -15,7 +14,7 @@ class FindMatchesTest < ActiveSupport::TestCase
       [moveBA, moveAB],
       [moveAB, moveBA],
     ]
-    results = FindMatches.perform
+    results = FindMatchesInAllMoves.perform
     assert_equal matches, results
   end
 
@@ -30,7 +29,7 @@ class FindMatchesTest < ActiveSupport::TestCase
     _moveBA = create :move, from_group: groupB1, to_groups: groupA2
 
     matches = []
-    results = FindMatches.perform
+    results = FindMatchesInAllMoves.perform
     assert_equal matches, results
   end
 
@@ -51,7 +50,7 @@ class FindMatchesTest < ActiveSupport::TestCase
       [moveBC, moveAB, moveCA],
       [moveCA, moveBC, moveAB],
     ]
-    results = FindMatches.perform
+    results = FindMatchesInAllMoves.perform
     assert_equal matches, results
   end
 end

@@ -1,4 +1,6 @@
 inherit_from: .rubocop_todo.yml
+AllCops:
+  TargetRubyVersion: 2.3
 
 Style/Documentation:
   Enabled: false
@@ -15,6 +17,7 @@ Style/ClassAndModuleChildren:
 Metrics/BlockLength:
   Exclude:
     - 'test/**/*'
+    - 'lib/**/*'
 
 # big test big ABC size
 Metrics/AbcSize:
@@ -33,7 +36,12 @@ Metrics/MethodLength:
   Max: 20
   Exclude:
     - 'test/**/*'
+    - 'lib/**/*'
 
 # I use double quotes in all places
 Style/StringLiteralsInInterpolation:
+  Enabled: false
+
+# do not need to write # frozen_string_literal: true
+Style/FrozenStringLiteralComment:
   Enabled: false

@@ -1,9 +1,9 @@
 class Move
   include Neo4j::ActiveNode
-  property :birth_date, type: Date
-  property :name, type: String
-  property :available_from_date, type: Date
-  property :available_to_date, type: Date
+  # a_name is just for debugging
+  property :a_name, type: String
+  # property :available_from_date, type: Date
+  # property :available_to_date, type: Date
   property :created_at, type: DateTime
   property :updated_at, type: DateTime
 
@@ -14,6 +14,7 @@ class Move
   has_many :in, :chats, origin: :moves
 
   validates :from_group, :user, presence: true
+  validate :_same_age
 
   def add_to_group(group)
     if !group.present?
@@ -39,5 +40,12 @@ class Move
       chat.moves.delete(self)
     end
     destroy
+  end
+
+  def _same_age
+    return unless from_group
+    to_groups.each do |group|
+      errors.add :to_groups, I18n.t('groups_have_to_be_same_age') if group.age != from_group.age
+    end
   end
 end

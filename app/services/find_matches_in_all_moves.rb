@@ -1,4 +1,4 @@
-module FindMatches
+module FindMatchesInAllMoves
   def perform
     two_matches_query = %(
       MATCH (m1:Move)-[:CURRENT]-(current_g1:Group)-[:PREFER]-(m2:Move),

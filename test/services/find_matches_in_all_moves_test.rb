@@ -25,8 +25,9 @@ class FindMatchesInAllMovesTest < ActiveSupport::TestCase
     groupA2 = create :group, age: 2, location: locationA
     locationB = create :location, city: city
     groupB1 = create :group, age: 1, location: locationB
+    groupB2 = create :group, age: 2, location: locationB
     _moveAB = create :move, from_group: groupA1, to_groups: groupB1
-    _moveBA = create :move, from_group: groupB1, to_groups: groupA2
+    _moveBA = create :move, from_group: groupB2, to_groups: groupA2
 
     matches = []
     results = FindMatchesInAllMoves.perform

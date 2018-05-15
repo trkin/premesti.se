@@ -1,8 +1,8 @@
 <div class='<%= login_layout? ? '' : 'stick-to-corner' %>'>
-  <span class="alert alert-info" id="notice"></span>
-  <span class="alert alert-danger" id="alert"></span>
-  <span class="hide-to-up" id='notice-debug'><%= notice %></span>
-  <span class="hide-to-up" id='alert-debug'><%= alert %></span>
+  <div class="alert alert-info" id="notice"></div>
+  <div class="alert alert-danger" id="alert"></div>
+  <div class="hide-to-up" id='notice-debug'><%= notice %></div>
+  <div class="hide-to-up" id='alert-debug'><%= alert %></div>
 </div>
 <script>
   <%=raw "alertTextShowHide.element_text(document.getElementById('notice'), '#{j notice}', 10000);" if notice %>

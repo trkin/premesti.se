@@ -90,6 +90,8 @@ guard
 If guard or test runner does not see `<class:Application>': Please set env
 variables for NEO4J server ://:@: (RuntimeError)` than `spring stop` can help.
 
+You can pause test with `byebug` and open neo4j <http://localhost:7047/browser/>
+
 ## Deployment
 
 It is currently deployed to Heroku using free services.

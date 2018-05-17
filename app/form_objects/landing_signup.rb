@@ -59,7 +59,7 @@ class LandingSignup
     if @to_location.present?
       to_location = Location.find @to_location
       to_group = to_location.groups.find_by age: @from_group_age
-      @move.to_groups << to_group
+      return AddToGroupAndSendNotifications.new(@move, to_group).perform!
     end
     true
   end

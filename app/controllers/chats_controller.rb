@@ -33,4 +33,10 @@ class ChatsController < ApplicationController
       chat: @chat,
     )
   end
+
+  def destroy
+    raise 'only_development' unless Rails.env.development?
+    @chat.destroy
+    redirect_to root_path
+  end
 end

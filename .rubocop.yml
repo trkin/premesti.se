@@ -2,11 +2,8 @@ inherit_from: .rubocop_todo.yml
 AllCops:
   TargetRubyVersion: 2.3
 
+# it is OK that code explains instead class documentation
 Style/Documentation:
-  Enabled: false
-
-# it is ok to write 'string' and "string"
-Style/StringLiterals:
   Enabled: false
 
 # 'class ActionDispatch::IntegrationTest' in single line, no need two lines
@@ -21,8 +18,14 @@ Metrics/BlockLength:
 
 # big test big ABC size
 Metrics/AbcSize:
+  Max: 25
   Exclude:
     - 'test/**/*'
+
+# line length is not important everywhere
+Metrics/LineLength:
+  Exclude:
+    - "db/**/*"
 
 # I like to put comma after each line
 Style/TrailingCommaInLiteral:
@@ -38,10 +41,11 @@ Metrics/MethodLength:
     - 'test/**/*'
     - 'lib/**/*'
 
-# I use double quotes in all places
-Style/StringLiteralsInInterpolation:
-  Enabled: false
-
 # do not need to write # frozen_string_literal: true
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+# I use double quotes in all places
+#Style/StringLiteralsInInterpolation:
+#  Enabled: false
+

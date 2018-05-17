@@ -1,5 +1,5 @@
 <%
-  subject_line t('new_match') + " " + @move.from_group.name
+  subject_line "#{t('new_match')} #{@move.from_group.location.name}"
 %>
 <h2><%= t "user_mailer.landing_signup.title", name: @move.user.email %></h2>
 

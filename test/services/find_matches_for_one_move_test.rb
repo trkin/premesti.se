@@ -16,6 +16,14 @@ class FindMatchesForOneMoveTest < ActiveSupport::TestCase
     @g_e1 = create :group, age: 1, location: l_e, name: 'e1'
   end
 
+  def test_empty_results
+    m_ab = create :move, from_group: @g_a1, to_groups: @g_b1
+    matches = [
+    ]
+    results = FindMatchesForOneMove.perform(m_ab)
+    assert_equal (matches.map { |r| r.map(&:a_name) }), (results.map { |r| r.map(&:a_name) })
+  end
+
   def test_ab_single
     # a -m_ab-> b
     #   <-m_ba-
@@ -138,6 +146,42 @@ class FindMatchesForOneMoveTest < ActiveSupport::TestCase
       [m_ea, m_de, m_cd, m_bc],
     ]
     results = FindMatchesForOneMove.perform(m_ab)
+    assert_equal (matches.map { |r| r.map(&:a_name) }), (results.map { |r| r.map(&:a_name) })
+  end
+
+  # a -m_abcd-> b
+  #         \-> c -m_ca-> a
+  #         \-> d
+  # noice because of we target edge a-c, so rotation ab-ba is not affected
+  # b -m_ba -> a
+  def test_ab_multigroups
+    m_abcd = create :move, from_group: @g_a1, to_groups: [@g_b1, @g_c1, @g_d1], a_name: :m_abcd
+    m_ca = create :move, from_group: @g_c1, to_groups: [@g_a1], a_name: :m_ca
+    _m_ba = create :move, from_group: @g_b1, to_groups: [@g_a1], a_name: :m_ba
+    matches = [
+      [m_ca],
+    ]
+    results = FindMatchesForOneMove.perform(m_abcd, @g_c1)
+    assert_equal (matches.map { |r| r.map(&:a_name) }), (results.map { |r| r.map(&:a_name) })
+  end
+
+  # a -m_abcd-> b
+  #         \-> c -m_cba-> b
+  #         \-> d      \-> a
+  # b -m_ba -> a
+  # noice because we target a-c
+  # d -m_dc-> c
+  #
+  def test_various_multigroups
+    m_abcd = create :move, from_group: @g_a1, to_groups: [@g_b1, @g_c1, @g_d1], a_name: :m_abcd
+    m_cba = create :move, from_group: @g_c1, to_groups: [@g_b1, @g_a1], a_name: :m_cba
+    m_ba = create :move, from_group: @g_b1, to_groups: [@g_a1], a_name: :m_ba
+    _m_dc = create :move, from_group: @g_d1, to_groups: [@g_c1], a_name: :m_dc
+    matches = [
+      [m_cba],
+      [m_ba, m_cba],
+    ]
+    results = FindMatchesForOneMove.perform(m_abcd, @g_c1)
     assert_equal (matches.map { |r| r.map(&:a_name) }), (results.map { |r| r.map(&:a_name) })
   end
 end

@@ -41,6 +41,9 @@
         <%= link_to chat do %>
           <%= chat.name_with_moves %>
         <% end %>
+        <% if Rails.env.development? %>
+          <%= link_to t("delete"), chat, method: :delete, class: 'text-danger' %>
+        <% end %>
       </li>
     <% end %>
   </ul>

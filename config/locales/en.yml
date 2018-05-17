@@ -108,3 +108,14 @@ en:
   chats_empty_new_will_show_up_automatically: There are no chats currently. Chat will show up when there is a match
   last_week: Last week
   groups_have_to_be_same_age: Groups have to be at the same age
+  to_group_can_not_be_on_same_location: Request group can not be on the same location
+  ignored_sending_notifications_unconfirmed_user: Ignore sending notifications because user is not confirmed
+  request_created: Request created
+  request_created_and_sent_notifications_successfully:
+    # 1, 21, 31 ...
+    one: Request created and sent one notification successfully
+    # 2, 3, 4, 22, 23, 24, 32, 33, 34 ...
+    few: Request created and sent %{count} notifications successfully
+    # all other integers: 5, 6, ... 9, 10, 11, 12, 13, 14 ... 20, 25, ...
+    other: Request created and sent %{count} notifications successfully
+  chat_already_exists: 

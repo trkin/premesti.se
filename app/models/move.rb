@@ -16,18 +16,6 @@ class Move
   validates :from_group, :user, presence: true
   validate :_same_age
 
-  def add_to_group(group)
-    if !group.present?
-      errors.add(:to_groups, ApplicationController.helpers.t('neo4j.errors.messages.required'))
-    elsif to_groups.include? group
-      errors.add(:to_groups, ApplicationController.helpers.t('neo4j.errors.messages.already_exists'))
-      false
-    else
-      to_groups << group
-      true
-    end
-  end
-
   def group_age_and_locations
     from_group.location.name + " " +
       from_group.age_with_short_title + "(↪ " +

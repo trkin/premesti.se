@@ -108,3 +108,13 @@ sr:
   chats_empty_new_will_show_up_automatically: Тренутно нема договарања. Нова договарања ће се појавити када се деси поклапање
   last_week: Последњих седам дана
   groups_have_to_be_same_age: Групе морају бити у истим годиштима
+  to_group_can_not_be_on_same_location: Жељена гупа не може бити на тренутној локацији
+  ignored_sending_notifications_unconfirmed_user: Слање порука је прескочено пошто корисник није потврђен
+  request_created: Жељена група је направљена
+  request_created_and_sent_notifications_successfully:
+    # 1, 21, 31 ...
+    one: Жеља је креирана и %{count} порука је послата
+    # 2, 3, 4, 22, 23, 24, 32, 33, 34 ...
+    few: Жеља је креирана и %{count} поруке су послате
+    # all other integers: 5, 6, ... 9, 10, 11, 12, 13, 14 ... 20, 25, ...
+    other: Жеља је креирана и %{count} порука је послато

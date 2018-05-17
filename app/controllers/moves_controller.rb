@@ -4,11 +4,13 @@ class MovesController < ApplicationController
   def show; end
 
   def create_to_group
-    redirect_to move_path(@move), alert: t_crud('please_select', Location) and return unless params[:to_location_id].present?
-    if @move.add_to_group Group.find_or_create_by_location_id_and_age(params[:to_location_id], @move.from_group.age)
-      redirect_to move_path(@move), notice: t_crud('success_create', Group)
+    redirect_to move_path(@move), alert: t_crud('please_select', Location) && return unless params[:to_location_id].present?
+    group = Group.find_or_create_by_location_id_and_age(params[:to_location_id], @move.from_group.age)
+    result = AddToGroupAndSendNotifications.new(@move, group).perform
+    if result.success?
+      redirect_to move_path(@move), notice: result.message
     else
-      redirect_to move_path(@move), alert: @move.errors.full_messages.join(', ')
+      redirect_to move_path(@move), alert: result.message
     end
   end
 

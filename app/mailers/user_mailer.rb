@@ -11,6 +11,6 @@ class UserMailer < ApplicationMailer
   def new_match(move, chat)
     @move = move
     @chat = chat
-    mail to: @move.user.email
+    mail to: @move.user.email, subject: "#{t('new_match')} #{@move.from_group.location.name}"
   end
 end

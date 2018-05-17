@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :chats, only: [:show] do
+  resources :chats, only: [:show, :destroy] do
     member do
       post :create_message
       delete :destroy_message

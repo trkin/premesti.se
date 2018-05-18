@@ -1,0 +1,18 @@
+en:
+  activemodel:
+    attributes:
+      landing_signup:
+        current_city: What is your city ?
+        current_location: What is your current location ?
+        from_group_age: Which group do you belong ?
+        to_location: Where do you want to move ?
+        email: What is your email ?
+        password: Your password for this site ?
+    errors:
+      messages:
+        group_not_exists_for_age: There is no group (%{age}years) for this location
+        user_registered_but_password_is_invalid: You already registered but did not use this password
+    models:
+      landing_signup:
+        one:
+        success_notice: Thank you for registering your move. We will send you an email when match happens.

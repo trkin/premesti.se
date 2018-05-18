@@ -1,0 +1,19 @@
+sr:
+  activemodel:
+    attributes:
+      landing_signup:
+        current_city: Који је твој град ?
+        current_location: Која је твоја тренутна локација ?
+        from_group_age: Којој групи припадаш ?
+        to_location: На коју локацију тражиш премештај ?
+        email: Који је твој имејл ?
+        password: Лозинка за овај сајт ?
+        submit: Обавести ме
+    errors:
+      messages:
+        group_not_exists_for_age: Не постоји група (%{age}год) на овој локацији
+        user_registered_but_password_is_invalid: Већ сте се били регистровали али не са овом лозинком
+    models:
+      landing_signup:
+        one:
+        success_notice: Хвала на регистрацији ваше намере за премештај. Послаћемо Вам имејл када се деси поклапање.

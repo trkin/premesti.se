@@ -47,14 +47,6 @@ en:
       group:
         name: Name
         age: Age
-      landing_signup:
-        current_city: What is your city ?
-        current_location: What is your current location ?
-        from_group: Which group do you belong ?
-        to_location: Where do you want to move ?
-        email: What is your email ?
-        password: Your password for this site ?
-        group_not_exists_for_age: There is no group (%{age}years) for this location
       move:
         to_groups: Requested groups
         from_group: from group

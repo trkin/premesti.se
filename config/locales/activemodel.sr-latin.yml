@@ -1,0 +1,19 @@
+sr-latin:
+  activemodel:
+    attributes:
+      landing_signup:
+        current_city: Koji je tvoj grad ?
+        current_location: Koja je tvoja trenutna lokacija ?
+        from_group_age: Kojoj grupi pripadaš ?
+        to_location: Na koju lokaciju tražiš premeštaj ?
+        email: Koji je tvoj imejl ?
+        password: Lozinka za ovaj sajt ?
+        submit: Obavesti me
+    errors:
+      messages:
+        group_not_exists_for_age: Ne postoji grupa (%{age}god) na ovoj lokaciji
+        user_registered_but_password_is_invalid: Već ste se bili registrovali ali ne sa ovom lozinkom
+    models:
+      landing_signup:
+        one:
+        success_notice: Hvala na registraciji vaše namere za premeštaj. Poslaćemo Vam imejl kada se desi poklapanje.

@@ -42,19 +42,15 @@ class LandingSignup
       @existing_user = true
       true
     else
-      errors.add :password, I18n.t("errors.messages.invalid")
-      errors.add :base, I18n.t("landing_signup.user_registered_but_password_is_invalid")
+      errors.add :password, :invalid
+      errors.add :base, :user_registered_but_password_is_invalid
       false
     end
   end
 
   def _create_move!
     current_location = Location.find @current_location
-    from_group = current_location.groups.find_by(age: @from_group_age)
-    unless from_group.present?
-      errors.add :from_group_age, I18n.t("landing_signup.group_not_exists_for_age", @from_group_age)
-      return false
-    end
+    from_group = Group.find_or_create_by_location_id_and_age(current_location.id, @from_group_age)
     @move = Move.create! user: @user, from_group: from_group
     if @to_location.present?
       to_location = Location.find @to_location
@@ -65,8 +61,8 @@ class LandingSignup
   end
 
   def notice
-    notice = I18n.t("landing_signup.success_notice")
-    notice += I18n.t("devise.registrations.signed_up_but_unconfirmed") unless user.confirmed?
+    notice = I18n.t('activemodel.models.landing_signup.success_notice')
+    notice += ' ' + I18n.t('devise.registrations.signed_up_but_unconfirmed') unless user.confirmed?
     notice
   end
 

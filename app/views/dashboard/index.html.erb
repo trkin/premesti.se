@@ -21,8 +21,8 @@
 </label>
 <span class="toggle-active-target hide-not-important">
   <%= form_tag create_from_group_moves_path, class: 'inline' do %>
-    <%= select_tag :from_group_age, options_for_select(1.upto(7).map {|a| [Group.title_for_age(a), a]}), label: t('neo4j.attributes.landing_signup.from_group'), required: true %>
-    <%= select_tag :from_location_id, "", include_blank: t('neo4j.attributes.landing_signup.current_location'), id: 'from_location_id', 'data-select2-ajax-initialize': select2_locations_path, class: 'add-new-to-groups', required: true %>
+    <%= select_tag :from_group_age, options_for_select(1.upto(7).map {|a| [Group.title_for_age(a), a]}), label: t('activemodel.attributes.landing_signup.from_group_age'), required: true %>
+    <%= select_tag :from_location_id, "", include_blank: t('activemodel.attributes.landing_signup.current_location'), id: 'from_location_id', 'data-select2-ajax-initialize': select2_locations_path, class: 'add-new-to-groups', required: true %>
     <span><%= t('or') %></span>
     <%= link_to t('find_on_map'), find_on_map_path(select_element: '#from_location_id'), "data-toggle": "modal", "data-target": "#find-on-map-modal" %>
 

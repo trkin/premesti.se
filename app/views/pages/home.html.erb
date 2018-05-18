@@ -41,7 +41,7 @@
       <%= t 'site_description_3' %>
     </h1>
     <div>
-      <a class="btn btn-primary btn-xl animated rubberBand" data-scroll-into-view="carousel-box" href="#carousel-box"><%= t :where_do_you_want_to_move %></a>
+      <a class="btn btn-primary btn-xl animated rubberBand" data-scroll-into-view="carouselbox" href="#carouselbox" id='where-do-you-want-to-move'><%= t :where_do_you_want_to_move %></a>
     </div>
     <div class='mt-3'>
       <a href="<%= faq_path %>"><%= t 'faq' %></a>
@@ -65,9 +65,9 @@
 
 
 <svg id="abc" class="abc" preserveAspectRatio="none" viewBox="-1 -1 102 102">
-  <text class="text abc__color-a abc__color-fill-a" x="50" y="3" dx="-<%= font_drift %>" dy="<%= font_drift %>"><%= t 'landing_signup.abc.a' %></text>
-  <text class="text abc__color-b abc__color-fill-b" x="97" y="<%= bc_y_offset %>" dx="-<%= font_drift %>" dy="<%= font_drift %>"><%= t 'landing_signup.abc.b' %></text>
-  <text class="text abc__color-c abc__color-fill-c" x="3" y="<%= bc_y_offset %>" dx="-<%= font_drift %>" dy="<%= font_drift %>"><%= t 'landing_signup.abc.c' %></text>
+  <text class="text abc__color-a abc__color-fill-a" x="50" y="3" dx="-<%= font_drift %>" dy="<%= font_drift %>"><%= t 'abc.a' %></text>
+  <text class="text abc__color-b abc__color-fill-b" x="97" y="<%= bc_y_offset %>" dx="-<%= font_drift %>" dy="<%= font_drift %>"><%= t 'abc.b' %></text>
+  <text class="text abc__color-c abc__color-fill-c" x="3" y="<%= bc_y_offset %>" dx="-<%= font_drift %>" dy="<%= font_drift %>"><%= t 'abc.c' %></text>
   <circle class="abc__color-a" cx="50" cy="3" r="3"/>
   <circle class="abc__color-b" cx="97" cy="<%= bc_y_offset %>" r="3"/>
   <circle class="abc__color-c" cx="3" cy="<%= bc_y_offset %>" r="3"/>
@@ -89,43 +89,57 @@
 
     <%= f.hidden_field :current_city %>
 
-    <div class="carouselbox <%= 'no-transition' if Rails.env.test? %>">
+    <div id='carouselbox' class="carouselbox <%= 'no-transition' if Rails.env.test? %>">
       <ol class="no-padding-relative">
-        <li class="current animated" id="carousel-box">
-          <%= f.select :current_location, [], { label: t('neo4j.attributes.landing_signup.current_location') }, id: 'current-location', 'data-select2-ajax-initialize': select2_locations_path, 'data-increase-abc': 1, 'data-select-target': '#from-group' %>
+        <li class='<%= (already_shown=true) && 'current animated' if @landing_signup.errors[:current_location].present? || @landing_signup.errors.blank? %>'>
+          <% already_selected_current_location_options = if @landing_signup.current_location.present?
+                                                           current_location = Location.find @landing_signup.current_location
+                                                           [[current_location.name_with_address, current_location.id]]
+                                                         else
+                                                           []
+                                                         end %>
+          <%= f.select :current_location, already_selected_current_location_options, {}, id: 'current_location', 'data-select2-ajax-initialize': select2_locations_path, 'data-increase-abc': 1, 'data-select-target': '#from_group_age' %>
           <div class="text-center d-none d-md-block"><%= t('or') %></div>
-          <%= link_to t('find_on_map'), find_on_map_path(select_element: '#current-location'), "data-toggle": "modal", "data-target": "#find-on-map-modal" %>
+          <%= link_to t('find_on_map'), find_on_map_path(select_element: '#current_location'), "data-toggle": "modal", "data-target": "#find-on-map-modal" %>
         </li>
-        <li>
-          <%= f.select :from_group_age, 1.upto(7).map {|a| [Group.title_for_age(a), a]}, { label: t('neo4j.attributes.landing_signup.from_group')}, id: 'from-group', 'data-increase-abc': 2, 'data-select-target': '#to-location' %>
+        <li class='<%= (already_shown=true) && 'current animated' if @landing_signup.errors[:from_group_age].present? && !already_shown %>'>
+          <%= f.select :from_group_age, 1.upto(7).map {|a| [Group.title_for_age(a), a]}, {}, id: 'from_group_age', 'data-increase-abc': 2, 'data-select-target': '#to_location' %>
         </li>
-        <li>
-          <%= f.select :to_location, [], { label: t('neo4j.attributes.landing_signup.to_location') }, id: 'to-location', 'data-select2-ajax-initialize': select2_locations_path, 'data-increase-abc': 3, 'data-select-target': '#user-email' %>
+        <li class='<%= (already_shown=true) && 'current animated' if @landing_signup.errors[:to_location].present? && !already_shown %>'>
+          <% already_selected_to_location_options = if @landing_signup.to_location.present?
+                                                           to_location = Location.find @landing_signup.to_location
+                                                           [[to_location.name_with_address, to_location.id]]
+                                                         else
+                                                           []
+                                                         end %>
+          <%= f.select :to_location, already_selected_to_location_options, {}, id: 'to_location', 'data-select2-ajax-initialize': select2_locations_path, 'data-increase-abc': 3, 'data-select-target': '#email' %>
+          <%= link_to t('find_on_map'), find_on_map_path(select_element: '#to_location'), "data-toggle": "modal", "data-target": "#find-on-map-modal" %>
           <div class="text-center d-none d-md-block"><%= t('or') %></div>
-          <%= link_to t('find_on_map'), find_on_map_path(select_element: '#to-location'), "data-toggle": "modal", "data-target": "#find-on-map-modal" %>
+          <a href="javascript:void(0)" onclick="$('#to_location').trigger('change')"><%= t('add_later') %></a>
         </li>
-        <li>
-          <div id="user-email">
-            <%= f.email_field :email, label: t('neo4j.attributes.landing_signup.email'), required: true, 'data-select-target': '#user-password' %>
-            <a href="javascript:void(0)" onclick="$('#user-email input').trigger('change')"><%= t('continue') %></a>
+        <li class='<%= (already_shown=true) && 'current animated' if @landing_signup.errors[:email].present? && !already_shown %>'>
+          <div>
+            <%# do not use required: true, since browser error will impact this layout %>
+            <%= f.text_field :email, 'data-select-target': '#user-password', 'data-prevent-submit-on-enter': '#email-continue', id: 'email' %>
+            <a href="javascript:void(0)" onclick="$('#email').trigger('change')" id='email-continue'><%= t('continue') %></a>
           </div>
         </li>
-        <li>
+        <li class='<%= (already_shown=true) && 'current animated' if @landing_signup.errors[:password].present? && !already_shown %>'>
           <div id="user-password">
-            <%= f.password_field :password, label: t('neo4j.attributes.landing_signup.password'), required: true %>
+            <%= f.password_field :password, id: 'password' %>
 
             <%= f.button type: :submit, class: 'btn btn-primary' do %>
               <i class="fa fa-envelope" aria-hidden="true"></i>
-              <%= t('landing_signup.submit') %>
+              <%= t('activemodel.attributes.landing_signup.submit') %>
             <% end %>
           </div>
         </li>
       </ol>
-      <a class="carousel-control-prev <%= 'hide-not-important' %>" href="javascript:void(0)" role="button" id="left-arrow">
+      <a class="carousel-control-prev <%= 'hide-not-important' unless @landing_signup.errors.present? %>" href="javascript:void(0)" role="button" id="left-arrow">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
       </a>
-      <a class="carousel-control-next <%= 'hide-not-important' %>" href="javascript:void(0)" role="button" id="right-arrow">
+      <a class="carousel-control-next <%= 'hide-not-important' unless @landing_signup.errors.present? %>" href="javascript:void(0)" role="button" id="right-arrow">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
       </a>
@@ -136,3 +150,8 @@
 <%#   var firstOption = $('#current-city option[value!=""]').first(); %>
 <%#   $('#current-city').val(firstOption.val()).trigger('change'); %>
 <%# </script> %>
+<script>
+  <% if @landing_signup.errors.present? %>
+    window.location.hash = 'carouselbox'
+  <% end %>
+</script>

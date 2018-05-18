@@ -24,6 +24,13 @@ $(document).on 'turbolinks:load', ->
     $(this).focus ->
       $(this).select2('open')
 
+  # f.text_field :email, 'data-prevent-submit-on-enter': '#email-continue'
+  $('[data-prevent-submit-on-enter]').on 'keyup keypress', (e) ->
+    keyCode = e.keyCode || e.which
+    if keyCode == 13
+      e.preventDefault()
+      $($(this).data().preventSubmit).click() if $(this).data().preventSubmitOnEnter != true
+
 determine_language = ->
   switch window.location.hostname
     when '<%= Constant::DOMAINS[Rails.env.to_sym][:sr] %>' then 'sr-Cyrl'

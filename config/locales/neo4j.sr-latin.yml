@@ -47,15 +47,6 @@ sr-latin:
       group:
         name: Naziv
         age: Puni godina
-      landing_signup:
-        current_city: Koji je tvoj grad ?
-        current_location: Koja je tvoja trenutna lokacija ?
-        from_group: Kojoj grupi pripadaš ?
-        to_location: Na koju lokaciju tražiš premeštaj ?
-        email: Koji je tvoj imejl ?
-        password: Lozinka za ovaj sajt ?
-        submit: Obavesti me
-        group_not_exists_for_age: Ne postoji grupa (%{age}god) na ovoj lokaciji
       move:
         from_group: trenutna grupa
         to_groups: Željene grupe

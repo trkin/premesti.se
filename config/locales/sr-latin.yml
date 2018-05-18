@@ -7,15 +7,10 @@ sr-latin:
   please_select: Molim izaberite
   select: Izaberite
   where_do_you_want_to_move: Gde hoćeš da se premestiš ?
-  landing_signup:
-    abc:
-      a: A
-      b: B
-      c: V
-    submit: Obavesti me
-    success_notice: Hvala na registraciji vaše namere za premeštaj. Poslaćemo Vam imejl kada se desi poklapanje.
-    user_registered_but_password_is_invalid: Već ste se bili registrovali ali ne sa ovom lozinkom. Ako ste zaboravili lozinku, molim Vas da je promenite.
-
+  abc:
+    a: A
+    b: B
+    c: V
   faq: Česta pitanja
   user_mailer:
     landing_signup:
@@ -85,6 +80,7 @@ sr-latin:
   born: rođeni
   or: ili
   find_on_map: Pronađi na mapi
+  add_later: Dodaj kasnije
   problem_with_account: Problem sa nalogom ?
   send: Pošalji
   contact: Kontakt

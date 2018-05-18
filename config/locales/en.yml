@@ -7,15 +7,10 @@ en:
   please_select: Please select
   select: Select
   where_do_you_want_to_move: Where do you want to Move?
-  landing_signup:
-    abc:
-      a: A
-      b: B
-      c: C
-    submit: Notify me
-    success_notice: Thank you for registering your move. We will send you an email when match happens.
-    user_registered_but_password_is_invalid: You already registered but did not use this password. If you forgot your password, please reset it first.
-
+  abc:
+    a: A
+    b: B
+    c: C
   faq: FAQ
   user_mailer:
     landing_signup:
@@ -85,6 +80,7 @@ en:
   born: born
   or: or
   find_on_map: Find on map
+  add_later: Add later
   problem_with_account: Problem with account ?
   send: Send
   contact: Contact

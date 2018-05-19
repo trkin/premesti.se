@@ -93,12 +93,16 @@ en:
   faq_2_a: When there is a matching with some other move intentions, parents receive emails and can continue communication off-site.
   faq_3: Does this site have something with official procedure that is needed to be submitted to competent institution ?
   faq_3_a: This site has nothing to do with the relevant institutions. The site is intended exclusively to facilitate communication between parents. Parents must submit written request to the competent institution.
-  faq_4: What's the advantage of this site then?
-  faq_4_a: "Although the authority quickly resolves the requirements when there is a free place, this site can help by using a graphical database that allows to find the appropriate free places: A-> B and B-> A, as well as A-> B, B -> C, C-> A."
-  faq_5: How secure is my privacy ?
-  faq_5_a: Use of the site does not require name or any other information except email (since it sends messages using email). Read more about <a href='/privacy-policy'>privacy policy</a>.
-  faq_6: Who created this site ?
-  faq_6_a: Site is create by TRK INNOVATIONS company.
+  faq_4: What is the purpose of this site?
+  faq_4_a: Pre-school institutions generally work full capacity and during the year there are no vacancies for new members. However, parents have the need to change the kindergarten due to the move or have assigned kindergarten to them is far away and this site allows them to find a partner with whom they could rotate the site, without the need to wait for a new vacancy to appear.
+  faq_5: What's the advantage of this site?
+  faq_5_a: Parents may try to find a replacement in their preferred kindergartens by placing a paper ad on the parents' table in the requested kindergarten. However, such a search is rather slow and not up-to-date (outdated ads). Also, the privacy of desire is not preserved, for example, they want to change the kindergarten, but do not want everyone else to find out, so parents rarely place those ads. Using this site, parents can find more options to move since rotation can be performed between two (A-B and B-A) or more members (A-B, B-V, V-G, G-D, D-A).
+  faq_6: How safe is my privacy?
+  faq_6_a: Using the site does not require entering a name or any other information other than the email address (since it is used to send match messages). Users choose to share their information with others.
+  faq_7: I got a matching notice, but nobody answers my messages?
+  faq_7_a: We are trying to spot inactive users (those who place wishes that are not real and do not respond to messages) and deactivate them from the list of desired rotations. Let us know if you notice such "bogus" users
+  faq_8: Who created this site?
+  faq_8_a: The site was made by TRK INOVACIJE DOO NOVI SAD.
   system_message: System message
   new_match: New match
   chats_empty_new_will_show_up_automatically: There are no chats currently. Chat will show up when there is a match

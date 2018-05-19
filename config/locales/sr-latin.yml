@@ -91,14 +91,18 @@ sr-latin:
   faq_1_a: Premesti.se je namenjen roditeljima koji tragaju za premeštajem svoje dece iz jednog vrtića u drugi.
   faq_2: Kako radi ovaj sajt ?
   faq_2_a: Kada se nađe poklapanje sa namerama drugih roditelja, roditelji dobiju imejl i mogu da stupe u međusobni kontakt i da zajedno podnesu zahtev za premeštaj.
-  faq_3: Da li ovaj sajt ima veze sa zahtevom koji se podnosti ustavi, npr. Radosno Detinjstvo ?
+  faq_3: Da li ovaj sajt ima veze sa zahtevom koji se podnosti ustanovi, npr. Radosno Detinjstvo ?
   faq_3_a: Ovaj sajt nema nikakve veze sa nadležnim ustanovama, sajt je namenjen isključivo da olakša komunikaciju među roditeljima. Roditelji moraju da podnesu zahtev u pismenoj formi nadležnoj ustanovi.
-  faq_4: U čemu je onda prednost ovog sajta ?
-  faq_4_a: "Iako nadležna ustanova brzo rešava zahteve kada se stvori mogućnost premeštanja, ovaj sajt može da pomogne tako što koristi grafičku bazu podataka koja omogućava da se nađu odgovarajuća slobodna mesta: A->B i B->A, kao i A->B, B->C, C->A."
-  faq_5: Koliko je sigurna moja privatnost ?
-  faq_5_a: Korišćenje sajta ne zahteva unos imena niti bilo koje druge informacije osim imejl adrese (pošto se ona koristi za slanje poruka o poklapanjima). Pročitaj više na <%= link_to 'politika privatnost', privacy_policy_path %>.
-  faq_6: Ko je napravio ovaj sajt ?
-  faq_6_a: Sajt je napravila kompanija TRK INOVACIJE DOO NOVI SAD.
+  faq_4: Koja je svrha ovog sajta ?
+  faq_4_a: Predškolske ustanove uglavnom rade punim kapacitetom i u toku godine nema slobodnih mesta za primanje novih članova. Ipak roditelji imaju potrebu da promene vrtić zbog selidbe ili im je predalek vrtić koji im je trenutno dodeljen i ovaj sajt im omogućava da nađu partnera sa kojim bi mogli da izvrše rotaciju mesta, bez potrebe da čekaju da se pojavi novo slobodno mesto.
+  faq_5: U čemu je prednost ovog sajta ?
+  faq_5_a: Roditelji mogu da pokušaju da nađu zamenu u željenim vrtićima postavljajući papirni oglas na tablu za roditelje u traženim vrtićima. Ipak takvo traženje je prilično sporo i ne ažurno (zastareli oglasi). Takođe se ne očuvava privatnost želje, na primer žele da promene vrtić ali ne žele da to saznaju svi ostali, pa roditelji retko stavljaju te oglase. Koristeći ovaj sajt, roditelji mogu da pronađu više opciju za premeštanje pošto rotacija može da se izvrši između dva (A-B i B-A) ili više članova (A-B, B-V, V-G, G-D, D-A).
+  faq_6: Koliko je sigurna moja privatnost ?
+  faq_6_a: Korišćenje sajta ne zahteva unos imena niti bilo koje druge informacije osim imejl adrese (pošto se ona koristi za slanje poruka o poklapanjima). Korisnici sami biraju da li će podeliti svoje podatke drugim osobama.
+  faq_7: Dobio sam obaveštenje o poklapanju, ali niko ne odgovara na moje poruke ?
+  faq_7_a: Mi se trudimo da uočimo neaktivne korisnike (oni koji postave želje koje nisu stvarne i ne odgovaraju na poruke) i da ih deaktiviramo sa liste željenih rotacija. Javite nam ukoliko primetite takve "lažne" korisnike
+  faq_8: Ko je napravio ovaj sajt ?
+  faq_8_a: Sajt je napravila kompanija TRK INOVACIJE DOO NOVI SAD.
   system_message: Poruka sistema
   new_match: Novo poklapanje
   chats_empty_new_will_show_up_automatically: Trenutno nema dogovaranja. Nova dogovaranja će se pojaviti kada se desi poklapanje

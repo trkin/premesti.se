@@ -1,6 +1,5 @@
 # rubocop:disable Metrics/ModuleLength
 # rubocop:disable Metrics/MethodLength
-# rubocop:disable Metrics/AbcSize
 # rubocop:disable Style/MultilineTernaryOperator
 # rubocop:disable Layout/SpaceInsideStringInterpolation
 module MapHelper
@@ -24,7 +23,7 @@ module MapHelper
   # did it using addDomListener on window object and fire that resize on modal
   # show:
   #
-  # somewhere inside function initialize_google() {
+  # somewhere inside function initMap() {
   #        google.maps.event.addDomListener(window, "resize", function() {
   #          var center = map.getCenter();
   #          google.maps.event.trigger(map, "resize");
@@ -44,12 +43,12 @@ module MapHelper
   # If you have two nested modal-content than there is a problem that javascript
   # in modal response is run only once (you can put alert inside script and it
   # will be shown only first time modal is opened)
-  # So you can not trigger initialize_google() from this page but only on modal
+  # So you can not trigger initMap() from this page but only on modal
   # shown event. Good is that you do not need to trigger resize since we draw
   # map again:
   # $(document).on 'shown.bs.modal', '.modal', ->
-  #   if this.innerHTML.indexOf('initialize_google') > -1
-  #     initialize_google()
+  #   if this.innerHTML.indexOf('initMap') > -1
+  #     initMap()
   def edit_map(object, latitude_input, longitude_input)
     if object.latitude
       latitude = object.latitude
@@ -60,12 +59,12 @@ module MapHelper
       longitude = INITIAL_LONGITUDE
       zoom_level = INITIAL_ZOOM
     end
-    address_id = "address-suggestion" # -#{SecureRandom.hex 3}"
+    address_id = 'address-suggestion' # -#{SecureRandom.hex 3}"
     content = text_field_tag(
       address_id, nil, placeholder:
       I18n.t('write_address_than_move_marker'), size: 50
     )
-    map_id = "preview-map" #-#{SecureRandom.hex 3}"
+    map_id = 'preview-map' #-#{SecureRandom.hex 3}"
     content << content_tag(:div, nil, id: map_id, class: 'edit-map-container')
     content << %(
       <script>
@@ -73,8 +72,8 @@ module MapHelper
           $("#{latitude_input}").val(position.lat());
           $("#{longitude_input}").val(position.lng());
         }
-        function initialize_google() {
-          console.log('initialize_google edit_map #{Time.zone.now}');
+        function initMap() {
+          console.log('initMap edit_map #{Time.zone.now}');
           // https://wiki.openstreetmap.org/wiki/Google_Maps_Example
           var mapTypeIds = [];
           for(var type in google.maps.MapTypeId) {
@@ -138,7 +137,7 @@ module MapHelper
           google.maps.event.addListener(marker, "dragend", function(e) {
             updateFields(marker.getPosition());
           });
-        } // function initialize_google
+        } // function initMap
       </script>
     ).html_safe
     content << async_load
@@ -151,8 +150,8 @@ module MapHelper
     return "<div class='map-not-set'>Map position is not set</div>".html_safe unless latitude
     img_options = {}
     img_options[:class] = options[:class] if options[:class].present?
-    url = "//maps.googleapis.com/maps/api/staticmap?"
-    url += "size=70x70"
+    url = '//maps.googleapis.com/maps/api/staticmap?'
+    url += 'size=70x70'
     # custom icon must be http:// not https://
     # markers=icon:http://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png|
     url += "&markers=|#{latitude},#{longitude}"
@@ -170,8 +169,8 @@ module MapHelper
     content = content_tag(:div, nil, id: 'preview-map', class: "show-map-container #{options[:class]}")
     content << %(
       <script>
-        function initialize_google() {
-          console.log('initialize_google show_map');
+        function initMap() {
+          console.log('initMap show_map');
           var previewMapElement = document.getElementById('preview-map');
           var map = new google.maps.Map(previewMapElement, {
             center: {lat: #{latitude}, lng: #{longitude} },
@@ -187,7 +186,7 @@ module MapHelper
               }," : '' }
           });
           $(previewMapElement).data('mapObject', map);
-        } // function initialize_google
+        } // function initMap
       </script>
     ).html_safe
     content << async_load
@@ -205,15 +204,15 @@ module MapHelper
         },
         name: object.name,
         description_for_map: object.description_for_map,
-        url_for_map: object.respond_to?("url_for_map") ? object.url_for_map : '',
+        url_for_map: object.respond_to?('url_for_map') ? object.url_for_map : '',
       }
     end.compact
     content = content_tag(:div, nil, id: 'preview-map', class: "show-all-map-container #{options[:class]}")
     content << %(
       <script>
         #{options[:script_for_map]}
-        function initialize_google() {
-          console.log('initialize_google show_all_map');
+        function initMap() {
+          console.log('initMap show_all_map');
           var map = new google.maps.Map(document.getElementById('preview-map'), {
             center: {lat: #{INITIAL_LATITUDE}, lng: #{INITIAL_LONGITUDE}},
             zoom: #{INITIAL_ZOOM},
@@ -255,7 +254,84 @@ module MapHelper
               markers[i].setMap(map);
             };
           }
-        } // function initialize_google
+        } // function initMap
+      </script>
+    ).html_safe
+    content << async_load
+  end
+
+  # marker objects should have: latitude, longitude, name
+  # lines object should have from (latitude longitude), to (latitude longitude), age
+  def show_lines_map(markers, lines, options = {})
+    markers_js = markers.map do |marker|
+      {
+        position: {
+          lat: marker.latitude,
+          lng: marker.longitude,
+        },
+        name: marker.name,
+        description_for_map: marker.address,
+      }
+    end
+    lines_js = lines.map do |line|
+      {
+        path: [
+          { lat: line.from.latitude, lng: line.from.longitude },
+          { lat: line.to.latitude, lng: line.to.longitude },
+        ],
+        age: line.age
+      }
+    end
+    content = content_tag(:div, nil, id: 'show-lines-map', class: options[:class])
+    content << %(
+      <script>
+        function initMap() {
+          console.log('initMap show_lines_map');
+          var map = new google.maps.Map(document.getElementById('show-lines-map'), {
+            center: {lat: #{INITIAL_LATITUDE}, lng: #{INITIAL_LONGITUDE}},
+            zoom: #{INITIAL_ZOOM},
+          });
+          var markersJs = #{markers_js.to_json};
+          var linesJs = #{lines_js.to_json};
+          var ageColors = #{Constant::AGE_COLORS.to_json};
+          var bounds = new google.maps.LatLngBounds();
+          var infoWindow = new google.maps.InfoWindow({
+            content: "<div><a href='' id='info-url'><h4></h4></a><div id='info-name'></div><p id='info-description'></p></div>"
+          });
+          for(var i = 0; i < markersJs.length; i++ ) {
+            var marker = new google.maps.Marker({
+              map: map,
+              position: markersJs[i].position,
+              name: markersJs[i].name,
+              description_for_map: markersJs[i].description_for_map,
+            });
+            bounds.extend(marker.getPosition());
+            google.maps.event.addListener(marker, 'click', function() {
+              infoWindow.open(map, this);
+              $('#info-description').html(this.description_for_map);
+              if (this.url_for_map) {
+                $('#info-url').attr('href', this.url_for_map)
+                .html('<h4>'+this.name+'</h4>');
+                $('#info-name').html();
+              } else {
+                $('#info-name').html('<h4>'+this.name+'</h4>');
+                $('#info-url').html();
+              }
+            });
+          }
+          map.fitBounds(bounds);
+
+          linesJs.forEach(function(line) {
+            var geodesicPoly = new google.maps.Polyline({
+              strokeColor: ageColors[line.age - 1],
+              strokeOpacity: 1.0,
+              strokeWeight: 3,
+              geodesic: true,
+              map: map,
+              path: line.path,
+            });
+          });
+        } // function initMap
       </script>
     ).html_safe
     content << async_load
@@ -271,13 +347,13 @@ module MapHelper
           var script = document.createElement('script');
           script.type = 'text/javascript';
           script.src = 'https://maps.googleapis.com/maps/api/js?libraries=places' +
-              '&key=#{GOOGLE_API_KEY}&callback=initialize_google';
+              '&key=#{GOOGLE_API_KEY}&callback=initMap';
           document.body.appendChild(script);
         }
         // http://stackoverflow.com/questions/9228958/how-to-check-if-google-maps-api-is-loaded
         if (typeof google === 'object' && typeof google.maps === 'object') {
           // it is loaded but we need to bind on newly created object
-          initialize_google();
+          initMap();
         } else {
           loadScript();
         }

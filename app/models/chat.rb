@@ -40,5 +40,4 @@ class Chat
         .where(where_include, move_ids)
         .pluck(:c)
   end
-
 end

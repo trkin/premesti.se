@@ -16,7 +16,7 @@ class Group
   validate :age_overlaps
 
   def age_overlaps
-    return unless age.to_i > 0
+    return unless age.to_i.positive?
     return unless location
     return unless location.groups.for_age(age, id).present?
     errors.add :age, I18n.t('group_with_that_age_already_exists')
@@ -34,7 +34,7 @@ class Group
   end
 
   def age_with_short_title
-    "#{age} #{I18n.t("year")}"
+    "#{age} #{I18n.t('year')}"
   end
 
   def self.find_or_create_by_location_id_and_age(location_id, age)

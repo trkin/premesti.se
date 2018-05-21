@@ -17,9 +17,14 @@ class Move
   validate :_same_age
 
   def group_age_and_locations
-    from_group.location.name + " " +
-      from_group.age_with_short_title + "(↪ " +
-      to_groups.map { |group| group.location.name }.join(',') + ")"
+    from_group.location.name + ' ' +
+      from_group.age_with_short_title + '(↪ ' +
+      to_groups.map { |group| group.location.name }.join(',') + ')'
+  end
+
+  def show_locations
+    from_group.location.name + ' ' \
+      '(↪ ' + to_groups.map { |group| group.location.name }.join(',') + ')'
   end
 
   def destroy_and_update_chats

@@ -40,8 +40,10 @@ namespace :db do
         MapHelper::INITIAL_LATITUDE + 0.01, longitude: MapHelper::INITIAL_LONGITUDE + 0.01 },
       { var: :loc3_city1, city: b[:city1], address: 'address3', latitude:
         MapHelper::INITIAL_LATITUDE - 0.01, longitude: MapHelper::INITIAL_LONGITUDE + 0.01 },
-      { var: :loc1_city2, city: b[:city2], address: 'address4' },
-      { var: :loc2_city2, city: b[:city2], address: 'address5' },
+      { var: :loc1_city2, city: b[:city2], address: 'address4', latitude:
+        MapHelper::INITIAL_LATITUDE + 0.02, longitude: MapHelper::INITIAL_LONGITUDE + 0.02  },
+      { var: :loc2_city2, city: b[:city2], address: 'address5', latitude:
+        MapHelper::INITIAL_LATITUDE + 0.02, longitude: MapHelper::INITIAL_LONGITUDE + 0.02  },
     ].each do |doc|
       params = doc.except(:var).merge(name: doc[:var])
       location = Location.find_by params
@@ -77,16 +79,15 @@ namespace :db do
       { var: :m1_l1_l3, from_group: b[:g2_l1], to_groups: b[:g2_l3],
         user: b[:user1] },
       { var: :m2_l3_l4, from_group: b[:g2_l3], to_groups: b[:g2_l4],
-        user: b[:user2], available_from_date:
-        Date.today.end_of_month },
+        user: b[:user2] },
       { var: :m3_l4_l1, from_group: b[:g2_l4], to_groups: b[:g2_l1],
         user: b[:user3], }
     ].each do |doc|
-      params = doc.except(:var).merge(name: doc[:var])
+      params = doc.except(:var).merge(a_name: doc[:var])
       move = Move.find_by params
       unless move.present?
         move = Move.create! params
-        puts "Move #{move.name}"
+        puts "Move #{move.a_name}"
       end
       b[doc[:var]] = move if doc[:var]
     end
@@ -120,23 +121,23 @@ namespace :db do
       b[doc[:var]] = message if doc[:var]
     end
 
-    Rake::Task["translate:copy"].invoke Rails.env
+    Rake::Task['translate:copy'].invoke Rails.env
   end
 
   desc 'drop'
   task drop: :environment do
-    Rake::Task["neo4j:stop"].invoke Rails.env
+    Rake::Task['neo4j:stop'].invoke Rails.env
     puts sh "rm -rf db/neo4j/#{Rails.env}/data/databases/graph.db"
-    Rake::Task["neo4j:start"].invoke Rails.env
-    puts "Find database on http://" +
-         Rails.application.secrets.neo4j_host.to_s + ":" +
+    Rake::Task['neo4j:start'].invoke Rails.env
+    puts 'Find database on http://' +
+         Rails.application.secrets.neo4j_host.to_s + ':' +
          (Rails.application.secrets.neo4j_port.to_i + 2).to_s
   end
 
   desc 'migrate'
   task migrate: :environment do
-    puts "running neo4j:migrate"
-    Rake::Task["neo4j:migrate"].invoke Rails.env
+    puts 'running neo4j:migrate'
+    Rake::Task['neo4j:migrate'].invoke Rails.env
   end
 
   desc 'setup = drop, migrate and seed'

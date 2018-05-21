@@ -1,12 +1,4 @@
 @import "bootstrap/scss/variables";
-
-.edit-map-container,.show-all-map-container {
-  height: 80vh;
-  width: 100%;
-}
-.show-map-container {
-  height: 30px;
-}
 // autocomplete suggestions inside modal should have higher z index
 .pac-container {
   z-index: ($zindex-modal + 1);

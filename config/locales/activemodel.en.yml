@@ -8,6 +8,7 @@ en:
         to_location: Where do you want to move ?
         email: What is your email ?
         password: Your password for this site ?
+        submit: Notify me
     errors:
       messages:
         group_not_exists_for_age: There is no group (%{age}years) for this location

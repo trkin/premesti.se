@@ -12,14 +12,6 @@ en:
     b: B
     c: C
   faq: FAQ
-  user_mailer:
-    landing_signup:
-      subject: Thanks for registration!
-      title: Hi %{name}
-      description_of_service: We registered your move. You will receive email when there is a match with others.
-      confirmation_text: Please follow the link below in order to confirm your email
-    new_match:
-      chat_link: Go and try to negotiate move
   sign_in: Sign in
   sign_out: Sign out
   register: Register
@@ -28,18 +20,6 @@ en:
   provider:
     facebook: Facebook
     google_oauth2: Google
-  my_devise:
-    registration_headline: Register here
-    characters_minimum: Minimum %{count} characters
-    sign_in_headline: Log in
-    forgot_password: Forgot your password?
-    did_not_receive_confirmation_instructions: "Didn't receive confirmation instructions?"
-    did_not_receive_unlock_instructions: "Didn't receive unlock instructions?"
-    sign_in_with: Sign in with %{provider}
-    send_me_reset_password_instructions: Send me reset password instructions
-    resend_confirmation_instructions: Resend confirmation instructions
-    resend_unlock_instructions: Resend unlock instructions
-    can_not_sign_in: "Can't sign in"
   admin_dashboard: Admin Dashboard
   dashboard: Dashboard
   home_page: Home Page
@@ -64,9 +44,10 @@ en:
   add_requested_location: Add requested location
   group_with_that_age_already_exists: Group with that age already exists
   year: year
-  my_moves: My places
+  my_moves: My Places
   my_requests: My Requests
   my_chats: My Chats
+  my_profile: My Profile
   one_user_deleted_move: One user deleted move
   message_of_deleted_move: Deleted move
   privacy_policy: Privacy Policy
@@ -118,4 +99,4 @@ en:
     few: Request created and sent %{count} notifications successfully
     # all other integers: 5, 6, ... 9, 10, 11, 12, 13, 14 ... 20, 25, ...
     other: Request created and sent %{count} notifications successfully
-  chat_already_exists: 
+  hi_name: Hi %{name}

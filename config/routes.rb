@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 Rails.application.routes.draw do
   root to: 'pages#home'
   devise_for :users, controllers: {
@@ -25,7 +26,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :chats, only: [:show, :destroy] do
+  resources :chats, only: %i[show destroy] do
     member do
       post :create_message
       delete :destroy_message

@@ -27,6 +27,13 @@
           <%= yield %>
           <%= render 'layouts/alerts' %>
         </div>
+        <span class='px-2 background-same-as-image'>
+          <% if current_user %>
+            <%= link_to t('dashboard'), dashboard_path %>
+          <% else %>
+            <%= link_to t('home_page'), root_path %>
+          <% end %>
+        </span>
       </div>
     <% else # elsif login_layout? # if login_layout? %>
       <%# here we are only when current_user exists %>
@@ -44,6 +51,7 @@
                 <%= link_to link, class: 'nav-item nav-link' do %>
                   <%= text %>
                 <% end %>
+                <i class="nav-link fa fa-angle-right" aria-hidden="true"></i>
               <% else %>
                 <span class='navbar-text'>
                   <%= text %>
@@ -57,7 +65,7 @@
                 <%= current_user.email_username %>
               </a>
               <div class="dropdown-menu" aria-labelledby="userDropdown">
-                <%= link_to t("change_password"), edit_user_password_path, class: 'dropdown-item' %>
+                <%= link_to t('my_profile'), edit_user_registration_path, class: 'dropdown-item' %>
                 <% if current_user.admin? %>
                   <%= link_to t("admin_dashboard"), admin_dashboard_path, class: 'dropdown-item' %>
                 <% end %>
@@ -71,7 +79,7 @@
                 <div class="dropdown-divider"></div>
                 <%= link_to destroy_user_session_url, method: :delete, class: "dropdown-item" do %>
                   <i class="fa fa-sign-out" aria-hidden="true"></i>
-                  Logout
+                  <%= t'sign_out' %>
                 <% end %>
               </div>
             </div> <!--<div class='nav-item dropdown'>-->

@@ -12,22 +12,26 @@
     <%= render 'layouts/alerts' %>
   </div>
   <div class="ml-auto">
-    <% if Rails.env.development? %>
-      <small>
-        Only on development
-        <% User.all.order(:id).limit(5).each do |user| %>
-          <%= link_to user.email, sign_in_as_path(user_id: user.id) %>
-        <% end %>
-      </small>
-    <% end %>
-    <%# <%= link_to t("register"), new_user_registration_path %1> %>
-    <%# | %>
-    <%= link_to t("sign_in"), new_user_session_path %>
-    <%= link_to user_facebook_omniauth_authorize_path, title: t("my_devise.sign_in_with", provider: t('provider.facebook')), class: 'btn btn-social' do %>
-      <i class="fa fa-facebook-official"></i>
-    <% end %>
-    <%= link_to user_google_oauth2_omniauth_authorize_path, title: t("my_devise.sign_in_with", provider: t('provider.google_oauth2')), class: 'btn btn-social' do %>
-      <i class="fa fa-google" aria-hidden="true"></i>
+    <% if current_user %>
+      <%= link_to t('dashboard'), dashboard_path %>
+    <% else %>
+      <% if Rails.env.development? %>
+        <small>
+          Only on development
+          <% User.all.order(:id).limit(5).each do |user| %>
+            <%= link_to user.email, sign_in_as_path(user_id: user.id) %>
+          <% end %>
+        </small>
+      <% end %>
+      <%# <%= link_to t("register"), new_user_registration_path %1> %>
+      <%# | %>
+      <%= link_to t("sign_in"), new_user_session_path %>
+      <%= link_to user_facebook_omniauth_authorize_path, title: t("my_devise.sign_in_with", provider: t('provider.facebook')), class: 'btn btn-social' do %>
+        <i class="fa fa-facebook-official"></i>
+      <% end %>
+      <%= link_to user_google_oauth2_omniauth_authorize_path, title: t("my_devise.sign_in_with", provider: t('provider.google_oauth2')), class: 'btn btn-social' do %>
+        <i class="fa fa-google" aria-hidden="true"></i>
+      <% end %>
     <% end %>
   </div>
 </nav>
@@ -129,21 +133,27 @@ end
           <a href="javascript:void(0)" onclick="$('#to_location').trigger('change')"><%= t('add_later') %></a>
         </li>
         <li class='<%= (already_shown=true) && 'current animated' if @landing_signup.errors[:email].present? && !already_shown %>'>
-          <div>
-            <%# do not use required: true, since browser error will impact this layout %>
-            <%= f.text_field :email, 'data-select-target': '#user-password', 'data-prevent-submit-on-enter': '#email-continue', id: 'email' %>
-            <a href="javascript:void(0)" onclick="$('#email').trigger('change')" id='email-continue'><%= t('continue') %></a>
-          </div>
-        </li>
-        <li class='<%= (already_shown=true) && 'current animated' if @landing_signup.errors[:password].present? && !already_shown %>'>
-          <div id="user-password">
-            <%= f.password_field :password, id: 'password' %>
-
-            <%= f.button type: :submit, class: 'btn btn-primary' do %>
+          <% if current_user %>
+            <%= f.button type: :submit, class: 'btn btn-primary', id: 'email' do %>
               <i class="fa fa-envelope" aria-hidden="true"></i>
               <%= t('activemodel.attributes.landing_signup.submit') %>
             <% end %>
-          </div>
+          <% else %>
+            <%# do not use required: true, since browser error will impact this layout %>
+            <%= f.text_field :email, 'data-select-target': '#password', 'data-prevent-submit-on-enter': '#email-continue', id: 'email' %>
+            <a href="javascript:void(0)" onclick="$('#email').trigger('change')" id='email-continue'><%= t('continue') %></a>
+          <% end %>
+        </li>
+        <li class='<%= (already_shown=true) && 'current animated' if @landing_signup.errors[:password].present? && !already_shown %>'>
+          <% if current_user %>
+          <% else %>
+            <%= f.password_field :password, id: 'password' %>
+          <% end %>
+
+          <%= f.button type: :submit, class: 'btn btn-primary' do %>
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+            <%= t('activemodel.attributes.landing_signup.submit') %>
+          <% end %>
         </li>
       </ol>
       <a class="carousel-control-prev <%= 'hide-not-important' unless @landing_signup.errors.present? %>" href="javascript:void(0)" role="button" id="left-arrow">

@@ -12,14 +12,6 @@ sr-latin:
     b: B
     c: V
   faq: Česta pitanja
-  user_mailer:
-    landing_signup:
-      subject: Hvala na registraciji!
-      title: Zdravo %{name}
-      description_of_service: Registrovali smo Vašu nameru za premeštaj. Dobićete imejl kada se desi poklapanje sa drugim premeštanjima.
-      confirmation_text: Molim Vas da pratite vezu za potvrdu Vaše imejl adrese
-    new_match:
-      chat_link: Idite i pokušajte da se dogovorite oko premeštaja
   sign_in: Prijavi se
   sign_out: Odjavi se
   register: Registruj se
@@ -28,20 +20,8 @@ sr-latin:
   provider:
     facebook: Fejsbuk
     google_oauth2: Gugl
-  my_devise:
-    registration_headline: Registrujte se
-    characters_minimum: Najmanje %{count} slova. brojeva ili drugih znakova
-    sign_in_headline: Prijavite se
-    forgot_password: Zaboravili ste lozinku ?
-    did_not_receive_confirmation_instructions: Niste primili uputstvo za potvrdu naloga ?
-    did_not_receive_unlock_instructions: Niste primili uputstvo za otključavanje naloga ?
-    sign_in_with: Prijavi se preko %{provider}-a
-    send_me_reset_password_instructions: Pošaljite mi uputstvo za promenu lozinke
-    resend_confirmation_instructions: Ponovo pošalji uputstva za potvrdu naloga
-    resend_unlock_instructions: Ponovo pošalji uputstva za otključavanje naloga
-    can_not_sign_in: Nije uspela prijava.
   admin_dashboard: Administratorska strana
-  dashboard: Početna
+  dashboard: Početak
   home_page: Naslovna strana
   are_you_sure_to_remove_item: Da li ste sigurni da želite da obrišete %{item} ?
   write_address_than_move_marker: Napišite adresu i onda podesite marker ikonu
@@ -67,6 +47,7 @@ sr-latin:
   my_moves: Moji vrtići
   my_requests: Moje želje
   my_chats: Moja dogovaranja
+  my_profile: Moj profil
   one_user_deleted_move: Jedan korisnik je obrisao premeštaj
   message_of_deleted_move: Obrisan premeštaj
   privacy_policy: Politika privatnosti
@@ -118,3 +99,4 @@ sr-latin:
     few: Želja je kreirana i %{count} poruke su poslate
     # all other integers: 5, 6, ... 9, 10, 11, 12, 13, 14 ... 20, 25, ...
     other: Želja je kreirana i %{count} poruka je poslato
+  hi_name: Zdravo %{name}

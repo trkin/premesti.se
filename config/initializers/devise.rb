@@ -137,7 +137,7 @@ Devise.setup do |config|
   # initial account confirmation) to be applied. Requires additional unconfirmed_email
   # db field (see migrations). Until confirmed, new email is stored in
   # unconfirmed_email column, and copied to email column on successful confirmation.
-  config.reconfirmable = false
+  config.reconfirmable = true
 
   # Defines which key will be used when confirming an account
   # config.confirmation_keys = [:email]
@@ -158,7 +158,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :validatable
   # Range for password length.
-  config.password_length = 1..128
+  config.password_length = 2..128
 
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly
@@ -255,12 +255,12 @@ Devise.setup do |config|
   config.omniauth :facebook,
                   Rails.application.secrets.facebook_key,
                   Rails.application.secrets.facebook_secret,
-                  scope: "public_profile,email",
-                  info_fields: "email,name"
+                  scope: 'public_profile,email',
+                  info_fields: 'email,name'
   config.omniauth :google_oauth2,
                   Rails.application.secrets.google_client_id,
                   Rails.application.secrets.google_client_secret,
-                  scope: "email,profile"
+                  scope: 'email,profile'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

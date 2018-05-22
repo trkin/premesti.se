@@ -16,6 +16,8 @@ FactoryBot.define do
   factory :location do
     sequence(:name) { |i| "LocationName#{i}" }
     sequence(:address) { |i| "LocationAddress#{i}" }
+    latitude '1'
+    longitude '1'
     city
   end
   factory :group do

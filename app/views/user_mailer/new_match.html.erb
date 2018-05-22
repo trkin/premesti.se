@@ -1,7 +1,7 @@
 <%
   subject_line "#{t('new_match')} #{@move.from_group.location.name}"
 %>
-<h2><%= t "user_mailer.landing_signup.title", name: @move.user.email %></h2>
+<p><%= t('hi_name', name: @move.user.email) %>!</p>
 
 <p>
   <%= link_to t('user_mailer.new_match.chat_link'), chat_url(@chat) %>

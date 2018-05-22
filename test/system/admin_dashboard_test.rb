@@ -1,11 +1,11 @@
-require "application_system_test_case"
+require 'application_system_test_case'
 
 class LandingTest < ApplicationSystemTestCase
   test 'see admin links' do
     password = 'asdfasdf'
     user = create :user, password: password, admin: true
     manual_login user.email, password
-    visit root_path
+    visit dashboard_path
 
     click_on user.email_username
     click_on t('admin_dashboard')
@@ -16,7 +16,7 @@ class LandingTest < ApplicationSystemTestCase
     password = 'asdfasdf'
     user = create :user, password: password
     manual_login user.email, password
-    visit root_path
+    visit dashboard_path
 
     refute_text t('admin_dashboard')
     visit admin_dashboard_path
@@ -25,13 +25,13 @@ class LandingTest < ApplicationSystemTestCase
   end
 
   test 'create location and group' do
-    create :city
+    city = create :city
     password = 'asdfasdf'
     user = create :user, password: password, admin: true
     manual_login user.email, password
-    visit root_path
-
     visit admin_dashboard_path
+
+    click_on city.name
 
     click_on t_crud('create', Location)
     fill_in Location.human_attribute_name('name'), with: 'My Location'
@@ -52,14 +52,13 @@ class LandingTest < ApplicationSystemTestCase
   end
 
   test 'create location with position on map' do
-    create :city
+    city = create :city
     password = 'asdfasdf'
     user = create :user, password: password, admin: true
     manual_login user.email, password
-    visit root_path
-
     visit admin_dashboard_path
 
+    click_on city.name
     click_on t_crud('create', Location)
     fill_in Location.human_attribute_name('name'), with: 'Spens'
     fill_in t('write_address_than_move_marker'), with: 'SPENS'

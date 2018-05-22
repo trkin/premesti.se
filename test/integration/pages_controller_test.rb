@@ -1,10 +1,10 @@
 require 'test_helper'
 
 class PagesControllerTest < ActionDispatch::IntegrationTest
-  test "should get index" do
+  test 'should get index' do
     get '/'
     assert_response :success
-    assert_select 'label', t('neo4j.attributes.landing_signup.current_location')
+    assert_select 'label', t('activemodel.attributes.landing_signup.current_location')
   end
 
   test 'landing signup success' do
@@ -17,9 +17,9 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
       current_location: group.location.id,
       from_group_age: group.age,
     }
-    assert_difference "User.count", 1 do
-      assert_difference "Move.count", 1 do
-        assert_difference "ActionMailer::Base.deliveries.size", 1 do
+    assert_difference 'User.count', 1 do
+      assert_difference 'Move.count', 1 do
+        assert_difference 'ActionMailer::Base.deliveries.size', 1 do
           post landing_signup_path, params: { landing_signup: params }
         end
       end
@@ -48,9 +48,9 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
       current_location: group.location.id,
       from_group_age: group.age,
     }
-    assert_difference "User.count", 0 do
-      assert_difference "Move.count", 1 do
-        assert_difference "ActionMailer::Base.deliveries.size", 1 do
+    assert_difference 'User.count', 0 do
+      assert_difference 'Move.count', 1 do
+        assert_difference 'ActionMailer::Base.deliveries.size', 1 do
           post landing_signup_path, params: { landing_signup: params }
         end
       end
@@ -58,12 +58,5 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     assert_redirected_to dashboard_path
     ActionMailer::Base.deliveries.clear
-  end
-
-  test 'redirect to dashboard for authenticated users' do
-    user = create :user
-    login_as user
-    get '/'
-    assert_redirected_to dashboard_path
   end
 end

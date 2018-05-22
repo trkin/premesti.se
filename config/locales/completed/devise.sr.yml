@@ -60,5 +60,34 @@ sr:
       not_found: није пронађено
       not_locked: није закључан
       not_saved:
-        one: '1 грешка спречава %{resource}а:'
-        other: "%{count} грешке спречавају %{resource}a:"
+        # 1, 21, 31 ...
+        one: '%{count} грешка спречава %{resource}а:'
+        # 2, 3, 4, 22, 23, 24, 32, 33, 34 ...
+        few: "%{count} грешке спречавају %{resource}a:"
+        # all other integers: 5, 6, ... 9, 10, 11, 12, 13, 14 ... 20, 25, ...
+        other: "%{count} грешака спречавају %{resource}a:"
+  my_devise:
+    registration_headline: Региструјте се
+    characters_minimum: Најмање %{count} слова. бројева или других знакова
+    sign_in_headline: Пријавите се
+    forgot_password: Заборавили сте лозинку ?
+    did_not_receive_confirmation_instructions: Нисте примили упутство за потврду налога ?
+    did_not_receive_unlock_instructions: Нисте примили упутство за откључавање налога ?
+    sign_in_with: Пријави се преко %{provider}-а
+    send_me_reset_password_instructions: Пошаљите ми упутство за промену лозинке
+    resend_confirmation_instructions: Поново пошаљи упутства за потврду налога
+    resend_unlock_instructions: Поново пошаљи упутства за откључавање налога
+    can_not_sign_in: Није успела пријава.
+    currently_waiting_confirmation_for: "Још увек чекамо потврду за: %{item}"
+    leave_blank_if_you_dont_want_to_change_it: Остави празно ако не желиш да је промениш
+    characters_minimum: "најмање %{count} карактера"
+    we_need_your_current_password_to_confirm_your_changes: потребна нам је тренутна лозинка да би смо потврдили измене
+    cancel_my_account: Обриши мој налог
+    unhappy: Незадовољни
+    new_password: Нова лозинка
+  my_devise_mailer:
+    we_are_contacting_you_someone_change_password: Пишемо вам да вас обавестимо да је ваша лозинка промењена.
+    we_are_contacting_you_email_is_beign_changed_to: Пишемо вам да вас обавестимо да је у току промена ваше имејл адресе у %{email}.
+    we_are_contacting_you_email_has_been_changed_to: Пишемо вам да вас обавестимо да је промењена ваша имејл адреса у %{email}.
+    someone_request_a_link_to_change_a_password: Неко је затражио везу за промену ваше лозинке.
+    if_you_did_not_request_this_ignore: Ако нисте затражили промену лозинке, молим вас да игноришете овај имејл. Ваша лозинка ће остати непромењена.

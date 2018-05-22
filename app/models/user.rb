@@ -32,7 +32,7 @@ class User
   property :confirmation_token
   property :confirmed_at, type: DateTime
   property :confirmation_sent_at, type: DateTime
-  # property :unconfirmed_email # Only if using reconfirmable
+  property :unconfirmed_email # Only if using reconfirmable
 
   ## Lockable
   # property :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts

@@ -8,27 +8,33 @@ sr-latin:
     models:
       user:
         one: korisnik
+        few: korisnika
         other: korisnici
         accusative: korisnika
       location:
         one: lokacija
+        few: lokacije
         other: lokacije
         accusative: lokaciju
       group:
         one: grupa
+        few: grupe
         other: grupe
         accusative: grupu
       city: grad
       move:
         one: premeštaj
+        few: premeštaja
         other: premeštaji
         accusative: premeštaj
       chat:
         one: dogovor
+        few: dogovora
         other: dogovori
         accusative: dogovor
       message:
         one: poruka
+        few: poruke
         other: poruke
         accusative: poruku
     attributes:
@@ -36,6 +42,7 @@ sr-latin:
         email: Imejl
         password: Lozinka
         password_confirmation: Potvrda lozinke
+        current_password: Trenutna lozinka
         confirmation_token: Ključ za potvrdu
         remember_me: Zapamti me
       location:

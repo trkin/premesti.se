@@ -12,14 +12,6 @@ sr:
     b: Б
     c: В
   faq: Честа питања
-  user_mailer:
-    landing_signup:
-      subject: Хвала на регистрацији!
-      title: Здраво %{name}
-      description_of_service: Регистровали смо Вашу намеру за премештај. Добићете имејл када се деси поклапање са другим премештањима.
-      confirmation_text: Молим Вас да пратите везу за потврду Ваше имејл адресе
-    new_match:
-      chat_link: Идите и покушајте да се договорите око премештаја
   sign_in: Пријави се
   sign_out: Одјави се
   register: Региструј се
@@ -28,20 +20,8 @@ sr:
   provider:
     facebook: Фејсбук
     google_oauth2: Гугл
-  my_devise:
-    registration_headline: Региструјте се
-    characters_minimum: Најмање %{count} слова. бројева или других знакова
-    sign_in_headline: Пријавите се
-    forgot_password: Заборавили сте лозинку ?
-    did_not_receive_confirmation_instructions: Нисте примили упутство за потврду налога ?
-    did_not_receive_unlock_instructions: Нисте примили упутство за откључавање налога ?
-    sign_in_with: Пријави се преко %{provider}-а
-    send_me_reset_password_instructions: Пошаљите ми упутство за промену лозинке
-    resend_confirmation_instructions: Поново пошаљи упутства за потврду налога
-    resend_unlock_instructions: Поново пошаљи упутства за откључавање налога
-    can_not_sign_in: Није успела пријава.
   admin_dashboard: Администраторска страна
-  dashboard: Почетна
+  dashboard: Почетак
   home_page: Насловна страна
   are_you_sure_to_remove_item: Да ли сте сигурни да желите да обришете %{item} ?
   write_address_than_move_marker: Напишите адресу и онда подесите маркер икону
@@ -67,6 +47,7 @@ sr:
   my_moves: Моји вртићи
   my_requests: Моје жеље
   my_chats: Моја договарања
+  my_profile: Мој профил
   one_user_deleted_move: Један корисник је обрисао премештај
   message_of_deleted_move: Обрисан премештај
   privacy_policy: Политика приватности
@@ -118,3 +99,4 @@ sr:
     few: Жеља је креирана и %{count} поруке су послате
     # all other integers: 5, 6, ... 9, 10, 11, 12, 13, 14 ... 20, 25, ...
     other: Жеља је креирана и %{count} порука је послато
+  hi_name: Здраво %{name}

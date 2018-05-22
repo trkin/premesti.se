@@ -64,4 +64,30 @@ en:
       not_locked: "was not locked"
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"
+        few: "%{count} errors prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"
+  my_devise:
+    registration_headline: Register here
+    characters_minimum: Minimum %{count} characters
+    sign_in_headline: Log in
+    forgot_password: Forgot your password?
+    did_not_receive_confirmation_instructions: "Didn't receive confirmation instructions?"
+    did_not_receive_unlock_instructions: "Didn't receive unlock instructions?"
+    sign_in_with: Sign in with %{provider}
+    send_me_reset_password_instructions: Send me reset password instructions
+    resend_confirmation_instructions: Resend confirmation instructions
+    resend_unlock_instructions: Resend unlock instructions
+    can_not_sign_in: "Can't sign in"
+    currently_waiting_confirmation_for: "Currently waiting confirmation for: %{item}"
+    leave_blank_if_you_dont_want_to_change_it: leave blank if you don't want to change it
+    characters_minimum: "%{count} characters minimum"
+    we_need_your_current_password_to_confirm_your_changes: we need your current password to confirm your changes
+    cancel_my_account: Cancel my account
+    unhappy: Unhappy
+    new_password: New password
+  my_devise_mailer:
+    we_are_contacting_you_someone_change_password: We're contacting you to notify you that your password has been changed.
+    we_are_contacting_you_email_is_beign_changed_to: We're contacting you to notify you that your email is being changed to %{email}.
+    we_are_contacting_you_email_has_been_changed_to: We're contacting you to notify you that your email has been changed to %{email}.
+    someone_request_a_link_to_change_a_password: Someone has requested a link to change your password. You can do this through the link below.
+    if_you_did_not_request_this_ignore: If you didn't request this, please ignore this email. Your password won't change until you access the link above and create a new one.

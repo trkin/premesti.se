@@ -1,0 +1,8 @@
+en:
+  user_mailer:
+    landing_signup:
+      subject: Thanks for registration!
+      description_of_service: We registered your move. You will receive email when there is a match with others.
+      confirmation_text: Please follow the link below in order to confirm your email
+    new_match:
+      chat_link: Go and try to negotiate move

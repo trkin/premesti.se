@@ -60,5 +60,34 @@ sr-latin:
       not_found: nije pronađeno
       not_locked: nije zaključan
       not_saved:
-        one: '1 greška sprečava %{resource}a:'
-        other: "%{count} greške sprečavaju %{resource}a:"
+        # 1, 21, 31 ...
+        one: '%{count} greška sprečava %{resource}a:'
+        # 2, 3, 4, 22, 23, 24, 32, 33, 34 ...
+        few: "%{count} greške sprečavaju %{resource}a:"
+        # all other integers: 5, 6, ... 9, 10, 11, 12, 13, 14 ... 20, 25, ...
+        other: "%{count} grešaka sprečavaju %{resource}a:"
+  my_devise:
+    registration_headline: Registrujte se
+    characters_minimum: Najmanje %{count} slova. brojeva ili drugih znakova
+    sign_in_headline: Prijavite se
+    forgot_password: Zaboravili ste lozinku ?
+    did_not_receive_confirmation_instructions: Niste primili uputstvo za potvrdu naloga ?
+    did_not_receive_unlock_instructions: Niste primili uputstvo za otključavanje naloga ?
+    sign_in_with: Prijavi se preko %{provider}-a
+    send_me_reset_password_instructions: Pošaljite mi uputstvo za promenu lozinke
+    resend_confirmation_instructions: Ponovo pošalji uputstva za potvrdu naloga
+    resend_unlock_instructions: Ponovo pošalji uputstva za otključavanje naloga
+    can_not_sign_in: Nije uspela prijava.
+    currently_waiting_confirmation_for: "Još uvek čekamo potvrdu za: %{item}"
+    leave_blank_if_you_dont_want_to_change_it: Ostavi prazno ako ne želiš da je promeniš
+    characters_minimum: "najmanje %{count} karaktera"
+    we_need_your_current_password_to_confirm_your_changes: potrebna nam je trenutna lozinka da bi smo potvrdili izmene
+    cancel_my_account: Obriši moj nalog
+    unhappy: Nezadovoljni
+    new_password: Nova lozinka
+  my_devise_mailer:
+    we_are_contacting_you_someone_change_password: Pišemo vam da vas obavestimo da je vaša lozinka promenjena.
+    we_are_contacting_you_email_is_beign_changed_to: Pišemo vam da vas obavestimo da je u toku promena vaše imejl adrese u %{email}.
+    we_are_contacting_you_email_has_been_changed_to: Pišemo vam da vas obavestimo da je promenjena vaša imejl adresa u %{email}.
+    someone_request_a_link_to_change_a_password: Neko je zatražio vezu za promenu vaše lozinke.
+    if_you_did_not_request_this_ignore: Ako niste zatražili promenu lozinke, molim vas da ignorišete ovaj imejl. Vaša lozinka će ostati nepromenjena.

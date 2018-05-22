@@ -1,0 +1,8 @@
+sr-latin:
+  user_mailer:
+    landing_signup:
+      subject: Hvala na registraciji!
+      description_of_service: Registrovali smo Vašu nameru za premeštaj. Dobićete imejl kada se desi poklapanje sa drugim premeštanjima.
+      confirmation_text: Molim Vas da pratite vezu za potvrdu Vaše imejl adrese
+    new_match:
+      chat_link: Idite i pokušajte da se dogovorite oko premeštaja

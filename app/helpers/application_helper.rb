@@ -15,8 +15,8 @@ module ApplicationHelper
     @landing_layout
   end
 
-  def breadcrumb(list)
-    @breadcrumb = list
+  def breadcrumb(list = {})
+    @breadcrumb = { I18n.t('dashboard') => (list.present? ? root_path : nil) }.merge list
   end
 
   def find_breadcrumb_list

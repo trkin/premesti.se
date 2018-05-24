@@ -1,5 +1,8 @@
 $(document).on 'change', '[data-select-target]', ->
   $target = $($(this).data('selectTarget'))
+  # change could be triggered on autofill email and password which are not
+  # current so ignore change events when are not under current
+  return unless $(this).parents('li').hasClass('current')
   $(this).parents('li').removeClass('current')
   next = $target.parents('li').addClass('current')
   unless next.next()[0]

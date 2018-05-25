@@ -15,6 +15,6 @@ class UserMailerTest < ActionMailer::TestCase
     user = create :user, confirmed_at: nil
     move = create :move, user: user
     mail = UserMailer.landing_signup(move)
-    assert_match t('user_mailer.landing_signup.confirmation_text'), mail.body.encoded
+    assert_match t('user_mailer.landing_signup.description_of_service_unconfirmed'), mail.body.encoded
   end
 end

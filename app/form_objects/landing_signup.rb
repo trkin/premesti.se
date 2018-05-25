@@ -8,8 +8,9 @@ class LandingSignup
   # other helpers: :notice, :alert
 
   validates(*REQUIRED_FIELDS, presence: true)
-  # rubocop:disable  Style/ColonMethodCall
+  # rubocop:disable Style/ColonMethodCall
   validates_format_of :email, with: Devise::email_regexp
+  # rubocop:enable Style/ColonMethodCall
 
   def perform
     return false unless valid?
@@ -55,7 +56,9 @@ class LandingSignup
     if @to_location.present?
       to_location = Location.find @to_location
       to_group = to_location.groups.find_by age: @from_group_age
-      return AddToGroupAndSendNotifications.new(@move, to_group).perform!
+      result = AddToGroupAndSendNotifications.new(@move, to_group).perform
+      errors.add :base, result.message unless result.success?
+      # do not return false since we just procceed with a notice
     end
     true
   end
@@ -63,6 +66,7 @@ class LandingSignup
   def notice
     notice = I18n.t('activemodel.models.landing_signup.success_notice')
     notice += ' ' + I18n.t('devise.registrations.signed_up_but_unconfirmed') unless user.confirmed?
+    notice += ' ' + @errors.full_messages.join(', ') if @errors.present?
     notice
   end
 

@@ -3,12 +3,16 @@
 %>
 <p><%= t('hi_name', name: @move.user.email) %>!</p>
 
-<p>
-  <%= t("user_mailer.landing_signup.description_of_service") %>
-  <% unless @move.user.confirmed? %>
-    <p>
-      <%= t("user_mailer.landing_signup.confirmation_text") %>
-    </p>
-    <p><%= link_to t("confirm_email"), confirmation_url(@move.user, confirmation_token: @confirmation_token) %></p>
-  <% end %>
-</p>
+<strong>
+  <%= t 'user_mailer.landing_signup.we_registered_your_move', move: @move.group_age_and_locations %>
+</strong>
+<% if @move.user.confirmed? %>
+  <p>
+    <%= t 'user_mailer.landing_signup.description_of_service' %>
+  </p>
+<% else %>
+  <p>
+    <%= t('user_mailer.landing_signup.description_of_service_unconfirmed') %>
+  </p>
+  <p><%= link_to t("confirm_email"), confirmation_url(@move.user, confirmation_token: @confirmation_token) %></p>
+<% end %>

@@ -26,7 +26,11 @@ class Group
 
   def self.title_for_age(age)
     age_interval = "01.03.#{Time.zone.today.year - age}-28.02.#{Time.zone.today.year - age + 1}"
-    "#{I18n.t("group_name_for_age_#{age}")} (#{I18n.t('born')} #{age_interval})"
+    "#{I18n.t('born')} #{age_interval} #{I18n.t("group_name_for_age_#{age}")} #{short_title_for_age age}"
+  end
+
+  def self.short_title_for_age(age)
+    "#{age} #{I18n.t('year')}"
   end
 
   def age_with_title
@@ -34,7 +38,7 @@ class Group
   end
 
   def age_with_short_title
-    "#{age} #{I18n.t('year')}"
+    self.class.short_title_for_age age
   end
 
   def self.find_or_create_by_location_id_and_age(location_id, age)

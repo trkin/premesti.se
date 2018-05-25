@@ -38,10 +38,6 @@ class AddToGroupAndSendNotifications
     end
   end
 
-  def perform!
-    perform || raise("AddToGroupAndSendNotifications #{@move.errors}")
-  end
-
   def ignore_sending_notification?
     unless @move.user.confirmed?
       @move.errors.add(:to_groups, ApplicationController.helpers.t('ignored_sending_notifications_unconfirmed_user'))
@@ -49,6 +45,7 @@ class AddToGroupAndSendNotifications
     @move.errors.present?
   end
 
+  # rubocop:disable Metrics/AbcSize
   def _validate_that_group_can_be_added?
     if !@group.present?
       @move.errors.add(:to_groups, ApplicationController.helpers.t('neo4j.errors.messages.required'))
@@ -61,4 +58,5 @@ class AddToGroupAndSendNotifications
     end
     @move.errors.blank?
   end
+  # rubocop:enable Metrics/AbcSize
 end

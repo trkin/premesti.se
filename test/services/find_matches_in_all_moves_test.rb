@@ -15,7 +15,7 @@ class FindMatchesInAllMovesTest < ActiveSupport::TestCase
       [moveAB, moveBA],
     ]
     results = FindMatchesInAllMoves.perform
-    assert_equal matches, results
+    assert_equal_when_sorted_by_id matches, results
   end
 
   def test_ab_not_same_age
@@ -31,7 +31,7 @@ class FindMatchesInAllMovesTest < ActiveSupport::TestCase
 
     matches = []
     results = FindMatchesInAllMoves.perform
-    assert_equal matches, results
+    assert_equal_when_sorted_by_id matches, results
   end
 
   def test_abc
@@ -52,6 +52,6 @@ class FindMatchesInAllMovesTest < ActiveSupport::TestCase
       [moveCA, moveBC, moveAB],
     ]
     results = FindMatchesInAllMoves.perform
-    assert_equal matches, results
+    assert_equal_when_sorted_by_id matches, results
   end
 end

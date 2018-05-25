@@ -16,6 +16,12 @@ Metrics/BlockLength:
     - 'test/**/*'
     - 'lib/**/*'
 
+# test could be long
+Metrics/ClassLength:
+  Exclude:
+    - 'test/**/*'
+
+
 # big test big ABC size
 Metrics/AbcSize:
   Max: 25

@@ -42,7 +42,8 @@ group :development, :test do
   gem 'guard-minitest'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
-  gem "rack-livereload"
+  gem 'minitest-focus'
+  gem 'rack-livereload'
   gem 'selenium-webdriver'
 end
 

@@ -17,9 +17,32 @@ class FindMatchesForOneMoveTest < ActiveSupport::TestCase
   end
 
   def test_empty_results
-    m_ab = create :move, from_group: @g_a1, to_groups: @g_b1
-    matches = [
-    ]
+    m_ab = create :move, from_group: @g_a1, to_groups: @g_b1, a_name: :m_ab
+    matches = []
+    results = FindMatchesForOneMove.perform(m_ab)
+    assert_equal (matches.map { |r| r.map(&:a_name) }), (results.map { |r| r.map(&:a_name) })
+  end
+
+  def test_ab_user_a_not_confirmed
+    # a -m_ab-> b
+    #   <-m_ba-
+    unconfirmed_user = create :unconfirmed_user
+    m_ab = create :move, from_group: @g_a1, to_groups: @g_b1, a_name: :m_ab, user: unconfirmed_user
+    _m_ba = create :move, from_group: @g_b1, to_groups: @g_a1, a_name: :m_ba
+
+    matches = []
+    results = FindMatchesForOneMove.perform(m_ab)
+    assert_equal (matches.map { |r| r.map(&:a_name) }), (results.map { |r| r.map(&:a_name) })
+  end
+
+  def test_ab_user_b_not_confirmed
+    # a -m_ab-> b
+    #   <-m_ba-
+    unconfirmed_user = create :unconfirmed_user
+    m_ab = create :move, from_group: @g_a1, to_groups: @g_b1, a_name: :m_ab
+    _m_ba = create :move, from_group: @g_b1, to_groups: @g_a1, user: unconfirmed_user, a_name: :m_ba
+
+    matches = []
     results = FindMatchesForOneMove.perform(m_ab)
     assert_equal (matches.map { |r| r.map(&:a_name) }), (results.map { |r| r.map(&:a_name) })
   end
@@ -27,8 +50,8 @@ class FindMatchesForOneMoveTest < ActiveSupport::TestCase
   def test_ab_single
     # a -m_ab-> b
     #   <-m_ba-
-    m_ab = create :move, from_group: @g_a1, to_groups: @g_b1
-    m_ba = create :move, from_group: @g_b1, to_groups: @g_a1
+    m_ab = create :move, from_group: @g_a1, to_groups: @g_b1, a_name: :m_ab
+    m_ba = create :move, from_group: @g_b1, to_groups: @g_a1, a_name: :m_ba
     # some noice
     _m_ac = create :move, from_group: @g_a1, to_groups: @g_c1
     _m_ab2 = create :move, from_group: @g_a2, to_groups: @g_b2

@@ -51,6 +51,12 @@ rake db:migrate
 rake db:seed
 ~~~
 
+For test you need to do again
+
+~~~
+RAILS_ENV=test rake db:migrate
+~~~
+
 ## Run
 
 Before running localy you need to get npm packages with:

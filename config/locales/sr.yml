@@ -112,3 +112,5 @@ sr:
   cancel_report_abuse: Одустани од пријаве злоупотребе
   we_received_report_successfully: Успешно смо примили пријаву злоупотребе
   we_cancel_report_successfully: Успешно смо отказали пријаву злоупотребе
+  my_move_introduction: Ако желиш да се преместиш у %{from} или из %{to} онда ступимо у контакт ради лакше ротације места. Генерација %{age}
+  share: Подели

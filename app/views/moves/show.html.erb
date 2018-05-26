@@ -33,3 +33,4 @@
   </div>
   <%= show_lines_map [@move.from_group.location, @move.to_groups.map(&:location)].flatten, @move.to_groups.map(&:location).map { |loc| OpenStruct.new from: @move.from_group.location, to: loc, age: @move.from_group.age }, class: 'show-lines-map-container' %>
 </div>
+<%= link_to t('share'), my_move_path(@move, @move.group_age_and_locations) %>

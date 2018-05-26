@@ -46,10 +46,13 @@ class PagesController < ApplicationController
     )
     if @contact_form.perform
       flash.now[:notice] = t('contact_thanks')
-      render :contact
     else
       flash.now[:alert] = @contact_form.errors.full_messages.join(', ')
-      render :contact
     end
+    render :contact
+  end
+
+  def my_move
+    @move = Move.find params[:id]
   end
 end

@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   post 'contact', to: 'pages#submit_contact'
   get 'find_on_map', to: 'pages#find_on_map'
   get 'select2_locations', to: 'pages#select2_locations'
+  get 'my-move/:id/:some_name', to: 'pages#my_move', as: :my_move
+
   get 'sign_in_as', to: 'application#sign_in_as'
 
   get 'dashboard', to: 'dashboard#index'

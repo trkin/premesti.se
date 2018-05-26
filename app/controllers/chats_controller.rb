@@ -14,14 +14,35 @@ class ChatsController < ApplicationController
     end
   end
 
+  def report_message
+    message = @chat.messages.find params[:message_id]
+    if params[:cancel_report]
+      message.cancel_report
+      redirect_to chat_path(@chat), notice: t('we_cancel_report_successfully')
+    else
+      message.report_by current_user
+      redirect_to chat_path(@chat), notice: t('we_received_report_successfully')
+    end
+  end
+
   def destroy_message
     message = @chat.messages.where(user: current_user).find params[:message_id]
     message.destroy
     redirect_to chat_path(@chat), notice: t_crud('success_delete', Message)
   end
 
+  def destroy
+    raise 'only_development' unless Rails.env.development?
+    @chat.destroy
+    redirect_to root_path
+  end
+
   def _set_chat
-    @chat = current_user.moves.chats.where(id: params[:id]).first
+    @chat = if current_user.admin?
+              Chat.find params[:id]
+            else
+              @current_user.moves.chats.where(id: params[:id]).first
+            end
     raise Neo4j::ActiveNode::Labels::RecordNotFound unless @chat
   end
 
@@ -32,11 +53,5 @@ class ChatsController < ApplicationController
       user: current_user,
       chat: @chat,
     )
-  end
-
-  def destroy
-    raise 'only_development' unless Rails.env.development?
-    @chat.destroy
-    redirect_to root_path
   end
 end

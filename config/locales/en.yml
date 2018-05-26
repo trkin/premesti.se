@@ -23,6 +23,7 @@ en:
   admin_dashboard: Admin Dashboard
   dashboard: Dashboard
   home_page: Home Page
+  are_you_sure: Are you sure ?
   are_you_sure_to_remove_item: Are you sure you want to delete %{item} ?
   write_address_than_move_marker: Write approximate address and than move the marker icon
   autocomplete_contains_no_geometry: Autocomplete's returned place contains no geometry
@@ -100,3 +101,14 @@ en:
     # all other integers: 5, 6, ... 9, 10, 11, 12, 13, 14 ... 20, 25, ...
     other: Request created and sent %{count} notifications successfully
   hi_name: Hi %{name}
+  report:
+    # 1, 21, 31 ...
+    one: '%{count} report'
+    # 2, 3, 4, 22, 23, 24, 32, 33, 34 ...
+    few: '%{count} reports'
+    # all other integers: 5, 6, ... 9, 10, 11, 12, 13, 14 ... 20, 25, ...
+    other: '%{count} reports'
+  report_abuse: Report abuse
+  cancel_report_abuse: Cancel report abuse
+  we_received_report_successfully: We received report successfully
+  we_cancel_report_successfully: We cancelled report successfully

@@ -6,7 +6,7 @@ module TranslateHelper
     if model_class.class == Hash
       t(action, item: t("neo4j.models.#{model_class[:item].name.downcase}.accusative"))
     else
-      t(action, item: t("neo4j.models.#{model_class.name.downcase}.accusative"))
+      "#{t(action)} #{t("neo4j.models.#{model_class.name.downcase}.accusative")}"
     end
   end
 end

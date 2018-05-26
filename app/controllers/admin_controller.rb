@@ -1,13 +1,13 @@
 class AdminController < ApplicationController
-  before_action :check_admin
+  before_action :_check_admin
 
   def dashboard; end
 
-  def users
-    @users = User.all
+  def reported_messages
+    @reported_messages = Message.reported
   end
 
-  def check_admin
+  def _check_admin
     redirect_to(root_path) unless current_user.admin?
   end
 end

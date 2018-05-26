@@ -1,0 +1,11 @@
+<ul>
+  <% @reported_messages.each do |message| %>
+    <li>
+      <%= link_to message.user.email, admin_user_path(message.user) %>
+      <%= message.text %>
+      <%= message.reported_at.to_s :short %>
+      <%= link_to 'reported_by', admin_user_path(message.reported_by_user_id) %>
+      <%= link_to 'chat', chat_path(message.chat) %>
+    </li>
+  <% end %>
+</ul>

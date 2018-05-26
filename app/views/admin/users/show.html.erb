@@ -1,0 +1,13 @@
+<div>
+  <%= @user.email %>
+</div>
+<% @user.moves.each do |move| %>
+  <div>
+    <%= move.group_age_and_locations %>
+  </div>
+<% end %>
+<% @user.messages.each do |message| %>
+  <div>
+    <%= message.text %>
+  </div>
+<% end %>

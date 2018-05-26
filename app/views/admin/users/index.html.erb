@@ -1,8 +1,12 @@
 <ul>
   <% @users.each do |user| %>
     <li>
+      <%= user.email %>
       <%= link_to sign_in_as_path(user_id: user.id) do %>
-        <%= user.email %>
+        sign_in_as
+        <% unless user.confirmed? %>
+          <span class='badge badge-danger'>unconfirmed</span>
+        <% end %>
         <% if user.admin? %>
           <span class='badge badge-primary'>admin</span>
         <% end %>

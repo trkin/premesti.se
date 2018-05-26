@@ -24,6 +24,10 @@ class AddToGroupAndSendNotifications
   def perform
     return Error.new(@move.errors.values.join(', ')) unless _validate_that_group_can_be_added?
     @move.to_groups << @group
+    create_and_send_notifications
+  end
+
+  def create_and_send_notifications
     return Error.new(@move.errors.values.join(', ')) if ignore_sending_notification?
     results = FindMatchesForOneMove.perform @move, @group
     count = 0

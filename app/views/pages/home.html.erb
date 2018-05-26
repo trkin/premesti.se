@@ -13,7 +13,9 @@
   </div>
   <div class="ml-auto">
     <% if current_user %>
-      <%= link_to t('dashboard'), dashboard_path %>
+      <div class='p-3'>
+        <%= link_to t('dashboard'), dashboard_path %>
+      </div>
     <% else %>
       <% if Rails.env.development? %>
         <small>
@@ -58,6 +60,7 @@
       <span>
         <%= (1..7).map {|i| "<span class='color-age-#{i}'>#{i} #{I18n.t('year')}</span>, " }.join.html_safe %>
       </span>
+      <br>
       <span id='references'></span>
       <script>
         <% text = Move.query_as(:m).where('m.created_at > ?', (Time.zone.now - 7.day).to_i).limit(30).pluck(:m).map do |move|

@@ -30,12 +30,14 @@ Rails.application.routes.draw do
     member do
       post :create_message
       delete :destroy_message
+      patch :report_message
     end
   end
 
   namespace :admin do
     get :dashboard
-    get :users
+    resources :users
+    get :reported_messages
     resources :locations
     resources :groups
   end

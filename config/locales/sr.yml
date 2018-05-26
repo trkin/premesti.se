@@ -23,6 +23,7 @@ sr:
   admin_dashboard: Администраторска страна
   dashboard: Почетак
   home_page: Насловна страна
+  are_you_sure: Да ли сте сигурни ?
   are_you_sure_to_remove_item: Да ли сте сигурни да желите да обришете %{item} ?
   write_address_than_move_marker: Напишите адресу и онда подесите маркер икону
   autocomplete_contains_no_geometry: Тражени појам нема положај на мапи
@@ -100,3 +101,14 @@ sr:
     # all other integers: 5, 6, ... 9, 10, 11, 12, 13, 14 ... 20, 25, ...
     other: Жеља је креирана и %{count} порука је послато
   hi_name: Здраво %{name}
+  report:
+    # 1, 21, 31 ...
+    one: '%{count} пријава'
+    # 2, 3, 4, 22, 23, 24, 32, 33, 34 ...
+    few: '%{count} пријавe'
+    # all other integers: 5, 6, ... 9, 10, 11, 12, 13, 14 ... 20, 25, ...
+    other: '%{count} пријава'
+  report_abuse: Пријави злоупотребу
+  cancel_report_abuse: Одустани од пријаве злоупотребе
+  we_received_report_successfully: Успешно смо примили пријаву злоупотребе
+  we_cancel_report_successfully: Успешно смо отказали пријаву злоупотребе

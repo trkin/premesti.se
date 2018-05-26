@@ -143,7 +143,8 @@ namespace :db do
   desc 'setup = drop, migrate and seed'
   task setup: :environment do
     puts 'this is not implemented'
-    puts 'since drop need some time to bootup, and migrate raises exception'
+    puts 'since drop need some time to bootup, and migrate raises exception, use:'
+    puts 'rake db:drop && db:migrate db:seed'
   end
 
   desc 'create groups for all locations without groups'

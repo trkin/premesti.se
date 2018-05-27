@@ -26,19 +26,19 @@
   </div>
 </nav>
 <div class="landing-page-header text-center">
-  <h2>
-    <%= t('my_move_introduction', from: @move.from_group.location.name, to: @move.to_groups.map(&:location).map(&:name).join(t('or')), age: Group.title_for_age(@move.from_group.age)) %>
-  </h2>
+  <div class='my-move-introduction'>
+    <%= t('my_move_introduction', from: @move.from_group.location.name, to: @move.to_groups.map(&:location).map(&:name).join(t('or')), age: Group.title_for_age(@move.from_group.age)).html_safe %>
+  </div>
   <%= modal id: 'find-on-map-modal', title: t('find_on_map'), fade: false, modal_dialog_class: 'modal-lg' %>
   <%= bootstrap_form_for @landing_signup, url: my_move_path, builder: MyFormBuilder do |f| %>
     <%= f.hidden_field :current_city %>
-    <div class='m-3 d-flex'>
+    <div class='my-move m-3 d-flex flex-wrap align-items-start justify-content-center'>
       <div class=''>
         <%= f.select :current_location, @landing_signup.already_selected_current_location_options, {}, id: 'current_location', 'data-select2-ajax-initialize': select2_locations_path %>
         <%= link_to t('or_choose_any_on_map'), find_on_map_path(select_element: '#current_location'), "data-toggle": "modal", "data-target": "#find-on-map-modal" %>
       </div>
       <div class=''>
-        <%= f.select :from_group_age, 1.upto(7).map {|a| [Group.title_for_age(a), a]}, {}, id: 'from_group_age', 'data-increase-abc': 2, 'data-select-target': '#to_location' %>
+        <%= f.select :from_group_age, 1.upto(7).map {|a| [Group.title_for_age(a), a]}, {}, 'data-select2-initialize': true %>
       </div>
       <div class=''>
         <%= f.select :to_location, @landing_signup.already_selected_to_location_options, {}, id: 'to_location', 'data-select2-ajax-initialize': select2_locations_path %>
@@ -47,6 +47,8 @@
       <% unless current_user %>
         <div class=''>
           <%= f.text_field :email, 'data-select-target': '#password', 'data-prevent-submit-on-enter': '#email-continue', id: 'email' %>
+        </div>
+        <div>
           <%= f.password_field :password, id: 'password' %>
         </div>
       <% end # unless current_user %>

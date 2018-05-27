@@ -64,8 +64,13 @@
       <span id='references'></span>
       <script>
         <% text = Move.query_as(:m).where('m.created_at > ?', (Time.zone.now - 7.day).to_i).limit(30).pluck(:m).map do |move|
-          "<span class=\"color-age-#{move.from_group.age}\">#{move.show_locations}</span>"
-        end.join(', ').html_safe %>
+          "<a href=\"#{my_move_path(move, move.group_age_and_locations)}\"><span class=\"color-age-#{move.from_group.age}\">" +
+            move.show_locations +
+          "</span></a>"
+        end.join(', ').html_safe
+        # join with comma is important since we split by that and show one by
+        # one, please without colons for now
+%>
         alertTextShowHide.element_text(document.getElementById('references'), '<%= text %>', 99999, 500, ',');
       </script>
     </div>

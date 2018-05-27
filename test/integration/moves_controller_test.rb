@@ -38,7 +38,7 @@ class MovesControllerTest < ActionDispatch::IntegrationTest
     group = create :group, age: move.from_group.age
     create :move, from_group: group, to_groups: move.from_group
     assert_difference 'move.to_groups.count', 1 do
-      assert_difference 'ActionMailer::Base.deliveries.size', 1 do
+      assert_difference 'all_mails.count', 1 do
         post create_to_group_move_path(move, to_location_id: group.location.id)
       end
     end

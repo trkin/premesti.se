@@ -29,8 +29,34 @@
   <h2>
     <%= t('my_move_introduction', from: @move.from_group.location.name, to: @move.to_groups.map(&:location).map(&:name).join(t('or')), age: Group.title_for_age(@move.from_group.age)) %>
   </h2>
-  <div class='m-3'>
-    <a class="btn btn-primary btn-xl animated rubberBand" href="/#carouselbox"><%= t :where_do_you_want_to_move %></a>
-  </div>
+  <%= modal id: 'find-on-map-modal', title: t('find_on_map'), fade: false, modal_dialog_class: 'modal-lg' %>
+  <%= bootstrap_form_for @landing_signup, url: my_move_path, builder: MyFormBuilder do |f| %>
+    <%= f.hidden_field :current_city %>
+    <div class='m-3 d-flex'>
+      <div class=''>
+        <%= f.select :current_location, @landing_signup.already_selected_current_location_options, {}, id: 'current_location', 'data-select2-ajax-initialize': select2_locations_path %>
+        <%= link_to t('or_choose_any_on_map'), find_on_map_path(select_element: '#current_location'), "data-toggle": "modal", "data-target": "#find-on-map-modal" %>
+      </div>
+      <div class=''>
+        <%= f.select :from_group_age, 1.upto(7).map {|a| [Group.title_for_age(a), a]}, {}, id: 'from_group_age', 'data-increase-abc': 2, 'data-select-target': '#to_location' %>
+      </div>
+      <div class=''>
+        <%= f.select :to_location, @landing_signup.already_selected_to_location_options, {}, id: 'to_location', 'data-select2-ajax-initialize': select2_locations_path %>
+        <%= link_to t('or_choose_any_on_map'), find_on_map_path(select_element: '#to_location'), "data-toggle": "modal", "data-target": "#find-on-map-modal" %>
+      </div>
+      <% unless current_user %>
+        <div class=''>
+          <%= f.text_field :email, 'data-select-target': '#password', 'data-prevent-submit-on-enter': '#email-continue', id: 'email' %>
+          <%= f.password_field :password, id: 'password' %>
+        </div>
+      <% end # unless current_user %>
+      <div class=''>
+        <%= f.button type: :submit, class: 'btn btn-primary' do %>
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+          <%= t('activemodel.attributes.landing_signup.submit') %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
   <%= show_lines_map [@move.from_group.location, @move.to_groups.map(&:location)].flatten, @move.to_groups.map(&:location).map { |loc| OpenStruct.new from: @move.from_group.location, to: loc, age: @move.from_group.age }, class: 'show-all-lines-map-container' %>
 </div>

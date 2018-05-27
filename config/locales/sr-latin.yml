@@ -62,6 +62,7 @@ sr-latin:
   born: rođeni
   or: ili
   find_on_map: Pronađi na mapi
+  or_choose_any_on_map: ili izaberi neki na mapi
   add_later: Dodaj kasnije
   problem_with_account: Problem sa nalogom ?
   send: Pošalji

@@ -33,14 +33,14 @@ class OmniauthCallbacksControllerTest < ActionDispatch::IntegrationTest
     follow_redirect!
     follow_redirect!
     assert_select '#userDropdown', user.email_username
-    assert_select '#notice-debug', t('devise.omniauth_callbacks.success', kind: t("provider.google_oauth2"))
+    assert_select '#notice-debug', t('devise.omniauth_callbacks.success', kind: t('provider.google_oauth2'))
   end
 
   test 'facebook signup' do
     email = 'my@email.com'
     OmniAuth.config.add_mock :facebook, info: { email: email }
-    assert_difference "User.count", 1 do
-      assert_difference "ActionMailer::Base.deliveries.size", 0 do
+    assert_difference 'User.count', 1 do
+      assert_difference 'all_mails.count', 0 do
         get user_facebook_omniauth_authorize_path
         follow_redirect!
         follow_redirect!
@@ -54,7 +54,7 @@ class OmniauthCallbacksControllerTest < ActionDispatch::IntegrationTest
     email = 'my@email.com'
     create :user, email: email
     OmniAuth.config.add_mock :facebook, info: { email: email }
-    assert_difference "User.count", 0 do
+    assert_difference 'User.count', 0 do
       get user_facebook_omniauth_authorize_path
       follow_redirect!
       follow_redirect!
@@ -64,7 +64,7 @@ class OmniauthCallbacksControllerTest < ActionDispatch::IntegrationTest
 
   def silence_omniauth
     previous_logger = OmniAuth.config.logger
-    OmniAuth.config.logger = Logger.new("/dev/null")
+    OmniAuth.config.logger = Logger.new('/dev/null')
     yield
   ensure
     OmniAuth.config.logger = previous_logger
@@ -72,7 +72,7 @@ class OmniauthCallbacksControllerTest < ActionDispatch::IntegrationTest
 
   test 'failure' do
     OmniAuth.config.mock_auth[:facebook] = :invalid_credentials
-    assert_difference "User.count", 0 do
+    assert_difference 'User.count', 0 do
       get user_facebook_omniauth_authorize_path
       silence_omniauth { follow_redirect! }
       follow_redirect!

@@ -4,12 +4,13 @@ module MailerHelpers
   end
 
   def all_mails
-    ActionMailer::Base.deliveries.last
+    ActionMailer::Base.deliveries
   end
 
   # last_email is renamed to last_mail
   def last_mail
-    ActionMailer::Base.deliveries.last
+    raise 'you_should_use_give_me_last_mail_and_clear_mails'
+    # ActionMailer::Base.deliveries.last
   end
 
   # some usage is like
@@ -21,10 +22,13 @@ module MailerHelpers
   # )[1]
   # visit confirmation_link
   def give_me_last_mail_and_clear_mails
-    mail = last_mail
+    mail = ActionMailer::Base.deliveries.last
     clear_mails
     mail
   end
+end
+class ActiveSupport::TestCase
+  include MailerHelpers
 end
 class ActionDispatch::IntegrationTest
   include MailerHelpers

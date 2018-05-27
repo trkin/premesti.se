@@ -17,7 +17,7 @@ class LandingTest < ApplicationSystemTestCase
     fill_in t('activemodel.attributes.landing_signup.password'), with: '1234567'
     assert_difference 'Move.count', 1 do
       assert_difference 'User.count', 1 do
-        assert_difference 'ActionMailer::Base.deliveries.size', 1 do
+        assert_difference 'all_mails.count', 1 do
           click_on t('activemodel.attributes.landing_signup.submit')
         end
       end
@@ -36,7 +36,7 @@ class LandingTest < ApplicationSystemTestCase
     click_on t('sign_out')
     assert_selector 'a', text: t('sign_in')
 
-    registration_email = ActionMailer::Base.deliveries.last
+    registration_email = give_me_last_mail_and_clear_mails
     assert_equal [email], registration_email.to
     confirmation_link = registration_email.html_part.decoded.match(
       /(http:.*)">#{t("confirm_email")}/
@@ -48,6 +48,5 @@ class LandingTest < ApplicationSystemTestCase
 
     assert_selector 'a', text: user.email_username
     refute_selector 'a', text: t('register')
-    ActionMailer::Base.deliveries.clear
   end
 end

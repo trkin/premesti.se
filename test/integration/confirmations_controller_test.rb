@@ -9,7 +9,7 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     user = create :unconfirmed_user
     create :move, user: user, from_group: group_b, to_groups: [group_a]
     assert_difference 'Chat.count', 1 do
-      assert_difference 'ActionMailer::Base.deliveries.size', 1 do
+      assert_difference 'all_mails.count', 1 do
         get user_confirmation_path(confirmation_token: user.confirmation_token)
       end
     end

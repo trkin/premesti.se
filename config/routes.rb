@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'find_on_map', to: 'pages#find_on_map'
   get 'select2_locations', to: 'pages#select2_locations'
   get 'my-move/:id/:some_name', to: 'pages#my_move', as: :my_move
+  post 'my-move/:id/:some_name', to: 'pages#submit_my_move'
 
   get 'sign_in_as', to: 'application#sign_in_as'
 

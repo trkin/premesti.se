@@ -1,15 +1,19 @@
+# rubocop:disable Metrics/ClassLength
 class LandingSignup
   include ActiveModel::Model
-  REQUIRED_FIELDS = %i[current_city current_location from_group_age email password].freeze
+  REQUIRED_FIELDS = %i[current_city current_location from_group_age].freeze
+  REQUIRED_IF_NO_CURRENT_USER = %i[email password].freeze
   OPTIONAL_FIELDS = %i[to_location].freeze
-  FIELDS = REQUIRED_FIELDS + OPTIONAL_FIELDS
+  FIELDS = REQUIRED_FIELDS + REQUIRED_IF_NO_CURRENT_USER + OPTIONAL_FIELDS
   attr_accessor(*FIELDS)
-  attr_reader :user, :move, :existing_user
+  attr_accessor :current_user
+  attr_reader :user, :move
   # other helpers: :notice, :alert
 
   validates(*REQUIRED_FIELDS, presence: true)
+  validates(*REQUIRED_IF_NO_CURRENT_USER, presence: true, unless: :current_user)
   # rubocop:disable Style/ColonMethodCall
-  validates_format_of :email, with: Devise::email_regexp
+  validates_format_of :email, with: Devise::email_regexp, unless: :current_user
   # rubocop:enable Style/ColonMethodCall
 
   def perform
@@ -22,12 +26,15 @@ class LandingSignup
   end
 
   def _create_or_find_user?
-    if User.find_by email: @email
-      _valid_existing_user?
+    if @current_user.present?
+      @user = @current_user
+      true
+    elsif User.find_by email: @email
+      _valid_password_for_existing_user?
     else
       @user = User.new email: @email, password: @password
       @user.skip_confirmation_notification! # we will manually send confirmation
-      if @user.valid?
+      if @user.save
         true
       else
         errors.add :base, @user.errors.full_messages.join(', ')
@@ -36,11 +43,10 @@ class LandingSignup
     end
   end
 
-  def _valid_existing_user?
+  def _valid_password_for_existing_user?
     user = User.find_by email: @email
     if user.valid_password? password
       @user = user
-      @existing_user = true
       true
     else
       errors.add :password, :invalid
@@ -109,4 +115,26 @@ class LandingSignup
       result[group.id] = groups
     end
   end
+
+  def already_selected_current_location_options
+    if current_location.present?
+      # there is exception that can not find by uuid=nil when we use same name
+      # as the method, actually we call method
+      # current_location = Location.find current_location
+      current_location_object = Location.find current_location
+      [[current_location_object.name_with_address, current_location_object.id]]
+    else
+      []
+    end
+  end
+
+  def already_selected_to_location_options
+    if @to_location.present?
+      to_location_object = Location.find @to_location
+      [[to_location_object.name_with_address, to_location_object.id]]
+    else
+      []
+    end
+  end
 end
+# rubocop:enable Metrics/ClassLength

@@ -35,6 +35,8 @@ class Move
     destroy
   end
 
+  # if you add directly group to location: move.to_groups << group
+  # then you can call move.save! to check this validation
   def _same_age
     return unless from_group
     to_groups.each do |group|

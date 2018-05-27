@@ -142,9 +142,12 @@ namespace :db do
 
   desc 'setup = drop, migrate and seed'
   task setup: :environment do
-    puts 'this is not implemented'
-    puts 'since drop need some time to bootup, and migrate raises exception, use:'
-    puts 'rake db:drop && db:migrate db:seed'
+    puts sh "rm -rf db/neo4j/#{Rails.env}/data/databases/graph.db"
+    Rake::Task['neo4j:restart'].invoke Rails.env
+    puts 'sleeping and running neo4j:migrate'
+    sleep 5
+    Rake::Task['neo4j:migrate'].invoke Rails.env
+    Rake::Task['db:seed'].invoke Rails.env
   end
 
   desc 'create groups for all locations without groups'

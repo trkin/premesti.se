@@ -110,13 +110,7 @@ end
     <div id='carouselbox' class="carouselbox <%= 'no-transition' if Rails.env.test? %>">
       <ol class="no-padding-relative">
         <li class='<%= (already_shown=true) && 'current animated' if @landing_signup.errors[:current_location].present? || @landing_signup.errors.blank? %>'>
-          <% already_selected_current_location_options = if @landing_signup.current_location.present?
-                                                           current_location = Location.find @landing_signup.current_location
-                                                           [[current_location.name_with_address, current_location.id]]
-                                                         else
-                                                           []
-                                                         end %>
-          <%= f.select :current_location, already_selected_current_location_options, {}, id: 'current_location', 'data-select2-ajax-initialize': select2_locations_path, 'data-increase-abc': 1, 'data-select-target': '#from_group_age' %>
+          <%= f.select :current_location, @landing_signup.already_selected_current_location_options, {}, id: 'current_location', 'data-select2-ajax-initialize': select2_locations_path, 'data-increase-abc': 1, 'data-select-target': '#from_group_age' %>
           <div class="text-center d-none d-md-block"><%= t('or') %></div>
           <%= link_to t('find_on_map'), find_on_map_path(select_element: '#current_location'), "data-toggle": "modal", "data-target": "#find-on-map-modal" %>
         </li>
@@ -124,13 +118,7 @@ end
           <%= f.select :from_group_age, 1.upto(7).map {|a| [Group.title_for_age(a), a]}, {}, id: 'from_group_age', 'data-increase-abc': 2, 'data-select-target': '#to_location' %>
         </li>
         <li class='<%= (already_shown=true) && 'current animated' if @landing_signup.errors[:to_location].present? && !already_shown %>'>
-          <% already_selected_to_location_options = if @landing_signup.to_location.present?
-                                                           to_location = Location.find @landing_signup.to_location
-                                                           [[to_location.name_with_address, to_location.id]]
-                                                         else
-                                                           []
-                                                         end %>
-          <%= f.select :to_location, already_selected_to_location_options, {}, id: 'to_location', 'data-select2-ajax-initialize': select2_locations_path, 'data-increase-abc': 3, 'data-select-target': '#email' %>
+          <%= f.select :to_location, @landing_signup.already_selected_to_location_options, {}, id: 'to_location', 'data-select2-ajax-initialize': select2_locations_path, 'data-increase-abc': 3, 'data-select-target': '#email' %>
           <%= link_to t('find_on_map'), find_on_map_path(select_element: '#to_location'), "data-toggle": "modal", "data-target": "#find-on-map-modal" %>
           <div class="text-center d-none d-md-block"><%= t('or') %></div>
           <a href="javascript:void(0)" onclick="$('#to_location').trigger('change')"><%= t('add_later') %></a>

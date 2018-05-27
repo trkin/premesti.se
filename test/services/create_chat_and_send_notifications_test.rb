@@ -3,28 +3,31 @@ class CreateChatAndSendNotificationsTest < ActiveSupport::TestCase
   def test_create_chat_2_moves_send_notification
     m1 = create :move
     m2 = create :move
+    result = nil
     assert_difference 'Chat.count', 1 do
-      assert_difference 'ActionMailer::Base.deliveries.size', 1 do
+      assert_difference 'all_mails.count', 1 do
         result = CreateChatAndSendNotifications.new(m1, [m2]).perform
-        assert_equal result.chat.moves, [m1, m2]
-        email = ActionMailer::Base.deliveries.first
-        assert_match Regexp.new(t('user_mailer.new_match.chat_link')), email.html_part.body.to_s
       end
     end
+    assert_equal result.chat.moves, [m1, m2]
+    email = give_me_last_mail_and_clear_mails
+    assert_match Regexp.new(t('user_mailer.new_match.chat_link')), email.html_part.body.to_s
   end
 
   def test_create_chat_3_moves_send_notification
     m1 = create :move
     m2 = create :move
     m3 = create :move
+    result = nil
     assert_difference 'Chat.count', 1 do
-      assert_difference 'ActionMailer::Base.deliveries.size', 2 do
+      assert_difference 'all_mails.count', 2 do
         result = CreateChatAndSendNotifications.new(m1, [m2, m3]).perform
-        assert_equal result.chat.moves, [m1, m2, m3]
-        email = ActionMailer::Base.deliveries.first
-        assert_match Regexp.new(t('user_mailer.new_match.chat_link')), email.html_part.body.to_s
       end
     end
+    assert_equal result.chat.moves, [m1, m2, m3]
+    chat_mail1, chat_mail2 = all_mails
+    assert_match t('user_mailer.new_match.chat_link'), chat_mail1.html_part.decoded
+    assert_match t('user_mailer.new_match.chat_link'), chat_mail2.html_part.decoded
   end
 
   def test_create_chat_2_moves_existing_send_notification

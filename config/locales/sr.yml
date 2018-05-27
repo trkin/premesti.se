@@ -62,6 +62,8 @@ sr:
   born: рођени
   or: или
   find_on_map: Пронађи на мапи
+  or_choose_any_on_map: or choose any on the map
+  or_choose_any_on_map: или изабери неки на мапи
   add_later: Додај касније
   problem_with_account: Проблем са налогом ?
   send: Пошаљи

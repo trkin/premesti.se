@@ -1,4 +1,8 @@
-<% landing_layout %>
+<%
+  headline = t('my_move_introduction', from: @move.from_group.location.name, to: @move.to_groups.map(&:location).map(&:name).join(t('or')), age: Group.title_for_age(@move.from_group.age))
+  landing_layout
+  og_meta_tags url: request.url, type: 'website', title: @move.group_age_and_locations, description: headline, image: image_url('logo-latin-premesti-se.png')
+%>
 <nav class="navbar p-0">
   <%= render 'layouts/choose_language' %>
   <a class="navbar-brand d-none d-sm-block" href="/">
@@ -27,7 +31,7 @@
 </nav>
 <div class="landing-page-header text-center">
   <div class='my-move-introduction'>
-    <%= t('my_move_introduction', from: @move.from_group.location.name, to: @move.to_groups.map(&:location).map(&:name).join(t('or')), age: Group.title_for_age(@move.from_group.age)).html_safe %>
+    <%= headline.html_safe %>
   </div>
   <%= modal id: 'find-on-map-modal', title: t('find_on_map'), fade: false, modal_dialog_class: 'modal-lg' %>
   <%= bootstrap_form_for @landing_signup, url: my_move_path, builder: MyFormBuilder do |f| %>

@@ -22,4 +22,12 @@ module ApplicationHelper
   def find_breadcrumb_list
     @breadcrumb || []
   end
+
+  def og_meta_tags(h)
+    content_for(:og_meta_tags) do
+      h.map do |key, value|
+        "<meta property='og:#{key}' content='#{value}'/>"
+      end.join.html_safe
+    end
+  end
 end

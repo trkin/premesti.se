@@ -1,7 +1,7 @@
 <%
-  headline = t('my_move_introduction', from: @move.from_group.location.name, to: @move.to_groups.map(&:location).map(&:name).join(t('or')), age: Group.title_for_age(@move.from_group.age))
+    headline = t('my_move_introduction', from: @move.from_group.location.name, to: @move.to_groups.map(&:location).map(&:name).join(" #{t('or')} "), age: Group.title_for_age(@move.from_group.age))
   landing_layout
-  og_meta_tags url: request.url, type: 'website', title: @move.group_age_and_locations, description: headline, image: image_url('logo-latin-premesti-se.png')
+  meta_tags 'og:url': request.url, 'og:type': 'website', 'og:title': @move.group_age_and_locations, 'og:description': strip_tags(headline), 'og:image': image_url('logo-latin-premesti-se.png'), 'image:width': '600', 'image:height': '315', 'fb:app_id': Rails.application.secrets.FACEBOOK_APP_ID, 'place:location:latitude': @move.from_group.location.latitude, 'place:location:longitude': @move.from_group.location.longitude
 %>
 <nav class="navbar p-0">
   <%= render 'layouts/choose_language' %>

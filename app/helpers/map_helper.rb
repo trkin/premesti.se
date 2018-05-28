@@ -162,6 +162,28 @@ module MapHelper
     end
   end
 
+  def show_static_lines_map_url(from_location, to_locations, options = {})
+    url = '//maps.googleapis.com/maps/api/staticmap?'
+    url += 'size=600x315'
+    # custom icon must be http:// not https://
+    # markers=icon:http://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png|
+    url += "&markers=|#{from_location.latitude},#{from_location.longitude}"
+    to_locations.each do |location|
+      url += "|#{location.latitude},#{location.longitude}"
+    end
+    color = options[:color] || '0xff00ff'
+    to_locations.each do |location|
+      url += "&path=color:#{color}|weight:5|#{from_location.latitude},#{from_location.longitude}|#{location.latitude},#{location.longitude}"
+    end
+    # you need to enable "Google Static Maps API"
+    url += "&key=#{GOOGLE_API_KEY}"
+    url
+  end
+
+  def show_static_lines_map(from_location, to_locations, options = {})
+    image_tag show_static_lines_map_url(from_location, to_locations, options), class: options[:class]
+  end
+
   def show_map(object, options = {})
     latitude = object.latitude
     longitude = object.longitude

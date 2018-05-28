@@ -23,10 +23,10 @@ module ApplicationHelper
     @breadcrumb || []
   end
 
-  def og_meta_tags(h)
-    content_for(:og_meta_tags) do
+  def meta_tags(h)
+    content_for(:meta_tags) do
       h.map do |key, value|
-        "<meta property='og:#{key}' content='#{value}'/>"
+        "<meta property='#{key}' content='#{value}'/>"
       end.join.html_safe
     end
   end

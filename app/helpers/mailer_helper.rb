@@ -1,5 +1,5 @@
 module MailerHelper
-  def subject_line(message)
-    content_for :subject_line, message
+  def pre_header(message)
+    content_for :pre_header, message
   end
 end

@@ -1,9 +1,9 @@
 <%
-  subject_line "#{t('new_match')} #{@move.from_group.location.name}"
+  pre_header "#{t('new_match')} #{@move.from_group.location.name}"
 %>
 <p><%= t('hi_name', name: @move.user.email) %>!</p>
 
-<p><%= %></p>
+<p><%= t('there_is_a_match_for_your_location', location: @move.from_group.location.name) %></p>
 <p>
-  <%= link_to t('user_mailer.new_match.chat_link'), chat_url(@chat) %>
+  <%= link_to t('user_mailer.new_match.chat_link'), chat_url(@chat), class: 'button' %>
 </p>

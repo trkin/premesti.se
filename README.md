@@ -98,9 +98,17 @@ variables for NEO4J server ://:@: (RuntimeError)` than `spring stop` can help.
 
 You can pause test with `byebug` and open neo4j <http://localhost:7047/browser/>
 
-## Deployment
+## Production
 
 It is currently deployed to Heroku using free services.
+To dump from GrapheneDB and restore locally
+
+~~~
+rm -rf db/neo4j/development/data/databases/graph.db
+mkdir db/neo4j/development/data/databases/graph.db
+unzip tmp/graphdb.zip db/neo4j/development/data/databases/graph.db
+rails neo4j:restart[development]
+~~~
 
 ## Contributing
 

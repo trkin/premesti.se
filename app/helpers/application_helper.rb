@@ -1,6 +1,6 @@
 module ApplicationHelper
-  def login_layout
-    @login_layout = true
+  def login_layout(attr = {})
+    @login_layout = attr
   end
 
   def login_layout?
@@ -16,7 +16,7 @@ module ApplicationHelper
   end
 
   def breadcrumb(list = {})
-    @breadcrumb = { I18n.t('dashboard') => (list.present? ? root_path : nil) }.merge list
+    @breadcrumb = { I18n.t('dashboard') => (list.present? ? dashboard_path : nil) }.merge list
   end
 
   def find_breadcrumb_list

@@ -50,12 +50,16 @@ module PremestiSe
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.action_mailer.delivery_method = :sparkpost
+
+    link = Rails.application.secrets.default_url.symbolize_keys
     # for link urls in emails
-    config.action_mailer.default_url_options = Rails.application.secrets.default_url.symbolize_keys
+    config.action_mailer.default_url_options = link
     # for link urls in rails console
     config.after_initialize do
-      Rails.application.routes.default_url_options = Rails.application.config.action_mailer.default_url_options
+      Rails.application.routes.default_url_options = link
     end
+    # for asset-url or img_tag in emails
+    config.action_mailer.asset_host = "http://#{link[:host]}:#{link[:port]}"
 
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
   end

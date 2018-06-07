@@ -3,15 +3,73 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style>
+      .button {
+        background-image: linear-gradient(to bottom, #428bca 0px, #2d6ca2 100%);
+        background-repeat: repeat-x;
+        border-color: #2b669a;
+        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.075);
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+        border-radius: 6px;
+        padding: 10px 16px;
+        background-color:#428bca;
+        color: #fff;
+        cursor: pointer;
+        display: inline-block;
+        text-decoration: none;
+        vertical-align: middle;
+      }
+
+      .pre-header {
+        display: none;
+      }
+
+      .email-body {
+        text-align: center;
+        background: #feff99;
+        background-image: url('<%= asset_url 'cute-small.jpg' %>');
+      }
+      .email-container {
+        margin: 0 3em;
+        padding: 1em;
+        border: 2px solid;
+        border-radius: 50px;
+        background: white;
+      }
+      .email-header {
+        display: inline-block;
+        padding: 1em 1em 0 1em;
+        background: #feff99;
+      }
+      .email-header img {
+        width: 1rem;
+      }
+      .email-footer {
+        display: inline-block;
+        padding: 0 1em;
+        background: #feff99;
+      }
+      .email-footer img {
+        width: 1rem;
+      }
     </style>
   </head>
 
-  <body>
-    <div class="email-container">
-      <div class="pre-header">
-        <%= yield :subject_line %>
-      </div>
+  <body class='email-body'>
+    <div class='pre-header'>
+      <%= yield :pre_header %>
+    </div>
+    <span class='email-header'>
+      <%= link_to root_url do %>
+        <%= image_tag 'premesti_se.gif' %>
+        <%= t('site_title') %>
+      <% end %>
+    </span>
+    <div class='email-container'>
       <%= yield %>
     </div>
+    <span class='email-footer'>
+      <%= link_to t('site_title'), root_url %> <%= t('site_description') %><br>
+      <%= t('unsubscribe', link: root_url).html_safe %><br>
+    </span>
   </body>
 </html>

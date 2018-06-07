@@ -87,6 +87,7 @@ en:
   faq_8_a: The site was made by TRK INOVACIJE DOO NOVI SAD.
   system_message: System message
   new_match: New match
+  there_is_a_match_for_your_location: There is a match for your location %{location}
   chats_empty_new_will_show_up_automatically: There are no chats currently. Chat will show up when there is a match
   last_week: Last week
   groups_have_to_be_same_age: Groups have to be at the same age

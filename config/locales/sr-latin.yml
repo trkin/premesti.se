@@ -1,9 +1,9 @@
 sr-latin:
   site_title: Premesti Se
-  site_description: Sajt za komunikaciju roditelja radi lakšeg pronalaženja zamene mesta u vrtićima
-  site_description_1: Sajt za komunikaciju roditelja
-  site_description_2: radi lakšeg pronalaženja
-  site_description_3: zamene mesta u vrtićima
+  site_description: lakša komunikacija roditelja radi pronalaženja zamene mesta u vrtićima
+  site_description_1: Lakša komunikacija roditelja
+  site_description_2: radi pronalaženja zamene
+  site_description_3: mesta u vrtićima
   please_select: Molim izaberite
   select: Izaberite
   where_do_you_want_to_move: Gde hoćeš da se premestiš ?
@@ -88,6 +88,7 @@ sr-latin:
   faq_8_a: Sajt je napravila kompanija TRK INOVACIJE DOO NOVI SAD.
   system_message: Poruka sistema
   new_match: Novo poklapanje
+  there_is_a_match_for_your_location: Postoji novo poklapanje za vašu želju za premeštajem iz vrtića %{location}
   chats_empty_new_will_show_up_automatically: Trenutno nema dogovaranja. Nova dogovaranja će se pojaviti kada se desi poklapanje
   last_week: Poslednjih sedam dana
   groups_have_to_be_same_age: Grupe moraju biti u istim godištima

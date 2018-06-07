@@ -18,17 +18,17 @@
     <% elsif login_layout? # if login_layout? %>
       <div class="login-page d-flex flex-column align-items-center">
         <%= render 'layouts/choose_language' %>
-        <span class='px-2 background-same-as-image'>
+        <span class='px-2 background-same-as-cute'>
           <%= link_to '/' do %>
-            <%= image_tag 'favicon_animated.gif', class: 'root-icon' %>
+            <%= image_tag 'premesti_se.gif', class: 'root-icon' %>
             <%= t('site_title') %>
           <% end %>
         </span>
-        <div class='login-box mx-auto ml-5 p-3 bg-light text-center border rounded'>
+        <div class='login-box mx-auto ml-5 p-3 bg-light text-center border rounded <%= login_layout?[:login_box_wide] ? 'login-box__wide' : nil %>'>
           <%= yield %>
           <%= render 'layouts/alerts' %>
         </div>
-        <span class='px-2 background-same-as-image'>
+        <span class='px-2 background-same-as-cute'>
           <% if current_user %>
             <%= link_to t('dashboard'), dashboard_path %>
           <% else %>
@@ -42,7 +42,7 @@
         <nav class='navbar navbar-expand-md navbar-light bg-light'>
           <div class='navbar-nav mr-auto'>
             <%= link_to '/', class: 'navbar-brand' do %>
-              <%= image_tag 'favicon_animated.gif', class: 'root-icon' %>
+              <%= image_tag 'premesti_se.gif', class: 'root-icon' %>
               <span class='d-none d-sm-inline colorize-text-background-radial'>
                 <%= t('site_title') %>
               </span>

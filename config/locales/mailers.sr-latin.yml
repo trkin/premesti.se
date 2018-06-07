@@ -1,4 +1,5 @@
 sr-latin:
+  unsubscribe: Ukoliko ne želite da primate ovakve poruke, možete se <a href='%{link}'>odjaviti ovde</a>
   user_mailer:
     landing_signup:
       subject: Hvala na registraciji!

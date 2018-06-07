@@ -16,7 +16,7 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
 # for fonts
-gem "non-stupid-digest-assets"
+gem 'non-stupid-digest-assets'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
@@ -51,7 +51,7 @@ group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'listen', '>= 3.0.5', '< 3.2'
   # open emails in browser
-  gem "letter_opener"
+  gem 'letter_opener'
   gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
@@ -68,9 +68,9 @@ gem 'neo4j-core', github: 'neo4jrb/neo4j-core'
 gem 'neo4j-rake_tasks'
 
 # bootstrap_form_for
-gem "bootstrap_form",
-    git: "https://github.com/bootstrap-ruby/bootstrap_form.git",
-    branch: "master"
+gem 'bootstrap_form',
+    git: 'https://github.com/bootstrap-ruby/bootstrap_form.git',
+    branch: 'master'
 
 # omniauth
 gem 'omniauth-facebook'
@@ -89,7 +89,7 @@ gem 'sparkpost_rails'
 gem 'cyrillizer'
 
 # adding vendor prefixes (webkit) to css rules
-gem "autoprefixer-rails"
+gem 'autoprefixer-rails'
 
 # error notification to EXCEPTION_RECIPIENTS emails
 gem 'exception_notification'

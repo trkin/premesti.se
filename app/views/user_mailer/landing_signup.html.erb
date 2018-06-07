@@ -1,5 +1,5 @@
 <%
-  subject_line @move.from_group.name
+  pre_header @move.from_group.name
 %>
 <p><%= t('hi_name', name: @move.user.email) %>!</p>
 
@@ -14,5 +14,5 @@
   <p>
     <%= t('user_mailer.landing_signup.description_of_service_unconfirmed') %>
   </p>
-  <p><%= link_to t("confirm_email"), confirmation_url(@move.user, confirmation_token: @confirmation_token) %></p>
+  <p><%= link_to t("confirm_email"), confirmation_url(@move.user, confirmation_token: @confirmation_token), class: :button %></p>
 <% end %>

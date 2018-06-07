@@ -1,9 +1,9 @@
 sr:
   site_title: Премести Се
-  site_description: Сајт за комуникацију родитеља ради лакшег проналажења замене места у вртићима
-  site_description_1: Сајт за комуникацију родитеља
-  site_description_2: ради лакшег проналажења
-  site_description_3: замене места у вртићима
+  site_description: лакша комуникација родитеља ради проналажења замене места у вртићима
+  site_description_1: Лакша комуникацијa родитеља
+  site_description_2: ради проналажења замене
+  site_description_3: места у вртићима
   please_select: Молим изаберите
   select: Изаберите
   where_do_you_want_to_move: Где хоћеш да се преместиш ?
@@ -89,6 +89,7 @@ sr:
   faq_8_a: Сајт је направила компанија ТРК ИНОВАЦИЈЕ ДОО НОВИ САД.
   system_message: Порука система
   new_match: Ново поклапање
+  there_is_a_match_for_your_location: Постоји ново поклапање за вашу жељу за премештајем из вртића %{location}
   chats_empty_new_will_show_up_automatically: Тренутно нема договарања. Нова договарања ће се појавити када се деси поклапање
   last_week: Последњих седам дана
   groups_have_to_be_same_age: Групе морају бити у истим годиштима

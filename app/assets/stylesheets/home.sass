@@ -28,7 +28,7 @@ $max-abc-length: 145
   &::after
     content: ''
     background-image: asset-url("cityscape.png")
-    background-color: #feff99
+    background-color: $color_background
     background-size: cover
     top: 0
     left: 0
@@ -50,9 +50,8 @@ $max-abc-length: 145
     h1
       font-size: 2rem
 
-.navbar, .landing-page-header
-  background-image: asset-url("paper.jpg")
-  background-color: #cdebeb
+.landing-page-header
+  background: linear-gradient(to bottom, $color-background, $color-background-transparent)
 
 .btn-social
   font-size: 24px
@@ -62,10 +61,10 @@ $max-abc-length: 145
 
 .login-page
   background-image: asset-url("cute.jpg")
-  background-color: #feff99
+  background-color: $color-background
 
   .background-same-as-cute
-    background: #feff99
+    background: $color_background
 
   height: 100%
 
@@ -252,3 +251,9 @@ $offset: -4.5px
     font-size: 1.8em
     color: $color-black
 
+.home-bottom
+  position: absolute
+  bottom: 1em
+  padding: 0 1em
+  text-align: center
+  color: $color-black

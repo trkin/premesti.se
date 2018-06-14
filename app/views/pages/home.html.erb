@@ -3,43 +3,43 @@
   font_drift = 1.7
   bc_y_offset = 65
 %>
-<nav class="navbar p-0">
-  <%= render 'layouts/choose_language' %>
-  <a class="navbar-brand d-none d-sm-block" href="/">
-    <%= t 'site_title' %>
-  </a>
-  <div class="m-auto">
-    <%= render 'layouts/alerts' %>
-  </div>
-  <div class="ml-auto">
-    <% if current_user %>
-      <div class='p-3'>
-        <%= link_to t('dashboard'), dashboard_path %>
-      </div>
-    <% else %>
-      <% if Rails.env.development? %>
-        <small>
-          Only on development
-          <% User.all.order(:id).limit(5).each do |user| %>
-            <%= link_to user.email, sign_in_as_path(user_id: user.id) %>
-          <% end %>
-        </small>
-      <% end %>
-      <%# <%= link_to t("register"), new_user_registration_path %1> %>
-      <%# | %>
-      <%= link_to t("sign_in"), new_user_session_path %>
-      <%= link_to user_facebook_omniauth_authorize_path, title: t("my_devise.sign_in_with", provider: t('provider.facebook')), class: 'btn btn-social' do %>
-        <i class="fa fa-facebook-official"></i>
-      <% end %>
-      <%= link_to user_google_oauth2_omniauth_authorize_path, title: t("my_devise.sign_in_with", provider: t('provider.google_oauth2')), class: 'btn btn-social' do %>
-        <i class="fa fa-google" aria-hidden="true"></i>
-      <% end %>
-    <% end %>
-  </div>
-</nav>
 <div class="landing-page-header">
+  <nav class="navbar p-0">
+    <%= render 'layouts/choose_language' %>
+    <a class="navbar-brand d-none d-sm-block" href="/">
+      <%= t 'site_title' %>
+    </a>
+    <div class="m-auto">
+      <%= render 'layouts/alerts' %>
+    </div>
+    <div class="ml-auto">
+      <% if current_user %>
+        <div class='p-3'>
+          <%= link_to t('dashboard'), dashboard_path %>
+        </div>
+      <% else %>
+        <% if Rails.env.development? %>
+          <small>
+            Only on development
+            <% User.all.order(:id).limit(5).each do |user| %>
+              <%= link_to user.email, sign_in_as_path(user_id: user.id) %>
+            <% end %>
+          </small>
+        <% end %>
+        <%# <%= link_to t("register"), new_user_registration_path %1> %>
+        <%# | %>
+        <%= link_to t("sign_in"), new_user_session_path %>
+        <%= link_to user_facebook_omniauth_authorize_path, title: t("my_devise.sign_in_with", provider: t('provider.facebook')), class: 'btn btn-social' do %>
+          <i class="fa fa-facebook-official"></i>
+        <% end %>
+        <%= link_to user_google_oauth2_omniauth_authorize_path, title: t("my_devise.sign_in_with", provider: t('provider.google_oauth2')), class: 'btn btn-social' do %>
+          <i class="fa fa-google" aria-hidden="true"></i>
+        <% end %>
+      <% end %>
+    </div>
+  </nav>
   <div class="text-center">
-    <h1 class="mb-5 colorize-text-background-radial">
+    <h1 class="mb-5 colorize-text-background">
       <%= t 'site_description_1' %>
       <br>
       <%= t 'site_description_2' %>
@@ -74,6 +74,9 @@
         alertTextShowHide.element_text(document.getElementById('references'), '<%= text %>', 99999, 500, ',');
       </script>
     </div>
+  </div>
+  <div class='home-bottom'>
+    <%= t 'site_disclaimer' %>
   </div>
 </div>
 <%

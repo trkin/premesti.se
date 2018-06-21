@@ -19,7 +19,7 @@ class FindMatchesForOneMoveTest < ActiveSupport::TestCase
   def test_empty_results
     m_ab = create :move, from_group: @g_a1, to_groups: @g_b1, a_name: :m_ab
     matches = []
-    results = FindMatchesForOneMove.perform(m_ab)
+    results = FindMatchesForOneMove.perform(m_ab, max_length_of_the_rotation: 2)
     assert_equal (matches.map { |r| r.map(&:a_name) }), (results.map { |r| r.map(&:a_name) })
   end
 
@@ -31,7 +31,7 @@ class FindMatchesForOneMoveTest < ActiveSupport::TestCase
     _m_ba = create :move, from_group: @g_b1, to_groups: @g_a1, a_name: :m_ba
 
     matches = []
-    results = FindMatchesForOneMove.perform(m_ab)
+    results = FindMatchesForOneMove.perform(m_ab, max_length_of_the_rotation: 2)
     assert_equal (matches.map { |r| r.map(&:a_name) }), (results.map { |r| r.map(&:a_name) })
   end
 
@@ -43,7 +43,7 @@ class FindMatchesForOneMoveTest < ActiveSupport::TestCase
     _m_ba = create :move, from_group: @g_b1, to_groups: @g_a1, user: unconfirmed_user, a_name: :m_ba
 
     matches = []
-    results = FindMatchesForOneMove.perform(m_ab)
+    results = FindMatchesForOneMove.perform(m_ab, max_length_of_the_rotation: 2)
     assert_equal (matches.map { |r| r.map(&:a_name) }), (results.map { |r| r.map(&:a_name) })
   end
 
@@ -60,7 +60,7 @@ class FindMatchesForOneMoveTest < ActiveSupport::TestCase
     matches = [
       [m_ba]
     ]
-    results = FindMatchesForOneMove.perform(m_ab)
+    results = FindMatchesForOneMove.perform(m_ab, max_length_of_the_rotation: 2)
     assert_equal (matches.map { |r| r.map(&:a_name) }), (results.map { |r| r.map(&:a_name) })
   end
 
@@ -86,7 +86,7 @@ class FindMatchesForOneMoveTest < ActiveSupport::TestCase
     matches = [
       [m_ba3], [m_ba2], [m_ba1]
     ]
-    results = FindMatchesForOneMove.perform(m_ab)
+    results = FindMatchesForOneMove.perform(m_ab, max_length_of_the_rotation: 2)
     assert_equal (matches.map { |r| r.map(&:a_name) }), (results.map { |r| r.map(&:a_name) })
   end
 
@@ -107,7 +107,7 @@ class FindMatchesForOneMoveTest < ActiveSupport::TestCase
     matches = [
       [m_ca, m_bc]
     ]
-    results = FindMatchesForOneMove.perform(m_ab)
+    results = FindMatchesForOneMove.perform(m_ab, max_length_of_the_rotation: 3)
     assert_equal (matches.map { |r| r.map(&:a_name) }), (results.map { |r| r.map(&:a_name) })
   end
 
@@ -137,7 +137,7 @@ class FindMatchesForOneMoveTest < ActiveSupport::TestCase
       [m_ca2, m_bc],
       [m_ca1, m_bc],
     ]
-    results = FindMatchesForOneMove.perform(m_ab)
+    results = FindMatchesForOneMove.perform(m_ab, max_length_of_the_rotation: 3)
     assert_equal (matches.map { |r| r.map(&:a_name) }), (results.map { |r| r.map(&:a_name) })
   end
 
@@ -168,7 +168,7 @@ class FindMatchesForOneMoveTest < ActiveSupport::TestCase
       [m_da, m_cd, m_bc],
       [m_ea, m_de, m_cd, m_bc],
     ]
-    results = FindMatchesForOneMove.perform(m_ab)
+    results = FindMatchesForOneMove.perform(m_ab, max_length_of_the_rotation: 5)
     assert_equal (matches.map { |r| r.map(&:a_name) }), (results.map { |r| r.map(&:a_name) })
   end
 
@@ -184,7 +184,7 @@ class FindMatchesForOneMoveTest < ActiveSupport::TestCase
     matches = [
       [m_ca],
     ]
-    results = FindMatchesForOneMove.perform(m_abcd, @g_c1)
+    results = FindMatchesForOneMove.perform(m_abcd, target_group: @g_c1, max_length_of_the_rotation: 2)
     assert_equal (matches.map { |r| r.map(&:a_name) }), (results.map { |r| r.map(&:a_name) })
   end
 
@@ -204,7 +204,7 @@ class FindMatchesForOneMoveTest < ActiveSupport::TestCase
       [m_cba],
       [m_ba, m_cba],
     ]
-    results = FindMatchesForOneMove.perform(m_abcd, @g_c1)
+    results = FindMatchesForOneMove.perform(m_abcd, target_group: @g_c1, max_length_of_the_rotation: 4)
     assert_equal (matches.map { |r| r.map(&:a_name) }), (results.map { |r| r.map(&:a_name) })
   end
 end

@@ -4,7 +4,7 @@ sr-latin:
   site_description_1: Lakša komunikacija roditelja
   site_description_2: radi pronalaženja zamene
   site_description_3: mesta u vrtićima
-  site_disclaimer: Ovaj sajt nema veze sa Predškolskim ustanovama već služi za pronalaženje poklapanja želja i kada se roditelji dogovore onda mogu podneti zahteve za premeštaj. Zahtevi ne moraju biti usvojeni iz raznih razloga (preopterećenosti grupe itd.). Ova komunikacija svakako može da pomogne u procesu prebacivanja.
+  site_disclaimer: Ovaj sajt nije povezan sa Predškolskim ustanovama već služi za pronalaženje rokada i ostalih poklapanja želja. Kada se roditelji dogovore onda mogu podneti zahteve za premeštaj. Zahtevi ne moraju biti usvojeni iz raznih razloga (preopterećenosti grupe itd.). Ova komunikacija svakako može da pomogne u procesu prebacivanja.
   please_select: Molim izaberite
   select: Izaberite
   where_do_you_want_to_move: Gde hoćeš da se premestiš ?
@@ -91,7 +91,7 @@ sr-latin:
   new_match: Novo poklapanje
   there_is_a_match_for_your_location: Postoji novo poklapanje za vašu želju za premeštajem iz vrtića %{location}
   chats_empty_new_will_show_up_automatically: Trenutno nema dogovaranja. Nova dogovaranja će se pojaviti kada se desi poklapanje
-  last_week: Poslednjih sedam dana
+  requests_in_last_month: Želje u poslednjih mesec dana
   groups_have_to_be_same_age: Grupe moraju biti u istim godištima
   to_group_can_not_be_on_same_location: Željena grupa ne može biti na trenutnoj lokaciji
   ignored_sending_notifications_unconfirmed_user: Slanje poruka je preskočeno pošto korisnik nije potvrđen

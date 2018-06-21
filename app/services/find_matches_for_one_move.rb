@@ -1,5 +1,6 @@
 module FindMatchesForOneMove
-  MAX_LENGTH_OF_THE_ROTATION = 5 # for 10 test suite is more than 1m
+  # you can override for specific test cases
+  MAX_LENGTH_OF_THE_ROTATION = Rails.env.test? ? 2 : 5
   # rubocop:disable Metrics/MethodLength
   # rubocop:disable Metrics/AbcSize
   # rubocop:disable Metrics/PerceivedComplexity
@@ -8,11 +9,11 @@ module FindMatchesForOneMove
   #   [mBA],
   #   [mCA, mBC],
   # ]
-  def perform(move, group = nil)
-    if move.to_groups.length == 1 && group.nil?
-      group = move.to_groups.first
+  def perform(move, target_group: nil, max_length_of_the_rotation: MAX_LENGTH_OF_THE_ROTATION)
+    if move.to_groups.length == 1 && target_group.nil?
+      target_group = move.to_groups.first
     else
-      move.to_groups.find group
+      move.to_groups.find target_group
     end
     results = []
 
@@ -37,7 +38,7 @@ module FindMatchesForOneMove
     # end
 
     # rubocop:disable Metrics/BlockLength
-    (2..MAX_LENGTH_OF_THE_ROTATION).each do |i|
+    (2..max_length_of_the_rotation).each do |i|
       match_for_i = ''
       match_for_unconfirmed_user = ''
       pluck = []
@@ -61,7 +62,7 @@ module FindMatchesForOneMove
       # preferred group must match first move preffered_group
       # TODO: this is too slow, probably because of using where on 2 nodes...
       # try if using one 'where' on edge would be better
-      query_for_move_preferred_group = "current_g_#{i}.uuid = '#{group.id}'"
+      query_for_move_preferred_group = "current_g_#{i}.uuid = '#{target_group.id}'"
 
       # rubocop disable Layout/SpaceInsideStringInterpolation
       # rubocop:disable Metrics/LineLength

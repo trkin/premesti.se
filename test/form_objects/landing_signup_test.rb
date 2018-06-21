@@ -77,7 +77,7 @@ class LandingSinupTest < ActiveSupport::TestCase
     assert_match t('user_mailer.landing_signup.description_of_service_unconfirmed'), move_mail.html_part.decoded
   end
 
-  test 'landing signup with correct password and chat is creted' do
+  test 'landing signup with correct password and chat is created' do
     age = 2
     group_a = create :group, name: 'A', age: age
     group_b = create :group, name: 'B', age: age

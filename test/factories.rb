@@ -23,7 +23,7 @@ FactoryBot.define do
   factory :group do
     location
     sequence(:name) { |i| "GroupName#{i}" }
-    sequence(:age) { |i| i }
+    sequence(:age) { |i| (i % 7) + 1 }
   end
   factory :move do
     association :from_group, factory: :group

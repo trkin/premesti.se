@@ -23,7 +23,7 @@ class Constant
     c: '#fdcc00',
   }.freeze
 
-  # 1..7
+  # 0..6
   AGE_COLORS = [
     COLORS[:a],
     COLORS[:b],

@@ -29,7 +29,7 @@ class AddToGroupAndSendNotifications
 
   def create_and_send_notifications
     return Error.new(@move.errors.values.join(', ')) if ignore_sending_notification?
-    results = FindMatchesForOneMove.perform @move, @group
+    results = FindMatchesForOneMove.perform @move, target_group: @group
     count = 0
     results.each do |moves|
       result = CreateChatAndSendNotifications.new(@move, moves).perform

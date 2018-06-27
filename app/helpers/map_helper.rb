@@ -88,7 +88,6 @@ module MapHelper
               mapTypeIds: mapTypeIds
             },
           });
-
           map.mapTypes.set("OSM", new google.maps.ImageMapType({
             getTileUrl: function(coord, zoom) {
               // See above example if you need smooth wrapping at 180th meridian
@@ -133,7 +132,6 @@ module MapHelper
             updateFields(place.geometry.location);
             console.log('place_changed');
           });
-
           google.maps.event.addListener(marker, "dragend", function(e) {
             updateFields(marker.getPosition());
           });
@@ -173,7 +171,9 @@ module MapHelper
     end
     color = options[:color] || '0xff00ff'
     to_locations.each do |location|
-      url += "&path=color:#{color}|weight:5|#{from_location.latitude},#{from_location.longitude}|#{location.latitude},#{location.longitude}"
+      url += "&path=color:#{color}|weight:5"
+      url += "|#{from_location.latitude},#{from_location.longitude}"
+      url += "|#{location.latitude},#{location.longitude}"
     end
     # you need to enable "Google Static Maps API"
     url += "&key=#{GOOGLE_API_KEY}"
@@ -342,7 +342,6 @@ module MapHelper
             });
           }
           map.fitBounds(bounds);
-
           linesJs.forEach(function(line) {
             var geodesicPoly = new google.maps.Polyline({
               strokeColor: ageColors[line.age - 1],
@@ -383,3 +382,7 @@ module MapHelper
     ).html_safe
   end
 end
+# rubocop:enable Metrics/ModuleLength
+# rubocop:enable Metrics/MethodLength
+# rubocop:enable Style/MultilineTernaryOperator
+# rubocop:enable Layout/SpaceInsideStringInterpolation

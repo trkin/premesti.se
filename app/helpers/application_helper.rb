@@ -30,4 +30,12 @@ module ApplicationHelper
       end.join.html_safe
     end
   end
+
+  def site_description(site_description)
+    @site_description = site_description
+  end
+
+  def find_site_description
+    @site_description || t('site_description')
+  end
 end

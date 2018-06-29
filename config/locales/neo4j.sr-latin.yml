@@ -45,6 +45,7 @@ sr-latin:
         current_password: Trenutna lozinka
         confirmation_token: Ključ za potvrdu
         remember_me: Zapamti me
+        locale: Jezik i pismo
       location:
         city: Grad
         name: Naziv

@@ -20,7 +20,6 @@ class ApplicationController < ActionController::Base
              else
                I18n.default_locale
              end
-    locale = :en if Rails.env.test?
     I18n.locale = locale
   end
 

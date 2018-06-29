@@ -31,10 +31,10 @@
       <% end %>
     </span>
   </div>
-  <%= show_lines_map [@move.from_group.location, @move.to_groups.map(&:location)].flatten, @move.to_groups.map(&:location).map { |loc| OpenStruct.new from: @move.from_group.location, to: loc, age: @move.from_group.age }, class: 'show-lines-map-container' %>
+  <%# show_lines_map [@move.from_group.location, @move.to_groups.map(&:location)].flatten, @move.to_groups.map(&:location).map { |loc| OpenStruct.new from: @move.from_group.location, to: loc, age: @move.from_group.age }, class: 'show-lines-map-container' %>
   <%= move_static_map @move %>
 </div>
 <%= link_to t('see_public_page'), my_move_path(@move, @move.group_age_and_locations) %>
 
-<%= link_to t('share'), '#', onclick: 'fb_share(this)', 'data-share-url': my_move_url(@move, @move.group_age_and_locations) %>
+<%# link_to t('share'), '#', onclick: 'fb_share(this)', 'data-share-url': my_move_url(@move, @move.group_age_and_locations) %>
 <%= move_share_link @move %>

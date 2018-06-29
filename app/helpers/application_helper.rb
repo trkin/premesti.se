@@ -38,4 +38,17 @@ module ApplicationHelper
   def find_site_description
     @site_description || t('site_description')
   end
+
+  def link_for_current_user_locale
+    # clear subdomain www and change domain
+    link = root_url(subdomain: nil, domain: Constant::DOMAINS[Rails.env.to_sym][current_user.locale.to_sym])
+    "<a href='#{link}'>#{link}</a>"
+  end
+
+  def alert_for_user
+    return false unless current_user
+    return false if current_user.locale == I18n.locale.to_s
+    language = t('current_language', locale: current_user.locale)
+    t('visit_link_to_switch_language', language: language, link: link_for_current_user_locale)
+  end
 end

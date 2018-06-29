@@ -19,6 +19,10 @@ Rails.application.routes.draw do
   get 'sign_in_as', to: 'application#sign_in_as'
 
   get 'dashboard', to: 'dashboard#index'
+
+  get 'my-settings', to: 'my_settings#index'
+  patch 'my-settings', to: 'my_settings#update'
+
   resources :moves do
     collection do
       post :create_from_group

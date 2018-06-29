@@ -45,6 +45,7 @@ sr:
         current_password: Тренутна лозинка
         confirmation_token: Кључ за потврду
         remember_me: Запамти ме
+        locale: Језик и писмо
       location:
         city: Град
         name: Назив

@@ -28,7 +28,10 @@ sr:
   are_you_sure_to_remove_item: Да ли сте сигурни да желите да обришете %{item} ?
   write_address_than_move_marker: Напишите адресу и онда подесите маркер икону
   autocomplete_contains_no_geometry: Тражени појам нема положај на мапи
+  current_language: Премести се (ћирилица)
   change_language: Промени језик
+  visit_link_to_start_using_new_language: Посетите %{link} да би сте почели да користите изабрани језик и писмо
+  visit_link_to_switch_language: Ваш избор језика и писма је %{language}. Посетите %{link} да би сте користили изабрани језик и писмо
   show: Прикажи
   create: Направи
   close: Затвори
@@ -50,6 +53,8 @@ sr:
   my_requests: Моје жеље
   my_chats: Моја договарања
   my_profile: Мој профил
+  my_account: Мој налог
+  my_settings: Моја подешавања
   one_user_deleted_move: Један корисник је обрисао премештај
   message_of_deleted_move: Обрисан премештај
   privacy_policy: Политика приватности
@@ -63,7 +68,6 @@ sr:
   born: рођени
   or: или
   find_on_map: Пронађи на мапи
-  or_choose_any_on_map: or choose any on the map
   or_choose_any_on_map: или изабери неки на мапи
   add_later: Додај касније
   problem_with_account: Проблем са налогом ?

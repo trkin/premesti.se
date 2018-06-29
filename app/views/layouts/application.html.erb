@@ -70,10 +70,8 @@
                 <%= current_user.email_username %>
               </a>
               <div class="dropdown-menu" aria-labelledby="userDropdown">
-                <%= link_to t('my_profile'), edit_user_registration_path, class: 'dropdown-item' %>
-                <div class='dropdown-item'>
-                  <%= render 'layouts/choose_language' %>
-                </div>
+                <%= link_to t('my_account'), edit_user_registration_path, class: 'dropdown-item' %>
+                <%= link_to t('my_settings'), my_settings_path, class: 'dropdown-item' %>
                 <div class="dropdown-divider"></div>
                 <%= link_to t("privacy_policy"), privacy_policy_path, class: 'dropdown-item' %>
                 <%= link_to t('faq'), faq_path, class: 'dropdown-item' %>
@@ -87,6 +85,12 @@
             </div> <!--<div class='nav-item dropdown'>-->
           </div>
         </nav>
+        <% if alert_for_user.present? %>
+            <div class="alert alert-warning alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="<%= t('close') %>" data-user-dismiss-custom-alert='true' title='<%= t('close') %>'><span aria-hidden="true">&times;</span></button>
+            <%= alert_for_user.html_safe %>
+          </div>
+        <% end %>
         <div class='container mt-1'>
           <%= yield %>
         </div>

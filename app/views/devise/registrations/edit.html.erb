@@ -30,5 +30,5 @@
 <h3><%= t 'my_devise.cancel_my_account' %></h3>
 
 <p><%= t 'my_devise.unhappy' %>?
-  <%= button_to t('my_devise.cancel_my_account'), registration_path(resource_name), data: { confirm: t_crud('are_you_sure_to_remove_item', User) }, method: :delete, class: 'btn btn-danger' %>
+  <%= button_to t('my_devise.cancel_my_account'), registration_path(resource_name), data: { confirm: t_crud('are_you_sure_to_remove_item', item: User) }, method: :delete, class: 'btn btn-danger' %>
 </p>

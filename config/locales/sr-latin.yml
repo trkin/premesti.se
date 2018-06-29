@@ -28,7 +28,10 @@ sr-latin:
   are_you_sure_to_remove_item: Da li ste sigurni da želite da obrišete %{item} ?
   write_address_than_move_marker: Napišite adresu i onda podesite marker ikonu
   autocomplete_contains_no_geometry: Traženi pojam nema položaj na mapi
+  current_language: Premesti se (latinica)
   change_language: Promeni jezik
+  visit_link_to_start_using_new_language: Posetite %{link} da bi ste počeli da koristite izabrani jezik i pismo
+  visit_link_to_switch_language: Vaš izbor jezika i pisma je %{language}. Posetite %{link} da bi ste koristili izabrani jezik i pismo
   show: Prikaži
   create: Napravi
   close: Zatvori
@@ -50,6 +53,8 @@ sr-latin:
   my_requests: Moje želje
   my_chats: Moja dogovaranja
   my_profile: Moj profil
+  my_account: Moj nalog
+  my_settings: Moja podešavanja
   one_user_deleted_move: Jedan korisnik je obrisao premeštaj
   message_of_deleted_move: Obrisan premeštaj
   privacy_policy: Politika privatnosti

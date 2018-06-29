@@ -1,0 +1,13 @@
+<%
+  login_layout
+  options_for_languages = [
+    [ t('current_language', locale: :sr), 'sr'],
+    [ t('current_language', locale: :'sr-latin'), 'sr-latin'],
+    [ t('current_language', locale: :en), 'en'],
+  ]
+%>
+<h1><%= t('my_settings') %></h1>
+<%= bootstrap_form_for current_user, url: my_settings_path do |f| %>
+  <%= f.select :locale, options_for_languages %>
+  <%= f.submit t('update') %>
+<% end %>

@@ -28,7 +28,10 @@ en:
   are_you_sure_to_remove_item: Are you sure you want to delete %{item} ?
   write_address_than_move_marker: Write approximate address and than move the marker icon
   autocomplete_contains_no_geometry: Autocomplete's returned place contains no geometry
+  current_language: Move Your Place (english)
   change_language: Change language
+  visit_link_to_start_using_new_language: Visit %{link} to start using new language
+  visit_link_to_switch_language: Your choosen language is %{language}. Visit %{link} to use that language
   show: Show
   create: Create
   close: Close
@@ -50,6 +53,8 @@ en:
   my_requests: My Requests
   my_chats: My Chats
   my_profile: My Profile
+  my_account: My Account
+  my_settings: My Settings
   one_user_deleted_move: One user deleted move
   message_of_deleted_move: Deleted move
   privacy_policy: Privacy Policy
@@ -63,6 +68,7 @@ en:
   born: born
   or: or
   find_on_map: Find on map
+  or_choose_any_on_map: or choose any on the map
   add_later: Add later
   problem_with_account: Problem with account ?
   send: Send

@@ -39,6 +39,7 @@ en:
         current_password: Current password
         confirmation_token: Confirmation token
         remember_me: Remember me
+        locale: Language
       location:
         city: City
         name: Name

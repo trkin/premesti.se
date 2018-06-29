@@ -8,6 +8,8 @@ class UsersTest < ApplicationSystemTestCase
     manual_register 'new@email.com', 'some_password'
 
     assert_text t('devise.registrations.signed_up')
+    user = User.find_by email: 'new@email.com'
+    assert_equal user.locale, 'en'
   end
 
   test 'register user already exists' do
@@ -98,10 +100,33 @@ class UsersTest < ApplicationSystemTestCase
   end
 
   test 'change email' do
-
   end
 
   test 'destroy user' do
+  end
 
+  test 'change locale' do
+    user = create :user
+    sign_in user
+    visit my_settings_path
+    select 'Премести се (ћирилица)'
+    click_on t('update')
+    user.reload
+    assert_equal user.locale, 'sr'
+  end
+
+  test 'register new user in non default url' do
+    email = 'new@email.com'
+    password = 'some_password'
+    visit new_user_registration_url host: Constant::DOMAINS[:test][:sr]
+    fill_in t('neo4j.attributes.user.email', locale: :sr), with: email
+    fill_in t('neo4j.attributes.user.password', locale: :sr), with: password
+    fill_in t('neo4j.attributes.user.password_confirmation', locale: :sr), with: password
+
+    click_on t('register', locale: :sr)
+
+    assert_text t('devise.registrations.signed_up', locale: :sr)
+    user = User.find_by email: email
+    assert_equal user.locale, 'sr'
   end
 end

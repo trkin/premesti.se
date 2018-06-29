@@ -54,9 +54,18 @@ class User
 
   property :admin, type: Boolean
 
+  property :locale, type: String
+  validates :locale, presence: true
+
   has_many :out, :moves, type: :WANTS
 
   has_many :out, :messages, type: :AUTHOR_OF
+
+  before_validation :default_values_on_create, on: :create
+
+  def default_values_on_create
+    self.locale = I18n.locale
+  end
 
   def self._find_existing(provider, email, uid)
     user = find_by(email: email)

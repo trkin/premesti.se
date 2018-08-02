@@ -17,7 +17,7 @@ class LandingTest < ApplicationSystemTestCase
     fill_in t('activemodel.attributes.landing_signup.password'), with: '1234567'
     assert_difference 'Move.count', 1 do
       assert_difference 'User.count', 1 do
-        assert_difference 'all_mails.count', 1 do
+        assert_performed_jobs 1, only: ActionMailer::DeliveryJob do
           click_on t('activemodel.attributes.landing_signup.submit')
         end
       end

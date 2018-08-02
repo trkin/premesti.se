@@ -19,7 +19,7 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     }
     assert_difference 'User.count', 1 do
       assert_difference 'Move.count', 1 do
-        assert_difference 'all_mails.count', 1 do
+        assert_performed_jobs 1, only: ActionMailer::DeliveryJob do
           post landing_signup_path, params: { landing_signup: params }
         end
       end
@@ -52,7 +52,7 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     }
     assert_difference 'User.count', 1 do
       assert_difference 'Move.count', 1 do
-        assert_difference 'all_mails.count', 1 do
+        assert_performed_jobs 1, only: ActionMailer::DeliveryJob do
           post my_move_path(move, move.group_age_and_locations), params: { landing_signup: params }
         end
       end
@@ -81,7 +81,7 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     }
     assert_difference 'User.count', 0 do
       assert_difference 'Move.count', 1 do
-        assert_difference 'all_mails.count', 2 do
+        assert_performed_jobs 2, only: ActionMailer::DeliveryJob do
           post my_move_path(move, move.group_age_and_locations), params: { landing_signup: params }
         end
       end

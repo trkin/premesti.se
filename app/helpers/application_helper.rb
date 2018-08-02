@@ -49,6 +49,13 @@ module ApplicationHelper
     return false unless current_user
     return false if current_user.locale == I18n.locale.to_s
     language = t('current_language', locale: current_user.locale)
-    t('visit_link_to_switch_language', language: language, link: link_for_current_user_locale)
+    settings_link = "<a href='#{my_settings_path}'>#{my_settings_path}</a>"
+    t('visit_link_to_switch_language', language: language, link: link_for_current_user_locale, settings_link: settings_link)
+  end
+
+  # this is used for devise mailer
+  # https://stackoverflow.com/questions/19456339/how-to-run-rails-devise-method-edit-password-url-by-hand
+  def main_app
+    Rails.application.class.routes.url_helpers
   end
 end

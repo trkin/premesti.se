@@ -63,6 +63,7 @@ class PagesController < ApplicationController
     else
       flash.now[:alert] = @contact_form.errors.full_messages.join(', ')
     end
+    contact
     render :contact
   end
 

@@ -12,6 +12,7 @@ In source you can see usage of the:
 * Neo4j database
 * yarn installed: bootstrap 3, jquery 3, font awesome 4, snapsvg, select2
 * svg animations
+* redis and sidekiq
 
 Graph database is chosen since we need to match moves in format A->B, B->A
 (I want to move from A to B, so please find me who wants to move from B to A).
@@ -72,6 +73,15 @@ rails s
 ~~~
 
 and open browser at <http://localhost:3000>
+
+To run background jobs you need redis server running. Note than we renamed
+default queue names which you can find in `config/sidekiq.yml`
+
+~~~
+sidekiq
+~~~
+
+and open browser <http://localhost:3000/sidekiq>
 
 ## Locale
 

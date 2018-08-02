@@ -55,12 +55,23 @@ class UsersTest < ApplicationSystemTestCase
 
   test 'forgot password' do
     email = 'my@email.com'
-    create :user, email: email
+    user = create :user, email: email
     visit new_user_password_path
     fill_in t('neo4j.attributes.user.email'), with: email
-    click_on t('my_devise.send_me_reset_password_instructions')
+    perform_enqueued_jobs only: ActionMailer::DeliveryJob do
+      click_on t('my_devise.send_me_reset_password_instructions')
+    end
 
     assert_text t('devise.passwords.send_instructions')
+    mail = give_me_last_mail_and_clear_mails
+    link = mail.html_part.to_s.match("(http://.*)\">#{t('change_password')}")[1]
+    visit link
+    fill_in t('my_devise.new_password'), with: 'new_password'
+    fill_in t('neo4j.attributes.user.password_confirmation'), with: 'new_password'
+    click_on t('update')
+
+    user.reload
+    assert user.valid_password? 'new_password'
   end
 
   test 'resend confirmation instructions' do

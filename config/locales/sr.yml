@@ -31,7 +31,7 @@ sr:
   current_language: Премести се (ћирилица)
   change_language: Промени језик
   visit_link_to_start_using_new_language: Посетите %{link} да би сте почели да користите изабрани језик и писмо
-  visit_link_to_switch_language: Ваш избор језика и писма је %{language}. Посетите %{link} да би сте користили изабрани језик и писмо
+  visit_link_to_switch_language: Ваш избор језика и писма је %{language}. Посетите %{link} да би сте користили изабрани језик и писмо или га промените на %{settings_link}
   show: Прикажи
   create: Направи
   close: Затвори
@@ -73,7 +73,9 @@ sr:
   problem_with_account: Проблем са налогом ?
   send: Пошаљи
   contact: Контакт
-  contact_description: Унапред смо захвални за све недостатке на сајту које нам јавите. За било која друга питања, слободно нам се обратите путе овог формулара
+  contact_description: Унапред смо захвални за све добре и лоше стране ствари на сајту које нам јавите.
+  find_us_on: нас нађите на
+  our_fb_page: Наша Фејс страница
   contact_thanks: Хвала на поруци
   we_will_reply_back_soon: Ускоро ћемо се јавити
   faq_1: Коме је намењен овај сајт ?

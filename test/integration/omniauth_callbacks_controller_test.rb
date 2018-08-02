@@ -40,7 +40,7 @@ class OmniauthCallbacksControllerTest < ActionDispatch::IntegrationTest
     email = 'my@email.com'
     OmniAuth.config.add_mock :facebook, info: { email: email }
     assert_difference 'User.count', 1 do
-      assert_difference 'all_mails.count', 0 do
+      assert_no_performed_jobs only: ActionMailer::DeliveryJob do
         get user_facebook_omniauth_authorize_path
         follow_redirect!
         follow_redirect!

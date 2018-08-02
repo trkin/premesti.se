@@ -31,9 +31,9 @@ module PremestiSe
     config.neo4j.session.type = Rails.application.secrets.neo4j_type == 'bolt' ? :bolt : :http
     config.neo4j.session.url =
       "#{Rails.application.secrets.neo4j_type}://" +
-      Rails.application.secrets.neo4j_username.to_s + ":" +
-      Rails.application.secrets.neo4j_password.to_s + "@" +
-      Rails.application.secrets.neo4j_host.to_s + ":" +
+      Rails.application.secrets.neo4j_username.to_s + ':' +
+      Rails.application.secrets.neo4j_password.to_s + '@' +
+      Rails.application.secrets.neo4j_host.to_s + ':' +
       Rails.application.secrets.neo4j_port.to_s
     raise "Please set env variables for NEO4J server #{config.neo4j.session.url}" unless Rails.application.secrets.values_at(
       :neo4j_type, :neo4j_username, :neo4j_password, :neo4j_host, :neo4j_port
@@ -62,5 +62,9 @@ module PremestiSe
     config.action_mailer.asset_host = "http://#{link[:host]}:#{link[:port]}"
 
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
+
+    config.active_job.queue_adapter = :sidekiq
+    # note that you need to use premesti_se_mailers instead of mailers
+    config.active_job.queue_name_prefix = 'premesti_se'
   end
 end

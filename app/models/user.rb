@@ -61,12 +61,6 @@ class User
 
   has_many :out, :messages, type: :AUTHOR_OF
 
-  before_validation :default_values_on_create, on: :create
-
-  def default_values_on_create
-    self.locale = I18n.locale
-  end
-
   def self._find_existing(provider, email, uid)
     user = find_by(email: email)
     return user if user
@@ -81,8 +75,10 @@ class User
 
   def self.create_new_with_some_password(provider, email, uid)
     params = {
-      email: email, password: Devise.friendly_token[0, 20], confirmed_at:
-      Time.zone.now,
+      email: email,
+      password: Devise.friendly_token[0, 20],
+      confirmed_at: Time.zone.now,
+      locale: I18n.locale,
     }
     if provider == 'facebook'
       params.merge facebook_uid: uid
@@ -109,5 +105,18 @@ class User
 
   def email_username
     email.split('@').first
+  end
+
+  # This method overwrites devise's own `send_devise_notification`
+  # message = devise_mailer.send(notification, self, *args)
+  # message.deliver_now
+  # also need to fetch user in MyDeviseMailer
+  # protected is required, or ActionView::Template::Error: undefined method `main_app'
+
+  protected
+
+  def send_devise_notification(notification, *args)
+    message = devise_mailer.send(notification, id, *args)
+    message.deliver_later
   end
 end

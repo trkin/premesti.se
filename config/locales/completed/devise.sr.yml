@@ -74,7 +74,7 @@ sr:
     did_not_receive_confirmation_instructions: Нисте примили упутство за потврду налога ?
     did_not_receive_unlock_instructions: Нисте примили упутство за откључавање налога ?
     sign_in_with: Пријави се преко %{provider}-а
-    send_me_reset_password_instructions: Пошаљите ми упутство за промену лозинке
+    send_me_reset_password_instructions: Пошаљи упутство за промену лозинке
     resend_confirmation_instructions: Поново пошаљи упутства за потврду налога
     resend_unlock_instructions: Поново пошаљи упутства за откључавање налога
     can_not_sign_in: Није успела пријава.

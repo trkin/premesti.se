@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'sidekiq/testing'
 
 class LandingSinupTest < ActiveSupport::TestCase
   test 'landing signup success' do
@@ -14,7 +15,7 @@ class LandingSinupTest < ActiveSupport::TestCase
     landing_signup = LandingSignup.new params
     assert_difference 'User.count', 1 do
       assert_difference 'Move.count', 1 do
-        assert_difference 'all_mails.count', 1 do
+        assert_performed_jobs 1, only: ActionMailer::DeliveryJob do
           landing_signup.perform
         end
       end
@@ -38,7 +39,7 @@ class LandingSinupTest < ActiveSupport::TestCase
     landing_signup = LandingSignup.new params
     assert_difference 'User.count', 0 do
       assert_difference 'Move.count', 1 do
-        assert_difference 'all_mails.count', 1 do
+        assert_performed_jobs 1, only: ActionMailer::DeliveryJob do
           landing_signup.perform
         end
       end
@@ -67,7 +68,7 @@ class LandingSinupTest < ActiveSupport::TestCase
     assert_difference 'User.count', 1 do
       assert_difference 'Move.count', 1 do
         assert_difference 'Chat.count', 0 do
-          assert_difference 'all_mails.count', 1 do
+          assert_performed_jobs 1, only: ActionMailer::DeliveryJob do
             landing_signup.perform
           end
         end
@@ -96,7 +97,7 @@ class LandingSinupTest < ActiveSupport::TestCase
     assert_difference 'User.count', 0 do
       assert_difference 'Move.count', 1 do
         assert_difference 'Chat.count', 1 do
-          assert_difference 'all_mails.count', 2 do
+          assert_performed_jobs 2, only: ActionMailer::DeliveryJob do
             landing_signup.perform
           end
         end
@@ -124,7 +125,7 @@ class LandingSinupTest < ActiveSupport::TestCase
     assert_difference 'User.count', 0 do
       assert_difference 'Move.count', 1 do
         assert_difference 'Chat.count', 1 do
-          assert_difference 'all_mails.count', 2 do
+          assert_performed_jobs 2, only: ActionMailer::DeliveryJob do
             landing_signup.perform
           end
         end
@@ -152,7 +153,7 @@ class LandingSinupTest < ActiveSupport::TestCase
     assert_difference 'User.count', 0 do
       assert_difference 'Move.count', 1 do
         assert_difference 'Chat.count', 0 do
-          assert_difference 'all_mails.count', 1 do
+          assert_performed_jobs 1, only: ActionMailer::DeliveryJob do
             landing_signup.perform
           end
         end

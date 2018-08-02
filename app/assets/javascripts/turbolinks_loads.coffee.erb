@@ -7,7 +7,7 @@ $(document).on 'turbolinks:load', ->
     else
       options['placeholder'] = '<%= I18n.translate 'please_select' %>'
 
-    options['language'] = determine_language()
+    options['locale'] = determine_language()
     $(this).select2 options
 
   $('[data-select2-ajax-initialize]').each ->

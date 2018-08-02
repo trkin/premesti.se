@@ -74,7 +74,7 @@ sr-latin:
     did_not_receive_confirmation_instructions: Niste primili uputstvo za potvrdu naloga ?
     did_not_receive_unlock_instructions: Niste primili uputstvo za otključavanje naloga ?
     sign_in_with: Prijavi se preko %{provider}-a
-    send_me_reset_password_instructions: Pošaljite mi uputstvo za promenu lozinke
+    send_me_reset_password_instructions: Pošalji uputstvo za promenu lozinke
     resend_confirmation_instructions: Ponovo pošalji uputstva za potvrdu naloga
     resend_unlock_instructions: Ponovo pošalji uputstva za otključavanje naloga
     can_not_sign_in: Nije uspela prijava.

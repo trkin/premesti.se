@@ -21,7 +21,7 @@ class LandingSignup
     return false unless _create_or_find_user?
     return false unless _create_move!
 
-    UserMailer.landing_signup(@move).deliver_now
+    UserMailer.landing_signup(@move.id).deliver_later
     true
   end
 
@@ -32,7 +32,7 @@ class LandingSignup
     elsif User.find_by email: @email
       _valid_password_for_existing_user?
     else
-      @user = User.new email: @email, password: @password
+      @user = User.new email: @email, password: @password, locale: I18n.locale
       @user.skip_confirmation_notification! # we will manually send confirmation
       if @user.save
         true

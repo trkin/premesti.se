@@ -1,5 +1,7 @@
+require 'sidekiq/web'
 # rubocop:disable Metrics/BlockLength
 Rails.application.routes.draw do
+  mount Sidekiq::Web => '/sidekiq'
   root to: 'pages#home'
   devise_for :users, controllers: {
     omniauth_callbacks: :omniauth_callbacks,
@@ -49,3 +51,4 @@ Rails.application.routes.draw do
     resources :groups
   end
 end
+# rubocop:enable Metrics/BlockLength

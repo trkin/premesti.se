@@ -3,6 +3,12 @@ module MailerHelpers
     ActionMailer::Base.deliveries = []
   end
 
+  # if you deliver_now you can
+  # assert_difference 'all_mails.count', 1 do
+  # and for background deliver_later you need to assert perform or enqueue
+  # inherit from ActiveJob::TestCase
+  # or include ActiveJob::TestHelper
+  # assert_performed_jobs 1, only: ActionMailer::DeliveryJob do
   def all_mails
     ActionMailer::Base.deliveries
   end
@@ -29,7 +35,11 @@ module MailerHelpers
 end
 class ActiveSupport::TestCase
   include MailerHelpers
+  # for assert_performed_jobs
+  include ActiveJob::TestHelper
 end
 class ActionDispatch::IntegrationTest
   include MailerHelpers
+  # for assert_performed_jobs
+  include ActiveJob::TestHelper
 end

@@ -5,7 +5,7 @@ class CreateChatAndSendNotificationsTest < ActiveSupport::TestCase
     m2 = create :move
     result = nil
     assert_difference 'Chat.count', 1 do
-      assert_difference 'all_mails.count', 1 do
+      assert_performed_jobs 1, only: ActionMailer::DeliveryJob do
         result = CreateChatAndSendNotifications.new(m1, [m2]).perform
       end
     end
@@ -20,14 +20,14 @@ class CreateChatAndSendNotificationsTest < ActiveSupport::TestCase
     m3 = create :move
     result = nil
     assert_difference 'Chat.count', 1 do
-      assert_difference 'all_mails.count', 2 do
+      assert_performed_jobs 2, only: ActionMailer::DeliveryJob do
         result = CreateChatAndSendNotifications.new(m1, [m2, m3]).perform
       end
     end
     assert_equal result.chat.moves, [m1, m2, m3]
     chat_mail1, chat_mail2 = all_mails
-    assert_match t('user_mailer.new_match.chat_link'), chat_mail1.html_part.decoded
-    assert_match t('user_mailer.new_match.chat_link'), chat_mail2.html_part.decoded
+    assert_match Rails.application.routes.url_helpers.chat_url(result.chat), chat_mail1.html_part.decoded
+    assert_match Rails.application.routes.url_helpers.chat_url(result.chat), chat_mail2.html_part.decoded
   end
 
   def test_create_chat_2_moves_existing_send_notification

@@ -32,7 +32,7 @@ class CreateChatAndSendNotifications
 
   def send_notification(chat)
     @moves.each do |move|
-      UserMailer.new_match(move, chat).deliver_now
+      UserMailer.new_match(move.id, chat.id).deliver_later
     end
   end
 

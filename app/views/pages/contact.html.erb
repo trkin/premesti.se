@@ -8,3 +8,11 @@
   <%= f.text_area :text, required: true %>
   <%= f.submit t('send'), class: 'btn btn-block btn-primary' %>
 <% end %>
+<p><%= t 'or' %></p>
+<%= t 'find_us_on' %>
+<%= link_to Rails.application.secrets.facebook_page_url, title: t('our_fb_page'), class: 'btn btn-social' do %>
+  <i class="fa fa-facebook-official"></i>
+  <small>
+    <%= Rails.application.secrets.facebook_page_url[Rails.application.secrets.facebook_page_url.index('facebook')..-1] %>
+  </small>
+<% end %>

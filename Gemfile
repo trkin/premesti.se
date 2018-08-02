@@ -93,3 +93,6 @@ gem 'autoprefixer-rails'
 
 # error notification to EXCEPTION_RECIPIENTS emails
 gem 'exception_notification'
+
+# background proccessor
+gem 'sidekiq'

@@ -31,7 +31,7 @@ en:
   current_language: Move Your Place (english)
   change_language: Change language
   visit_link_to_start_using_new_language: Visit %{link} to start using new language
-  visit_link_to_switch_language: Your choosen language is %{language}. Visit %{link} to use that language
+  visit_link_to_switch_language: Your choosen language is %{language}. Visit %{link} to use that language or change it on %{settings_link}
   show: Show
   create: Create
   close: Close
@@ -73,7 +73,9 @@ en:
   problem_with_account: Problem with account ?
   send: Send
   contact: Contact
-  contact_description: We are grateful for all the shortcomings on the site that you report to us. For any questions, feel free to contact us with this form
+  contact_description: We are grateful for all the good and bad things on the site that you report to us.
+  find_us_on: find us on
+  our_fb_page: Our Facebook Pagel
   contact_thanks: Thank You for the message
   we_will_reply_back_soon: We will reply back soon
   faq_1: Who is this site for ?

@@ -3,6 +3,7 @@ FactoryBot.define do
     sequence(:email) { |i| "user#{i}@email.com" }
     password 'factory_password'
     confirmed_at { Time.current }
+    locale I18n.default_locale
     factory :unconfirmed_user do
       confirmed_at nil
     end

@@ -31,7 +31,7 @@ sr-latin:
   current_language: Premesti se (latinica)
   change_language: Promeni jezik
   visit_link_to_start_using_new_language: Posetite %{link} da bi ste počeli da koristite izabrani jezik i pismo
-  visit_link_to_switch_language: Vaš izbor jezika i pisma je %{language}. Posetite %{link} da bi ste koristili izabrani jezik i pismo
+  visit_link_to_switch_language: Vaš izbor jezika i pisma je %{language}. Posetite %{link} da bi ste koristili izabrani jezik i pismo ili ga promenite na %{settings_link}
   show: Prikaži
   create: Napravi
   close: Zatvori
@@ -73,7 +73,9 @@ sr-latin:
   problem_with_account: Problem sa nalogom ?
   send: Pošalji
   contact: Kontakt
-  contact_description: Unapred smo zahvalni za sve nedostatke na sajtu koje nam javite. Za bilo koja pitanja, slobodno nam se obratite putem ovog formulara
+  contact_description: Unapred smo zahvalni za sve dobre i loše stvari na sajtu koje nam javite.
+  find_us_on: nas nađite na
+  our_fb_page: Naša Fejs stranica
   contact_thanks: Hvala na poruci
   we_will_reply_back_soon: Uskoro ćemo se javiti
   faq_1: Kome je namenjen ovaj sajt ?

@@ -30,10 +30,10 @@ class ApplicationController < ActionController::Base
   end
 
   def sign_in_as
-    return unless Rails.env.development?
+    redirect_to(root_path, alert: t(:unauthorized)) && return unless current_user&.admin? || Rails.env.development?
     user = User.find params[:user_id]
     sign_in :user, user, byepass: true
-    redirect_to root_path
+    redirect_to root_path, notice: t(:successfully)
   end
 
   before_action :configure_permitted_parameters, if: :devise_controller?

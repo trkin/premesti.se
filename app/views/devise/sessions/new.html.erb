@@ -1,6 +1,15 @@
 <% login_layout %>
 <h2><%= t "my_devise.sign_in_headline" %></h2>
 
+<% if Rails.env.development? %>
+  <small>
+    Only on development
+    <% User.order(:created_at).limit(2).each do |user| %>
+      <%= link_to user.email, sign_in_as_path(user_id: user.id) %>
+    <% end %>
+  </small>
+<% end %>
+
 <%= link_to user_facebook_omniauth_authorize_path, class: 'btn btn-block btn-facebook text-left' do %>
   <i class="fa fa-facebook"></i>
   <%= t("my_devise.sign_in_with", provider: t('provider.facebook')) %>

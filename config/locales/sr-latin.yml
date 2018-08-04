@@ -4,7 +4,7 @@ sr-latin:
   site_description_1: Lakša komunikacija roditelja
   site_description_2: radi pronalaženja zamene
   site_description_3: mesta u vrtićima
-  site_disclaimer: Ovaj sajt nije povezan sa Predškolskim ustanovama već služi za pronalaženje rokada i ostalih poklapanja želja. Kada se roditelji dogovore onda mogu podneti zahteve za premeštaj. Zahtevi ne moraju biti usvojeni iz raznih razloga (preopterećenosti grupe itd.). Ova komunikacija svakako može da pomogne u procesu prebacivanja.
+  site_disclaimer: Ovaj sajt nije povezan sa Predškolskim ustanovama već služi za dogovor oko pronalaženja rokada već upisane dece u vrtićima. Kada se roditelji dogovore onda mogu podneti zahteve za premeštaj. Zahtevi ne moraju biti usvojeni iz raznih razloga (preopterećenosti grupe itd.), ali ova komunikacija svakako može da pomogne u procesu prebacivanja.
   please_select: Molim izaberite
   select: Izaberite
   where_do_you_want_to_move: Gde hoćeš da se premestiš ?
@@ -44,6 +44,7 @@ sr-latin:
   success_update: Uspešno ste izmenili
   success_create: Uspešno ste dodali
   success_delete: Uspešno ste obrisali
+  successfully: Uspešno
   continue: Nastavi
   add_current_location: Dodaj trenutnu lokaciju
   add_requested_location: Dodaj željeni vrtić
@@ -124,3 +125,4 @@ sr-latin:
   my_move_introduction: Ako želiš da se premestiš u %{from} ili iz %{to} onda hajde da stupimo u kontakt radi lakše rotacije mesta
   share: Podeli
   see_public_page: Vidi javnu stranicu
+  unauthorized: Niste autorizovani

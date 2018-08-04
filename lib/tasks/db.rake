@@ -4,10 +4,10 @@ namespace :db do
     b = {}
     # User
     [
-      { var: :admin, email: 'admin@asdf.asdf', admin: true },
-      { var: :user1, email: 'asdf1@asdf.asdf' },
-      { var: :user2, email: 'asdf2@asdf.asdf' },
-      { var: :user3, email: 'asdf3@asdf.asdf' },
+      { var: :admin, email: 'admin@asdf.asdf', admin: true, locale: :en },
+      { var: :user1, email: 'asdf1@asdf.asdf', locale: :en },
+      { var: :user2, email: 'asdf2@asdf.asdf', locale: :en },
+      { var: :user3, email: 'asdf3@asdf.asdf', locale: :en },
     ].each do |doc|
       params = doc.except(:var).merge(name: doc[:var])
       user = User.find_by params

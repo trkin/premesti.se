@@ -35,5 +35,6 @@ FactoryBot.define do
   factory :message do
     sequence(:text) { |i| "Text#{i}" }
     chat
+    user
   end
 end

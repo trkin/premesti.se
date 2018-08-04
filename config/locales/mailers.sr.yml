@@ -8,3 +8,6 @@ sr:
       description_of_service_unconfirmed: Молим Вас да пратите везу за потврду Ваше имејл адресе како бих Вам слали поруке о поклапањима
     new_match:
       chat_link: Идите и покушајте да се договорите око премештаја
+    new_message:
+      there_are_unread_messages_in_chat_for_location: Имате непрочитаних порука везаних за договарање премештаја из %{location}
+      chat_link: Идите и прочитајте нове поруке

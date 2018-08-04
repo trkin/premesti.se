@@ -1,4 +1,5 @@
 require 'test_helper'
+load 'app/helpers/mailer_helper.rb'
 
 class UserMailerTest < ActionMailer::TestCase
   test 'landing_signup' do
@@ -39,5 +40,47 @@ class UserMailerTest < ActionMailer::TestCase
     mail = UserMailer.new_match(move.id, chat.id)
     assert_match t('new_match', locale: :en), mail.subject
     assert_match t('user_mailer.new_match.chat_link', locale: :en), mail.body.encoded
+  end
+
+  test 'new_message' do
+    user = create :user
+    move = create :move, user: user
+    move_creator = create :move
+    chat = Chat.create_for_moves [move, move_creator]
+    message = create :message, chat: chat, user: move_creator.user, text: 'do_you_want_to_replace'
+    mail = UserMailer.new_message(move.id, message.id)
+    assert_equal [user.email], mail.to
+    assert_match t('new_message'), mail.subject
+    assert_match t('user_mailer.new_message.chat_link'), mail.body.encoded
+    assert_match 'do_you_want_...', mail.body.encoded
+  end
+
+  class TestMailerHelper
+    include MailerHelper
+  end
+  test 'strip_with_dots' do
+    text = '123456789012345'
+    expected = '123456789012...'
+    assert_equal expected, TestMailerHelper.new.strip_with_dots(text)
+
+    text = '1234567890123'
+    expected = '123456789012...'
+    assert_equal expected, TestMailerHelper.new.strip_with_dots(text)
+
+    text = '123456789012'
+    expected = '123456789...'
+    assert_equal expected, TestMailerHelper.new.strip_with_dots(text)
+
+    text = '1234'
+    expected = '1...'
+    assert_equal expected, TestMailerHelper.new.strip_with_dots(text)
+
+    text = '123'
+    expected = '123'
+    assert_equal expected, TestMailerHelper.new.strip_with_dots(text)
+
+    text = '1'
+    expected = '1'
+    assert_equal expected, TestMailerHelper.new.strip_with_dots(text)
   end
 end

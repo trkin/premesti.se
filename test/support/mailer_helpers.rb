@@ -33,13 +33,3 @@ module MailerHelpers
     mail
   end
 end
-class ActiveSupport::TestCase
-  include MailerHelpers
-  # for assert_performed_jobs
-  include ActiveJob::TestHelper
-end
-class ActionDispatch::IntegrationTest
-  include MailerHelpers
-  # for assert_performed_jobs
-  include ActiveJob::TestHelper
-end

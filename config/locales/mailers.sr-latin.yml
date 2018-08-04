@@ -8,3 +8,6 @@ sr-latin:
       description_of_service_unconfirmed: Molim Vas da pratite vezu za potvrdu Vaše imejl adrese, kako bih vam slali poruke o poklapanjima
     new_match:
       chat_link: Idite i pokušajte da se dogovorite oko premeštaja
+    new_message:
+      there_are_unread_messages_in_chat_for_location: Imate nepročitanih poruka vezanih za dogovaranje premeštaja iz %{location}
+      chat_link: Idite i pročitajte nove poruke

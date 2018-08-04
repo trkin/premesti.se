@@ -97,6 +97,7 @@ sr-latin:
   faq_8_a: Sajt je napravila kompanija TRK INOVACIJE DOO NOVI SAD.
   system_message: Poruka sistema
   new_match: Novo poklapanje
+  new_message: Nova poruka
   there_is_a_match_for_your_location: Postoji novo poklapanje za vašu želju za premeštajem iz vrtića %{location}
   chats_empty_new_will_show_up_automatically: Trenutno nema dogovaranja. Nova dogovaranja će se pojaviti kada se desi poklapanje
   requests_in_last_month: Želje u poslednjih mesec dana

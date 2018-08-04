@@ -2,12 +2,12 @@ class ChatsController < ApplicationController
   before_action :_set_chat
 
   def show
-    @message = Message.new
+    @message_decorator = MessageDecorator.new Message.new
   end
 
   def create_message
-    @message = Message.new _message_params
-    if @message.save
+    @message_decorator = MessageDecorator.new Message.new _message_params
+    if @message_decorator.save_and_send_notifications
       redirect_to chat_path(@chat), notice: t_crud('success_create', Message)
     else
       render :show

@@ -97,6 +97,7 @@ sr:
   faq_8_a: Сајт је направила компанија ТРК ИНОВАЦИЈЕ ДОО НОВИ САД.
   system_message: Порука система
   new_match: Ново поклапање
+  new_message: Нова порука
   there_is_a_match_for_your_location: Постоји ново поклапање за вашу жељу за премештајем из вртића %{location}
   chats_empty_new_will_show_up_automatically: Тренутно нема договарања. Нова договарања ће се појавити када се деси поклапање
   requests_in_last_month: Жеље у последњих месец дана

@@ -43,6 +43,6 @@ class MovesControllerTest < ActionDispatch::IntegrationTest
       end
     end
     follow_redirect!
-    assert response.body.include? I18n.t('request_created_and_sent_notifications_successfully', count: 1)
+    assert_select_notice_message I18n.t('request_created_and_sent_notifications_successfully', count: 1)
   end
 end

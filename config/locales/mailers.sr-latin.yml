@@ -9,5 +9,5 @@ sr-latin:
     new_match:
       chat_link: Idite i pokušajte da se dogovorite oko premeštaja
     new_message:
-      there_are_unread_messages_in_chat_for_location: Imate nepročitanih poruka vezanih za dogovaranje premeštaja iz %{location}
+      there_are_unread_messages_in_chat_for_location: Imate nepročitanih poruka vezanih za dogovaranje premeštaja iz vrtića %{location}
       chat_link: Idite i pročitajte nove poruke

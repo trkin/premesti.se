@@ -14,4 +14,9 @@ module MailerHelper
       message
     end
   end
+
+  # https://stackoverflow.com/questions/11078264/how-to-get-rid-of-show-trimmed-content-in-gmail-html-emails
+  def prevent_trim
+    "<span class='hide-to-up pre-header'>#{Time.zone.now}</span>".html_safe
+  end
 end

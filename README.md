@@ -93,6 +93,11 @@ rails translate:missing
 rails translate:copy
 ~~~
 
+## Mails
+
+We send several type of mails. You can see them
+<http://localhost:3000/rails/mailers>
+
 ## Test
 
 Run test with

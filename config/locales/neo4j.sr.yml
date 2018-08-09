@@ -29,8 +29,8 @@ sr:
         accusative: премештај
       chat:
         one: договор
-        few: договора
-        other: договор
+        few: договарања
+        other: договарања
         accusative: договор
       message:
         one: порука

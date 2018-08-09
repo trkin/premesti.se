@@ -6,7 +6,10 @@
   </div>
 <% end %>
 <div>
-  <%= link_to User.size.to_s + ' ' + User.model_name.human(count: 2), admin_users_path %>
+  <%= link_to User.size.to_s + ' ' + User.model_name.human(count: User.size), admin_users_path %>
+</div>
+<div>
+  <%= link_to Chat.size.to_s + ' ' + Chat.model_name.human(count: Chat.size), admin_chats_path %>
 </div>
 <div>
   <%= link_to t('report', count: Message.reported.length), admin_reported_messages_path %>

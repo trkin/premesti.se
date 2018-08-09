@@ -12,13 +12,16 @@
     <div class="ml-auto">
       <% if current_user %>
         <div class='p-3'>
+          <% if current_user.admin? %>
+            <%= link_to t("admin_dashboard"), admin_dashboard_path %>
+          <% end %>
           <%= link_to t('dashboard'), dashboard_path %>
         </div>
       <% else %>
         <% if Rails.env.development? %>
           <small>
             Only on development
-            <% User.all.order(:created_at).limit(2).each do |user| %>
+            <% User.all.order(:created_at).limit(4).each do |user| %>
               <%= link_to user.email, sign_in_as_path(user_id: user.id) %>
             <% end %>
           </small>

@@ -1,0 +1,15 @@
+<ul>
+  <% @chats.each do |chat| %>
+    <li>
+      <% chat.moves.each do |move| %>
+        <%= move.user.email %>
+        <%= move.from_group.location.name %>
+      <% end %>
+      :
+      <% chat.messages.each do |message| %>
+        <b><%= message.text %></b>
+        (<%= message.user&.email %>)
+      <% end %>
+    </li>
+  <% end %>
+</ul>

@@ -49,7 +49,7 @@
               </span>
             <% end %>
             <% if current_user.admin? %>
-              <%= link_to t("admin_dashboard"), admin_dashboard_path, class: 'nav0item nav-link' %>
+              <%= link_to t("admin_dashboard"), admin_dashboard_path, class: 'nav-item nav-link' %>
             <% end %>
             <% find_breadcrumb_list.each_with_index do |(text, link), i| %>
               <% if link.present? %>

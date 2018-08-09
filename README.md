@@ -121,7 +121,7 @@ To dump from GrapheneDB and restore locally
 ~~~
 rm -rf db/neo4j/development/data/databases/graph.db
 mkdir db/neo4j/development/data/databases/graph.db
-unzip tmp/graphdb.zip db/neo4j/development/data/databases/graph.db
+unzip tmp/graphdb.zip -d db/neo4j/development/data/databases/graph.db
 rails neo4j:restart[development]
 ~~~
 

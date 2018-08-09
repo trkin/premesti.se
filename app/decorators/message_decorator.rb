@@ -4,10 +4,17 @@ class MessageDecorator < SimpleDelegator
   end
 
   def save_and_send_notifications
-    message.save && _send_notifications
+    message.save && _send_to_chat_channel && _send_to_email
   end
 
-  def _send_notifications
+  def _send_to_chat_channel
+    ActionCable.server.broadcast(
+      ChatChannel::CHAT_TOPIC,
+      message: ChatsController.render(partial: 'chats/message', locals: { message: message }, layout: false).squish
+    )
+  end
+
+  def _send_to_email
     message.chat.moves.each do |move|
       next if move.user == message.user
       UserMailer.new_message(move.id, message.id).deliver_later

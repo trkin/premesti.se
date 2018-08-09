@@ -1,20 +1,25 @@
+<%#
+  message
+  owner: boolean
+%>
+<% owner = false unless defined? owner %>
 <li class="show-on-hover
   <%= 'reported' if message.reported_at %>
-  <%= 'd-flex justify-content-end' if message.user == current_user %>
+  <%= 'd-flex justify-content-end' if owner %>
   ">
   <%= message.text %>
   <small class=''><%= message.user_location_name %></small>
-  <% if message.user == current_user %>
-    <%= link_to destroy_message_chat_path(@chat, message_id: message.id), method: :delete, class: "text-danger show-on-hover-target", 'data-confirm': t_crud('are_you_sure_to_remove_item', item: Message), title: t_crud('delete', Message) do %>
+  <% if owner %>
+    <%= link_to destroy_message_chat_path(message.chat, message_id: message.id), method: :delete, class: "text-danger show-on-hover-target", 'data-confirm': t_crud('are_you_sure_to_remove_item', item: Message), title: t_crud('delete', Message) do %>
     <i class="fa fa-remove" aria-hidden="true"></i>
   <% end %>
   <% else %>
     <% if message.reported_at %>
-      <%= link_to report_message_chat_path(@chat, message_id: message.id, cancel_report: true), method: :patch, class: "text-danger show-on-hover-target", 'data-confirm': t('are_you_sure'), title: t('cancel_report_abuse') do %>
+      <%= link_to report_message_chat_path(message.chat, message_id: message.id, cancel_report: true), method: :patch, class: "text-danger show-on-hover-target", 'data-confirm': t('are_you_sure'), title: t('cancel_report_abuse') do %>
         <i class="fa fa-flag-o" aria-hidden="true"></i>
       <% end %>
     <% else %>
-      <%= link_to report_message_chat_path(@chat, message_id: message.id), method: :patch, class: "text-danger show-on-hover-target", 'data-confirm': t('are_you_sure'), title: t('report_abuse') do %>
+      <%= link_to report_message_chat_path(message.chat, message_id: message.id), method: :patch, class: "text-danger show-on-hover-target", 'data-confirm': t('are_you_sure'), title: t('report_abuse') do %>
         <i class="fa fa-flag" aria-hidden="true"></i>
       <% end %>
     <% end %>

@@ -8,10 +8,11 @@ class ChatsController < ApplicationController
   def create_message
     @message_decorator = MessageDecorator.new Message.new _message_params
     if @message_decorator.save_and_send_notifications
-      redirect_to chat_path(@chat), notice: t_crud('success_create', Message)
+      # redirect_to chat_path(@chat), notice: t_crud('success_create', Message)
     else
-      render :show
+      # render :show
     end
+    head :ok
   end
 
   def report_message

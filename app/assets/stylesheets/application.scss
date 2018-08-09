@@ -11,21 +11,22 @@
 // node_modules
 //
 // for referencing Bootstrap CDN font files on cloud use
-$fa-font-path: "//netdna.bootstrapcdn.com/font-awesome/4.7.0/fonts" !default;
-// $fa-font-path: "font-awesome/fonts";
-@import "font-awesome/scss/font-awesome";
+$fa-font-path: '//netdna.bootstrapcdn.com/font-awesome/4.7.0/fonts' !default;
+// $fa-font-path: 'font-awesome/fonts';
+@import 'font-awesome/scss/font-awesome';
 @import url('https://fonts.googleapis.com/css?family=Pangolin');
 
-// @icon-font-path: "bootstrap/fonts/";
+// @icon-font-path: 'bootstrap/fonts/';
 $enable-gradients: true;
-@import "bootstrap/scss/bootstrap";
-@import "bootstrap_overrides";
+@import 'bootstrap/scss/bootstrap';
+@import 'bootstrap_overrides';
 
 //
 // app/assets/stylesheets
 //
-@import "common";
-@import "home";
-@import "moves";
-@import "layout";
-@import "map";
+@import 'chats';
+@import 'common';
+@import 'home';
+@import 'moves';
+@import 'layout';
+@import 'map';

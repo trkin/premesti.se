@@ -2,9 +2,9 @@
   breadcrumb "#{Chat.model_name.human.mb_chars.capitalize} #{@chat.name_with_moves}" => nil
 %>
 <%= bootstrap_form_for @message_decorator, url: create_message_chat_path(@chat), remote: true do |f| %>
-  <%= f.text_field :text, skip_label: true, required: true, append: f.primary(t_crud('create', Message)) %>
+  <%= f.text_field :text, class: 'new-message-input', id: 'new-message-input', skip_label: true, required: true, append: f.primary(t_crud('create', Message)), 'data-disable-with': t('sending') %>
 <% end %>
-<ul class="list-unstyled" id='messages'>
+<ul class="list-unstyled" id='messages' data-chat-page='<%= @chat.id %>'>
   <% @chat.messages.each do |message| %>
     <%= render "message", message: message %>
   <% end %>

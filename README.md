@@ -13,6 +13,7 @@ In source you can see usage of the:
 * yarn installed: bootstrap 3, jquery 3, font awesome 4, snapsvg, select2
 * svg animations
 * redis and sidekiq
+* chat with ActionCable
 
 Graph database is chosen since we need to match moves in format A->B, B->A
 (I want to move from A to B, so please find me who wants to move from B to A).

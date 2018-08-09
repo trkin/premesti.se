@@ -9,7 +9,7 @@ class MessageDecorator < SimpleDelegator
 
   def _send_to_chat_channel
     ActionCable.server.broadcast(
-      ChatChannel::CHAT_TOPIC,
+      "chat_#{message.chat.id}_channel",
       message: ChatsController.render(partial: 'chats/message', locals: { message: message }, layout: false).squish
     )
   end

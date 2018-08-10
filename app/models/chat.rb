@@ -8,10 +8,12 @@ class Chat
   has_many :out, :messages, type: :HAS_MESSAGES
   has_many :out, :moves, type: :MATCHES, model_class: :Move, unique: true
 
-  def name_with_moves
-    moves.each.map do |move|
-      move.from_group.location.name
-    end.join('|')
+  def name_for_user(user)
+    move = moves.find_by user: user
+    # this is not supported so we need to add references in chat for particular
+    # group for which it was created
+    # group = move.to_groups.find_by location: moves.map { |move| move.from_group.location }
+    move.group_age_and_locations
   end
 
   def self.create_for_moves(moves)

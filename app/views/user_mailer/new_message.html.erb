@@ -5,7 +5,7 @@
 
 <p><%= t('user_mailer.new_message.there_are_unread_messages_in_chat_for_location', location: @move.from_group.location.name) %></p>
 <div class='box'>
-  <%= strip_with_dots @message.text %>
+  <%= @message.text %>
 </div>
 <p>
   <%= link_to t('user_mailer.new_message.chat_link'), chat_url(@message.chat), class: 'button' %>

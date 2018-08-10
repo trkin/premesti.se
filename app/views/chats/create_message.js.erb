@@ -1,6 +1,7 @@
 setTimeout(
   function(){
-    $('#new-message-input').val(' ');
+    $('#new-message-input').closest('form').trigger('reset');
+    $('#new-message-input').focus();
   },
   1
 );

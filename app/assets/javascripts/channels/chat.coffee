@@ -13,4 +13,7 @@ $(document).on 'turbolinks:load', ->
 
     received: (data) ->
       # Called when there's incoming data on the websocket for this channel
-      $('#messages').prepend(data['message'])
+      dom = $.parseHTML data['message']
+      if $('#messages').data('userId') == $(dom[0]).data('userId')
+        $(dom[0]).addClass 'message-line__owner'
+      $('#messages').prepend dom

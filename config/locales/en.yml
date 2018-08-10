@@ -124,6 +124,8 @@ en:
   report_abuse: Report abuse
   cancel_report_abuse: Cancel report abuse
   we_received_report_successfully: We received report successfully
+  are_you_sure_to_report_abuse: Do you want our team to check usefulness of this message ?
+  are_you_sure_to_cancel_report_abuse: Are you sure that we do not need to check usefullness of this message ?
   we_cancel_report_successfully: We cancelled report successfully
   my_move_introduction: If you want move to %{to} or from %{from} than please get in touch
   share: Share

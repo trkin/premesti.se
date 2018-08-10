@@ -124,6 +124,8 @@ sr-latin:
   report_abuse: Prijavu zloupotrebu
   cancel_report_abuse: Odustani od prijave zloupotrebe
   we_received_report_successfully: Uspešno smo primili prijavu zloupotrebe
+  are_you_sure_to_report_abuse: Da li hoćete da naš tim proveri upotrebljivost ove poruke ?
+  are_you_sure_to_cancel_report_abuse: Da li ste sigurni da ne treba da proveravamo upotrebljivost ove poruke ?
   my_move_introduction: Ako želiš da se premestiš u %{from} ili iz %{to} onda hajde da stupimo u kontakt radi lakše rotacije mesta
   share: Podeli
   see_public_page: Vidi javnu stranicu

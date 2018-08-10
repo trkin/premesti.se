@@ -1,2 +1,23 @@
 .new-message-input
   text-align: right
+
+.message-line
+  display: flex
+
+.message-text
+  flex-basis: 50%
+
+.message-owner-section
+  display: none
+
+.message-not-owner-section
+  display: inline-flex
+
+.message-line__owner
+  justify-content: flex-end
+
+  .message-owner-section
+    display: inline-flex
+
+  .message-not-owner-section
+    display: none

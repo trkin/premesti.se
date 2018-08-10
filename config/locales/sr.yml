@@ -124,6 +124,8 @@ sr:
   report_abuse: Пријави злоупотребу
   cancel_report_abuse: Одустани од пријаве злоупотребе
   we_received_report_successfully: Успешно смо примили пријаву злоупотребе
+  are_you_sure_to_report_abuse: Да ли хоћете да наш тим провери употребљивост ове поруке ?
+  are_you_sure_to_cancel_report_abuse: Да ли сте сигурни да не треба да проверавамо употребљивост ове поруке ?
   we_cancel_report_successfully: Успешно смо отказали пријаву злоупотребе
   my_move_introduction: Ако желиш да се преместиш у <b>%{from}</b> или из <b>%{to}</b> онда хајде да ступимо у контакт ради лакше ротације места.<br>Генерација %{age}
   share: Подели

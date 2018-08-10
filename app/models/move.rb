@@ -22,6 +22,18 @@ class Move
       to_groups.map { |group| group.location.name }.join(',') + ')'
   end
 
+  def group_age_and_particular_group_location(group)
+    from_group.location.name + '(' +
+      from_group.age_with_short_title + ') ↪ ' +
+      group.location.name
+  end
+
+  def name_address_group_full_age_and_locations
+    from_group.location.name + ' ' + from_group.location.address + ' ' +
+      from_group.age_with_title +
+      to_groups.map { |group| "\n↪ " + group.location.name + '(' + group.location.address + ')' }.join
+  end
+
   def show_locations
     from_group.location.name + ' ' \
       '(↪ ' + to_groups.map { |group| group.location.name }.join(',') + ')'

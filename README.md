@@ -12,7 +12,8 @@ In source you can see usage of the:
 * Neo4j database
 * yarn installed: bootstrap 3, jquery 3, font awesome 4, snapsvg, select2
 * svg animations
-* redis and sidekiq
+* sidekiq
+* redis for sidekiq, cache store, action cable
 * chat with ActionCable
 
 Graph database is chosen since we need to match moves in format A->B, B->A

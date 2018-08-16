@@ -2,6 +2,7 @@
   landing_layout
   font_drift = 1.7
   bc_y_offset = 65
+  latest_move_timestamp = Neo4j::ActiveBase.current_session.query('MATCH (n:Move) RETURN max(n.updated_at) AS m').first.m
 %>
 <div class="landing-page-header background-color">
   <nav class="navbar p-0">
@@ -61,20 +62,22 @@
         <%= (1..7).map {|i| "<span class='color-age-#{i}'>#{i} #{I18n.t('year')}</span>, " }.join.html_safe %>
       </span>
       <br>
-      <% text = Move.query_as(:m).where('m.created_at > ?', (Time.zone.now - 1.month).to_i).limit(30).pluck(:m).map do |move|
-        "<a href=\"#{my_move_path(move, move.group_age_and_locations)}\"><span class=\"color-age-#{move.from_group.age}\">" +
-          move.show_locations +
-        "</span></a>"
-      end.join(', ').html_safe
-      # join with comma is important since we split by that and show one by
-      # one, please without colons for now
-%>
-      <span id='references'>
-        <%= text %>
-      </span>
-      <script>
-        alertTextShowHide.element_text(document.getElementById('references'), '<%= text %>', 99999, 500, ',');
-      </script>
+      <% cache ['moves-locations', latest_move_timestamp] do %>
+        <% text = Move.query_as(:m).where('m.created_at > ?', (Time.zone.now - 1.month).to_i).limit(30).pluck(:m).map do |move|
+            "<a href=\"#{my_move_path(move, move.group_age_and_locations)}\"><span class=\"color-age-#{move.from_group.age}\">" +
+              move.show_locations +
+            "</span></a>"
+          end.join(', ').html_safe
+          # join with comma is important since we split by that and show one by
+          # one, please without colons for now
+        %>
+        <span id='references'>
+          <%= text %>
+        </span>
+        <script>
+          alertTextShowHide.element_text(document.getElementById('references'), '<%= text %>', 99999, 500, ',');
+        </script>
+      <% end %>
     </div>
   </div>
   <div class='home-bottom'>
@@ -84,16 +87,18 @@
     <%= render 'layouts/alerts' %>
   </div>
 </div>
-<%
-  markers = Move.all.map { |move| move.to_groups.present? ? [move.from_group.location, move.to_groups.map(&:location)] : nil }.flatten.compact.uniq
-lines = []
-Move.all.each do |move|
-  move.to_groups.each do |to_group|
-    lines << OpenStruct.new(from: move.from_group.location, to: to_group.location, age: move.from_group.age)
+<% cache ['moves-markers', latest_move_timestamp] do %>
+  <%
+    markers = Move.all.map { |move| move.to_groups.present? ? [move.from_group.location, move.to_groups.map(&:location)] : nil }.flatten.compact.uniq
+  lines = []
+  Move.all.each do |move|
+    move.to_groups.each do |to_group|
+      lines << OpenStruct.new(from: move.from_group.location, to: to_group.location, age: move.from_group.age)
+    end
   end
-end
-%>
-<%= show_lines_map markers, lines, class: 'show-all-lines-map-container' %>
+  %>
+  <%= show_lines_map markers, lines, class: 'show-all-lines-map-container' %>
+<% end %>
 
 <svg id="abc" class="abc" preserveAspectRatio="none" viewBox="-1 -1 102 102">
   <text class="text abc__color-a abc__color-fill-a" x="50" y="3" dx="-<%= font_drift %>" dy="<%= font_drift %>"><%= t 'abc.a' %></text>

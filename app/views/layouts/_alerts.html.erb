@@ -5,6 +5,12 @@
   <div class="hide-to-up" id='alert-debug'><%= alert %></div>
 </div>
 <script>
-  <%=raw "alertTextShowHide.element_text(document.getElementById('notice'), '#{j notice}', 10000);" if notice %>
-  <%=raw "alertTextShowHide.element_text(document.getElementById('alert'), '#{j alert}', 10000);" if alert %>
+  function flash_notice(message) {
+    alertTextShowHide.element_text(document.getElementById('notice'), message, 10000);
+  }
+  function flash_alert(message) {
+    alertTextShowHide.element_text(document.getElementById('alert'), message, 10000);
+  }
+  <%=raw "flash_notice('#{j notice}');" if notice %>
+  <%=raw "flash_alert('#{j alert}');" if alert %>
 </script>

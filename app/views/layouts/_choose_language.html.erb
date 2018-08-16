@@ -1,17 +1,19 @@
 <% request_path = request.path
    request_path = '' if request.post?
  %>
-<div class="flags-dropdown nav-item dropdown">
-  <a role="button" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <% if I18n.locale == :en %>
-      <%= image_tag 'flag-usa.png' %>
-    <% else %>
-      <%= image_tag 'flag-serbia.png' %>
-    <% end %>
-  </a>
-  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-    <li class="dropdown-item"><a href="<%= root_url subdomain: nil, domain: Constant::DOMAINS[Rails.env.to_sym][:sr] %><%= request_path %>"><%= image_tag 'flag-serbia.png' %> <%= t('current_language', locale: :sr) %></a></li>
-    <li class="dropdown-item"><a href="<%= root_url subdomain: nil, domain: Constant::DOMAINS[Rails.env.to_sym][:'sr-latin'] %><%= request_path %>"><%= image_tag 'flag-serbia.png' %> <%= t('current_language', locale: :'sr-latin') %></a></li>
-    <li class="dropdown-item"><a href="<%= root_url subdomain: nil, domain: Constant::DOMAINS[Rails.env.to_sym][:en] %><%= request_path %>"><%= image_tag 'flag-usa.png' %> <%= t('current_language', locale: :en) %></a></li>
-  </ul>
-</div>
+<% cache 'language' do %>
+  <div class="flags-dropdown nav-item dropdown">
+    <a role="button" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <% if I18n.locale == :en %>
+        <%= image_tag 'flag-usa.png' %>
+      <% else %>
+        <%= image_tag 'flag-serbia.png' %>
+      <% end %>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <li class="dropdown-item"><a href="<%= root_url subdomain: nil, domain: Constant::DOMAINS[Rails.env.to_sym][:sr] %><%= request_path %>"><%= image_tag 'flag-serbia.png' %> <%= t('current_language', locale: :sr) %></a></li>
+      <li class="dropdown-item"><a href="<%= root_url subdomain: nil, domain: Constant::DOMAINS[Rails.env.to_sym][:'sr-latin'] %><%= request_path %>"><%= image_tag 'flag-serbia.png' %> <%= t('current_language', locale: :'sr-latin') %></a></li>
+      <li class="dropdown-item"><a href="<%= root_url subdomain: nil, domain: Constant::DOMAINS[Rails.env.to_sym][:en] %><%= request_path %>"><%= image_tag 'flag-usa.png' %> <%= t('current_language', locale: :en) %></a></li>
+    </ul>
+  </div>
+<% end %>

@@ -52,7 +52,7 @@ class UserMailerTest < ActionMailer::TestCase
     assert_equal [user.email], mail.to
     assert_match t('new_message'), mail.subject
     assert_match t('user_mailer.new_message.chat_link'), mail.body.encoded
-    assert_match 'do_you_want_...', mail.body.encoded
+    assert_match 'do_you_want_to_replace', mail.body.encoded
   end
 
   class TestMailerHelper

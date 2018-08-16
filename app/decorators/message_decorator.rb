@@ -12,6 +12,7 @@ class MessageDecorator < SimpleDelegator
       "chat_#{message.chat.id}_channel",
       message: ChatsController.render(partial: 'chats/message', locals: { message: message, bounce: true }, layout: false).squish
     )
+    true
   end
 
   def _send_to_email

@@ -4,6 +4,15 @@ class ApplicationController < ActionController::Base
   before_action :_set_locale_from_domain
   before_action :authenticate_user!, except: [:sign_in_as]
   # before_action :sleep_some_time # add delay for testing real conditions
+  after_action :check_flash_message
+
+  # rubocop:disable Metrics/AbcSize
+  def check_flash_message
+    return unless request.xhr? && request.format.js?
+    response.body += "flash_alert('#{view_context.j flash.now[:alert]}');" if flash.now[:alert].present?
+    response.body += "flash_notice('#{view_context.j flash.now[:notice]}');" if flash.now[:notice].present?
+  end
+  # rubocop:enable Metrics/AbcSize
 
   def sleep_some_time
     sleep 1

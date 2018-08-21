@@ -44,6 +44,7 @@ en:
   success_update: Successfully updated
   success_create: Successfully created
   success_delete: Successfully deleted
+  success_archived: Successfully deleted
   successfully: Successfully
   continue: Continue
   add_current_location: Add current location
@@ -53,6 +54,7 @@ en:
   my_moves: My Places
   my_requests: My Requests
   my_chats: My Chats
+  my_archived_chats: My archived chats
   my_profile: My Profile
   my_account: My Account
   my_settings: My Settings
@@ -127,7 +129,14 @@ en:
   are_you_sure_to_report_abuse: Do you want our team to check usefulness of this message ?
   are_you_sure_to_cancel_report_abuse: Are you sure that we do not need to check usefullness of this message ?
   we_cancel_report_successfully: We cancelled report successfully
-  my_move_introduction: If you want move to %{to} or from %{from} than please get in touch
+  my_move_introduction: We want to move from <b>%{from}</b> to <b>%{to}</b> group %{age}
   share: Share
   see_public_page: See public page
   unauthorized: Unauthorized
+  message_archived: Message deleted
+  added_move_by_mistake: I created a move by my mistake
+  do_not_need_to_move_anymore: Do not need to move anymore
+  other_participants_do_not_reply: Other participants do not reply
+  here_write_other_reason: Here you can write other reason
+  other_reason: Other reason
+  user_archived_chat_with_message: User %{location} archived the chat with a message %{message}

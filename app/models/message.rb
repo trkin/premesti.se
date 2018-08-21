@@ -3,6 +3,7 @@ class Message
   property :text, type: String
   property :reported_at, type: DateTime
   property :reported_by_user_id, type: String
+  property :status, type: Integer, default: 0
   property :created_at, type: DateTime
   property :updated_at, type: DateTime
 
@@ -10,6 +11,8 @@ class Message
   has_one :in, :user, origin: :messages
 
   validates :text, presence: true
+
+  enum status: %i[active archived]
 
   scope :reported, -> { query_as('message').where('message.reported_at IS NOT NULL').pluck('*') }
 

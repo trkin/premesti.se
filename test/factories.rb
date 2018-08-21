@@ -1,14 +1,14 @@
 FactoryBot.define do
   factory :user do
     sequence(:email) { |i| "user#{i}@email.com" }
-    password 'factory_password'
+    password { 'factory_password' }
     confirmed_at { Time.current }
-    locale I18n.default_locale
+    locale { I18n.default_locale }
     factory :unconfirmed_user do
-      confirmed_at nil
+      confirmed_at { nil }
     end
     trait :admin do
-      admin true
+      admin { true }
     end
   end
   factory :city do
@@ -17,8 +17,8 @@ FactoryBot.define do
   factory :location do
     sequence(:name) { |i| "LocationName#{i}" }
     sequence(:address) { |i| "LocationAddress#{i}" }
-    latitude '1'
-    longitude '1'
+    latitude { '1' }
+    longitude { '1' }
     city
   end
   factory :group do

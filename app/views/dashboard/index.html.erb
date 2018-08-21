@@ -5,7 +5,7 @@
   <%= t('my_moves') %>
 </h1>
 <ul class="list-unstyled">
-  <% @moves.each do |move| %>
+  <% current_user.moves.each do |move| %>
     <li class="show-on-hover">
       <%= link_to move, title: move.name_address_group_full_age_and_locations.html_safe do %>
         <%= move.group_age_and_locations %>
@@ -35,14 +35,15 @@
 <h1>
 <%= t('my_chats') %>
 </h1>
-<% if @chats.present? %>
+<% if current_user.moves.chats.active.present? %>
   <ul class="list-unstyled">
-    <% @chats.each do |chat| %>
+    <% current_user.moves.chats.active.each do |chat| %>
       <li>
         <%= link_to chat do %>
           <%= chat.name_for_user(current_user) %>
         <% end %>
         <% if Rails.env.development? %>
+          only on development
           <%= link_to t("delete"), chat, method: :delete, class: 'text-danger' %>
         <% end %>
       </li>
@@ -50,4 +51,23 @@
   </ul>
 <% else %>
   <%= t('chats_empty_new_will_show_up_automatically') %>
+<% end %>
+
+<% if current_user.moves.chats.archived.present? %>
+  <h1>
+  <%= t('my_archived_chats') %>
+  </h1>
+  <ul class="list-unstyled">
+    <% current_user.moves.chats.archived.each do |chat| %>
+      <li>
+        <%= link_to chat do %>
+          <%= chat.name_for_user(current_user) %>
+        <% end %>
+        <% if Rails.env.development? %>
+          only on development
+          <%= link_to t("delete"), chat, method: :delete, class: 'text-danger' %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
 <% end %>

@@ -95,6 +95,13 @@ rails translate:missing
 rails translate:copy
 ~~~
 
+and you can use helper
+
+~~~
+'my string'.to_cyr
+ => "мy стринг"
+~~~
+
 ## Mails
 
 We send several type of mails. You can see them

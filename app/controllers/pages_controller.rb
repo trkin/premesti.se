@@ -21,7 +21,7 @@ class PagesController < ApplicationController
     @landing_signup = LandingSignup.new
     @landing_signup.from_group_age = @move.from_group.age
     @landing_signup.current_location = @move.to_groups.first&.location&.id
-    @landing_signup.to_location = @move.from_group.location.id
+    # @landing_signup.to_location = @move.from_group.location.id
   end
 
   def submit_my_move

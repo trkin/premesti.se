@@ -44,6 +44,7 @@ sr:
   success_update: Успешно сте изменили
   success_create: Успешно сте направили
   success_delete: Успешно сте обрисали
+  success_archived: Успешно сте обрисали
   successfully: Успешно
   continue: Настави
   add_current_location: Додај тренутну локацију
@@ -53,6 +54,7 @@ sr:
   my_moves: Моји вртићи
   my_requests: Моје жеље
   my_chats: Моја договарања
+  my_archived_chats: Моја архивирана договарања
   my_profile: Мој профил
   my_account: Мој налог
   my_settings: Моја подешавања
@@ -127,7 +129,14 @@ sr:
   are_you_sure_to_report_abuse: Да ли хоћете да наш тим провери употребљивост ове поруке ?
   are_you_sure_to_cancel_report_abuse: Да ли сте сигурни да не треба да проверавамо употребљивост ове поруке ?
   we_cancel_report_successfully: Успешно смо отказали пријаву злоупотребе
-  my_move_introduction: Ако желиш да се преместиш у <b>%{from}</b> или из <b>%{to}</b> онда хајде да ступимо у контакт ради лакше ротације места.<br>Генерација %{age}
+  my_move_introduction: Мењамо место у вртићу <b>%{from}</b> за <b>%{to}</b> група %{age}
   share: Подели
   see_public_page: Види јавну страницу
   unauthorized: Нисте ауторизовани
+  message_archived: Порука је обрисана
+  added_move_by_mistake: Мојом грешком је додат овај премештај
+  do_not_need_to_move_anymore: Више не желим да овај премештај
+  other_participants_do_not_reply: Други чланови не одговарају на поруке
+  here_write_other_reason: Овде упишите други разлог
+  other_reason: Из других разлога бришем договарање
+  user_archived_chat_with_message: Корисник %{location} је архивирао договарање са поруком %{message}

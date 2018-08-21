@@ -22,6 +22,8 @@
 - CONSTRAINT ON ( move:Move ) ASSERT move.uuid IS UNIQUE
 - CONSTRAINT ON ( user:User ) ASSERT user.uuid IS UNIQUE
 :indexes:
+- INDEX ON :Chat(status)
+- INDEX ON :Message(status)
 - INDEX ON :User(confirmation_token)
 - INDEX ON :User(email)
 - INDEX ON :User(remember_token)
@@ -35,3 +37,5 @@
 - '20171201142350'
 - '20180502104256'
 - '20180502104851'
+- '20180821094628'
+- '20180821131744'

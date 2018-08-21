@@ -44,6 +44,7 @@ sr-latin:
   success_update: Uspešno ste izmenili
   success_create: Uspešno ste dodali
   success_delete: Uspešno ste obrisali
+  success_archived: Uspešno ste obrisali
   successfully: Uspešno
   continue: Nastavi
   add_current_location: Dodaj trenutnu lokaciju
@@ -53,6 +54,7 @@ sr-latin:
   my_moves: Moji vrtići
   my_requests: Moje želje
   my_chats: Moja dogovaranja
+  my_archived_chats: Moja arhivirana dogovaranja
   my_profile: Moj profil
   my_account: Moj nalog
   my_settings: Moja podešavanja
@@ -126,7 +128,14 @@ sr-latin:
   we_received_report_successfully: Uspešno smo primili prijavu zloupotrebe
   are_you_sure_to_report_abuse: Da li hoćete da naš tim proveri upotrebljivost ove poruke ?
   are_you_sure_to_cancel_report_abuse: Da li ste sigurni da ne treba da proveravamo upotrebljivost ove poruke ?
-  my_move_introduction: Ako želiš da se premestiš u %{from} ili iz %{to} onda hajde da stupimo u kontakt radi lakše rotacije mesta
+  my_move_introduction: Menjamo mesto u vrtiću <b>%{from}</b> za <b>%{to}</b> grupa %{group}
   share: Podeli
   see_public_page: Vidi javnu stranicu
   unauthorized: Niste autorizovani
+  message_archived: Poruka je obrisana
+  added_move_by_mistake: Mojom greškom je dodat ovaj premeštaj
+  do_not_need_to_move_anymore: Više ne želim da ovaj premeštaj
+  other_participants_do_not_reply: Drugi članovi ne odgovaraju na poruke
+  here_write_other_reason: Ovde upišite drugi razlog
+  other_reason: Iz drugih razloga brišem dogovaranje
+  user_archived_chat_with_message: Korisnik %{location} je arhivirao dogovaranje sa porukom %{message}

@@ -43,7 +43,7 @@
         <%= link_to t('or_choose_any_on_map'), find_on_map_path(select_element: '#current_location'), "data-toggle": "modal", "data-target": "#find-on-map-modal" %>
       </div>
       <div class=''>
-        <%= f.select :from_group_age, 1.upto(7).map {|a| [Group.title_for_age(a), a]}, {}, 'data-select2-initialize': true %>
+        <%= f.select :from_group_age, 1.upto(7).map {|a| [Group.title_for_age(a), a]}, { selected: f.object.from_group_age }, 'data-select2-initialize': true %>
       </div>
       <div class=''>
         <%= f.select :to_location, @landing_signup.already_selected_to_location_options, {}, id: 'to_location', 'data-select2-ajax-initialize': select2_locations_path %>

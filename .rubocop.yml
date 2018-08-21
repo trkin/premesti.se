@@ -34,7 +34,9 @@ Metrics/LineLength:
     - "db/**/*"
 
 # I like to put comma after each line
-Style/TrailingCommaInLiteral:
+Style/TrailingCommaInArrayLiteral:
+  Enabled: false
+Style/TrailingCommaInHashLiteral:
   Enabled: false
 # also in arguments
 Style/TrailingCommaInArguments:

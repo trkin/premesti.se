@@ -9,7 +9,7 @@ class CreateChatAndSendNotificationsTest < ActiveSupport::TestCase
         result = CreateChatAndSendNotifications.new(m1, [m2]).perform
       end
     end
-    assert_equal result.chat.moves, [m1, m2]
+    assert_equal_when_sorted_by_id result.chat.moves, [m1, m2]
     email = give_me_last_mail_and_clear_mails
     assert_match Regexp.new(t('user_mailer.new_match.chat_link')), email.html_part.body.to_s
   end
@@ -24,7 +24,7 @@ class CreateChatAndSendNotificationsTest < ActiveSupport::TestCase
         result = CreateChatAndSendNotifications.new(m1, [m2, m3]).perform
       end
     end
-    assert_equal result.chat.moves, [m1, m2, m3]
+    assert_equal_when_sorted_by_id result.chat.moves, [m1, m2, m3]
     chat_mail1, chat_mail2 = all_mails
     assert_match Rails.application.routes.url_helpers.chat_url(result.chat), chat_mail1.html_part.decoded
     assert_match Rails.application.routes.url_helpers.chat_url(result.chat), chat_mail2.html_part.decoded
@@ -39,7 +39,7 @@ class CreateChatAndSendNotificationsTest < ActiveSupport::TestCase
     chat.moves << m2
     assert_difference 'Chat.count', 1 do
       result = CreateChatAndSendNotifications.new(m1, [m3]).perform
-      assert_equal result.chat.moves, [m1, m3]
+      assert_equal_when_sorted_by_id result.chat.moves, [m1, m3]
     end
   end
 

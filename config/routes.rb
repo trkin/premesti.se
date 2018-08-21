@@ -40,6 +40,7 @@ Rails.application.routes.draw do
       post :create_message
       delete :destroy_message
       patch :report_message
+      post :archive
     end
   end
 

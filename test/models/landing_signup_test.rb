@@ -31,8 +31,8 @@ class LocationTest < ActiveSupport::TestCase
   end
 
   test 'create new user and move' do
-    assert_difference "User.count", 1 do
-      assert_difference "Move.count", 1 do
+    assert_difference 'User.count', 1 do
+      assert_difference 'Move.count', 1 do
         group = create :group
         landing_signup = LandingSignup.new(valid_params(group))
         landing_signup.perform
@@ -48,11 +48,12 @@ class LocationTest < ActiveSupport::TestCase
     l2_c1 = create :location, city: c1
     c2 = create :city
     l1_c2 = create :location, city: c2
-    result = {
+    expected = {
       c1.id => [{ id: l1_c1.id, name: l1_c1.name_with_address }, { id: l2_c1.id, name: l2_c1.name_with_address }],
       c2.id => [{ id: l1_c2.id, name: l1_c2.name_with_address }]
     }
-    assert_equal result, LandingSignup.locations_by_city_id
+    actual = LandingSignup.locations_by_city_id
+    assert_equal_hash_when_values_are_sorted_by_key expected, actual
   end
 
   test '#groups_by_location_id' do
@@ -61,11 +62,11 @@ class LocationTest < ActiveSupport::TestCase
     g2_l1 = create :group, location: l1
     l2 = create :location
     g1_l2 = create :group, location: l2
-    result = {
+    expected = {
       l1.id => [{ id: g1_l1.id, name: g1_l1.age_with_title }, { id: g2_l1.id, name: g2_l1.age_with_title }],
-      l2.id => [{ id: g1_l2.id, name: g1_l2.age_with_title }]
+      l2.id => [{ id: g1_l2.id, name: g1_l2.age_with_title }],
     }
-    assert_equal result, LandingSignup.groups_by_location_id
+    assert_equal_hash_when_values_are_sorted_by_key expected, LandingSignup.groups_by_location_id
   end
 
   test '#groups_by_group_id' do

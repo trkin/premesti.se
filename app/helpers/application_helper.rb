@@ -23,9 +23,9 @@ module ApplicationHelper
     @breadcrumb || []
   end
 
-  def meta_tags(h)
+  def meta_tags(hash)
     content_for(:meta_tags) do
-      h.map do |key, value|
+      hash.map do |key, value|
         "<meta property='#{key}' content='#{value}'/>"
       end.join.html_safe
     end
@@ -46,11 +46,18 @@ module ApplicationHelper
   end
 
   def alert_for_user
-    return false unless current_user
-    return false if current_user.locale == I18n.locale.to_s
-    language = t('current_language', locale: current_user.locale)
-    settings_link = "<a href='#{my_settings_path}'>#{my_settings_path}</a>"
-    t('visit_link_to_switch_language', language: language, link: link_for_current_user_locale, settings_link: settings_link)
+    alert = ''
+    return alert unless current_user
+    unless current_user.confirmed?
+      alert += t('my_devise.confirm_your_email_to_start_receiving_notifications', confirmation_url: resend_confirmation_instructions_path)
+    end
+    if current_user.locale != I18n.locale.to_s
+      language = t('current_language', locale: current_user.locale)
+      settings_link = "<a href='#{my_settings_path}'>#{my_settings_path}</a>"
+      alert += t('visit_link_to_switch_language', language: language, link:
+                 link_for_current_user_locale, settings_link: settings_link)
+    end
+    alert
   end
 
   # this is used for devise mailer

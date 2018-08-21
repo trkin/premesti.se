@@ -1,22 +1,24 @@
-<ul>
-  <% @users.each do |user| %>
-    <li>
-      <%= user.email %>
-      <%= link_to sign_in_as_path(user_id: user.id) do %>
-        sign_in_as
-        <% unless user.confirmed? %>
-          <span class='badge badge-danger'>unconfirmed</span>
+<% cache [ 'users', Neo4j::ActiveBase.current_session.query('MATCH (n:User) RETURN max(n.updated_at) AS m').first.m ] do %>
+  <ul>
+    <% @users.each do |user| %>
+      <li>
+        <%= user.email %>
+        <%= link_to sign_in_as_path(user_id: user.id) do %>
+          sign_in_as
+          <% unless user.confirmed? %>
+            <span class='badge badge-danger'>unconfirmed</span>
+          <% end %>
+          <% if user.admin? %>
+            <span class='badge badge-primary'>admin</span>
+          <% end %>
         <% end %>
-        <% if user.admin? %>
-          <span class='badge badge-primary'>admin</span>
+        <% user.moves.each do |move| %>
+          <%= move.group_age_and_locations %>
+          <% if move.chats.present? %>
+            <span class='badge badge-warning'>chat</span>
+          <% end %>
         <% end %>
-      <% end %>
-      <% user.moves.each do |move| %>
-        <%= move.group_age_and_locations %>
-        <% if move.chats.present? %>
-          <span class='badge badge-warning'>chat</span>
-        <% end %>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

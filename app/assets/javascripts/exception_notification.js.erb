@@ -1,0 +1,179 @@
+// This should be loaded in <head> and separatelly from application.js
+// notification will not work if some error exist in this file
+//
+var MAX_NUMBER_OF_JS_ERROR_NOTIFICATIONS = 5;
+
+function sendExceptionNotification(data) {
+  <% unless Rails.application.secrets.javascript_error_recipients.present? %>
+    return ;
+  <% end %>
+  // maybe error occured before jQuery was loaded
+  if (window.jQuery) {
+    console.log("notify server about exception using jQuery");
+    jQuery.post('/notify-javascript-error', data);
+
+  } else {
+    console.log("notify server about exception using plain javascript");
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/notify-javascript-error', true);
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.send(JSON.stringify(data));
+  }
+  // or use formspree service with your email
+  // $.ajax({
+  //   url: "https://formspree.io/your@gmail.com", 
+  //   method: "POST",
+  //   data: data,
+  //   dataType: "json"
+  // });
+}
+
+function ignoreErrorMsg(errorMsg) {
+  if (errorMsg.length == 0) return true; // no need to notify empty message
+  <% if Rails.env.development? %>
+      return false; // always notify on development
+  <% end %>
+  if (sessionStorage) {
+    var errorMsgs = JSON.parse(sessionStorage.getItem("errorMsgs") || "[]");
+    if (errorMsgs.indexOf(errorMsg) != -1) {
+      console.log("Ignore already notified error for this session and tab");
+      return true;
+    } else {
+      sessionStorage.setItem("errorMsgs", JSON.stringify(errorMsgs + [errorMsg]));
+    }
+
+    if (JSON.parse(sessionStorage.getItem("numberOfJsErrorNotifications") || "0") >= MAX_NUMBER_OF_JS_ERROR_NOTIFICATIONS) {
+      console.log("Ignore error since number of notification reached maxiumum " + MAX_NUMBER_OF_JS_ERROR_NOTIFICATIONS);
+      return true;
+    }
+  }
+  ignoredErrors = {
+    // https://github.com/kogg/InstantLogoSearch/issues/199
+    tgt: "Cannot set property 'tgt' of null",
+    // from extention http://s3.amazonaws.com/js-cache/ddc1b879c920534271.js
+    partnrz: "Unexpected token < in JSON at position 1",
+    // from extension http://s3.amazonaws.com/jscache/de53b459ee43e7774f.js
+    monetize: "SyntaxError: Unexpected end of JSON input",
+    plugin1: "TypeError: undefined is not an object (evaluating 'Window.prototype.setTimeout.call')",
+    deals: "Uncaught ReferenceError: US is not defined",
+    // http://pastebin.com/JAPbmEX6
+    reno: "renoTransGloRef",
+    // https://bugs.chromium.org/p/chromium/issues/detail?id=590375
+    chrome1: "__gCrWeb",
+    // unknown string closingEls
+    closing_els: "TypeError: Cannot read property 'closingEls' of undefined",
+    // some unknown
+    show_deepen: "__show__deepen",
+    // __firefox__.favicons.getFavicons
+    firefox: "__firefox__",
+    // unknown
+    unknown1: "viewWillDisappear",
+  }
+  for (var key in ignoredErrors) {
+    if (errorMsg.indexOf(ignoredErrors[key]) != -1) {
+      console.log("ignoredErrors key=" + key);
+      return true;
+    }
+  }
+  return false;
+}
+
+function ignoreSourceUrl(sourceUrl) {
+if (typeof(sourceUrl) == "string" && sourceUrl != "" &&
+    sourceUrl.indexOf(window.location.hostname) == -1) {
+    console.log("ignoreSourceUrl");
+    return true;
+  }
+  return false;
+}
+
+function ignoreStack(stack) {
+  if (stack == null) {
+    return false;
+  }
+  ignoredStacks = {
+    akamai: "akamaihd.net",
+  }
+  for (var key in ignoredStacks) {
+    if (stack.indexOf(ignoredStacks[key]) != -1) {
+      console.log("ignoredStacks key=" + key);
+      return true;
+    }
+  }
+  return false;
+}
+
+function checkAndSendNotification(notificationData) {
+  var errorMsg = notificationData.errorMsg;
+  if (ignoreSourceUrl(notificationData.sourceUrl)) return;
+  if (ignoreStack(notificationData.stack)) return;
+  if (ignoreErrorMsg(errorMsg)) return;
+  flash_alert(errorMsg);
+  sendExceptionNotification(notificationData);
+  if (sessionStorage) {
+    var numberOfJsErrorNotifications = JSON.parse(sessionStorage.getItem("numberOfJsErrorNotifications") || "0");
+    numberOfJsErrorNotifications += 1;
+    sessionStorage.setItem("numberOfJsErrorNotifications", JSON.stringify(numberOfJsErrorNotifications));
+  }
+}
+
+// https://developer.mozilla.org/en/docs/Web/API/GlobalEventHandlers/onerror
+// https://blog.getsentry.com/2016/01/04/client-javascript-reporting-window-onerror.html
+window.onerror = function(errorMsg, sourceUrl, lineNumber, column, errorObj) {
+  if (errorObj != null) {
+    errorMsg = errorObj.toString();
+  }
+  var stack;
+  if (errorObj == null || errorObj.stack == null) {
+    stack = new Error().stack;
+  } else {
+    stack = errorObj.stack
+  }
+  var notificationData = { errorMsg: errorMsg, sourceUrl: sourceUrl, lineNumber: lineNumber, column: column, stack: stack };
+  checkAndSendNotification(notificationData);
+}
+
+// another approach is with error event listener
+// window.addEventListener('error', function (e) {
+//     var stack = e.error.stack;
+//     var message = e.error.toString();
+// });
+
+// ajax error handling
+// wait DOM to load
+// http://stackoverflow.com/questions/799981/document-ready-equivalent-without-jquery
+// I tried with document.addEventListener("DOMContentLoaded", function(event) {
+// but $ still not defined
+function listenAjaxErrors() {
+ // https://github.com/rails/jquery-ujs/wiki/ajax
+ $(document).on('ajax:error', '[data-remote]', function(e, xhr, status, errorObj) {
+   flash_alert("Please refresh the page. Server responds with: " + errorObj);
+   var notificationData = { errorMsg: errorObj.toString(), status: status, stack: errorObj.stack };
+   checkAndSendNotification(notificationData);
+ });
+}
+
+// http://stackoverflow.com/questions/7486309/how-to-make-script-execution-wait-until-jquery-is-loaded
+function defer(method) {
+  if (window.jQuery)
+    method();
+  else
+    setTimeout(function() { defer(method) }, 150);
+}
+
+defer(listenAjaxErrors);
+
+function flash_alert(msg) {
+  if (msg.length == 0) return;
+  // disable eventual popups so user can see the message
+  // $('.active').removeClass('active');
+  // alert(msg);
+  console.log(msg);
+}
+
+// Ensures there will be no 'console is undefined' errors
+// http://stackoverflow.com/questions/9725111/internet-explorer-console-is-not-defined-error
+window.console = window.console || (function(){
+    var c = {}; c.log = c.warn = c.debug = c.info = c.error = c.time = c.dir = c.profile = c.clear = c.exception = c.trace = c.assert = function(s){};
+    return c;
+})();

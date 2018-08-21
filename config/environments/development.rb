@@ -51,6 +51,8 @@ Rails.application.configure do
 
   # open emails localy
   config.action_mailer.delivery_method = :letter_opener
+  # config.active_job.queue_adapter = :sidekiq
+  config.active_job.queue_adapter = :inline
   # livereload
   # if guard is not running, there is an error in js console
   # Cross-origin plugin content from  must have a visible size larger than 400 x

@@ -49,8 +49,8 @@ class LocationTest < ActiveSupport::TestCase
     c2 = create :city
     l1_c2 = create :location, city: c2
     expected = {
+      c2.id => [{ id: l1_c2.id, name: l1_c2.name_with_address }],
       c1.id => [{ id: l1_c1.id, name: l1_c1.name_with_address }, { id: l2_c1.id, name: l2_c1.name_with_address }],
-      c2.id => [{ id: l1_c2.id, name: l1_c2.name_with_address }]
     }
     actual = LandingSignup.locations_by_city_id
     assert_equal_hash_when_values_are_sorted_by_key expected, actual

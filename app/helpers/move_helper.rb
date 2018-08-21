@@ -11,7 +11,7 @@ module MoveHelper
     image_tag move_static_map_url(move), class: 'show-lines-map-container'
   end
 
-  def move_share_link(move)
+  def move_share_link(move, opts = {})
     uri = URI::HTTP.build(
       host: 'www.facebook.com',
       path: '/sharer/sharer.php',
@@ -25,6 +25,7 @@ module MoveHelper
         }
       }.to_query
     )
-    link_to t('share'), uri.to_s, target: '_blank'
+
+    link_to t('share_on_facebook').html_safe, uri.to_s, { target: '_blank' }.merge(opts)
   end
 end

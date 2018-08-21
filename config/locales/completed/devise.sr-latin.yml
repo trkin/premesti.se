@@ -77,6 +77,7 @@ sr-latin:
     send_me_reset_password_instructions: Pošalji uputstvo za promenu lozinke
     resend_confirmation_instructions: Ponovo pošalji uputstva za potvrdu naloga
     resend_unlock_instructions: Ponovo pošalji uputstva za otključavanje naloga
+    confirm_your_email_to_start_receiving_notifications: "Potvrdite Vašu imejl adresu kako bismo Vam slali obaveštenja o poklapanjima. <a href='%{confirmation_url}'>Ponovo pošalji uputstvo za potvrdu</a>"
     can_not_sign_in: Nije uspela prijava.
     currently_waiting_confirmation_for: "Još uvek čekamo potvrdu za: %{item}"
     leave_blank_if_you_dont_want_to_change_it: Ostavi prazno ako ne želiš da je promeniš

@@ -1,3 +1,4 @@
 :concurrency:  3
 :queues:
   - premesti_se_mailers
+  - premesti_se_default

@@ -10,6 +10,7 @@ class Message
   has_one :in, :chat, origin: :messages
   has_one :in, :user, origin: :messages
 
+  # we do not validate user since there could be some system messages without it
   validates :text, presence: true
 
   enum status: %i[active archived]

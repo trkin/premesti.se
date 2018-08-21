@@ -14,12 +14,6 @@ class MovesController < ApplicationController
     end
   end
 
-  def destroy_to_group
-    group = @move.to_groups.find params[:to_group_id]
-    @move.to_groups.delete group
-    redirect_to move_path(@move), notice: t_crud('success_delete', Location)
-  end
-
   def create_from_group
     move = Move.new(
       from_group: Group.find_or_create_by_location_id_and_age(params[:from_location_id], params[:from_group_age]),
@@ -32,8 +26,16 @@ class MovesController < ApplicationController
     end
   end
 
+  def destroy_to_group
+    to_group = @move.to_groups.find params[:to_group_id]
+    Notify.message "other_reason: #{params[:other_reason]}", current_user.email, move_url(@move), to_group: to_group.location.name if params[:other_reason].present?
+    @move.destroy_to_group_and_archive_chats to_group, params[:commit]
+    redirect_to move_path(@move), notice: t_crud('success_delete', Location)
+  end
+
   def destroy
-    if @move.destroy_and_update_chats
+    Notify.message 'other_reason', other_reason: params[:other_reason], current_user: current_user.email, move: move_url(@move) if params[:other_reason].present?
+    if @move.destroy_and_archive_chats params[:commit]
       redirect_to dashboard_path, notice: t_crud('success_delete', Move)
     else
       redirect_to dashboard_path, alert: @move.errors.full_messages.join(', ')

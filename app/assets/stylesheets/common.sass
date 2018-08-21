@@ -34,6 +34,10 @@ body, html
   .show-on-hover-target
     visibility: visible
 
+// add class show to stay visible when not hovering, bootstrap dropdown does dat
+.show-on-hover-target.show
+  visibility: visible
+
 // toggle active without javascript
 // <input type="checkbox" id="toggle-active" class="toggle-active" />
 // <label for="toggle-active"><%= t('add') %></label>

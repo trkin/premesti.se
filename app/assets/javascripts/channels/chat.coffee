@@ -17,3 +17,5 @@ $(document).on 'turbolinks:load', ->
       if $('#messages').data('userId') == $(dom[0]).data('userId')
         $(dom[0]).addClass 'message-line__owner'
       $('#messages').prepend dom
+      $('#new-message-input').attr 'placeholder', ''
+

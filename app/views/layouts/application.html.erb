@@ -8,6 +8,7 @@
     <meta name='Description' content='<%= find_site_description %>'>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag :exception_notification %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=Cabin+Sketch:700|Modak" rel="stylesheet">
     <%= yield :meta_tags %>
@@ -72,6 +73,7 @@
               <div class="dropdown-menu" aria-labelledby="userDropdown">
                 <%= link_to t('my_account'), edit_user_registration_path, class: 'dropdown-item' %>
                 <%= link_to t('my_settings'), my_settings_path, class: 'dropdown-item' %>
+                <%= link_to t('my_data'), my_data_path, class: 'dropdown-item' %>
                 <div class="dropdown-divider"></div>
                 <%= link_to t("privacy_policy"), privacy_policy_path, class: 'dropdown-item' %>
                 <%= link_to t('faq'), faq_path, class: 'dropdown-item' %>

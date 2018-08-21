@@ -13,4 +13,5 @@
 //= require alert-text-show-hide/dist/element_text.js
 //
 // app/assets/javascripts
+//= stub exception_notification
 //= require_tree .

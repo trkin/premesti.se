@@ -47,7 +47,7 @@ sr-latin:
   success_archived: Uspešno ste obrisali
   successfully: Uspešno
   continue: Nastavi
-  add_current_location: Dodaj trenutnu lokaciju
+  add_another_location: Dodaj još jedan vrtić
   add_requested_location: Dodaj željeni vrtić
   group_with_that_age_already_exists: Grupa sa tim godištem već postoji
   year: god
@@ -58,7 +58,8 @@ sr-latin:
   my_profile: Moj profil
   my_account: Moj nalog
   my_settings: Moja podešavanja
-  one_user_deleted_move: Jedan korisnik je obrisao premeštaj
+  my_data: Moji podaci
+  user_of_location_deleted_move: Korisnik %{location} je obrisao želju za premeštajem
   message_of_deleted_move: Obrisan premeštaj
   privacy_policy: Politika privatnosti
   group_name_for_age_1: Bebe
@@ -130,12 +131,16 @@ sr-latin:
   are_you_sure_to_cancel_report_abuse: Da li ste sigurni da ne treba da proveravamo upotrebljivost ove poruke ?
   my_move_introduction: Menjamo mesto u vrtiću <b>%{from}</b> za <b>%{to}</b> grupa %{group}
   share: Podeli
-  see_public_page: Vidi javnu stranicu
+  share_on_facebook: Podeli na <i class="fa fa-facebook-official"></i> Fejsbuku
+  see_public_page: Vidi javnu stranicu koju možeš da deliš
   unauthorized: Niste autorizovani
   message_archived: Poruka je obrisana
   added_move_by_mistake: Mojom greškom je dodat ovaj premeštaj
-  do_not_need_to_move_anymore: Više ne želim da ovaj premeštaj
+  do_not_need_to_move_anymore: Više ne želim ovaj premeštaj
   other_participants_do_not_reply: Drugi članovi ne odgovaraju na poruke
+  this_chat_completed_successfully: Ово договарање се успешно завршило и предали смо захтев за премештај
   here_write_other_reason: Ovde upišite drugi razlog
-  other_reason: Iz drugih razloga brišem dogovaranje
-  user_archived_chat_with_message: Korisnik %{location} je arhivirao dogovaranje sa porukom %{message}
+  other_reason: Iz drugih razloga hoću da obrišem
+  user_archived_chat_with_message: 'Korisnik %{location} je arhivirao dogovaranje sa razlogom: %{message}'
+  here_type_message_like: 'Ovde napišite poruku tipa: Da li tražite premeštaj u vrtić %{location} ?'
+  delete_all_moves: Obriši sve želje za premeštaj sa ove lokacije

@@ -1,5 +1,8 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!
+  skip_before_action :verify_authenticity_token, only: %i[
+    sample_error_in_javascript notify_javascript_error
+  ]
 
   def home
     @landing_signup = LandingSignup.new
@@ -65,6 +68,55 @@ class PagesController < ApplicationController
     end
     contact
     render :contact
+  end
+
+  def sample_error
+    raise 'This is sample_error on server'
+  end
+
+  def sample_error_in_javascript
+    render layout: true, html: %(
+      Calling manual_js_error_now
+      <script>
+        function manual_js_error_now_function() {
+          manual_js_error_now
+        }
+        console.log('calling manual_js_error_now');
+        manual_js_error_now_function();
+        // you can also trigger error on window.onload = function() { manual_js_error_onload }
+      </script>
+      <br>
+      <button onclick="trigger_js_error_on_click">Trigger error on click</button>
+      <a href="/sample-error-in-javascript-ajax" data-remote="true" id="l">Trigger error in ajax</a>
+    ).html_safe
+  end
+
+  def sample_error_in_javascript_ajax
+    render js: %(
+      console.log("starting sample_error_in_javascript_ajax");
+      sample_error_in_javascript_ajax
+    )
+  end
+
+  def notify_javascript_error
+    js_receivers = Rails.application.secrets.javascript_error_recipients
+    if js_receivers.present?
+      ExceptionNotifier.notify_exception(
+        Exception.new(params[:errorMsg]),
+        env: request.env,
+        exception_recipients: js_receivers.to_s.split(','),
+        data: {
+          current_user: current_user,
+          params: params
+        }
+      )
+    end
+    head :ok
+  end
+
+  def sample_error_in_sidekiq
+    TaskWithErrorJob.perform_later
+    render plain: 'TaskWithErrorJob in queue, please run: sidekiq'
   end
 
   def _landing_signup_params

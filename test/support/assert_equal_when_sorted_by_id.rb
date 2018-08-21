@@ -48,7 +48,7 @@ module MiniTest::Assertions
     if exp.empty?
       assert_empty act
     else
-      exp.zip(act).each do |(exp_key, exp_val),(act_key, act_val)|
+      exp.sort.zip(act.sort).each do |(exp_key, exp_val),(act_key, act_val)|
         assert_equal exp_key, act_key
         assert_equal (exp_val.sort_by { |i| i[default_key] }), (act_val.sort_by { |i| i[default_key] })
       end

@@ -4,10 +4,10 @@
 <% if @chat.active? %>
   <div class="btn-group">
     <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <%= t 'delete' %>
+      <%= t_crud 'delete', Chat %>
     </button>
     <div class="dropdown-menu">
-      <% Chat::ARCHIVED_REASONS.each do |reason| %>
+      <% (Move::ARCHIVED_REASONS + Chat::ARCHIVED_REASONS).each do |reason| %>
         <%= form_tag archive_chat_path(@chat) do %>
           <%= hidden_field_tag :commit, reason %>
           <%= button_tag t(reason), class: 'dropdown-item' %>
@@ -15,17 +15,18 @@
       <% end %>
       <div class="dropdown-divider"></div>
       <%= form_tag archive_chat_path(@chat) do %>
-        <%= text_field_tag :other_reason, nil, placeholder: t('here_write_other_reason') %>
+        <%= text_field_tag :other_reason, nil, placeholder: t('here_write_other_reason'), required: true, autocomplete: 'off' %>
         <%= hidden_field_tag :commit, :other_reason %>
         <%= button_tag t('other_reason'), class: 'dropdown-item' %>
       <% end %>
     </div>
   </div>
   <%= bootstrap_form_for @message_decorator, url: create_message_chat_path(@chat), remote: true do |f| %>
-    <%= f.text_field :text, class: 'new-message-input', id: 'new-message-input', skip_label: true, required: true, append: f.primary(t_crud('create', Message)), 'data-disable-with': t('sending'), autofocus: true %>
+    <% placeholder = t('here_type_message_like', location: @chat.from_location_for_user(current_user).name)
+       placeholder = nil if @chat.messages.present?
+    %>
+    <%= f.text_field :text, class: 'new-message-input', id: 'new-message-input', placeholder: placeholder, skip_label: true, required: true, append: f.primary(t_crud('send', Message)), 'data-disable-with': t('sending'), autofocus: true %>
   <% end %>
-<% else %>
-  <%= @chat.archived_text %>
 <% end %>
 <ul class="list-unstyled" id='messages' data-chat-page='<%= @chat.id %>' data-user-id='<%= current_user.id %>'>
   <% @chat.messages.each do |message| %>

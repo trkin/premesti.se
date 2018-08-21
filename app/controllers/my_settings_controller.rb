@@ -14,6 +14,8 @@ class MySettingsController < ApplicationController
     end
   end
 
+  def my_data; end
+
   def _my_settings_params
     params.require(:user).permit(
       :locale

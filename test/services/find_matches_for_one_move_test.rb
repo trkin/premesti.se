@@ -64,6 +64,23 @@ class FindMatchesForOneMoveTest < ActiveSupport::TestCase
     assert_equal (matches.map { |r| r.map(&:a_name) }), (results.map { |r| r.map(&:a_name) })
   end
 
+  def test_ab_archived
+    # a -m_ab-> b
+    #   <-m_ba-
+    m_ab = create :move, from_group: @g_a1, to_groups: @g_b1, a_name: :m_ab
+    m_ba = create :move, from_group: @g_b1, to_groups: @g_a1, a_name: :m_ba
+    # some noice
+    _m_ac = create :move, from_group: @g_a1, to_groups: @g_c1
+    _m_ab2 = create :move, from_group: @g_a2, to_groups: @g_b2
+    _m_ba2 = create :move, from_group: @g_b2, to_groups: @g_a2
+
+    matches = [
+      [m_ba]
+    ]
+    results = FindMatchesForOneMove.perform(m_ab, max_length_of_the_rotation: 2)
+    assert_equal (matches.map { |r| r.map(&:a_name) }), (results.map { |r| r.map(&:a_name) })
+  end
+
   def test_ab_multiple
     # a -m_ab-> b
     #    <-m_ba1-

@@ -25,7 +25,7 @@ class ChatsController < ApplicationController
     end
   end
 
-  def destroy_message
+  def archive_message
     message = @chat.messages.where(user: current_user).find params[:message_id]
     message.archived!
     message.save!
@@ -39,11 +39,8 @@ class ChatsController < ApplicationController
   end
 
   def archive
-    @chat.archived_reason = Chat::ARCHIVED_REASONS.index(params[:commit].to_sym)
-    Notify.message 'other_reason', other_reason: params[:other_reason] if params[:other_reason].present?
-    @chat.archived_text = t('user_archived_chat_with_message', location: @chat.from_location_for_user(current_user).name, message: t(params[:commit]))
-    @chat.archived!
-    @chat.save!
+    Notify.message "other_reason: #{params[:other_reason]}", current_user.email, chat_url(@chat) if params[:other_reason].present?
+    @chat.archive_all_for_user_and_reason current_user, params[:commit]
     redirect_to dashboard_path
   end
 

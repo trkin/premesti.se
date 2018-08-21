@@ -1,7 +1,14 @@
 require 'exception_notification/rails'
 
 class Notify
-  def self.message(message, data = nil)
+  # Send notification using string as subject and pass additional argumets (it
+  # will be shown as array) or options (shown as hash) for example:
+  # Notify.message 'some_problem', customers_url, email: customer.email
+  def self.message(message, *args)
+    data = {}
+    # put first args so it is shown at beginning
+    data[:args] = args if args.present?
+    data.merge! args.extract_options!
     ExceptionNotifier.notify_exception(Exception.new(message), data: data)
   end
 
@@ -17,6 +24,14 @@ class Notify
       data: args[:data],
     }.delete_if { |_k, v| v.nil? }
     ExceptionNotifier.notify_exception(exception, params)
+  end
+end
+
+module ExceptionNotification
+  ::Sidekiq.configure_server do |config|
+    config.error_handlers << proc { |ex, context|
+      ExceptionNotifier.notify_exception(ex, data: { sidekiq: context })
+    }
   end
 end
 
@@ -93,7 +108,7 @@ if (receivers = Rails.application.secrets.exception_recipients).present?
     #   e.ignore_please = true
     #   raise e
     # end
-    config.ignore_if(&:ignore_please)
+    config.ignore_if { |e| e.respond_to?(:ignore_please) && e.ignore_please }
 
     # Notifiers ================================================================
 

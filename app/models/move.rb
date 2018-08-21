@@ -1,5 +1,10 @@
 class Move
   include Neo4j::ActiveNode
+  ARCHIVED_REASONS = %i[
+    added_move_by_mistake
+    do_not_need_to_move_anymore
+  ].freeze
+
   # a_name is just for debugging
   property :a_name, type: String
   # property :available_from_date, type: Date
@@ -23,9 +28,9 @@ class Move
   end
 
   def group_age_and_particular_group_location(group)
-    from_group.location.name + '(' +
-      from_group.age_with_short_title + ') ↪ ' +
-      group.location.name
+    from_group.location.name + ' ' +
+      from_group.age_with_short_title + '(↪ ' +
+      group.location.name + ')'
   end
 
   def name_address_group_full_age_and_locations
@@ -39,10 +44,27 @@ class Move
       '(↪ ' + to_groups.map { |group| group.location.name }.join(',') + ')'
   end
 
-  def destroy_and_update_chats
-    chats.each do |chat|
-      Message.create chat: chat, text: I18n.t('one_user_deleted_move')
-      chat.moves.delete(self)
+  def destroy_to_group_and_archive_chats(target_group, archived_reason)
+    # chats have chat1, chat2 and each
+    # chat have move1, move2... each belongs to location1, location2 and
+    # if target_group belongs to same location that it means that move was
+    # used for matching, so we remove that chat
+    target_chats = chats.active.query_as(:c).match(%(
+      (c)-[:MATCHES]->(m:Move),
+      (m)-[:CURRENT]-(g:Group),
+      (g)-[:HAS_GROUPS]-(l:Location)
+    )).where(%(
+      l.uuid = '#{target_group.location.id}'
+    )).pluck(:c)
+    target_chats.each do |chat|
+      chat.archive_for_location_and_reason from_group.location, archived_reason
+    end
+    to_groups.delete target_group
+  end
+
+  def destroy_and_archive_chats(archived_reason)
+    chats.active.each do |chat|
+      chat.archive_for_location_and_reason from_group.location, archived_reason
     end
     destroy
   end

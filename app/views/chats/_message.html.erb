@@ -19,7 +19,7 @@
       <%= message.text %>
     <% end %>
     <small class=''><%= message.user_location_name %></small>
-    <%= link_to destroy_message_chat_path(message.chat, message_id: message.id), method: :delete, class: "message-owner-section text-danger show-on-hover-target", 'data-confirm': t_crud('are_you_sure_to_remove_item', item: Message), title: t_crud('delete', Message) do %>
+    <%= link_to archive_message_chat_path(message.chat, message_id: message.id), method: :delete, class: "message-owner-section text-danger show-on-hover-target", 'data-confirm': t_crud('are_you_sure_to_remove_item', item: Message), title: t_crud('delete', Message) do %>
       <i class="fa fa-remove" aria-hidden="true"></i>
     <% end %>
     <% if message.reported_at %>

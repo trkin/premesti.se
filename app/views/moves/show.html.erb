@@ -1,10 +1,29 @@
 <%
   breadcrumb "#{Move.model_name.human.mb_chars.capitalize} #{@move.from_group.location.name}" => nil
 %>
-<h1>
+<h1 class='show-on-hover'>
   <%= t('my_requests') %>
   <%= @move.from_group.location.name %>
   (<%= @move.from_group.age_with_short_title %>)
+  <div class="btn-group show-on-hover-target">
+    <button type="button" class="btn btn-sm btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <%= t 'delete_all_moves' %>
+    </button>
+    <div class="dropdown-menu">
+      <% Move::ARCHIVED_REASONS.each do |reason| %>
+        <%= form_tag move_path(@move), method: :delete do %>
+          <%= hidden_field_tag :commit, reason %>
+          <%= button_tag t(reason), class: 'dropdown-item' %>
+        <% end %>
+      <% end %>
+      <div class="dropdown-divider"></div>
+      <%= form_tag move_path(@move), method: :delete do %>
+        <%= text_field_tag :other_reason, nil, placeholder: t('here_write_other_reason'), required: true, autocomplete: 'off' %>
+        <%= hidden_field_tag :commit, :other_reason %>
+        <%= button_tag t('other_reason'), class: 'dropdown-item' %>
+      <% end %>
+    </div>
+  </div>
 </h1>
 <div class='d-flex justify-content-between'>
   <div>
@@ -12,7 +31,25 @@
       <% @move.to_groups.each do |group| %>
         <li class="show-on-hover">
           &emsp; ↪  <span><%= group.location.name_with_address %></span>
-          <%= link_to t("delete"), destroy_to_group_move_path(@move, to_group_id: group.id), method: :delete, class: "text-danger show-on-hover-target", 'data-confirm': t_crud('are_you_sure_to_remove_item', item: Group) %>
+          <div class="btn-group show-on-hover-target">
+            <button type="button" class="btn btn-sm btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= t_crud 'delete', Move %>
+            </button>
+            <div class="dropdown-menu">
+              <% Move::ARCHIVED_REASONS.each do |reason| %>
+                <%= form_tag destroy_to_group_move_path(@move, to_group_id: group.id), method: :delete do %>
+                  <%= hidden_field_tag :commit, reason %>
+                  <%= button_tag t(reason), class: 'dropdown-item' %>
+                <% end %>
+              <% end %>
+              <div class="dropdown-divider"></div>
+              <%= form_tag destroy_to_group_move_path(@move, to_group_id: group.id), method: :delete do %>
+                <%= text_field_tag :other_reason, nil, placeholder: t('here_write_other_reason'), required: true, autocomplete: 'off' %>
+                <%= hidden_field_tag :commit, :other_reason %>
+                <%= button_tag t('other_reason'), class: 'dropdown-item' %>
+              <% end %>
+            </div>
+          </div>
         </li>
       <% end %>
     </ul>
@@ -31,10 +68,14 @@
       <% end %>
     </span>
   </div>
-  <%# show_lines_map [@move.from_group.location, @move.to_groups.map(&:location)].flatten, @move.to_groups.map(&:location).map { |loc| OpenStruct.new from: @move.from_group.location, to: loc, age: @move.from_group.age }, class: 'show-lines-map-container' %>
-  <%= move_static_map @move %>
+  <div class='text-center'>
+    <%= link_to t('see_public_page'), my_move_path(@move, @move.group_age_and_locations) %>
+    <br>
+    <%# show_lines_map [@move.from_group.location, @move.to_groups.map(&:location)].flatten, @move.to_groups.map(&:location).map { |loc| OpenStruct.new from: @move.from_group.location, to: loc, age: @move.from_group.age }, class: 'show-lines-map-container' %>
+    <%= move_static_map @move %>
+    <br>
+    <%= move_share_link @move %>
+  </div>
 </div>
-<%= link_to t('see_public_page'), my_move_path(@move, @move.group_age_and_locations) %>
 
 <%# link_to t('share'), '#', onclick: 'fb_share(this)', 'data-share-url': my_move_url(@move, @move.group_age_and_locations) %>
-<%= move_share_link @move %>

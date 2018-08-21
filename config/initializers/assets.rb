@@ -16,3 +16,5 @@ Rails.application.config.assets.precompile << /\.(?:svg|eot|woff|woff2|ttf)$/
 NonStupidDigestAssets.whitelist += [
   /\.(?:svg|eot|woff|woff2|ttf)$/
 ]
+
+Rails.application.config.assets.precompile += %w[exception_notification.js]

@@ -1,0 +1,50 @@
+<%
+    breadcrumb t('my_data') => nil
+%>
+<h1><%= t('my_moves') %></h1>
+<ul class="list-unstyled">
+  <% current_user.moves.each do |move| %>
+    <li>
+      <%= link_to move.name_address_group_full_age_and_locations, move %>
+    </li>
+  <% end %>
+</ul>
+
+<h1><%= t('my_chats') %></h1>
+<ul class="list-unstyled">
+  <% current_user.moves.chats.active.each do |chat| %>
+    <li>
+      <%= link_to chat.name_for_user(current_user), chat %>
+      <ul>
+        <% chat.messages.where(user: current_user).each do |message| %>
+          <li>
+            <%= message.text %>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+</ul>
+
+<h1>
+<%= t('my_archived_chats') %>
+</h1>
+<ul class="list-unstyled">
+  <% current_user.moves.chats.archived.each do |chat| %>
+    <li>
+      <%= link_to chat.name_for_user(current_user), chat %>
+      <%= t chat.archived_reason %>
+      <% if Rails.env.development? %>
+        only on development
+        <%= link_to t("delete"), chat, method: :delete, class: 'text-danger' %>
+      <% end %>
+      <ul>
+        <% chat.messages.where(user: current_user).each do |message| %>
+          <li>
+            <%= message.text %>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+</ul>

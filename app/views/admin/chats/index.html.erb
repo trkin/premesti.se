@@ -1,14 +1,16 @@
 <ul>
   <% @chats.each do |chat| %>
     <li>
-      <% chat.moves.each do |move| %>
-        <%= move.user.email %>
-        <%= move.from_group.location.name %>
+      <%= link_to chat_url(chat) do %>
+        <% chat.moves.each do |move| %>
+          <%= move.user.email %>
+          <%= move.from_group.location.name %>
+        <% end %>
       <% end %>
       :
-      <% chat.messages.each do |message| %>
+      <% chat.messages.first(5).each do |message| %>
         <b><%= message.text %></b>
-        (<%= message.user&.email %>)
+        (<small><%= message.user&.email %></small>)
       <% end %>
     </li>
   <% end %>

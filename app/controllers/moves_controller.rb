@@ -46,6 +46,12 @@ class MovesController < ApplicationController
 
   def set_move
     @move = current_user.moves.where(id: params[:id]).first
-    raise Neo4j::ActiveNode::Labels::RecordNotFound unless @move
+    return if @move
+    alert = if Move.where(id: params[:id]).present?
+              t('this_move_does_not_belong_to_you')
+            else
+              t('this_move_was_deleted')
+            end
+    redirect_to root_path, alert: alert
   end
 end

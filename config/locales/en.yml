@@ -4,7 +4,7 @@ en:
   site_description_1: Parenting website
   site_description_2: for easier site replacement
   site_description_3: in kindergartens
-  site_disclaimer: This site has nothing to do with pre-school institutions, but it finds matches and when parents agree then they can file transfer requests. Requests do not have to be accepted for various reasons (overloading the group, etc.), but this communication can certainly help in this transfer process.
+  site_disclaimer: This site has nothing to do with pre-school institutions, but it finds matches and when parents agree then they can file transfer requests. Requests do not have to be accepted for various reasons (overloading the group, etc.), but this communication can certainly help in this transfer process. Please do not post fake moves.
   please_select: Please select
   select: Select
   where_do_you_want_to_move: Where do you want to Move?
@@ -61,6 +61,8 @@ en:
   my_data: My Data
   user_of_location_deleted_move: User of %{location} deleted move
   message_of_deleted_move: Deleted move
+  this_move_does_not_belong_to_you: This move does not belong to you
+  this_move_was_deleted: Move has been removed
   privacy_policy: Privacy Policy
   group_name_for_age_1: Babies
   group_name_for_age_2: Younger crib
@@ -101,6 +103,7 @@ en:
   faq_8_a: The site was made by TRK INOVACIJE DOO NOVI SAD.
   system_message: System message
   new_match: New match
+  new_match_for_moves: 'There is a match between locations: %{moves}. You can together apply for a relocation'
   new_message: New message
   there_is_a_match_for_your_location: There is a match for your location %{location}
   chats_empty_new_will_show_up_automatically: There are no chats currently. Chat will show up when there is a match

@@ -8,7 +8,7 @@
         <% end %>
       <% end %>
       :
-      <% chat.messages.first(5).each do |message| %>
+      <% chat.messages.limit(5).each do |message| %>
         <b><%= message.text %></b>
         (<small><%= message.user&.email %></small>)
       <% end %>

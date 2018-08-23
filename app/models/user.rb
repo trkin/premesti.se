@@ -107,6 +107,14 @@ class User
     email.split('@').first
   end
 
+  def my_data
+    {
+      user: self,
+      moves: moves.map(&:group_age_and_locations),
+      chats: moves.chats.map { |c| c.name_for_user(self) + ':' + c.messages.where(user: self).map(&:text).join('|') },
+    }
+  end
+
   # This method overwrites devise's own `send_devise_notification`
   # message = devise_mailer.send(notification, self, *args)
   # message.deliver_now

@@ -16,6 +16,11 @@ class Chat
   has_many :out, :messages, type: :HAS_MESSAGES
   has_many :out, :moves, type: :MATCHES, model_class: :Move, unique: true
 
+  def name_with_arrows(moves)
+    # in match result we got array of moves
+    ([moves.last] + moves).reverse.map { |m| m.from_group.location.name }.join(" #{Constant::ARROW_CHAR} ")
+  end
+
   def name_for_user(user)
     move = moves.find_by user: user
     if move.nil?
@@ -26,14 +31,22 @@ class Chat
       end
     else
       # we create chat for moves (and multiple to_groups) so to find exact to_group we need this
-      to_location = move.to_groups.location.find(moves.from_group.location.map(&:uuid)).first
-      to_group = move.to_groups.where(location: to_location).first
-      my_loc_string = move.group_age_and_particular_group_location(to_group)
+      to_location = move.to_groups.location.find_by id: moves.from_group.location.map(&:uuid)
+      if to_location
+        to_group = move.to_groups.where(location: to_location).first
+        my_loc_string = move.group_age_and_particular_group_location(to_group)
+      else
+        my_loc_string = move.group_age_and_locations
+      end
       # find to_group for each other move
       location_ids = moves.from_group.location.map &:uuid
       other_loc_string = (moves.to_a - [move]).map do |other_move|
-        to_location_other_move = other_move.to_groups.location.find(location_ids).first
-        other_move.from_group.location.name + '↪ ' + to_location_other_move.name
+        to_location_other_move = other_move.to_groups.location.find_by id: location_ids
+        if to_location_other_move
+          other_move.from_group.location.name + '↪ ' + to_location_other_move.name
+        else
+          other_move.from_group.location.name + '↪  obrisan'
+        end
       end.join('|')
       my_loc_string + '|' + other_loc_string
     end
@@ -68,6 +81,7 @@ class Chat
     moves.each do |move|
       chat.moves << move
     end
+    Message.create! chat: chat, text: I18n.t('new_match_for_moves', moves: chat.name_with_arrows(moves))
     chat
   end
 

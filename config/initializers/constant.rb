@@ -33,4 +33,6 @@ class Constant
     '#722ada',
     '#123099',
   ].freeze
+
+  ARROW_CHAR = '↪'.freeze
 end

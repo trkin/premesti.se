@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   devise_for :users, controllers: {
     omniauth_callbacks: :omniauth_callbacks,
-    confirmations: :confirmations
+    confirmations: :confirmations,
+    registrations: 'devise/my_registrations',
   }
 
   post 'landing-signup', to: 'pages#landing_signup'

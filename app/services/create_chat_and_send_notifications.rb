@@ -32,7 +32,11 @@ class CreateChatAndSendNotifications
 
   def send_notification(chat)
     @moves.each do |move|
-      UserMailer.new_match(move.id, chat.id).deliver_later
+      if Move.where(id: move.id).present?
+        UserMailer.new_match(move.id, chat.id).deliver_later
+      else
+        # TODO: sometimes we can not find move in db
+      end
     end
   end
 

@@ -10,7 +10,8 @@ module FindMatchesForOneMove
   #   [mCA, mBC],
   # ]
   def perform(move, target_group: nil, max_length_of_the_rotation: MAX_LENGTH_OF_THE_ROTATION)
-    if move.to_groups.length == 1 && target_group.nil?
+    max_length_of_the_rotation = MAX_LENGTH_OF_THE_ROTATION if max_length_of_the_rotation.nil?
+    if move.to_groups.length == 1 || target_group.nil?
       target_group = move.to_groups.first
     else
       move.to_groups.find target_group

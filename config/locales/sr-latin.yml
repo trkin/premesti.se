@@ -132,6 +132,7 @@ sr-latin:
   we_received_report_successfully: Uspešno smo primili prijavu zloupotrebe
   are_you_sure_to_report_abuse: Da li hoćete da naš tim proveri upotrebljivost ove poruke ?
   are_you_sure_to_cancel_report_abuse: Da li ste sigurni da ne treba da proveravamo upotrebljivost ove poruke ?
+  we_cancel_report_successfully: Uspešno smo otkazali prijavu zloupotrebe
   my_move_introduction: Menjamo mesto u vrtiću <b>%{from}</b> za <b>%{to}</b> grupa %{group}
   share: Podeli
   share_on_facebook: Podeli na <i class="fa fa-facebook-official"></i> Fejsbuku
@@ -147,3 +148,5 @@ sr-latin:
   user_archived_chat_with_message: 'Korisnik %{location} je arhivirao dogovaranje sa razlogom: %{message}'
   here_type_message_like: 'Ovde napišite poruku tipa: Da li tražite premeštaj u vrtić %{location} ?'
   delete_all_moves: Obriši sve želje za premeštaj sa ove lokacije
+  user_canceled_account: Korisnik je obrisao nalog
+  all_moves_are_deleted: Sve želje su obrisane

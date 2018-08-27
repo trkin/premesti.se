@@ -115,6 +115,18 @@ class User
     }
   end
 
+  def destroy_moves_and_messages
+    messages.each do |message|
+      message.user = nil
+      message.text = I18n.t('user_canceled_account')
+      message.save!
+    end
+    moves.each do |move|
+      move.destroy_and_archive_chats 'user_canceled_account'
+    end
+    destroy
+  end
+
   # This method overwrites devise's own `send_devise_notification`
   # message = devise_mailer.send(notification, self, *args)
   # message.deliver_now

@@ -22,7 +22,12 @@
     </div>
   </div>
   <%= bootstrap_form_for @message_decorator, url: create_message_chat_path(@chat), remote: true do |f| %>
-    <% placeholder = t('here_type_message_like', location: @chat.from_location_for_user(current_user).name)
+    <%
+      placeholder = if current_user.admin?
+                      nil
+                    else
+                      t('here_type_message_like', location: @chat.from_location_for_user(current_user).name)
+                    end
        placeholder = nil if @chat.messages.present?
     %>
     <%= f.text_field :text, class: 'new-message-input', id: 'new-message-input', placeholder: placeholder, skip_label: true, required: true, append: f.primary(t_crud('send', Message)), 'data-disable-with': t('sending'), autofocus: true %>
@@ -30,6 +35,6 @@
 <% end %>
 <ul class="list-unstyled" id='messages' data-chat-page='<%= @chat.id %>' data-user-id='<%= current_user.id %>'>
   <% @chat.messages.each do |message| %>
-    <%= render "message", message: message, owner: message.user == current_user %>
+    <%= render "message", message: message, owner: message.user == current_user, current_user_admin: current_user.admin? %>
   <% end %>
 </ul>

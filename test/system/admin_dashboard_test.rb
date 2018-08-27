@@ -1,6 +1,6 @@
 require 'application_system_test_case'
 
-class LandingTest < ApplicationSystemTestCase
+class AdminDashboardTest < ApplicationSystemTestCase
   test 'see admin links' do
     password = 'asdfasdf'
     user = create :user, password: password, admin: true

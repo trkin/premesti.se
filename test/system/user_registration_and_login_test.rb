@@ -110,12 +110,6 @@ class UsersTest < ApplicationSystemTestCase
     assert user.valid_password? 'new_password'
   end
 
-  test 'change email' do
-  end
-
-  test 'destroy user' do
-  end
-
   test 'change locale' do
     user = create :user
     sign_in user
@@ -139,5 +133,27 @@ class UsersTest < ApplicationSystemTestCase
     assert_text t('devise.registrations.signed_up', locale: :sr)
     user = User.find_by email: email
     assert_equal user.locale, 'sr'
+  end
+
+  test 'canceling user removes moves and messages' do
+    user = create :user
+    move = create :move, user: user
+    chat = Chat.create_for_moves [move]
+    message = create :message, chat: chat, user: user, text: 'blabla'
+
+    sign_in user
+    visit dashboard_path
+    assert_text move.from_group.location.name
+    click_on chat.name_for_user(user)
+    assert_text 'blabla'
+
+    visit edit_user_registration_path
+    click_on t('my_devise.cancel_my_account')
+    page.accept_confirm
+    assert_text t('devise.registrations.destroyed')
+
+    message.reload
+    assert_equal t('user_canceled_account'), message.text
+    assert_nil Move.find_by(id: move.id)
   end
 end

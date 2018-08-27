@@ -37,13 +37,16 @@ class MoveTest < ActiveSupport::TestCase
     move.destroy_to_group_and_archive_chats group_b, archived_reason
 
     assert_equal :archived, chat.reload.status
-    assert_equal chat.messages.first.text, t('user_archived_chat_with_message', location: move.from_group.location.name, message: t(archived_reason))
+    assert chat.messages.map(&:text).include?(t('user_archived_chat_with_message', location: move.from_group.location.name, message: t(archived_reason)))
+
     assert_equal :archived, chat_bc.reload.status
-    assert_equal chat_bc.messages.first.text, t('user_archived_chat_with_message', location: move.from_group.location.name, message: t(archived_reason))
+    assert chat_bc.messages.map(&:text).include?(t('user_archived_chat_with_message', location: move.from_group.location.name, message: t(archived_reason)))
+
     assert_equal :active, chat_c.reload.status
-    assert_equal chat_c.messages.count, 0
+    assert_equal 1, chat_c.messages.count
+
     assert_equal :archived, archived_chat.status
-    assert_equal archived_chat.messages.count, 0
+    assert_equal 1, archived_chat.messages.count
   end
 
   test '#destroy_and_archive_chats' do
@@ -60,11 +63,13 @@ class MoveTest < ActiveSupport::TestCase
     move.destroy_and_archive_chats archived_reason
 
     assert_equal :archived, chat.reload.status
-    assert_equal chat.messages.first.text, t('user_archived_chat_with_message', location: move.from_group.location.name, message: t(archived_reason))
+    assert chat.messages.map(&:text).include?(t('user_archived_chat_with_message', location: move.from_group.location.name, message: t(archived_reason)))
+
     assert_equal :archived, another_chat.reload.status
-    assert_equal another_chat.messages.first.text, t('user_archived_chat_with_message', location: move.from_group.location.name, message: t(archived_reason))
+    assert another_chat.messages.map(&:text).include?(t('user_archived_chat_with_message', location: move.from_group.location.name, message: t(archived_reason)))
+
     assert_equal :archived, archived_chat.reload.status
-    assert_equal archived_chat.messages.count, 0
+    assert_equal 1, archived_chat.messages.count
   end
 end
 

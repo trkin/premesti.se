@@ -9,7 +9,7 @@ class Group
   property :updated_at, type: DateTime
 
   has_one :in, :location, origin: :groups
-  has_many :in, :move, origin: :group
+  has_many :in, :move, origin: :from_group
 
   validates :location, presence: true
   validates :age, numericality: { greater_than: 0 }

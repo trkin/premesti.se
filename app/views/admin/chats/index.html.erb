@@ -3,7 +3,11 @@
     <li>
       <%= link_to chat_url(chat) do %>
         <% chat.moves.each do |move| %>
-          <%= move.user.email %>
+          <% if move.user %>
+            <%= move.user.email %>
+          <% else %>
+            Deleted user
+          <% end %>
           <%= move.from_group.location.name %>
         <% end %>
       <% end %>

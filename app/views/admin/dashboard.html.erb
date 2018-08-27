@@ -9,7 +9,10 @@
   <%= link_to User.size.to_s + ' ' + User.model_name.human(count: User.size), admin_users_path %>
 </div>
 <div>
-  <%= link_to Chat.size.to_s + ' ' + Chat.model_name.human(count: Chat.size), admin_chats_path %>
+  <%= link_to Chat.active.size.to_s + ' active ' + Chat.model_name.human(count: Chat.size), admin_chats_path(status: :active) %>
+</div>
+<div>
+  <%= link_to Chat.archived.size.to_s + ' archived ' + Chat.model_name.human(count: Chat.size), admin_chats_path(status: :archived) %>
 </div>
 <div>
   <%= link_to t('report', count: Message.reported.length), admin_reported_messages_path %>

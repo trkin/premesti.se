@@ -19,6 +19,7 @@
         <% chat.messages.where(user: current_user).each do |message| %>
           <li>
             <%= message.text %>
+            <small><%= message.user_location_name %></small>
           </li>
         <% end %>
       </ul>

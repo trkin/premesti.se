@@ -148,3 +148,5 @@ en:
   user_archived_chat_with_message: 'User %{location} archived the chat with a message: %{message}'
   here_type_message_like: 'Here you can write message like: Do you search for a move to %{location} ?'
   delete_all_moves: Delete all moves
+  user_canceled_account: User cancelled account
+  all_moves_are_deleted: All moves are deleted

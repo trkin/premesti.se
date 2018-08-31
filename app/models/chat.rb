@@ -52,7 +52,8 @@ class Chat
 
   def self.create_for_moves(moves)
     chat = Chat.create
-    moves.each do |move|
+    # we need to add property on relationship so we know who is next jump
+    moves.reverse.each do |move|
       chat.moves << move
     end
     Message.create! chat: chat, text: I18n.t('new_match_for_moves', moves: chat.name_with_arrows(moves))

@@ -25,7 +25,6 @@ class AdminUsersTest < ApplicationSystemTestCase
     assert_selector 'ul#active_chat', text: 'active_chat'
     assert_selector 'ul#archived_chat', text: 'archived_chat'
     assert_selector 'ul#deleted_move_chat', text: 'deleted_move_chat'
-    pause
   end
 end
 

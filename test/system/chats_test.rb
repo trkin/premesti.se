@@ -6,11 +6,14 @@ class ChatsTest < ApplicationSystemTestCase
     user = create :user
     location_a = create :location
     location_b = create :location
+    location_c = create :location
     group_a = create :group, location: location_a, age: age
     group_b = create :group, location: location_b, age: age
+    group_c = create :group, location: location_c, age: age
     move_ab = create :move, user: user, from_group: group_a, to_groups: [group_b]
-    move_ba = create :move, from_group: group_b, to_groups: [group_a]
-    chat = Chat.create_for_moves [move_ab, move_ba]
+    move_bc = create :move, from_group: group_b, to_groups: [group_c]
+    move_ca = create :move, from_group: group_c, to_groups: [group_a]
+    chat = Chat.create_for_moves [move_ab, move_bc, move_ca]
     sign_in user
     visit dashboard_path
 
@@ -40,5 +43,6 @@ class ChatsTest < ApplicationSystemTestCase
     click_on t('add')
     visit dashboard_path
     assert_selector 'a', text: chat.name_for_user(user)
+    pause
   end
 end

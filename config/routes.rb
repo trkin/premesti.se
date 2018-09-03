@@ -62,6 +62,8 @@ Rails.application.routes.draw do
     get :reported_messages
     resources :locations
     resources :groups
+    get :notify_user
+    post :submit_notify_user
   end
 end
 # rubocop:enable Metrics/BlockLength

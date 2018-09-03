@@ -20,4 +20,11 @@ class UserMailer < ApplicationMailer
     mailer_locale @move.user.locale
     mail to: @move.user.email, subject: "#{t('new_message')} #{@move.from_group.location.name}"
   end
+
+  def notification(user_id, subject, message)
+    @user = User.find user_id
+    @subject = subject
+    @message = message
+    mail to: @user.email, subject: "[#{t('site_title')}] #{subject}"
+  end
 end

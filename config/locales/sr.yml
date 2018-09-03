@@ -108,6 +108,7 @@ sr:
   there_is_a_match_for_your_location: Постоји ново поклапање за вашу жељу за премештајем из вртића %{location}
   chats_empty_new_will_show_up_automatically: Тренутно нема договарања. Нова договарања ће се појавити када се деси поклапање
   requests_in_last_month: Жеље у последњих месец дана
+  chats_in_last_month: Договарања у последњих месец дана
   groups_have_to_be_same_age: Групе морају бити у истим годиштима
   to_group_can_not_be_on_same_location: Жељена гупа не може бити на тренутној локацији
   ignored_sending_notifications_unconfirmed_user: Слање порука је прескочено пошто корисник није потврђен

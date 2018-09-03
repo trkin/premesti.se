@@ -1,0 +1,5 @@
+<%= bootstrap_form_for @notify_user_form, url: admin_submit_notify_user_path do |f| %>
+  <%= f.text_field :subject %>
+  <%= f.text_area :message %>
+  <%= f.submit %>
+<% end %>

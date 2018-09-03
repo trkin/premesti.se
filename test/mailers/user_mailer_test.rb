@@ -21,7 +21,7 @@ class UserMailerTest < ActionMailer::TestCase
 
   test 'new_match' do
     move = create :move
-    chat = Chat.create_for_moves [move]
+    chat = Chat.create_for_moves [move, move]
     mail = UserMailer.new_match(move.id, chat.id)
     assert_match t('new_match'), mail.subject
     assert_match t('user_mailer.new_match.chat_link'), mail.body.encoded
@@ -30,7 +30,7 @@ class UserMailerTest < ActionMailer::TestCase
   test 'new_match locale based on user locale' do
     user = create :user, locale: :sr
     move = create :move, user: user
-    chat = Chat.create_for_moves [move]
+    chat = Chat.create_for_moves [move, move]
     mail = UserMailer.new_match(move.id, chat.id)
     assert_match t('new_match', locale: :sr), mail.subject
     assert_match t('user_mailer.new_match.chat_link', locale: :sr), mail.body.encoded

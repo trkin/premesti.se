@@ -29,7 +29,9 @@ class Group
     # Location.all.each {|l| l.groups.query_as(:g).order('g.age DESC').pluck(:g).map { |g| g.age += 1; g.save! } }
     # do not need to create new groups for age 1 since we use
     # Group.find_or_create_by_location_id_and_age
-    # during Sept-Dec we need to show previous year
+    # during Sept-Dec we need to show next year
+    # half of the kids will fulfill that age until 1. Septembar (end of school
+    # period of that group) and half will not
     year = Time.zone.today.year - age
     year += 1 if Time.zone.today.month >= 9
     age_interval = "01.03.#{year}-28.02.#{year + 1}"

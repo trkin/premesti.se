@@ -180,8 +180,32 @@ module MapHelper
     url
   end
 
+  def show_static_circle_map_url(locations, options = {})
+    url = '//maps.googleapis.com/maps/api/staticmap?'
+    url += 'size=600x315'
+    # custom icon must be http:// not https://
+    # markers=icon:http://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png|
+    url += '&markers='
+    locations.each do |location|
+      url += "|#{location.latitude},#{location.longitude}"
+    end
+    color = options[:color] || '0xff00ff'
+    locations.zip(locations.rotate).each do |location_a, location_b|
+      url += "&path=color:#{color}|weight:5"
+      url += "|#{location_a.latitude},#{location_a.longitude}"
+      url += "|#{location_b.latitude},#{location_b.longitude}"
+    end
+    # you need to enable "Google Static Maps API"
+    url += "&key=#{GOOGLE_API_KEY}"
+    url
+  end
+
   def show_static_lines_map(from_location, to_locations, options = {})
     image_tag show_static_lines_map_url(from_location, to_locations, options), class: options[:class]
+  end
+
+  def show_static_circle_map(locations, options = {})
+    image_tag show_static_circle_map_url(locations, options), class: options[:class]
   end
 
   def show_map(object, options = {})
@@ -304,12 +328,19 @@ module MapHelper
         age: line.age
       }
     end
-    content = content_tag(:div, nil, id: 'show-lines-map', class: options[:class])
+    if options[:id].present?
+      map_id = options[:id]
+      callback_name = js_name_for_map_id(map_id)
+    else
+      map_id = "show-lines-map-#{SecureRandom.hex}"
+      callback_name = 'initMap'
+    end
+    content = content_tag(:div, nil, id: map_id, class: options[:class])
     content << %(
       <script>
-        function initMap() {
+        function #{callback_name}() {
           console.log('initMap show_lines_map');
-          var map = new google.maps.Map(document.getElementById('show-lines-map'), {
+          var map = new google.maps.Map(document.getElementById('#{map_id}'), {
             center: {lat: #{INITIAL_LATITUDE}, lng: #{INITIAL_LONGITUDE}},
             zoom: #{INITIAL_ZOOM},
           });
@@ -355,12 +386,28 @@ module MapHelper
         } // function initMap
       </script>
     ).html_safe
-    content << async_load
+    content << async_load unless options[:async_load] == false
+    content
+  end
+
+  def async_load_map_ids(*map_ids)
+    content = %(
+      <script>
+        function async_load_map_ids() {
+          #{map_ids.map { |map_id| js_name_for_map_id(map_id) + '()' }.join(';') }
+        }
+      </script>
+    ).html_safe
+    content << async_load('async_load_map_ids')
   end
 
   private
 
-  def async_load
+  def js_name_for_map_id(map_id)
+    map_id.tr '-', '_'
+  end
+
+  def async_load(callback_name = 'initMap')
     %(
       <script>
         // https://developers.google.com/maps/documentation/javascript/examples/map-simple-async
@@ -368,13 +415,13 @@ module MapHelper
           var script = document.createElement('script');
           script.type = 'text/javascript';
           script.src = 'https://maps.googleapis.com/maps/api/js?libraries=places' +
-              '&key=#{GOOGLE_API_KEY}&callback=initMap';
+              '&key=#{GOOGLE_API_KEY}&callback=#{callback_name}';
           document.body.appendChild(script);
         }
         // http://stackoverflow.com/questions/9228958/how-to-check-if-google-maps-api-is-loaded
         if (typeof google === 'object' && typeof google.maps === 'object') {
           // it is loaded but we need to bind on newly created object
-          initMap();
+          #{callback_name}();
         } else {
           loadScript();
         }

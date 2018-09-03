@@ -108,6 +108,7 @@ sr-latin:
   there_is_a_match_for_your_location: Postoji novo poklapanje za vašu želju za premeštajem iz vrtića %{location}
   chats_empty_new_will_show_up_automatically: Trenutno nema dogovaranja. Nova dogovaranja će se pojaviti kada se desi poklapanje
   requests_in_last_month: Želje u poslednjih mesec dana
+  chats_in_last_month: Dogovaranja u poslednjih mesec dana
   groups_have_to_be_same_age: Grupe moraju biti u istim godištima
   to_group_can_not_be_on_same_location: Željena grupa ne može biti na trenutnoj lokaciji
   ignored_sending_notifications_unconfirmed_user: Slanje poruka je preskočeno pošto korisnik nije potvrđen
@@ -133,7 +134,7 @@ sr-latin:
   are_you_sure_to_report_abuse: Da li hoćete da naš tim proveri upotrebljivost ove poruke ?
   are_you_sure_to_cancel_report_abuse: Da li ste sigurni da ne treba da proveravamo upotrebljivost ove poruke ?
   we_cancel_report_successfully: Uspešno smo otkazali prijavu zloupotrebe
-  my_move_introduction: Menjamo mesto u vrtiću <b>%{from}</b> za <b>%{to}</b> grupa %{group}
+  my_move_introduction: Menjamo mesto u vrtiću <b>%{from}</b> za <b>%{to}</b> grupa %{age}
   share: Podeli
   share_on_facebook: Podeli na <i class="fa fa-facebook-official"></i> Fejsbuku
   see_public_page: Vidi javnu stranicu koju možeš da deliš

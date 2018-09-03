@@ -3,6 +3,7 @@
   font_drift = 1.7
   bc_y_offset = 65
   latest_move_timestamp = Neo4j::ActiveBase.current_session.query('MATCH (n:Move) RETURN max(n.updated_at) AS m').first.m
+  home_page_references_limit = 30
 %>
 <div class="landing-page-header background-color">
   <nav class="navbar p-0">
@@ -56,14 +57,14 @@
     <div class='mt-2'>
       <a href="<%= contact_path %>"><%= t 'contact' %></a>
     </div>
-    <div class='mt-3'>
-      <small><%= t('requests_in_last_month') %></small>
-      <span>
-        <%= (1..7).map {|i| "<span class='color-age-#{i}'>#{i} #{I18n.t('year')}</span>, " }.join.html_safe %>
-      </span>
-      <br>
-      <% cache ['moves-locations', latest_move_timestamp] do %>
-        <% text = Move.query_as(:m).where('m.created_at > ?', (Time.zone.now - 1.month).to_i).limit(30).pluck(:m).map do |move|
+    <% cache ['moves-locations', latest_move_timestamp] do %>
+      <div class='mt-3'>
+        <small><%= t('requests_in_last_month') %></small>
+        <span>
+          <%= (1..7).map {|i| "<span class='color-age-#{i}'>#{i} #{I18n.t('year')}</span>, " }.join.html_safe %>
+        </span>
+        <br>
+        <% text = Move.query_as(:m).where('m.created_at > ?', (Time.zone.now - 1.month).to_i).limit(home_page_references_limit).pluck(:m).map do |move|
             "<a href=\"#{my_move_path(move, move.group_age_and_locations)}\"><span class=\"color-age-#{move.from_group.age}\">" +
               move.show_locations +
             "</span></a>"
@@ -77,8 +78,30 @@
         <script>
           alertTextShowHide.element_text(document.getElementById('references'), '<%= text %>', 99999, 500, ',');
         </script>
-      <% end %>
-    </div>
+      </div>
+      <div class='mt-3'>
+        <small><%= t('chats_in_last_month') %></small>
+        <span>
+          <%= (1..7).map {|i| "<span class='color-age-#{i}'>#{i} #{I18n.t('year')}</span>, " }.join.html_safe %>
+        </span>
+        <br>
+        <%
+          text = Chat.active.query_as(:c).where('c.created_at > ?', (Time.zone.now - 1.month).to_i).limit(home_page_references_limit).pluck(:c).select { |c| c.moves.length > 1 }.map do |chat|
+            "<span class=\"color-age-#{chat.moves.first.from_group.age}\">" +
+              chat.name_with_arrows +
+            "</span>"
+          end.join(', ').html_safe
+          # join with comma is important since we split by that and show one by
+          # one, please without colons for now
+        %>
+        <span id='chats-references'>
+          <%= text %>
+        </span>
+        <script>
+          alertTextShowHide.element_text(document.getElementById('chats-references'), '<%= text %>', 99999, 500, ',');
+        </script>
+      </div>
+    <% end %>
   </div>
   <div class='home-bottom'>
     <%= t 'site_disclaimer' %>
@@ -90,14 +113,28 @@
 <% cache ['moves-markers', latest_move_timestamp] do %>
   <%
     markers = Move.all.map { |move| move.to_groups.present? ? [move.from_group.location, move.to_groups.map(&:location)] : nil }.flatten.compact.uniq
-  lines = []
-  Move.all.each do |move|
-    move.to_groups.each do |to_group|
-      lines << OpenStruct.new(from: move.from_group.location, to: to_group.location, age: move.from_group.age)
+    lines = []
+    Move.all.each do |move|
+      move.to_groups.each do |to_group|
+        lines << OpenStruct.new(from: move.from_group.location, to: to_group.location, age: move.from_group.age)
+      end
     end
-  end
   %>
-  <%= show_lines_map markers, lines, class: 'show-all-lines-map-container' %>
+  <%= show_lines_map markers, lines, class: 'show-all-lines-map-container', id: 'map-moves', async_load: false %>
+  <%
+    chats = Chat.active.select { |c| c.moves.length > 1 }
+    markers = chats.map { |chat| chat.moves.from_group.location }.flatten.uniq
+    lines = []
+    chats.each do |chat|
+      age = chat.moves.first.from_group.age
+      locations = chat.ordered_moves.map(&:from_group).map(&:location)
+      locations.zip(locations.rotate).each do |from_location, to_location|
+        lines << OpenStruct.new(from: from_location, to: to_location, age: age)
+      end
+    end
+  %>
+  <%= show_lines_map markers, lines, class: 'show-all-lines-map-container', id: 'map-chats', async_load: false %>
+  <%= async_load_map_ids 'map-moves', 'map-chats' %>
 <% end %>
 
 <svg id="abc" class="abc" preserveAspectRatio="none" viewBox="-1 -1 102 102">

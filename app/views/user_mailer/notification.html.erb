@@ -1,0 +1,9 @@
+<%
+  # pre_header
+%>
+<p><%= t('hi_name', name: @user.email) %>!</p>
+
+<p>
+  <%= @message.html_safe %>
+</p>
+

@@ -16,10 +16,13 @@ class Chat
   has_many :out, :messages, type: :HAS_MESSAGES
   has_many :out, :moves, rel_class: :Matches
 
+  def ordered_moves
+    query_as(:c).match('(c)-[r:MATCHES]-(m:Move)').order('r.order').pluck(:m)
+  end
+
   def name_with_arrows
     return I18n.t('all_moves_are_deleted') unless moves.present?
-    ordered = query_as(:c).match('(c)-[r:MATCHES]-(m:Move)').order('r.order').pluck(:m)
-    ([ordered.last] + ordered).map { |m| m.from_group.location.name }.join(" #{Constant::ARROW_CHAR} ")
+    ([ordered_moves.last] + ordered_moves).map { |m| m.from_group.location.name }.join(" #{Constant::ARROW_CHAR} ")
   end
 
   def name_for_user(user)
@@ -54,6 +57,7 @@ class Chat
   # Chat.create_for_moves m1, m2
   def self.create_for_moves(*moves)
     moves = moves.flatten
+    raise 'can_not_create_for_less_than_two_moves' if moves.length < 2
     chat = Chat.create
     # we need to add property on relationship so we know which is next jump
     moves.each_with_index do |move, i|

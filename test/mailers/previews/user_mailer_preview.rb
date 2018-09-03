@@ -28,4 +28,11 @@ class UserMailerPreview < ActionMailer::Preview
     message = create :message, chat: chat, user: move_creator.user, text: 'do_you_want_to_replace'
     UserMailer.new_message(move.id, message.id)
   end
+
+  def notification
+    user = create :user
+    subject = 'This is subject'
+    message = '<h1>Message Header</h1> message body'
+    UserMailer.notification(user, subject, message)
+  end
 end

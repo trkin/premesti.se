@@ -38,3 +38,12 @@
     <%= render "message", message: message, owner: message.user == current_user, current_user_admin: current_user.admin? %>
   <% end %>
 </ul>
+<%
+  markers = @chat.ordered_moves.map(&:from_group).map(&:location)
+  lines = []
+
+  markers.zip(markers.rotate).each do |location_a, location_b|
+    lines << OpenStruct.new(from: location_a, to: location_b, age: @chat.moves.first.from_group.age)
+  end
+%>
+<%= show_lines_map markers, lines, class: 'show-all-map-container' %>

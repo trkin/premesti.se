@@ -4,7 +4,7 @@ namespace :matches do
     I18n.locale = :sr
     Move.all.each do |move|
       move.to_groups.each do |to_group|
-        results = AddToGroupAndSendNotifications.new(move, to_group).create_and_send_notifications max_length_of_the_rotation: 10
+        results = AddToGroupAndSendNotifications.new(move, to_group).create_and_send_notifications max_length_of_the_rotation: 8
         puts "move_id=#{move.id} group_id=#{to_group.id} #{results.message}"
       end
     end

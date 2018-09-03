@@ -61,6 +61,8 @@ class User
 
   has_many :out, :messages, type: :AUTHOR_OF
 
+  scope :confirmed, -> { query_as(:user).where('user.confirmed_at IS NOT NULL').pluck(:user) }
+
   def self._find_existing(provider, email, uid)
     user = find_by(email: email)
     return user if user

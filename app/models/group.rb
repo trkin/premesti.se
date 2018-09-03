@@ -25,7 +25,14 @@ class Group
   scope :for_age, ->(age, except_id) { where(age: age).where_not(id: except_id) }
 
   def self.title_for_age(age)
-    age_interval = "01.03.#{Time.zone.today.year - age}-28.02.#{Time.zone.today.year - age + 1}"
+    # on 01.09 every year we need to increase age
+    # Location.all.each {|l| l.groups.query_as(:g).order('g.age DESC').pluck(:g).map { |g| g.age += 1; g.save! } }
+    # do not need to create new groups for age 1 since we use
+    # Group.find_or_create_by_location_id_and_age
+    # during Sept-Dec we need to show previous year
+    year = Time.zone.today.year - age
+    year += 1 if Time.zone.today.month >= 9
+    age_interval = "01.03.#{year}-28.02.#{year + 1}"
     "#{I18n.t('born')} #{age_interval} #{I18n.t("group_name_for_age_#{age}")} #{short_title_for_age age}"
   end
 

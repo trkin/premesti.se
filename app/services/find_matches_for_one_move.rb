@@ -1,6 +1,6 @@
 module FindMatchesForOneMove
   # you can override for specific test cases
-  MAX_LENGTH_OF_THE_ROTATION = Rails.env.test? ? 2 : 5
+  MAX_LENGTH_OF_THE_ROTATION = Rails.env.test? ? 2 : 6
   # rubocop:disable Metrics/MethodLength
   # rubocop:disable Metrics/AbcSize
   # rubocop:disable Metrics/PerceivedComplexity

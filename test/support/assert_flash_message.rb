@@ -1,9 +1,10 @@
-module MiniTest::Assertions
-  def assert_select_alert_message(text)
+class ActionDispatch::IntegrationTest
+  # assert_flash_message
+  def assert_alert_message(text)
     assert_select 'div#alert-debug', text
   end
 
-  def assert_select_notice_message(text)
+  def assert_notice_message(text)
     assert_select 'div#notice-debug', text
   end
 

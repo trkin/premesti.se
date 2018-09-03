@@ -14,16 +14,16 @@ class Chat
   enum status: %i[active archived]
 
   has_many :out, :messages, type: :HAS_MESSAGES
-  has_many :out, :moves, type: :MATCHES, model_class: :Move, unique: true
+  has_many :out, :moves, rel_class: :Matches
 
-  def name_with_arrows(moves)
+  def name_with_arrows
     return I18n.t('all_moves_are_deleted') unless moves.present?
-    # in match result we got array of moves
-    ([moves.last] + moves).reverse.map { |m| m.from_group.location.name }.join(" #{Constant::ARROW_CHAR} ")
+    ordered = query_as(:c).match('(c)-[r:MATCHES]-(m:Move)').order('r.order').pluck(:m)
+    ([ordered.last] + ordered).map { |m| m.from_group.location.name }.join(" #{Constant::ARROW_CHAR} ")
   end
 
   def name_for_user(user)
-    name_with_arrows moves.to_a.reverse
+    name_with_arrows
   end
 
   def from_location_for_user(user)
@@ -50,13 +50,17 @@ class Chat
     Message.create! chat: self, text: I18n.t('user_archived_chat_with_message', location: location.name, message: I18n.t(archived_reason))
   end
 
-  def self.create_for_moves(moves)
+  # you can call Chat.create_for_moves [m1, m2] or without square brackets
+  # Chat.create_for_moves m1, m2
+  def self.create_for_moves(*moves)
+    moves = moves.flatten
     chat = Chat.create
-    # we need to add property on relationship so we know who is next jump
-    moves.reverse.each do |move|
-      chat.moves << move
+    # we need to add property on relationship so we know which is next jump
+    moves.each_with_index do |move, i|
+      # chat.moves << move
+      Matches.create from_node: chat, to_node: move, order: i
     end
-    Message.create! chat: chat, text: I18n.t('new_match_for_moves', moves: chat.name_with_arrows(moves))
+    Message.create! chat: chat, text: I18n.t('new_match_for_moves', moves: chat.name_with_arrows)
     chat
   end
 

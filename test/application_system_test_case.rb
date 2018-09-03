@@ -9,4 +9,12 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   def take_failed_screenshot
     false
   end
+
+  def assert_alert_message(text)
+    assert_selector 'div#alert-debug', text, visible: false
+  end
+
+  def assert_notice_message(text)
+    assert_selector 'div#notice-debug', text, visible: false
+  end
 end

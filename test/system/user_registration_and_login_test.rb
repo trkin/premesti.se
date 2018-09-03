@@ -150,7 +150,7 @@ class UsersTest < ApplicationSystemTestCase
     visit edit_user_registration_path
     click_on t('my_devise.cancel_my_account')
     page.accept_confirm
-    assert_text t('devise.registrations.destroyed')
+    assert_notice_message t('devise.registrations.destroyed')
 
     message.reload
     assert_equal t('user_canceled_account'), message.text

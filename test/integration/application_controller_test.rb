@@ -18,19 +18,19 @@ class ApplicationControllerTest < ActionDispatch::IntegrationTest
     target_user = create :user, email: 'target@email.com'
     get sign_in_as_path user_id: target_user.id
     follow_redirect!
-    assert_select_alert_message t(:unauthorized)
+    assert_alert_message t(:unauthorized)
 
     user = create :user
     sign_in user
     get sign_in_as_path user_id: target_user.id
     follow_redirect!
-    assert_select_alert_message t(:unauthorized)
+    assert_alert_message t(:unauthorized)
 
     user = create :user, admin: true
     sign_in user
     get sign_in_as_path user_id: target_user.id
     assert_response :redirect
     follow_redirect!
-    assert_select_notice_message t(:successfully)
+    assert_notice_message t(:successfully)
   end
 end

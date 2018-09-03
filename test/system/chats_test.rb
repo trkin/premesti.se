@@ -4,9 +4,9 @@ class ChatsTest < ApplicationSystemTestCase
   test 'create some messages and archive chat and move' do
     age = 1
     user = create :user
-    location_a = create :location
-    location_b = create :location
-    location_c = create :location
+    location_a = create :location, name: 'location_a'
+    location_b = create :location, name: 'location_b'
+    location_c = create :location, name: 'location_c'
     group_a = create :group, location: location_a, age: age
     group_b = create :group, location: location_b, age: age
     group_c = create :group, location: location_c, age: age
@@ -40,9 +40,11 @@ class ChatsTest < ApplicationSystemTestCase
     select2_ajax location_b.name_with_address, selector:
       'span.select2-selection__rendered', text:
       t('activemodel.attributes.landing_signup.to_location')
+    old = FindMatchesForOneMove::MAX_LENGTH_OF_THE_ROTATION
+    FindMatchesForOneMove::MAX_LENGTH_OF_THE_ROTATION = 3
     click_on t('add')
+    FindMatchesForOneMove::MAX_LENGTH_OF_THE_ROTATION = old
     visit dashboard_path
     assert_selector 'a', text: chat.name_for_user(user)
-    pause
   end
 end

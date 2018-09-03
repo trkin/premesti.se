@@ -21,10 +21,10 @@ class AddToGroupAndSendNotifications
     @group = group
   end
 
-  def perform
+  def perform(max_length_of_the_rotation: nil)
     return Error.new(@move.errors.values.join(', ')) unless _validate_that_group_can_be_added?
     @move.to_groups << @group
-    create_and_send_notifications
+    create_and_send_notifications max_length_of_the_rotation: max_length_of_the_rotation
   end
 
   def create_and_send_notifications(max_length_of_the_rotation: nil)

@@ -25,7 +25,7 @@ class CreateChatAndSendNotifications
   def perform
     chat = Chat.find_existing_for_moves(@moves + [@move])
     return Error.new(ApplicationController.helpers.t('neo4j.errors.messages.already_exists')) if chat.present?
-    chat = Chat.create_for_moves([@moves + [@move]].reverse)
+    chat = Chat.create_for_moves((@moves + [@move]).reverse)
     send_notification(chat) if chat
     Result.new 'OK', chat
   end

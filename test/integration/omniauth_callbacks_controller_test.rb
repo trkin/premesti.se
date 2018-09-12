@@ -12,7 +12,7 @@ class OmniauthCallbacksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'facebook login' do
-    facebook_uid = '1234567890'
+    facebook_uid = SecureRandom.hex
     user = create :user, facebook_uid: facebook_uid
     OmniAuth.config.add_mock :facebook, uid: facebook_uid
 
@@ -25,7 +25,7 @@ class OmniauthCallbacksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'google login' do
-    google_uid = '1234567890'
+    google_uid = SecureRandom.hex
     user = create :user, google_uid: google_uid
     OmniAuth.config.add_mock :google_oauth2, uid: google_uid
 
@@ -38,7 +38,7 @@ class OmniauthCallbacksControllerTest < ActionDispatch::IntegrationTest
 
   test 'facebook signup' do
     email = 'my@email.com'
-    OmniAuth.config.add_mock :facebook, info: { email: email }
+    OmniAuth.config.add_mock :facebook, info: { email: email }, uid: '123'
     assert_difference 'User.count', 1 do
       assert_no_performed_jobs only: ActionMailer::DeliveryJob do
         get user_facebook_omniauth_authorize_path
@@ -47,18 +47,47 @@ class OmniauthCallbacksControllerTest < ActionDispatch::IntegrationTest
         assert_select '#userDropdown', 'my'
       end
     end
-    ActionMailer::Base.deliveries.clear
+    user = User.find_by email: email
+    assert_equal '123', user.facebook_uid
+    assert user.confirmed?
   end
 
-  test 'facebook signup email already exists' do
+  test 'facebook email already exists update facebook_uid' do
     email = 'my@email.com'
-    create :user, email: email
-    OmniAuth.config.add_mock :facebook, info: { email: email }
+    create :user, email: email, facebook_uid: '000'
+    OmniAuth.config.add_mock :facebook, info: { email: email }, uid: 'new_uid'
     assert_difference 'User.count', 0 do
       get user_facebook_omniauth_authorize_path
       follow_redirect!
       follow_redirect!
       assert_select '#userDropdown', 'my'
+    end
+    user = User.find_by email: email
+    assert_equal 'new_uid', user.facebook_uid
+  end
+
+  test 'facebook signup existing user but email changed on facebook' do
+    email = 'my@email.com'
+    uid = SecureRandom.hex
+    create :user, email: email, facebook_uid: uid
+    OmniAuth.config.add_mock :facebook, info: { email: 'updated@email.com' }, uid: uid
+    assert_difference 'User.count', 0 do
+      get user_facebook_omniauth_authorize_path
+      follow_redirect!
+      follow_redirect!
+    end
+    user = User.find_by facebook_uid: uid
+    assert_equal 'updated@email.com', user.email
+  end
+
+  test 'facebook without email' do
+    OmniAuth.config.add_mock :facebook, info: {}
+    assert_difference 'User.count', 0 do
+      get user_facebook_omniauth_authorize_path
+      follow_redirect!
+      follow_redirect!
+      assert_select 'input[type=email]'
+      assert_alert_message Regexp.new t('errors.messages.blank')
     end
   end
 

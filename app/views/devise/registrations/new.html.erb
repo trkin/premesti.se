@@ -3,7 +3,7 @@
 
 <%= link_to user_facebook_omniauth_authorize_path, class: 'btn btn-block btn-facebook text-left' do %>
   <i class="fa fa-facebook"></i>
-  <%= t("my_devise.sign_in_with", provider: t('provider.facebook')) %>
+  <%= t('my_devise.sign_in_with', provider: t('provider.facebook')) %>
 <% end %>
 <%= link_to user_google_oauth2_omniauth_authorize_path, class: 'btn btn-block btn-google text-left' do %>
   <i class="fa fa-google" aria-hidden="true"></i>
@@ -15,6 +15,7 @@
   <%= devise_error_messages! %>
 
   <%= f.hidden_field :locale, value: I18n.locale %>
+
   <%= f.email_field :email, autofocus: true, required: true %>
 
   <%= f.password_field :password, autocomplete: "off", required: true %>

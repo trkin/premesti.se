@@ -1,8 +1,22 @@
 require 'application_system_test_case'
-require 'helpers/system_login_helpers'
 
 class UsersTest < ApplicationSystemTestCase
-  include SystemLoginHelpers
+  def manual_register(email, password)
+    visit new_user_registration_path
+    fill_in t('neo4j.attributes.user.email'), with: email
+    fill_in t('neo4j.attributes.user.password'), with: password
+    fill_in t('neo4j.attributes.user.password_confirmation'), with: password
+
+    click_on t('register')
+  end
+
+  def manual_login(email, password)
+    visit new_user_session_path
+    fill_in t('neo4j.attributes.user.email'), with: email
+    fill_in t('neo4j.attributes.user.password'), with: password
+
+    click_on t('sign_in')
+  end
 
   test 'register new user' do
     manual_register 'new@email.com', 'some_password'
@@ -155,5 +169,31 @@ class UsersTest < ApplicationSystemTestCase
     message.reload
     assert_equal t('user_canceled_account'), message.text
     assert_nil Move.find_by(id: move.id)
+  end
+
+  test 'signup with facebook which does not have email should allow instant login' do
+    OmniAuth.config.test_mode = true
+    email = 'my@email.com'
+    password = 'password'
+    facebook_uid = SecureRandom.hex
+    OmniAuth.config.add_mock :facebook, uid: facebook_uid
+    visit '/'
+    find("a[title='#{t('my_devise.sign_in_with', provider: t('provider.facebook'))}']").click
+    # we could directly visit user_facebook_omniauth_authorize_path
+    fill_in t('neo4j.attributes.user.email'), with: email
+    fill_in t('neo4j.attributes.user.password'), with: password
+    fill_in t('neo4j.attributes.user.password_confirmation'), with: password
+    click_on t('register')
+
+    assert_user_logged_in_with_email email
+
+    click_on 'my'
+    click_on t('sign_out')
+    find("a[title='#{t('my_devise.sign_in_with', provider: t('provider.facebook'))}']").click
+    assert_user_logged_in_with_email email
+    user = User.last
+    assert_equal facebook_uid, user.facebook_uid
+
+    OmniAuth.config.test_mode = false
   end
 end

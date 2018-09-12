@@ -1,6 +1,14 @@
 require 'application_system_test_case'
 
 class AdminDashboardTest < ApplicationSystemTestCase
+  def manual_login(email, password)
+    visit new_user_session_path
+    fill_in t('neo4j.attributes.user.email'), with: email
+    fill_in t('neo4j.attributes.user.password'), with: password
+
+    click_on t('sign_in')
+  end
+
   test 'see admin links' do
     password = 'asdfasdf'
     user = create :user, password: password, admin: true

@@ -5,9 +5,19 @@ module Devise
     %i[facebook google_oauth2].each do |provider|
       define_method provider do
         # use request.env["omniauth.params"]["my_param"]
-        user = User.from_omniauth!(request.env['omniauth.auth'])
-        sign_in_and_redirect user, event: :authentication
-        set_flash_message(:notice, :success, kind: t("provider.#{provider}"))
+        auth = request.env['omniauth.auth']
+        result = UserFromOmniauth.new(auth).perform
+        if result.success?
+          sign_in_and_redirect result.user, event: :authentication
+          set_flash_message(:notice, :success, kind: t("provider.#{provider}"))
+        else
+          set_flash_message(:alert, :success, kind: t("provider.#{provider}"))
+          if provider == :facebook
+            session[:auth] = auth
+            session[:facebook_uid] = auth.uid
+          end
+          redirect_to new_user_registration_path, alert: result.message
+        end
       end
     end
 

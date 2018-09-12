@@ -1,5 +1,4 @@
 module OmniauthHelper
-  # rubocop:disable Metrics/MethodLength
   def mock_facebook_auth(user = {})
     # info https://github.com/omniauth/omniauth/wiki/Integration-Testing
     auth = {
@@ -31,7 +30,7 @@ module OmniauthHelper
 
   def silence_omniauth
     previous_logger = OmniAuth.config.logger
-    OmniAuth.config.logger = Logger.new("/dev/null")
+    OmniAuth.config.logger = Logger.new('/dev/null')
     yield
   ensure
     OmniAuth.config.logger = previous_logger

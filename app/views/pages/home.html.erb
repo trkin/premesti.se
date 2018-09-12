@@ -3,7 +3,7 @@
   font_drift = 1.7
   bc_y_offset = 65
   latest_move_timestamp = Neo4j::ActiveBase.current_session.query('MATCH (n:Move) RETURN max(n.updated_at) AS m').first.m
-  home_page_references_limit = 30
+  home_page_references_limit = Rails.env.development? ? 2 : 30
 %>
 <div class="landing-page-header background-color">
   <nav class="navbar p-0">
@@ -112,9 +112,9 @@
 </div>
 <% cache ['moves-markers', latest_move_timestamp] do %>
   <%
-    markers = Move.all.map { |move| move.to_groups.present? ? [move.from_group.location, move.to_groups.map(&:location)] : nil }.flatten.compact.uniq
+    markers = Move.all.limit(home_page_references_limit).map { |move| move.to_groups.present? ? [move.from_group.location, move.to_groups.map(&:location)] : nil }.flatten.compact.uniq
     lines = []
-    Move.all.each do |move|
+    Move.all.limit(home_page_references_limit).each do |move|
       move.to_groups.each do |to_group|
         lines << OpenStruct.new(from: move.from_group.location, to: to_group.location, age: move.from_group.age)
       end
@@ -122,7 +122,7 @@
   %>
   <%= show_lines_map markers, lines, class: 'show-all-lines-map-container', id: 'map-moves', async_load: false %>
   <%
-    chats = Chat.active.select { |c| c.moves.length > 1 }
+    chats = Chat.active.limit(home_page_references_limit).select { |c| c.moves.length > 1 }
     markers = chats.map { |chat| chat.moves.from_group.location }.flatten.uniq
     lines = []
     chats.each do |chat|

@@ -2,8 +2,13 @@
 <div>
   <%= link_to sign_in_as_path(user_id: @user.id) do %>
     sign in as <%= @user.email %>
+    <% if @user.auth.present? %>
+      <% auth = JSON.parse @user.auth %>
+      <%= image_tag auth['info']['image'] %>
+    <% end %>
   <% end %>
 </div>
+
 <h1>Moves</h1>
 <% @user.moves.each do |move| %>
   <div>

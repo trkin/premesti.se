@@ -2,6 +2,12 @@
   <ul>
     <% @users.each do |user| %>
       <li>
+        <% if user.facebook_uid.present? %>
+          <i class="fa fa-facebook-official"></i>
+        <% end %>
+        <% if user.google_uid.present? %>
+          <i class="fa fa-google" aria-hidden="true"></i>
+        <% end %>
         <%= link_to user.email, admin_user_path(user) %>
         <%= link_to sign_in_as_path(user_id: user.id) do %>
           sign_in_as

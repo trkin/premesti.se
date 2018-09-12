@@ -15,6 +15,8 @@ In source you can see usage of the:
 * sidekiq
 * redis for sidekiq, cache store, action cable
 * chat with ActionCable
+* test with minitests, headless chrome
+* sign up with facebook, google and email
 
 Graph database is chosen since we need to match moves in format A->B, B->A
 (I want to move from A to B, so please find me who wants to move from B to A).

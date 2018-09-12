@@ -16,6 +16,7 @@
   ) ASSERT `neo4j::migrations::schemamigration`.migration_id IS UNIQUE
 - CONSTRAINT ON ( chat:Chat ) ASSERT chat.uuid IS UNIQUE
 - CONSTRAINT ON ( city:City ) ASSERT city.uuid IS UNIQUE
+- CONSTRAINT ON ( emailmessage:EmailMessage ) ASSERT emailmessage.uuid IS UNIQUE
 - CONSTRAINT ON ( group:Group ) ASSERT group.uuid IS UNIQUE
 - CONSTRAINT ON ( location:Location ) ASSERT location.uuid IS UNIQUE
 - CONSTRAINT ON ( message:Message ) ASSERT message.uuid IS UNIQUE
@@ -41,3 +42,5 @@
 - '20180821094628'
 - '20180821131744'
 - '20180912112838'
+- '20180912134929'
+- '20180913085028'

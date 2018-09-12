@@ -10,7 +10,9 @@ module MailerHelpers
   # or include ActiveJob::TestHelper
   # assert_performed_jobs 1, only: ActionMailer::DeliveryJob do
   def all_mails
-    ActionMailer::Base.deliveries
+    all = ActionMailer::Base.deliveries
+    clear_mails
+    all
   end
 
   # last_email is renamed to last_mail

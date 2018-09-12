@@ -81,7 +81,7 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     }
     assert_difference 'User.count', 0 do
       assert_difference 'Move.count', 1 do
-        assert_performed_jobs 2, only: ActionMailer::DeliveryJob do
+        assert_performed_jobs 3, only: ActionMailer::DeliveryJob do
           post my_move_path(move, move.group_age_and_locations), params: { landing_signup: params }
         end
       end
@@ -90,8 +90,9 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_select 'h1', t('my_moves')
 
-    chat_mail, move_mail = all_mails
+    chat_mail, another_chat_mail, move_mail = all_mails
     assert_match t('user_mailer.landing_signup.description_of_service'), move_mail.html_part.decoded
     assert_match t('user_mailer.new_match.chat_link'), chat_mail.html_part.decoded
+    assert_match t('user_mailer.new_match.chat_link'), another_chat_mail.html_part.decoded
   end
 end

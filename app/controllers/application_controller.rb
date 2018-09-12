@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!, except: [:sign_in_as]
   # before_action :sleep_some_time # add delay for testing real conditions
   after_action :check_flash_message
+  before_action :save_referrer
 
   # rubocop:disable Metrics/AbcSize
   def check_flash_message
@@ -13,6 +14,17 @@ class ApplicationController < ActionController::Base
     response.body += "flash_notice('#{view_context.j flash.now[:notice]}');" if flash.now[:notice].present?
   end
   # rubocop:enable Metrics/AbcSize
+
+  def save_referrer
+    return if session['referrer'].present?
+    if params[:utm_campaign].present?
+      session[:referrer] = params[:utm_campaign]
+    elsif request.env[:HTTP_REFERER].present?
+      session[:referrer] = request.env[:HTTP_REFERER]
+    else
+      session['referrer'] = 'http://www.premesti.se'
+    end
+  end
 
   def sleep_some_time
     sleep 1
@@ -33,6 +45,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
+    Notify.message('non_active_user_logged_in ' + resource.email, resource) unless resource.active?
     redirect_url = stored_location_for(resource)
     return redirect_url if redirect_url.present?
     dashboard_path
@@ -41,7 +54,7 @@ class ApplicationController < ActionController::Base
   def sign_in_as
     redirect_to(root_path, alert: t(:unauthorized)) && return unless current_user&.admin? || Rails.env.development?
     user = User.find params[:user_id]
-    request.env["devise.skip_trackable"] = true
+    request.env['devise.skip_trackable'] = true
     sign_in :user, user, byepass: true
     redirect_to root_path, notice: t(:successfully)
   end

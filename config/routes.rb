@@ -57,7 +57,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get :dashboard
-    resources :users
+    resources :users do
+      member do
+        delete :destroy_move
+      end
+    end
     resources :chats
     get :reported_messages
     resources :locations

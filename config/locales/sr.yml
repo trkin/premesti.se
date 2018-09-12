@@ -50,6 +50,7 @@ sr:
   add_another_location: Додај још један вртић
   add_requested_location: Додај жељени вртић
   group_with_that_age_already_exists: Група са тим годиштем већ постоји
+  only_one_from_same_location_and_group: Већ постоји жеља за ову групу и вртић. Нема потребе да додајете дупло (на пример у случају близанаца) зато што ће се свакако отворити договарање за сваку могућност (ако постоји две могућности, добићете два договарања)
   year: год
   my_moves: Моји вртићи
   my_requests: Моје жеље
@@ -105,7 +106,9 @@ sr:
   new_match: Ново поклапање
   new_match_for_moves: 'Догодило се поклапање између локација: %{moves}. Пробајте да се договорите око заједничког премештања'
   new_message: Нова порука
-  there_is_a_match_for_your_location: Постоји ново поклапање за вашу жељу за премештајем из вртића %{location}
+  there_is_a_match_for_your_location: Постоји ново поклапање за вашу жељу за премештајем из вртића %{location}.
+  your_move_completed_the_circle_path: Ваша жеља је комплетирала ротацију између %{path}.
+  user_of_missing_location_completed_the_circle_path: Вртић %{missing_location} је заокружио ротацију између %{path}.
   chats_empty_new_will_show_up_automatically: Тренутно нема договарања. Нова договарања ће се појавити када се деси поклапање
   requests_in_last_month: Жеље у последњих месец дана
   chats_in_last_month: Договарања у последњих месец дана
@@ -141,6 +144,7 @@ sr:
   unauthorized: Нисте ауторизовани
   message_archived: Порука је обрисана
   added_move_by_mistake: Мојом грешком је додат овај премештај
+  it_moved_in_the_meantime: У међувремену смо пронашли премештај на други начин
   do_not_need_to_move_anymore: Више не желим овај премештај
   other_participants_do_not_reply: Други чланови не одговарају на поруке
   this_chat_completed_successfully: Ovo dogovaranje se uspešno završilo i predali smo zahtev za premeštaj

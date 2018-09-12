@@ -17,8 +17,9 @@ class UserFromOmniauth
     end
   end
 
-  def initialize(auth)
+  def initialize(auth, referrer)
     @auth = auth
+    @referrer = referrer
   end
 
   def perform
@@ -49,19 +50,21 @@ class UserFromOmniauth
   end
 
   def update_auth(user)
-    return if user.auth == @auth
-    user.auth = @auth.to_json
-    if @auth.provider == 'facebook'
-      user.facebook_uid = @auth.uid
-    else
-      user.google_uid = @auth.uid
+    if user.auth != @auth
+      user.auth = @auth.to_json
+      if @auth.provider == 'facebook'
+        user.facebook_uid = @auth.uid
+      else
+        user.google_uid = @auth.uid
+      end
+      if @auth.info.email.present? && user.email != @auth.info.email
+        user.email = @auth.info.email
+        # I found that only this two commands can update email and confirm
+        user.save validate: false
+        user.confirm
+      end
     end
-    if @auth.info.email.present? && user.email != @auth.info.email
-      user.email = @auth.info.email
-      # I found that only this two commands can update email and confirm
-      user.save validate: false
-      user.confirm
-    end
+    user.last_referrer = @referrer if user.last_referrer != @referrer
     user.save!
   end
 
@@ -71,7 +74,8 @@ class UserFromOmniauth
       password: Devise.friendly_token[0, 20],
       confirmed_at: Time.zone.now,
       locale: I18n.locale,
-      auth: @auth
+      auth: @auth,
+      initial_referrer: @referrer,
     }
     if @auth.provider == 'facebook'
       params[:facebook_uid] = @auth.uid
@@ -80,6 +84,4 @@ class UserFromOmniauth
     end
     User.create params
   end
-
-
 end

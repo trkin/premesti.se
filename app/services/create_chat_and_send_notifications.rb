@@ -31,9 +31,9 @@ class CreateChatAndSendNotifications
   end
 
   def send_notification(chat)
-    @moves.each do |move|
+    chat.moves.each do |move|
       if Move.where(id: move.id).present?
-        UserMailer.new_match(move.id, chat.id).deliver_later
+        UserMailer.new_match(move.id, @move.id, chat.id).deliver_later
       else
         # TODO: sometimes we can not find move in db
       end

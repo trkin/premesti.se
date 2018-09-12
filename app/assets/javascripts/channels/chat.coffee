@@ -1,6 +1,6 @@
 $(document).on 'turbolinks:load', ->
   chat_page = $('[data-chat-page]')
-  return unless chat_page
+  return unless chat_page.length
   App.chat = App.cable.subscriptions.create {
       channel: 'ChatChannel',
       chat_id: chat_page.data('chatPage'),

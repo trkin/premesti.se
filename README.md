@@ -134,6 +134,7 @@ rm -rf db/neo4j/development/data/databases/graph.db
 mkdir db/neo4j/development/data/databases/graph.db
 unzip tmp/graphdb.zip -d db/neo4j/development/data/databases/graph.db
 rails neo4j:restart[development]
+rake neo4j:migrate
 ~~~
 
 ## Contributing

@@ -7,79 +7,116 @@
       <%= image_tag auth['info']['image'], class: 'fb-image' %>
     <% end %>
   <% end %>
+  <% unless @user.confirmed? %>
+    <span class='badge badge-danger'>unconfirmed</span>
+  <% end %>
+  <% if @user.admin? %>
+    <span class='badge badge-primary'>admin</span>
+  <% end %>
   <% User.statuses.each do |status, value| %>
     <% unless @user.send "#{status}?" %>
       <%= link_to status.to_s.titleize, admin_user_path(@user, user: { status: status }), method: :patch, class: 'btn btn-danger' %>
-  <% end %>
+    <% end %>
   <% end %>
 </div>
-<dl class='row justify-content-start'>
-  <dt class='col-sm-2'>Status</dt>
-  <dd class='col'><%= @user.status %></dd>
-  <dt class='w-100'></dt>
-  <dt class='col-sm-2'>Created At</dt>
-  <dd class='col'><%= @user.created_at.to_s :short %></dd>
-  <dt class='w-100'></dt>
-  <dt class='col-sm-2'>Sign In Count</dt>
-  <dd class='col'><%= @user.sign_in_count %></dd>
-  <dt class='w-100'></dt>
-  <dt class='col-sm-2'>Current Sign In at</dt>
-  <dd class='col'><%= @user.current_sign_in_at.to_s :short %></dd>
-  <dt class='w-100'></dt>
-  <dt class='col-sm-2'>Last Sign In at</dt>
-  <dd class='col'><%= @user.last_sign_in_at.to_s :short %></dd>
-  <dt class='w-100'></dt>
-  <dt class='col-sm-2'>Current Sign In IP</dt>
-  <dd class='col'><%= @user.current_sign_in_ip %></dd>
-  <dt class='w-100'></dt>
-  <dt class='col-sm-2'>Last Sign In IP</dt>
-  <dd class='col'><%= @user.last_sign_in_ip %></dd>
-  <dt class='w-100'></dt>
-  <dt class='col-sm-2'>Auth</dt>
-  <dd class='col'><%= @user.auth %></dd>
-  <dt class='w-100'></dt>
-</dl>
+<div class='row'>
+  <div class='col'>
+    <dl class='row justify-content-start'>
+      <dt class='col-sm-4'>Status</dt>
+      <dd class='col'><%= @user.status %></dd>
+      <dt class='w-100'></dt>
+      <dt class='col-sm-4'>Created At</dt>
+      <dd class='col'><%= @user.created_at.to_s :short %></dd>
+      <dt class='w-100'></dt>
+      <dt class='col-sm-4'>Sign In Count</dt>
+      <dd class='col'><%= @user.sign_in_count %></dd>
+      <dt class='w-100'></dt>
+      <dt class='col-sm-4'>Current Sign In at</dt>
+      <dd class='col'><%= @user.current_sign_in_at.to_s :short %></dd>
+      <dt class='w-100'></dt>
+      <dt class='col-sm-4'>Last Sign In at</dt>
+      <dd class='col'><%= @user.last_sign_in_at.to_s :short %></dd>
+      <dt class='w-100'></dt>
+      <dt class='col-sm-4'>Current Sign In IP</dt>
+      <dd class='col'><%= @user.current_sign_in_ip %></dd>
+      <dt class='w-100'></dt>
+      <dt class='col-sm-4'>Last Sign In IP</dt>
+      <dd class='col'><%= @user.last_sign_in_ip %></dd>
+      <dt class='w-100'></dt>
+      <dt class='col-sm-4'>Initial Referrer</dt>
+      <dd class='col'><%= @user.initial_referrer %></dd>
+      <dt class='w-100'></dt>
+      <dt class='col-sm-4'>Last Referrer</dt>
+      <dd class='col'><%= @user.last_referrer %></dd>
+      <dt class='w-100'></dt>
+      <dt class='col-sm-4'>Auth</dt>
+      <dd class='col'><%= @user.auth %></dd>
+    </dl>
 
-<h1>Moves</h1>
-<% @user.moves.each do |move| %>
-  <div>
-    <%= move.group_age_and_locations %>
+    <h1>Moves</h1>
+    <div class='show-on-hover'>
+      <% @user.moves.each do |move| %>
+        <div>
+          <%= move.group_age_and_locations %>
+          <span class='show-on-hover-target'>
+            <%= link_to 'destroy', destroy_move_admin_user_path(@user, move_id: move.id), method: :delete, class: 'text-danger' %>
+          </span>
+        </div>
+      <% end %>
+    </div>
+    <h1>Chats active</h1>
+    <% @user.moves.chats.active.each do |chat| %>
+      <%= link_to chat.name_for_user(@user), chat_path(chat) %>
+      <ul id='active_chat'>
+        <% chat.messages.each do |message| %>
+          <li>
+            <%= message.text %>
+            <small><%= message.user_location_name %></small>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+    <h1>Chats archived</h1>
+    <% @user.moves.chats.archived.each do |chat| %>
+      <%= chat.name_for_user @user %>
+      <ul id='archived_chat'>
+        <% chat.messages.each do |message| %>
+          <li>
+            <%= message.text %>
+            <small><%= message.user_location_name %></small>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+    <%# <h1>Chats move deleted</h1> %>
+    <%# <% deleted_move_chats = Message.query_as(:m).match('(m)--(u:User), (m)--(c:Chat)').where('NOT c.uuid IN {direct_chat_ids}').params(direct_chat_ids: @user.moves.chats.map(&:uuid)).pluck(:c) %1> %>
+    <%# <% deleted_move_chats.each do |chat| %1> %>
+    <%#   <%= chat.name_for_user @user %1> %>
+    <%#   <ul id='deleted_move_chat'> %>
+    <%#     <% chat.messages.each do |message| %1> %>
+    <%#       <li> %>
+    <%#         <%= message.text %1> %>
+    <%#         <small><%= message.user_location_name %1></small> %>
+    <%#       </li> %>
+    <%#     <% end %1> %>
+    <%#   </ul> %>
+    <%# <% end %1> %>
   </div>
-<% end %>
-<h1>Chats active</h1>
-<% @user.moves.chats.active.each do |chat| %>
-  <%= chat.name_for_user @user %>
-  <ul id='active_chat'>
-    <% chat.messages.each do |message| %>
-      <li>
-        <%= message.text %>
-        <small><%= message.user_location_name %></small>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
-<h1>Chats archived</h1>
-<% @user.moves.chats.archived.each do |chat| %>
-  <%= chat.name_for_user @user %>
-  <ul id='archived_chat'>
-    <% chat.messages.each do |message| %>
-      <li>
-        <%= message.text %>
-        <small><%= message.user_location_name %></small>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
-<%# <h1>Chats move deleted</h1> %>
-<%# <% deleted_move_chats = Message.query_as(:m).match('(m)--(u:User), (m)--(c:Chat)').where('NOT c.uuid IN {direct_chat_ids}').params(direct_chat_ids: @user.moves.chats.map(&:uuid)).pluck(:c) %1> %>
-<%# <% deleted_move_chats.each do |chat| %1> %>
-<%#   <%= chat.name_for_user @user %1> %>
-<%#   <ul id='deleted_move_chat'> %>
-<%#     <% chat.messages.each do |message| %1> %>
-<%#       <li> %>
-<%#         <%= message.text %1> %>
-<%#         <small><%= message.user_location_name %1></small> %>
-<%#       </li> %>
-<%#     <% end %1> %>
-<%#   </ul> %>
-<%# <% end %1> %>
+  <div class='col'>
+    <h1>EmailMessages <%= @user.email_messages.size %></h1>
+    <ul>
+      <% @user.email_messages.each do |email_message| %>
+        <li>
+          <strong>
+          <%= email_message.created_at.to_s :short %>
+          <%= email_message.subject %>
+          </strong>
+          <br>
+          <small>
+            <%= email_message.text %>
+          </small>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

@@ -59,12 +59,15 @@ class User
   validates :locale, presence: true
 
   property :status, type: Integer, default: 0
-
   enum status: %i[active email_bounce]
+
+  property :initial_referrer, type: String
+  property :last_referrer, type: String
 
   has_many :out, :moves, type: :WANTS
 
   has_many :out, :messages, type: :AUTHOR_OF
+  has_many :out, :email_messages, type: :RECEIVED
 
   scope :confirmed, -> { query_as(:user).where('user.confirmed_at IS NOT NULL').pluck(:user) }
 

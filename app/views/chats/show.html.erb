@@ -7,7 +7,7 @@
       <%= t_crud 'delete', Chat %>
     </button>
     <div class="dropdown-menu">
-      <% (Move::ARCHIVED_REASONS + Chat::ARCHIVED_REASONS).each do |reason| %>
+      <% (Chat::ARCHIVED_REASONS + Move::ARCHIVED_REASONS).each do |reason| %>
         <%= form_tag archive_chat_path(@chat) do %>
           <%= hidden_field_tag :commit, reason %>
           <%= button_tag t(reason), class: 'dropdown-item' %>

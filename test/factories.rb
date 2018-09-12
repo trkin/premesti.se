@@ -1,4 +1,7 @@
 FactoryBot.define do
+  factory :email_message do
+    
+  end
   factory :user do
     sequence(:email) { |i| "user#{i}@email.com" }
     password { 'factory_password' }

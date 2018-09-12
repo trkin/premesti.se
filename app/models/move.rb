@@ -2,6 +2,7 @@ class Move
   include Neo4j::ActiveNode
   ARCHIVED_REASONS = %i[
     added_move_by_mistake
+    it_moved_in_the_meantime
     do_not_need_to_move_anymore
   ].freeze
 
@@ -19,6 +20,7 @@ class Move
 
   validates :from_group, :user, presence: true
   validate :_same_age
+  validate :_only_one_from_same_location_and_group, on: :create
 
   def group_age_and_locations
     from_group.location.name + ' ' +
@@ -75,5 +77,10 @@ class Move
     to_groups.each do |group|
       errors.add :to_groups, I18n.t('groups_have_to_be_same_age') if group.age != from_group.age
     end
+  end
+
+  def _only_one_from_same_location_and_group
+    return if user.moves.from_group.where(uuid: from_group.uuid).empty?
+    errors.add :base, I18n.t('only_one_from_same_location_and_group')
   end
 end

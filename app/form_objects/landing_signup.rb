@@ -19,7 +19,7 @@ class LandingSignup
   def perform
     return false unless valid?
     return false unless _create_or_find_user?
-    return false unless _create_move!
+    _create_move!
 
     UserMailer.landing_signup(@move.id).deliver_later
     true
@@ -58,7 +58,11 @@ class LandingSignup
   def _create_move!
     current_location = Location.find @current_location
     from_group = Group.find_or_create_by_location_id_and_age(current_location.id, @from_group_age)
-    @move = Move.create! user: @user, from_group: from_group
+    if (existing_move = @user.moves.find_by(from_group: from_group)).present?
+      @move = existing_move
+    else
+      @move = Move.create user: @user, from_group: from_group
+    end
     if @to_location.present?
       to_location = Location.find @to_location
       to_group = to_location.groups.find_by age: @from_group_age

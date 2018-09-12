@@ -9,14 +9,15 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     user = create :unconfirmed_user
     create :move, user: user, from_group: group_b, to_groups: [group_a]
     assert_difference 'Chat.count', 1 do
-      assert_performed_jobs 1, only: ActionMailer::DeliveryJob do
+      assert_performed_jobs 2, only: ActionMailer::DeliveryJob do
         get user_confirmation_path(confirmation_token: user.confirmation_token)
       end
     end
     follow_redirect!
     follow_redirect!
 
-    mail = give_me_last_mail_and_clear_mails
-    assert_match t('user_mailer.new_match.chat_link'), mail.html_part.decoded
+    chat_mail, another_chat_mail = all_mails
+    assert_match t('user_mailer.new_match.chat_link'), chat_mail.html_part.decoded
+    assert_match t('user_mailer.new_match.chat_link'), another_chat_mail.html_part.decoded
   end
 end

@@ -7,6 +7,10 @@ module Devise
           user.facebook_uid = session[:facebook_uid]
           user.save!
         end
+        if session[:referrer].present?
+          user.initial_referrer = session[:referrer]
+          user.save!
+        end
       end
     end
 

@@ -1,8 +1,8 @@
 class Chat
   include Neo4j::ActiveNode
   ARCHIVED_REASONS = %i[
-    other_participants_do_not_reply
     this_chat_completed_successfully
+    other_participants_do_not_reply
   ].freeze
 
   property :name, type: String

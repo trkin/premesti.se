@@ -7,8 +7,9 @@ class UserMailer < ApplicationMailer
     mail to: @move.user.email
   end
 
-  def new_match(move_id, chat_id)
+  def new_match(move_id, missing_move_id, chat_id)
     @move = Move.find move_id
+    @missing_move = Move.find missing_move_id
     @chat = Chat.find chat_id
     mailer_locale @move.user.locale
     mail to: @move.user.email, subject: "#{t('new_match')} #{@move.from_group.location.name}"

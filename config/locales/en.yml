@@ -50,6 +50,7 @@ en:
   add_another_location: Add another location
   add_requested_location: Add requested location
   group_with_that_age_already_exists: Group with that age already exists
+  only_one_from_same_location_and_group: You already have that age and location. Do not need to add twice (for example for twins) since you will get chat for each new oportunity (if there are two matches, you will get two chats)
   year: year
   my_moves: My Places
   my_requests: My Requests
@@ -105,7 +106,9 @@ en:
   new_match: New match
   new_match_for_moves: 'There is a match between locations: %{moves}. You can together apply for a relocation'
   new_message: New message
-  there_is_a_match_for_your_location: There is a match for your location %{location}
+  there_is_a_match_for_your_location: There is a match for your location %{location}.
+  your_move_completed_the_circle_path: Your move completed circle path %{path}.
+  user_of_missing_location_completed_the_circle_path: Location %{missing_location} completed circle path %{path}.
   chats_empty_new_will_show_up_automatically: There are no chats currently. Chat will show up when there is a match
   requests_in_last_month: Requests in last month
   chats_in_last_month: Chats in last month
@@ -141,6 +144,7 @@ en:
   unauthorized: Unauthorized
   message_archived: Message deleted
   added_move_by_mistake: I created a move by my mistake
+  it_moved_in_the_meantime: It moved in the meantime without this service
   do_not_need_to_move_anymore: Do not need to move anymore
   other_participants_do_not_reply: Other participants do not reply
   this_chat_completed_successfully: This chat was successfully and we file a request to move

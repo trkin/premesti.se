@@ -50,6 +50,7 @@ sr-latin:
   add_another_location: Dodaj još jedan vrtić
   add_requested_location: Dodaj željeni vrtić
   group_with_that_age_already_exists: Grupa sa tim godištem već postoji
+  only_one_from_same_location_and_group: Već postoji želja za ovu grupu i vrtić. Nema potrebe da dodajete duplo (na primer u slučaju blizanaca) zato što će se svakako otvoriti dogovaranje za svaku mogućnost (ako postoji dve mogućnosti, dobićete dva dogovaranja)
   year: god
   my_moves: Moji vrtići
   my_requests: Moje želje
@@ -105,7 +106,9 @@ sr-latin:
   new_match: Novo poklapanje
   new_match_for_moves: 'Dogodilo se poklapanje između lokacija: %{moves}. Probajte da se dogovorite oko zajedničkog premeštanja'
   new_message: Nova poruka
-  there_is_a_match_for_your_location: Postoji novo poklapanje za vašu želju za premeštajem iz vrtića %{location}
+  there_is_a_match_for_your_location: Postoji novo poklapanje za vašu želju za premeštajem iz vrtića %{location}.
+  your_move_completed_the_circle_path: Vaša želja je kompletirala rotaciju između %{path}.
+  user_of_missing_location_completed_the_circle_path: Vrtić %{missing_location} je zaokružio rotaciju između %{path}.
   chats_empty_new_will_show_up_automatically: Trenutno nema dogovaranja. Nova dogovaranja će se pojaviti kada se desi poklapanje
   requests_in_last_month: Želje u poslednjih mesec dana
   chats_in_last_month: Dogovaranja u poslednjih mesec dana
@@ -141,6 +144,7 @@ sr-latin:
   unauthorized: Niste autorizovani
   message_archived: Poruka je obrisana
   added_move_by_mistake: Mojom greškom je dodat ovaj premeštaj
+  it_moved_in_the_meantime: U međuvremenu smo pronašli premeštaj na drugi način
   do_not_need_to_move_anymore: Više ne želim ovaj premeštaj
   other_participants_do_not_reply: Drugi članovi ne odgovaraju na poruke
   this_chat_completed_successfully: Ово договарање се успешно завршило и предали смо захтев за премештај

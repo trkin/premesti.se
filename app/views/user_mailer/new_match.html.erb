@@ -3,7 +3,17 @@
 %>
 <p><%= t('hi_name', name: @move.user.email) %>!</p>
 
-<p><%= t('there_is_a_match_for_your_location', location: @move.from_group.location.name) %></p>
+<p>
+  <%= t('there_is_a_match_for_your_location', location: @move.from_group.location.name) %>
+  <% if @move == @missing_move %>
+    <%= t('your_move_completed_the_circle_path', path: @chat.name_with_arrows ) %>
+  <% else %>
+    <%= t('user_of_missing_location_completed_the_circle_path', missing_location: @missing_move.from_group.location.name, path: @chat.name_with_arrows) %>
+  <% end %>
+</p>
+<div class='box'>
+  <%= I18n.t('new_match_for_moves', moves: @chat.name_with_arrows) %>
+</div>
 <p>
   <%= link_to t('user_mailer.new_match.chat_link'), chat_url(@chat), class: 'button' %>
 </p>

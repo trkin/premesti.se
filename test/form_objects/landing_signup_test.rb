@@ -97,15 +97,16 @@ class LandingSinupTest < ActiveSupport::TestCase
     assert_difference 'User.count', 0 do
       assert_difference 'Move.count', 1 do
         assert_difference 'Chat.count', 1 do
-          assert_performed_jobs 2, only: ActionMailer::DeliveryJob do
+          assert_performed_jobs 3, only: ActionMailer::DeliveryJob do
             landing_signup.perform
           end
         end
       end
     end
-    chat_mail, move_mail = all_mails
+    chat_mail, another_chat_mail, move_mail = all_mails
     assert_match t('user_mailer.landing_signup.description_of_service'), move_mail.html_part.decoded
     assert_match t('user_mailer.new_match.chat_link'), chat_mail.html_part.decoded
+    assert_match t('user_mailer.new_match.chat_link'), another_chat_mail.html_part.decoded
   end
 
   test 'landing already logged in create move' do
@@ -125,15 +126,16 @@ class LandingSinupTest < ActiveSupport::TestCase
     assert_difference 'User.count', 0 do
       assert_difference 'Move.count', 1 do
         assert_difference 'Chat.count', 1 do
-          assert_performed_jobs 2, only: ActionMailer::DeliveryJob do
+          assert_performed_jobs 3, only: ActionMailer::DeliveryJob do
             landing_signup.perform
           end
         end
       end
     end
-    chat_mail, move_mail = all_mails
+    chat_mail, other_user_chat_mail, move_mail = all_mails
     assert_match t('user_mailer.landing_signup.description_of_service'), move_mail.html_part.decoded
     assert_match t('user_mailer.new_match.chat_link'), chat_mail.html_part.decoded
+    assert_match t('user_mailer.new_match.chat_link'), other_user_chat_mail.html_part.decoded
   end
 
   test 'landing already logged unconfirmed create move' do
@@ -161,5 +163,63 @@ class LandingSinupTest < ActiveSupport::TestCase
     end
     move_mail = give_me_last_mail_and_clear_mails
     assert_match t('user_mailer.landing_signup.description_of_service_unconfirmed'), move_mail.html_part.decoded
+  end
+
+  test 'landing already logged in create to_group if move from_group exists' do
+    age = 2
+    group_a = create :group, name: 'A', age: age
+    group_b = create :group, name: 'B', age: age
+    create :move, from_group: group_a, to_groups: [group_b]
+    user = create :user
+    create :move, from_group: group_b, user: user
+    params = {
+      current_city: group_b.location.city.id,
+      current_location: group_b.location.id,
+      from_group_age: group_b.age,
+      to_location: group_a.location.id,
+      current_user: user,
+    }
+    landing_signup = LandingSignup.new params
+    assert_difference 'User.count', 0 do
+      assert_difference 'Move.count', 0 do
+        assert_difference 'Chat.count', 1 do
+          assert_performed_jobs 3, only: ActionMailer::DeliveryJob do
+            landing_signup.perform
+          end
+        end
+      end
+    end
+    chat_mail, other_user_chat_mail, move_mail = all_mails
+    assert_match t('user_mailer.landing_signup.description_of_service'), move_mail.html_part.decoded
+    assert_match t('user_mailer.new_match.chat_link'), chat_mail.html_part.decoded
+    assert_match t('user_mailer.new_match.chat_link'), other_user_chat_mail.html_part.decoded
+  end
+
+  test 'landing already logged in, already have this move' do
+    age = 2
+    group_a = create :group, name: 'A', age: age
+    group_b = create :group, name: 'B', age: age
+    create :move, from_group: group_a, to_groups: [group_b]
+    user = create :user
+    create :move, from_group: group_b, to_groups: [group_a], user: user
+    params = {
+      current_city: group_b.location.city.id,
+      current_location: group_b.location.id,
+      from_group_age: group_b.age,
+      to_location: group_a.location.id,
+      current_user: user,
+    }
+    landing_signup = LandingSignup.new params
+    assert_difference 'User.count', 0 do
+      assert_difference 'Move.count', 0 do
+        assert_difference 'Chat.count', 0 do
+          assert_performed_jobs 1, only: ActionMailer::DeliveryJob do
+            landing_signup.perform
+          end
+        end
+      end
+    end
+    move_mail = all_mails.first
+    assert_match t('user_mailer.landing_signup.description_of_service'), move_mail.html_part.decoded
   end
 end

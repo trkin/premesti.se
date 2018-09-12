@@ -6,7 +6,7 @@ module Devise
       define_method provider do
         # use request.env["omniauth.params"]["my_param"]
         auth = request.env['omniauth.auth']
-        result = UserFromOmniauth.new(auth).perform
+        result = UserFromOmniauth.new(auth, session[:referrer]).perform
         if result.success?
           sign_in_and_redirect result.user, event: :authentication
           set_flash_message(:notice, :success, kind: t("provider.#{provider}"))

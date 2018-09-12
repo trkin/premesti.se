@@ -20,9 +20,6 @@
         <% end %>
         <% user.moves.each do |move| %>
           <%= move.group_age_and_locations %>
-          <% if move.chats.present? %>
-            <span class='badge badge-warning'>chat</span>
-          <% end %>
         <% end %>
       </li>
     <% end %>

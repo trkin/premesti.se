@@ -41,6 +41,7 @@ class ApplicationController < ActionController::Base
   def sign_in_as
     redirect_to(root_path, alert: t(:unauthorized)) && return unless current_user&.admin? || Rails.env.development?
     user = User.find params[:user_id]
+    request.env["devise.skip_trackable"] = true
     sign_in :user, user, byepass: true
     redirect_to root_path, notice: t(:successfully)
   end

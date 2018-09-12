@@ -6,7 +6,7 @@ class User
 
   ## Database authenticatable
   property :email, type: String, default: ''
-  validates :email, presence: true
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
   property :name, type: String
 
   property :encrypted_password
@@ -57,6 +57,10 @@ class User
 
   property :locale, type: String
   validates :locale, presence: true
+
+  property :status, type: Integer, default: 0
+
+  enum status: %i[active email_bounce]
 
   has_many :out, :moves, type: :WANTS
 

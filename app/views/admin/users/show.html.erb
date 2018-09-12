@@ -4,10 +4,41 @@
     sign in as <%= @user.email %>
     <% if @user.auth.present? %>
       <% auth = JSON.parse @user.auth %>
-      <%= image_tag auth['info']['image'] %>
+      <%= image_tag auth['info']['image'], class: 'fb-image' %>
     <% end %>
   <% end %>
+  <% User.statuses.each do |status, value| %>
+    <% unless @user.send "#{status}?" %>
+      <%= link_to status.to_s.titleize, admin_user_path(@user, user: { status: status }), method: :patch, class: 'btn btn-danger' %>
+  <% end %>
+  <% end %>
 </div>
+<dl class='row justify-content-start'>
+  <dt class='col-sm-2'>Status</dt>
+  <dd class='col'><%= @user.status %></dd>
+  <dt class='w-100'></dt>
+  <dt class='col-sm-2'>Created At</dt>
+  <dd class='col'><%= @user.created_at.to_s :short %></dd>
+  <dt class='w-100'></dt>
+  <dt class='col-sm-2'>Sign In Count</dt>
+  <dd class='col'><%= @user.sign_in_count %></dd>
+  <dt class='w-100'></dt>
+  <dt class='col-sm-2'>Current Sign In at</dt>
+  <dd class='col'><%= @user.current_sign_in_at.to_s :short %></dd>
+  <dt class='w-100'></dt>
+  <dt class='col-sm-2'>Last Sign In at</dt>
+  <dd class='col'><%= @user.last_sign_in_at.to_s :short %></dd>
+  <dt class='w-100'></dt>
+  <dt class='col-sm-2'>Current Sign In IP</dt>
+  <dd class='col'><%= @user.current_sign_in_ip %></dd>
+  <dt class='w-100'></dt>
+  <dt class='col-sm-2'>Last Sign In IP</dt>
+  <dd class='col'><%= @user.last_sign_in_ip %></dd>
+  <dt class='w-100'></dt>
+  <dt class='col-sm-2'>Auth</dt>
+  <dd class='col'><%= @user.auth %></dd>
+  <dt class='w-100'></dt>
+</dl>
 
 <h1>Moves</h1>
 <% @user.moves.each do |move| %>
@@ -39,16 +70,16 @@
     <% end %>
   </ul>
 <% end %>
-<h1>Chats move deleted</h1>
-<% deleted_move_chats = Message.query_as(:m).match('(m)--(u:User), (m)--(c:Chat)').where('NOT c.uuid IN {direct_chat_ids}').params(direct_chat_ids: @user.moves.chats.map(&:uuid)).pluck(:c) %>
-<% deleted_move_chats.each do |chat| %>
-  <%= chat.name_for_user @user %>
-  <ul id='deleted_move_chat'>
-    <% chat.messages.each do |message| %>
-      <li>
-        <%= message.text %>
-        <small><%= message.user_location_name %></small>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
+<%# <h1>Chats move deleted</h1> %>
+<%# <% deleted_move_chats = Message.query_as(:m).match('(m)--(u:User), (m)--(c:Chat)').where('NOT c.uuid IN {direct_chat_ids}').params(direct_chat_ids: @user.moves.chats.map(&:uuid)).pluck(:c) %1> %>
+<%# <% deleted_move_chats.each do |chat| %1> %>
+<%#   <%= chat.name_for_user @user %1> %>
+<%#   <ul id='deleted_move_chat'> %>
+<%#     <% chat.messages.each do |message| %1> %>
+<%#       <li> %>
+<%#         <%= message.text %1> %>
+<%#         <small><%= message.user_location_name %1></small> %>
+<%#       </li> %>
+<%#     <% end %1> %>
+<%#   </ul> %>
+<%# <% end %1> %>

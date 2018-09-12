@@ -28,6 +28,7 @@
 - INDEX ON :User(email)
 - INDEX ON :User(remember_token)
 - INDEX ON :User(reset_password_token)
+- INDEX ON :User(status)
 :versions:
 - '20171125072638'
 - '20171125192252'
@@ -39,3 +40,4 @@
 - '20180502104851'
 - '20180821094628'
 - '20180821131744'
+- '20180912112838'

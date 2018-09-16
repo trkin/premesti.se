@@ -16,5 +16,8 @@
   <%= link_to Chat.archived.size.to_s + ' archived ' + Chat.model_name.human(count: Chat.size), admin_chats_path(status: :archived) %>
 </div>
 <div>
+  <%= link_to Chat.archived.where(archived_reason: 'this_chat_completed_successfully').size.to_s + ' this_chat_completed_successfully ' + Chat.model_name.human(count: Chat.size), admin_chats_path(status: :archived, archived_reason: 'this_chat_completed_successfully') %>
+</div>
+<div>
   <%= link_to t('report', count: Message.reported.length), admin_reported_messages_path %>
 </div>

@@ -110,8 +110,8 @@ sr-latin:
   your_move_completed_the_circle_path: Vaša želja je kompletirala rotaciju između %{path}.
   user_of_missing_location_completed_the_circle_path: Vrtić %{missing_location} je zaokružio rotaciju između %{path}.
   chats_empty_new_will_show_up_automatically: Trenutno nema dogovaranja. Nova dogovaranja će se pojaviti kada se desi poklapanje
-  requests_in_last_month: Želje u poslednjih mesec dana
-  chats_in_last_month: Dogovaranja u poslednjih mesec dana
+  last_few_requests: Nekoliko nedavnih želja
+  last_few_chats: Nekoliko nedavnih dogovaranja
   groups_have_to_be_same_age: Grupe moraju biti u istim godištima
   to_group_can_not_be_on_same_location: Željena grupa ne može biti na trenutnoj lokaciji
   ignored_sending_notifications_unconfirmed_user: Slanje poruka je preskočeno pošto korisnik nije potvrđen

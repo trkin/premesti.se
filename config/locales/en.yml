@@ -110,8 +110,8 @@ en:
   your_move_completed_the_circle_path: Your move completed circle path %{path}.
   user_of_missing_location_completed_the_circle_path: Location %{missing_location} completed circle path %{path}.
   chats_empty_new_will_show_up_automatically: There are no chats currently. Chat will show up when there is a match
-  requests_in_last_month: Requests in last month
-  chats_in_last_month: Chats in last month
+  last_few_requests: Last few requests
+  last_few_chats: Last few chats
   groups_have_to_be_same_age: Groups have to be at the same age
   to_group_can_not_be_on_same_location: Request group can not be on the same location
   ignored_sending_notifications_unconfirmed_user: Ignore sending notifications because user is not confirmed

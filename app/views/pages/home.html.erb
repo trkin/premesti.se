@@ -3,7 +3,7 @@
   font_drift = 1.7
   bc_y_offset = 65
   latest_move_timestamp = Neo4j::ActiveBase.current_session.query('MATCH (n:Move) RETURN max(n.updated_at) AS m').first.m
-  home_page_references_limit = Rails.env.development? ? 2 : 30
+  home_page_references_limit = Rails.env.development? ? 2 : 50
 %>
 <div class="landing-page-header background-color">
   <nav class="navbar p-0">
@@ -41,13 +41,13 @@
     </div>
   </nav>
   <div class="text-center">
-    <h1 class="mb-5 colorize-text-background">
+    <h2 class="mb-5 colorize-text-background">
       <%= t 'site_description_1' %>
       <br>
       <%= t 'site_description_2' %>
       <br>
       <%= t 'site_description_3' %>
-    </h1>
+    </h2>
     <div>
       <a class="btn btn-primary btn-xl animated rubberBand" data-scroll-into-view="carouselbox" href="#carouselbox" id='where-do-you-want-to-move'><%= t :where_do_you_want_to_move %></a>
     </div>
@@ -59,12 +59,13 @@
     </div>
     <% cache ['moves-locations', latest_move_timestamp] do %>
       <div class='mt-3'>
-        <small><%= t('requests_in_last_month') %></small>
+        <small><%= t('last_few_requests') %></small>
         <span>
-          <%= (1..7).map {|i| "<span class='color-age-#{i}'>#{i} #{I18n.t('year')}</span>, " }.join.html_safe %>
+          <%= (1..7).map {|i| "<span class='color-age-#{i}'>#{i}</span>" }.join(', ').html_safe %>
+          <%= I18n.t('year') %>
         </span>
         <br>
-        <% text = Move.query_as(:m).where('m.created_at > ?', (Time.zone.now - 1.month).to_i).limit(home_page_references_limit).pluck(:m).map do |move|
+        <% text = Move.query_as(:m).order('m.created_at DESC').limit(home_page_references_limit).pluck(:m).map do |move|
             "<a href=\"#{my_move_path(move, move.group_age_and_locations)}\"><span class=\"color-age-#{move.from_group.age}\">" +
               move.show_locations +
             "</span></a>"
@@ -80,13 +81,10 @@
         </script>
       </div>
       <div class='mt-3'>
-        <small><%= t('chats_in_last_month') %></small>
-        <span>
-          <%= (1..7).map {|i| "<span class='color-age-#{i}'>#{i} #{I18n.t('year')}</span>, " }.join.html_safe %>
-        </span>
+        <small><%= t('last_few_chats') %></small>
         <br>
         <%
-          text = Chat.active.query_as(:c).where('c.created_at > ?', (Time.zone.now - 1.month).to_i).limit(home_page_references_limit).pluck(:c).select { |c| c.moves.length > 1 }.map do |chat|
+          text = Chat.active.query_as(:c).order('c.created_at DESC').limit(home_page_references_limit).pluck(:c).select { |c| c.moves.length > 1 }.map do |chat|
             "<span class=\"color-age-#{chat.moves.first.from_group.age}\">" +
               chat.name_with_arrows +
             "</span>"

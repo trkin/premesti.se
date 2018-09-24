@@ -66,8 +66,12 @@ class LandingSignup
     if @to_location.present?
       to_location = Location.find @to_location
       to_group = to_location.groups.find_by age: @from_group_age
-      result = AddToGroupAndSendNotifications.new(@move, to_group).perform
-      errors.add :base, result.message unless result.success?
+      result = AddToGroupToMove.new(@move, to_group).perform
+      if result.success
+        FindMatchesAndCreateChats.perform_later @move, to_group
+      else
+        errors.add :base, result.message unless result.success?
+      end
       # do not return false since we just procceed with a notice
     end
     true

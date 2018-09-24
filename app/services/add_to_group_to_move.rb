@@ -1,4 +1,4 @@
-class AddToGroupAndSendNotifications
+class AddToGroupToMove
   class Result
     attr_reader :message
     def initialize(message)
@@ -21,32 +21,12 @@ class AddToGroupAndSendNotifications
     @group = group
   end
 
-  def perform(max_length_of_the_rotation: nil)
+  def perform
     return Error.new(@move.errors.values.join(', ')) unless _validate_that_group_can_be_added?
     @move.to_groups << @group
-    create_and_send_notifications max_length_of_the_rotation: max_length_of_the_rotation
-  end
-
-  def create_and_send_notifications(max_length_of_the_rotation: nil)
-    return Error.new(@move.errors.values.join(', ')) if ignore_sending_notification?
-    results = FindMatchesForOneMove.perform @move, target_group: @group, max_length_of_the_rotation: max_length_of_the_rotation
-    count = 0
-    results.each do |moves|
-      result = CreateChatAndSendNotifications.new(@move, moves).perform
-      count += result.chat.moves.size - 1 if result.success?
-    end
-    if count.positive?
-      Result.new I18n.t('request_created_and_sent_notifications_successfully', count: count)
-    else
-      Result.new I18n.t('request_created')
-    end
-  end
-
-  def ignore_sending_notification?
-    unless @move.user.confirmed?
-      @move.errors.add(:to_groups, ApplicationController.helpers.t('ignored_sending_notifications_unconfirmed_user'))
-    end
-    @move.errors.present?
+    notice = I18n.t('request_created')
+    notice += I18n.t('ignored_sending_notifications_unconfirmed_user') unless @move.user.confirmed?
+    Result.new notice
   end
 
   # rubocop:disable Metrics/AbcSize

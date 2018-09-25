@@ -137,6 +137,17 @@ rails neo4j:restart[development]
 rake neo4j:migrate
 ~~~
 
+## New school year
+
+On 01.09 every year we need to increase age. Do not need to create new groups
+for age 1 since we use `Group.find_or_create_by_location_id_and_age`.
+We need to destoy moves for kids that are older than 7.
+
+~~~
+Location.all.each {|l| l.groups.query_as(:g).order('g.age DESC').pluck(:g).map { |g| g.age += 1; g.save! } }
+Move.all.select {|m| m.from_group.age>7}.map {|m| m.destroy_and_archive_chats :end_of_kindergarten}
+~~~
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at

@@ -25,10 +25,6 @@ class Group
   scope :for_age, ->(age, except_id) { where(age: age).where_not(id: except_id) }
 
   def self.title_for_age(age)
-    # on 01.09 every year we need to increase age
-    # Location.all.each {|l| l.groups.query_as(:g).order('g.age DESC').pluck(:g).map { |g| g.age += 1; g.save! } }
-    # do not need to create new groups for age 1 since we use
-    # Group.find_or_create_by_location_id_and_age
     # during Sept-Dec we need to show next year
     # half of the kids will fulfill that age until 1. Septembar (end of school
     # period of that group) and half will not

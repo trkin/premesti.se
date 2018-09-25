@@ -1,5 +1,8 @@
 class Move
   include Neo4j::ActiveNode
+  SYSTEM_ARCHIVED_REASONs = %i[
+    end_of_kindergarten
+  ]
   ARCHIVED_REASONS = %i[
     added_move_by_mistake
     it_moved_in_the_meantime

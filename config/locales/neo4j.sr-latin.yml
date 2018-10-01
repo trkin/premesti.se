@@ -25,7 +25,7 @@ sr-latin:
       move:
         one: premeštaj
         few: premeštaja
-        other: premeštaji
+        other: premeštaja
         accusative: premeštaj
       chat:
         one: dogovor

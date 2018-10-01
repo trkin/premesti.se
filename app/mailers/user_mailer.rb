@@ -1,6 +1,8 @@
 class UserMailer < ApplicationMailer
   def landing_signup(move_id)
-    @move = Move.find move_id
+    @move = Move.find_by id: move_id
+    # it could be that move is deleted before we send email
+    return unless @move
     @confirmation_token = @move.user.generate_new_confirmation_token! unless @move.user.confirmed?
 
     mailer_locale @move.user.locale

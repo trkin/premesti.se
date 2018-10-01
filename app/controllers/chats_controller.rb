@@ -57,7 +57,7 @@ class ChatsController < ApplicationController
     params.require(:message).permit(
       :text
     ).merge(
-      user: current_user,
+      user: @chat.moves.user.find_by(id: current_user.id),
       chat: @chat,
     )
   end

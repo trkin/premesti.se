@@ -25,7 +25,7 @@ sr:
       move:
         one: премештај
         few: премештаја
-        other: премештаји
+        other: премештаја
         accusative: премештај
       chat:
         one: договор

@@ -3,7 +3,7 @@
   font_drift = 1.7
   bc_y_offset = 65
   latest_move_timestamp = Neo4j::ActiveBase.current_session.query('MATCH (n:Move) RETURN max(n.updated_at) AS m').first.m
-  home_page_references_limit = Rails.env.development? ? 2 : 50
+  home_page_references_limit = Rails.env.development? ? 2 : 1_000
 %>
 <div class="landing-page-header background-color">
   <nav class="navbar p-0">
@@ -20,7 +20,7 @@
           <%= link_to t('dashboard'), dashboard_path %>
         </div>
       <% else %>
-        <% if Rails.env.development? %>
+        <% if false # Rails.env.development? %>
           <small>
             Only on development
             <% User.all.order(:created_at).limit(4).each do |user| %>
@@ -40,7 +40,7 @@
       <% end %>
     </div>
   </nav>
-  <div class="text-center">
+  <div class="text-center site-description">
     <h2 class="mb-5 colorize-text-background">
       <%= t 'site_description_1' %>
       <br>
@@ -57,7 +57,7 @@
     <div class='mt-2'>
       <a href="<%= contact_path %>"><%= t 'contact' %></a>
     </div>
-    <% cache ['moves-locations', latest_move_timestamp] do %>
+    <% cache ['moves-locations', I18n.locale, latest_move_timestamp] do %>
       <div class='mt-3'>
         <small><%= t('last_few_requests') %></small>
         <span>
@@ -65,7 +65,7 @@
           <%= I18n.t('year') %>
         </span>
         <br>
-        <% text = Move.query_as(:m).order('m.created_at DESC').limit(home_page_references_limit).pluck(:m).map do |move|
+        <% text = Move.query_as(:m).order('m.created_at DESC').limit(3).pluck(:m).map do |move|
             "<a href=\"#{my_move_path(move, move.group_age_and_locations)}\"><span class=\"color-age-#{move.from_group.age}\">" +
               move.show_locations +
             "</span></a>"
@@ -84,7 +84,7 @@
         <small><%= t('last_few_chats') %></small>
         <br>
         <%
-          text = Chat.active.query_as(:c).order('c.created_at DESC').limit(home_page_references_limit).pluck(:c).select { |c| c.moves.length > 1 }.map do |chat|
+          text = Chat.active.query_as(:c).order('c.created_at DESC').limit(3).pluck(:c).select { |c| c.moves.length > 1 }.map do |chat|
             "<span class=\"color-age-#{chat.moves.first.from_group.age}\">" +
               chat.name_with_arrows +
             "</span>"
@@ -101,14 +101,14 @@
       </div>
     <% end %>
   </div>
-  <div class='home-bottom'>
+  <div class='home-bottom d-none d-md-block'>
     <%= t 'site_disclaimer' %>
   </div>
   <div class="m-auto">
     <%= render 'layouts/alerts' %>
   </div>
 </div>
-<% cache ['moves-markers', latest_move_timestamp] do %>
+<% cache ['moves-markers', I18n.locale, latest_move_timestamp] do %>
   <%
     markers = Move.all.limit(home_page_references_limit).map { |move| move.to_groups.present? ? [move.from_group.location, move.to_groups.map(&:location)] : nil }.flatten.compact.uniq
     lines = []

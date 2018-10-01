@@ -10,13 +10,14 @@ In source you can see usage of the:
 
 * Rails 5
 * Neo4j database
-* yarn installed: bootstrap 3, jquery 3, font awesome 4, snapsvg, select2
+* yarn installed: bootstrap 4, jquery 3, font awesome 4, snapsvg, select2
 * svg animations
 * sidekiq
 * redis for sidekiq, cache store, action cable
 * chat with ActionCable
 * test with minitests, headless chrome
 * sign up with facebook, google and email
+* ssl is enabled using free cloudflare https
 
 Graph database is chosen since we need to match moves in format A->B, B->A
 (I want to move from A to B, so please find me who wants to move from B to A).
@@ -135,6 +136,12 @@ mkdir db/neo4j/development/data/databases/graph.db
 unzip tmp/graphdb.zip -d db/neo4j/development/data/databases/graph.db
 rails neo4j:restart[development]
 rake neo4j:migrate
+~~~
+
+On cloudflare use Page rules to redirect to https
+
+~~~
+https://premesti.se/* -> https://www.premesti.se/$1
 ~~~
 
 ## New school year

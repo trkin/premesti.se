@@ -11,7 +11,7 @@ In source you can see usage of the:
 * Rails 5
 * Neo4j database
 * yarn installed: bootstrap 4, jquery 3, font awesome 4, snapsvg, select2
-* svg animations
+* svg animations and animate.css
 * sidekiq
 * redis for sidekiq, cache store, action cable
 * chat with ActionCable
@@ -138,7 +138,16 @@ rails neo4j:restart[development]
 rake neo4j:migrate
 ~~~
 
-On cloudflare use Page rules to redirect to https
+Cloudflare points directly for https herokuapp.
+Use root domain `@` and `www`, `en` and `sr-latin` domain to point to herokuappp
+```
+CNAME premesti.se is an alias of premesti-se.herokuapp.com
+CNAME www is an alias of premesti-se.herokuapp.com
+CNAME en is an alias of premesti-se.herokuapp.com
+CNAME sr-latin is an alias of premesti-se.herokuapp.com
+```
+On Crypto tab on Cloud Flare select FULL (not Flexible) SSL and check the Always use HTTPS.
+On Page rules add redirect non www to www.
 
 ~~~
 https://premesti.se/* -> https://www.premesti.se/$1

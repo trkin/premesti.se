@@ -55,7 +55,7 @@
     </ul>
     <%= modal id: 'find-on-map-modal', title: t('find_on_map'), fade: false %>
     <input type="checkbox" id="toggle-active" class="toggle-active" />
-    <label for="toggle-active" class='btn btn-default'>
+    <label for="toggle-active" class='btn btn-default <%= 'animated fadeIn infinite' unless @move.to_groups.present? %>'>
       <i class="fa fa-plus" aria-hidden="true"></i>
       <%= t('add_requested_location') %>
     </label>
@@ -74,7 +74,9 @@
     <%# show_lines_map [@move.from_group.location, @move.to_groups.map(&:location)].flatten, @move.to_groups.map(&:location).map { |loc| OpenStruct.new from: @move.from_group.location, to: loc, age: @move.from_group.age }, class: 'show-lines-map-container' %>
     <%= move_static_map @move %>
     <br>
-    <%= move_share_link @move %>
+    <% if @move.to_groups.present? %>
+      <%= move_share_link @move, class: 'animated fadeIn infinite' %>
+    <% end %>
   </div>
 </div>
 

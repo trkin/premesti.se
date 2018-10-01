@@ -20,7 +20,8 @@ class PagesController < ApplicationController
   end
 
   def my_move
-    @move = Move.find params[:id]
+    @move = Move.find_by id: params[:id]
+    redirect_to root_path, alert: t('this_move_was_deleted') and return unless @move
     @landing_signup = LandingSignup.new
     @landing_signup.from_group_age = @move.from_group.age
     @landing_signup.current_location = @move.to_groups.first&.location&.id

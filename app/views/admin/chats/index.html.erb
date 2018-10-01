@@ -1,20 +1,22 @@
 <ul>
   <% @chats.each do |chat| %>
     <li>
-      <%= link_to chat_url(chat) do %>
-        <% chat.moves.each do |move| %>
-          <% if move.user %>
-            <%= move.user.email %>
-          <% else %>
-            Deleted user
-          <% end %>
-          <%= move.from_group.location.name %>
+      <%= link_to 'chat', chat_url(chat) %>
+      <small><%= chat.created_at.to_s :short %></small>
+      <b><%= chat.moves.size %> <%= Move.model_name.human count: chat.moves.size %></b>
+
+      <% chat.moves.each do |move| %>
+        <% if move.user %>
+          <%= link_to move.user.email, admin_user_path(move.user) %>
+        <% else %>
+          Deleted user
         <% end %>
+        <%= move.from_group.location.name %>
       <% end %>
       :
       <% chat.messages.limit(5).each do |message| %>
-        <b><%= message.text %></b>
-        (<small><%= message.user&.email %></small>)
+        <%= message.text %>
+        <small><b>(<%= message.user&.email %> <%= message.created_at.to_s :short %>)</b></small>
       <% end %>
     </li>
   <% end %>

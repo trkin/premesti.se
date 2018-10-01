@@ -31,11 +31,11 @@ class Group
     year = Time.zone.today.year - age
     year += 1 if Time.zone.today.month >= 9
     age_interval = "01.03.#{year}-28.02.#{year + 1}"
-    "#{I18n.t('born')} #{age_interval} #{I18n.t("group_name_for_age_#{age}")} #{short_title_for_age age}"
+    "#{I18n.t('born')} #{age_interval} #{short_title_for_age age}"
   end
 
   def self.short_title_for_age(age)
-    "#{age} #{I18n.t('year')}"
+    "#{I18n.t("group_name_for_age_#{age}")} #{Group.model_name.human}"
   end
 
   def age_with_title

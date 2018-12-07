@@ -24,7 +24,7 @@ module MiniTest::Assertions
   # Fails unless <tt>exp</tt> and <tt>act</tt> are both arrays and
   # contain the same elements which are sorted by [:id]
   #
-  #     assert_equal_when_sorted_by_id [{id: 1}, {id: 2}], [{id: 2}, {id: 1}]
+  #     assert_equal_when_sorted_by_key [{id: 1}, {id: 2}], [{id: 2}, {id: 1}]
 
   def assert_equal_when_sorted_by_key(exp, act, default_key: :id)
     exp_ary = exp.to_ary

@@ -17,10 +17,10 @@ class ActionDispatch::IntegrationTest
 end
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   def assert_alert_message(text)
-    assert_selector 'div#alert-debug', text, visible: false
+    assert_selector 'div#alert-debug', text: text, visible: false
   end
 
   def assert_notice_message(text)
-    assert_selector 'div#notice-debug', text, visible: false
+    assert_selector 'div#notice-debug', text: text, visible: false
   end
 end

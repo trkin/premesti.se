@@ -44,6 +44,8 @@ rails neo4j:start[development]
 gnome-open http://localhost:$(expr $NEO4J_PORT + 2) # http://localhost:7042/browser/
 rails neo4j:start[test]
 gnome-open http://localhost:$(expr $NEO4J_TEST_PORT + 2) # http://localhost:7047/
+
+tail -f db/neo4j/development/logs/*
 ~~~
 
 Note that when you are changing the ports, then run `spring stop` to reload new
@@ -68,7 +70,7 @@ RAILS_ENV=test rake db:migrate
 Before running localy you need to get npm packages with:
 
 ~~~
-yarn install
+npm install
 ~~~
 
 Than run as usual
@@ -127,7 +129,14 @@ You can pause test with `byebug` and open neo4j <http://localhost:7047/browser/>
 
 ## Production
 
-It is currently deployed to Heroku using free services.
+It is currently deployed to Heroku using free services. For graph database I use
+my own hosting since GrapheneDB has very low limit for free tier.
+Since we are using npm, we need to add buildpack
+
+```
+heroku buildpacks:set https://github.com/heroku/heroku-buildpack-ruby
+heroku buildpacks:add --index 1 https://github.com/heroku/heroku-buildpack-nodejs
+```
 To dump from GrapheneDB and restore locally
 
 ~~~

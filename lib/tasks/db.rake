@@ -74,8 +74,6 @@ namespace :db do
 
     # Move
     [
-      { var: :m1_l1_l2, from_group: b[:g2_l1], to_groups: b[:g2_l2],
-        user: b[:user1] },
       { var: :m1_l1_l3, from_group: b[:g2_l1], to_groups: b[:g2_l3],
         user: b[:user1] },
       { var: :m2_l3_l4, from_group: b[:g2_l3], to_groups: b[:g2_l4],

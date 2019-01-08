@@ -1,5 +1,4 @@
-<% login_layout %>
-<h2><%= t "my_devise.sign_in_headline" %></h2>
+<% login_layout t('my_devise.sign_in_headline') %>
 
 <% if Rails.env.development? %>
   <small>
@@ -10,27 +9,29 @@
   </small>
 <% end %>
 
-<%= link_to user_facebook_omniauth_authorize_path, class: 'btn btn-block btn-facebook text-left' do %>
-  <i class="fa fa-facebook"></i>
-  <%= t("my_devise.sign_in_with", provider: t('provider.facebook')) %>
+<% if devise_mapping.omniauthable? %>
+  <%= link_to user_facebook_omniauth_authorize_path, class: 'btn btn-block btn-facebook text-left' do %>
+    <i class="fa fa-facebook"></i>
+    <%= t('my_devise.sign_in_with', provider: t('provider.facebook')) %>
+  <% end %>
+  <%= link_to user_google_oauth2_omniauth_authorize_path, class: 'btn btn-block btn-google text-left' do %>
+    <i class="fa fa-google" aria-hidden="true"></i>
+    <%= t('my_devise.sign_in_with', provider: t('provider.google_oauth2')) %>
+  <% end %>
+  - <%= t('my_devise.or') %> - 
 <% end %>
-<%= link_to user_google_oauth2_omniauth_authorize_path, class: 'btn btn-block btn-google text-left' do %>
-  <i class="fa fa-google" aria-hidden="true"></i>
-  <%= t("my_devise.sign_in_with", provider: t('provider.google_oauth2')) %>
-<% end %>
-- <%= t('or') %> - 
 
 <%= bootstrap_form_for resource, as: resource_name, url: session_path(resource_name)  do |f| %>
 
   <%= f.email_field :email, label: t('neo4j.attributes.user.email'), autofocus: true, required: true %>
 
-  <%= f.password_field :password, label: t('neo4j.attributes.user.password'), autocomplete: "off", required: true %>
+  <%= f.password_field :password, label: t('neo4j.attributes.user.password'), required: true %>
 
   <% if devise_mapping.rememberable? %>
     <%= f.check_box :remember_me, inline: true %>
   <% end %>
 
-  <%= f.submit t "sign_in" %>
+  <%= f.submit t('my_devise.sign_in') %>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<%= render 'devise/shared/links' %>

@@ -1,5 +1,4 @@
-<% login_layout %>
-<h2><%= t "my_devise.resend_unlock_instructions" %></h2>
+<% login_layout t('my_devise.resend_unlock_instructions') %>
 
 <%= bootstrap_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
   <%= devise_error_messages! %>

@@ -100,6 +100,7 @@ class UsersTest < ApplicationSystemTestCase
 
   test 'resend unlock instructions' do
     return unless User.devise_modules.include?(:lockable) && User.unlock_strategy_enabled?(:email)
+
     email = 'my@email.com'
     create :user, email: email, locked_at: Time.zone.now
     visit new_user_unlock_path
@@ -152,7 +153,7 @@ class UsersTest < ApplicationSystemTestCase
   test 'canceling user removes moves and messages' do
     user = create :user
     move = create :move, user: user
-    chat = Chat.create_for_moves [move]
+    chat = Chat.create_for_moves [move, move]
     message = create :message, chat: chat, user: user, text: 'blabla'
 
     sign_in user

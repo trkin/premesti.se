@@ -67,6 +67,9 @@ en:
         few: "%{count} errors prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"
   my_devise:
+    sign_in: Sign in
+    sign_out: Sign out
+    register: Register
     registration_headline: Register here
     characters_minimum: Minimum %{count} characters
     sign_in_headline: Log in
@@ -86,9 +89,20 @@ en:
     cancel_my_account: Cancel my account
     unhappy: Unhappy
     new_password: New password
+    problem_with_account: Problem with account ?
+    or: or
+    send: Send
   my_devise_mailer:
     we_are_contacting_you_someone_change_password: We're contacting you to notify you that your password has been changed.
     we_are_contacting_you_email_is_beign_changed_to: We're contacting you to notify you that your email is being changed to %{email}.
     we_are_contacting_you_email_has_been_changed_to: We're contacting you to notify you that your email has been changed to %{email}.
     someone_request_a_link_to_change_a_password: Someone has requested a link to change your password. You can do this through the link below.
     if_you_did_not_request_this_ignore: If you didn't request this, please ignore this email. Your password won't change until you access the link above and create a new one.
+    hi_name: Hi %{name}
+    your_account_has_been_locked_due_to_an_excessive_number_of_unsuccessful_sign_in_attempts: Your account has been locked due to an excessive number of unsuccessful sign in attempts.
+    click_the_link_below_to_unlock_your_account: Click the link below to unlock your account
+    unlock_my_account: Unlock my account
+    confirm_email: Confirm email
+    we_notice_that_you_registered_time_ago: We notice that you registered %{time_ago} ago but have not confirm your email
+    please_follow_the_link_below_in_order_to_confirm_your_email: Please follow the link below in order to confirm your email so we can send you notifications
+    change_password: Change Password

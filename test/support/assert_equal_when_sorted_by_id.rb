@@ -31,7 +31,7 @@ module MiniTest::Assertions
     assert_kind_of Array, exp_ary
     act_ary = act.to_ary
     assert_kind_of Array, act_ary
-    assert_equal exp_ary.size, act_ary.size
+    assert_equal exp_ary.size, act_ary.size, 'Expected: ' + exp.map { |i| i[default_key] }.to_s + "\n  Actual: " + act.map { |i| i[default_key] }.to_s
     assert_equal (exp_val.sort_by { |i| i[default_key] }), (act_val.sort_by { |i| i[default_key] })
   end
 

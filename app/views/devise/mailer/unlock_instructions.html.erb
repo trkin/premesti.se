@@ -1,7 +1,7 @@
-<p><%= t('hi_name', name: @resource.email) %>!</p>
+<p><%= t('my_devise_mailer.hi_name', name: @resource.email) %>!</p>
 
-<p>Your account has been locked due to an excessive number of unsuccessful sign in attempts.</p>
+<p><%= t('my_devise_mailer.your_account_has_been_locked_due_to_an_excessive_number_of_unsuccessful_sign_in_attempts') %></p>
 
-<p>Click the link below to unlock your account:</p>
+<p><%= t('my_devise_mailer.click_the_link_below_to_unlock_your_account') %>:</p>
 
-<p><%= link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token) %></p>
+<p><%= link_to t('my_devise_mailer.unlock_my_account'), unlock_url(@resource, unlock_token: @token) %></p>

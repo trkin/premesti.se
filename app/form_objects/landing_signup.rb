@@ -19,6 +19,7 @@ class LandingSignup
   def perform
     return false unless valid?
     return false unless _create_or_find_user?
+
     _create_move!
 
     UserMailer.landing_signup(@move.id).deliver_later

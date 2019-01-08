@@ -67,6 +67,9 @@ sr:
         # all other integers: 5, 6, ... 9, 10, 11, 12, 13, 14 ... 20, 25, ...
         other: "%{count} грешака спречавају %{resource}a:"
   my_devise:
+    sign_in: Пријави се
+    sign_out: Одјави се
+    register: Региструј се
     registration_headline: Региструјте се
     characters_minimum: Најмање %{count} слова. бројева или других знакова
     sign_in_headline: Пријавите се
@@ -86,9 +89,19 @@ sr:
     cancel_my_account: Обриши мој налог
     unhappy: Незадовољни
     new_password: Нова лозинка
+    problem_with_account: Проблем са налогом ?
+    or: или
+    send: Пошаљи
   my_devise_mailer:
     we_are_contacting_you_someone_change_password: Пишемо вам да вас обавестимо да је ваша лозинка промењена.
     we_are_contacting_you_email_is_beign_changed_to: Пишемо вам да вас обавестимо да је у току промена ваше имејл адресе у %{email}.
     we_are_contacting_you_email_has_been_changed_to: Пишемо вам да вас обавестимо да је промењена ваша имејл адреса у %{email}.
     someone_request_a_link_to_change_a_password: Неко је затражио везу за промену ваше лозинке.
     if_you_did_not_request_this_ignore: Ако нисте затражили промену лозинке, молим вас да игноришете овај имејл. Ваша лозинка ће остати непромењена.
+    hi_name: Ћао %{name}
+    your_account_has_been_locked_due_to_an_excessive_number_of_unsuccessful_sign_in_attempts: Ваш налог је закључан због превеликог броја покушаја неуспешног логовања.
+    click_the_link_below_to_unlock_your_account: Кликните на везу испод како бисте откључали свој налог
+    unlock_my_account: Откључај мој налог
+    confirm_email: Потврди имејл
+    please_follow_the_link_below_in_order_to_confirm_your_email: Молимо да пратите доленаведену везу како бисте потврдили имејл адресу и како бисмо вам слали обавештења
+    change_password: Промените лозинку

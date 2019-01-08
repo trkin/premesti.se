@@ -1,4 +1,4 @@
-require "application_system_test_case"
+require 'application_system_test_case'
 
 class ChatsTest < ApplicationSystemTestCase
   test 'create some messages and archive chat and move' do

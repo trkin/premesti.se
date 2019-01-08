@@ -1,8 +1,7 @@
 <%
-  login_layout
+  login_layout t_crud('edit', resource_class)
   breadcrumb
 %>
-<h2><%= t_crud 'edit', resource_class %></h2>
 
 <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>

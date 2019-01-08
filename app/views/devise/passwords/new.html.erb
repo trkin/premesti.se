@@ -1,5 +1,4 @@
-<% login_layout %>
-<h2><%= t "my_devise.forgot_password" %></h2>
+<% login_layout t('my_devise.forgot_password') %>
 
 <%= bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= devise_error_messages! %>

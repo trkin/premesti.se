@@ -67,6 +67,9 @@ sr-latin:
         # all other integers: 5, 6, ... 9, 10, 11, 12, 13, 14 ... 20, 25, ...
         other: "%{count} grešaka sprečavaju %{resource}a:"
   my_devise:
+    sign_in: Prijavi se
+    sign_out: Odjavi se
+    register: Registruj se
     registration_headline: Registrujte se
     characters_minimum: Najmanje %{count} slova. brojeva ili drugih znakova
     sign_in_headline: Prijavite se
@@ -86,9 +89,19 @@ sr-latin:
     cancel_my_account: Obriši moj nalog
     unhappy: Nezadovoljni
     new_password: Nova lozinka
+    problem_with_account: Problem sa nalogom ?
+    or: ili
+    send: Send
   my_devise_mailer:
     we_are_contacting_you_someone_change_password: Pišemo vam da vas obavestimo da je vaša lozinka promenjena.
     we_are_contacting_you_email_is_beign_changed_to: Pišemo vam da vas obavestimo da je u toku promena vaše imejl adrese u %{email}.
     we_are_contacting_you_email_has_been_changed_to: Pišemo vam da vas obavestimo da je promenjena vaša imejl adresa u %{email}.
     someone_request_a_link_to_change_a_password: Neko je zatražio vezu za promenu vaše lozinke.
     if_you_did_not_request_this_ignore: Ako niste zatražili promenu lozinke, molim vas da ignorišete ovaj imejl. Vaša lozinka će ostati nepromenjena.
+    hi_name: Zdravo %{name}
+    your_account_has_been_locked_due_to_an_excessive_number_of_unsuccessful_sign_in_attempts: Vaš nalog je zaključan zbog prevelikog broja pokušaja neuspešnog logovanja.
+    click_the_link_below_to_unlock_your_account: Kliknite na vezu ispod kako biste otključali svoj nalog
+    unlock_my_account: Otključaj moj nalog
+    confirm_email: Potvrdi imejl
+    please_follow_the_link_below_in_order_to_confirm_your_email: Molimo da pratite dolenavedenu vezu kako biste potvrdili imejl adresu i kako bi smo vam slali obaveštenja
+    change_password: Promenite lozinku

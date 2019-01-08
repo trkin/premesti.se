@@ -13,6 +13,6 @@ class DeviseControllerTest < ActionDispatch::IntegrationTest
     assert_select '#notice-debug', t('devise.registrations.signed_up')
     assert_select '#userDropdown', text: 'my'
     registration_mail = give_me_last_mail_and_clear_mails
-    assert_match t('user_mailer.landing_signup.description_of_service_unconfirmed'), registration_mail.html_part.decoded
+    assert_match t('my_devise_mailer.please_follow_the_link_below_in_order_to_confirm_your_email'), registration_mail.html_part.decoded
   end
 end

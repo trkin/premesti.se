@@ -19,12 +19,10 @@ class AdminUsersTest < ApplicationSystemTestCase
     create :message, chat: deleted_move_chat, user: user, text: 'deleted_move_chat'
     deleted_move.destroy_and_archive_chats 'added_move_by_mistake'
 
-
     sign_in user
     visit admin_user_path user
     assert_selector 'ul#active_chat', text: 'active_chat'
     assert_selector 'ul#archived_chat', text: 'archived_chat'
-    assert_selector 'ul#deleted_move_chat', text: 'deleted_move_chat'
+    # we completelly destroy move assert_selector 'ul#deleted_move_chat', text: 'deleted_move_chat'
   end
 end
-

@@ -1,10 +1,15 @@
 module ApplicationHelper
-  def login_layout(attr = {})
+  def login_layout(login_title = nil, attr = {})
+    @login_title = login_title
     @login_layout = attr
   end
 
   def login_layout?
     @login_layout
+  end
+
+  def login_title
+    @login_title
   end
 
   def landing_layout

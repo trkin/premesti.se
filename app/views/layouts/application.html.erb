@@ -36,7 +36,7 @@
             <%= t('site_title') %>
           <% end %>
         </span>
-        <div class='login-box mx-auto ml-5 p-3 bg-light text-center border rounded <%= login_layout?[:login_box_wide] ? 'login-box__wide' : nil %>'>
+        <div class='login-box mx-auto ml-5 p-3 bg-light text-center border rounded <%= login_layout?[:login_class] %>'>
           <%= yield %>
           <%= render 'layouts/alerts' %>
         </div>

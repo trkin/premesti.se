@@ -32,6 +32,7 @@ Metrics/AbcSize:
 Metrics/LineLength:
   Exclude:
     - "db/**/*"
+    - 'test/**/*'
 
 # I like to put comma after each line
 Style/TrailingCommaInArrayLiteral:

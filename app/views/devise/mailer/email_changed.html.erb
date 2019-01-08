@@ -1,4 +1,4 @@
-<p><%= t('hi_name', name: @resource.email) %>!</p>
+<p><%= t('my_devise_mailer.hi_name', name: @resource.email) %>!</p>
 
 <% if @resource.try(:unconfirmed_email?) %>
   <p><%= t('my_devise_mailer.we_are_contacting_you_email_is_beign_changed_to', email: @resource.unconfirmed_email) %></p>

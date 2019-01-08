@@ -1,15 +1,16 @@
-<% login_layout %>
-<h2><%= t "my_devise.registration_headline" %></h2>
+<% login_layout t('my_devise.registration_headline') %>
 
-<%= link_to user_facebook_omniauth_authorize_path, class: 'btn btn-block btn-facebook text-left' do %>
-  <i class="fa fa-facebook"></i>
-  <%= t('my_devise.sign_in_with', provider: t('provider.facebook')) %>
+<% if devise_mapping.omniauthable? %>
+  <%= link_to user_facebook_omniauth_authorize_path, class: 'btn btn-block btn-facebook text-left' do %>
+    <i class="fa fa-facebook"></i>
+    <%= t('my_devise.sign_in_with', provider: t('provider.facebook')) %>
+  <% end %>
+  <%= link_to user_google_oauth2_omniauth_authorize_path, class: 'btn btn-block btn-google text-left' do %>
+    <i class="fa fa-google" aria-hidden="true"></i>
+    <%= t("my_devise.sign_in_with", provider: t('provider.google_oauth2')) %>
+  <% end %>
+  - <%= t('my_devise.or') %> - 
 <% end %>
-<%= link_to user_google_oauth2_omniauth_authorize_path, class: 'btn btn-block btn-google text-left' do %>
-  <i class="fa fa-google" aria-hidden="true"></i>
-  <%= t("my_devise.sign_in_with", provider: t('provider.google_oauth2')) %>
-<% end %>
-- <%= t('or') %> - 
 
 <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
@@ -24,7 +25,7 @@
   <% end %><br />
 
   <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  <%= f.submit t("register") %>
+  <%= f.submit t('my_devise.register') %>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<%= render 'devise/shared/links' %>

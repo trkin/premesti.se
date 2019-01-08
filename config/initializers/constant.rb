@@ -6,14 +6,14 @@ class Constant
       en: 'en.premesti.se',
     },
     development: {
-      sr: 'sr.loc',
-      'sr-latin': 'sr-latin.loc',
-      en: 'en.loc',
+      sr: 'sr.localhost',
+      'sr-latin': 'sr-latin.localhost',
+      en: 'en.localhost',
     },
     test: {
-      sr: 'sr.loc',
-      'sr-latin': 'sr-latin.loc',
-      en: 'en.loc',
+      sr: 'sr.localhost',
+      'sr-latin': 'sr-latin.localhost',
+      en: 'en.localhost',
     },
   }.freeze
 

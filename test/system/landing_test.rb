@@ -47,17 +47,19 @@ class LandingTest < ApplicationSystemTestCase
     refute user.confirmed?
 
     assert_difference 'Chat.count', 1 do
-      assert_performed_jobs 1, only: ActionMailer::DeliveryJob do
+      assert_performed_jobs 2, only: ActionMailer::DeliveryJob do
         visit confirmation_link
+        assert user.reload.confirmed?
+        assert_selector 'a', text: user.email_username
+        refute_selector 'a', text: t('register')
       end
     end
 
-    assert user.reload.confirmed?
-    assert_selector 'a', text: user.email_username
-    refute_selector 'a', text: t('register')
-
-    new_match_email = give_me_last_mail_and_clear_mails
-    assert_equal [reverse_move.user.email], new_match_email.to
-    assert_equal "#{t('new_match')} #{reverse_move.from_group.location.name}", new_match_email.subject
+    # we send 2 emails, to both parties
+    new_match_for_him, new_match_for_me = all_mails
+    assert_equal [user.email], new_match_for_me.to
+    assert_equal [reverse_move.user.email], new_match_for_him.to
+    assert_equal "#{t('new_match')} #{from_group.location.name}", new_match_for_me.subject
+    assert_equal "#{t('new_match')} #{reverse_move.from_group.location.name}", new_match_for_him.subject
   end
 end

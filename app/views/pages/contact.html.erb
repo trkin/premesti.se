@@ -1,7 +1,6 @@
 <%
-  login_layout
+  login_layout t('contact')
 %>
-<h2><%= t 'contact' %></h2>
 <p><%= t 'contact_description' %></p>
 <%= bootstrap_form_for @contact_form, url: contact_path do |f| %>
   <%= f.email_field :email, required: true, disabled: current_user.present? %>

@@ -1,11 +1,10 @@
-<% login_layout %>
-<h2><%= t "my_devise.resend_confirmation_instructions" %></h2>
+<% login_layout t('my_devise.resend_confirmation_instructions') %>
 
 <%= bootstrap_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
 
   <%= f.email_field :email, autofocus: true, label: t('neo4j.attributes.user.email'), value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), required: true %>
 
-  <%= f.submit t("send") %>
+  <%= f.submit t('my_devise.send') %>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<%= render 'devise/shared/links' %>

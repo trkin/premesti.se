@@ -32,18 +32,30 @@ To install Neo4j use this rails tasks
 rails neo4j:install[community-latest,development]
 rails neo4j:install[community-latest,test]
 
-## this will change db/neo4j/development/conf/neo4j.conf
-rails neo4j:config[development,$(expr $NEO4J_PORT + 2)]
-rails neo4j:config[test,$(expr $NEO4J_TEST_PORT + 2)]
+## this will change in db/neo4j/development/conf/neo4j.conf
+## dbms.connector.http.listen_address=localhost:7042
+rails neo4j:config[development,$NEO4J_PORT]
+# also for test
+rails neo4j:config[test,$NEO4J_TEST_PORT]
 ~~~
+
+Stop neo4j servers
+```
+rails neo4j:stop[development]
+# or using cli
+db/neo4j/development/bin/neo4j stop
+
+# also for test
+rails neo4j:stop[test]
+```
 
 Start neo4j server with:
 
 ~~~
 rails neo4j:start[development]
-gnome-open http://localhost:$(expr $NEO4J_PORT + 2) # http://localhost:7042/browser/
+gnome-open http://localhost:$NEO4J_PORT # http://localhost:7042/browser/
 rails neo4j:start[test]
-gnome-open http://localhost:$(expr $NEO4J_TEST_PORT + 2) # http://localhost:7047/
+gnome-open http://localhost:$NEO4J_TEST_PORT # http://localhost:7047/
 
 tail -f db/neo4j/development/logs/*
 ~~~
@@ -59,10 +71,12 @@ rake db:migrate
 rake db:seed
 ~~~
 
-For test you need to do again
+For test you need to run migration also
 
 ~~~
 RAILS_ENV=test rake db:migrate
+# this will actually run
+RAILS_ENV=test rake neo4j:migrate
 ~~~
 
 ## Run

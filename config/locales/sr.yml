@@ -155,3 +155,6 @@ sr:
   delete_all_moves: Обриши све жеље за премештај са ове локације
   user_canceled_account: Корисник је обрисао налог
   all_moves_are_deleted: Све жеље су обрисане
+  recaptcha:
+    errors:
+      verification_failed: Верификација реЦАПТЦХА није успела, покушајте поново.

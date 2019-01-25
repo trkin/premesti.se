@@ -1,11 +1,29 @@
 class ContactForm
   include ActiveModel::Model
-  attr_accessor :email, :text, :remote_ip
-  validates_format_of :email, with: Devise::email_regexp
+  include Recaptcha::Verify
 
-  def perform
+  attr_accessor :email, :text, :g_recaptcha_response, :current_user, :remote_ip
+  validates_format_of :email, with: Devise.email_regexp
+  validates :text, :email, presence: true
+
+  def save
+    verify_recaptcha model: self, response: g_recaptcha_response
+    return false if errors.present?
     return false unless valid?
-    Notify.message("contact_form #{email} @ #{Time.zone.now}", text: text)
+
+    _send_notification
     true
+  end
+
+  def request
+    OpenStruct.new remote_ip: remote_ip
+  end
+
+  def env
+    nil
+  end
+
+  def _send_notification
+    Notify.message("contact_form #{email} @ #{Time.zone.now}", email, text, remote_ip, current_user)
   end
 end

@@ -5,7 +5,8 @@
 <%= bootstrap_form_for @contact_form, url: contact_path do |f| %>
   <%= f.email_field :email, required: true, disabled: current_user.present? %>
   <%= f.text_area :text, required: true %>
-  <%= f.submit t('send'), class: 'btn btn-block btn-primary' %>
+  <%= recaptcha_tags callback: 'enableRecaptchaButtons' %>
+  <%= f.submit t('send'), class: 'btn btn-block btn-primary', 'data-recaptcha-button': 'true', disabled: !Rails.env.test? %>
 <% end %>
 <p><%= t 'or' %></p>
 <%= t 'find_us_on' %>

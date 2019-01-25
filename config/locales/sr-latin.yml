@@ -155,3 +155,6 @@ sr-latin:
   delete_all_moves: Obriši sve želje za premeštaj sa ove lokacije
   user_canceled_account: Korisnik je obrisao nalog
   all_moves_are_deleted: Sve želje su obrisane
+  recaptcha:
+    errors:
+      verification_failed: Verifikacija reCAPTCHA nije uspela, pokushajte ponovo.

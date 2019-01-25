@@ -93,3 +93,6 @@ gem 'exception_notification'
 
 # background proccessor
 gem 'sidekiq'
+
+# captcha on contact form
+gem 'recaptcha'

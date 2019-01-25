@@ -37,8 +37,8 @@
           <% end %>
         </span>
         <div class='login-box mx-auto ml-5 p-3 bg-light text-center border rounded <%= login_layout?[:login_class] %>'>
-          <%= yield %>
           <%= render 'layouts/alerts' %>
+          <%= yield %>
         </div>
         <span class='px-2 background-same-as-cute'>
           <% if current_user %>

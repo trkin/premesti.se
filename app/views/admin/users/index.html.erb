@@ -9,6 +9,7 @@
           <i class="fa fa-google" aria-hidden="true"></i>
         <% end %>
         <%= link_to user.email, admin_user_path(user) %>
+        <%= user.created_at.to_s :long %>
         <%= link_to sign_in_as_path(user_id: user.id) do %>
           sign_in_as
           <% unless user.confirmed? %>

@@ -61,13 +61,16 @@ class PagesController < ApplicationController
     @contact_form = ContactForm.new(
       email: current_user&.email || params[:contact_form][:email],
       text: params[:contact_form][:text],
+      g_recaptcha_response: params['g-recaptcha-response'],
+      current_user: current_user,
+      remote_ip: request.remote_ip,
     )
-    if @contact_form.perform
+    if @contact_form.save
       flash.now[:notice] = t('contact_thanks')
+      contact
     else
       flash.now[:alert] = @contact_form.errors.full_messages.join(', ')
     end
-    contact
     render :contact
   end
 

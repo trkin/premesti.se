@@ -31,6 +31,8 @@ Rails.application.routes.draw do
 
   get 'dashboard', to: 'dashboard#index'
   get 'resend-confirmation-instructions', to: 'dashboard#resend_confirmation_instructions'
+  get 'moves-for-age', to: 'dashboard#moves_for_age', as: :all_moves
+  get 'moves-for-age/:age', to: 'dashboard#moves_for_age', as: :moves_for_age
 
   get 'my-settings', to: 'my_settings#index'
   patch 'my-settings', to: 'my_settings#update'

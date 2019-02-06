@@ -17,15 +17,20 @@ class Chat
   has_many :out, :moves, rel_class: :Matches
 
   def ordered_moves
-    query_as(:c).match('(c)-[r:MATCHES]-(m:Move)').order('r.order').pluck(:m)
+    return @ordered_moves if @ordered_moves.present?
+
+    @ordered_moves = query_as(:c).match('(c)-[r:MATCHES]-(m:Move)').order('r.order').pluck(:m)
   end
 
   def name_with_arrows
     return I18n.t('all_moves_are_deleted') unless moves.present?
-    ([ordered_moves.last] + ordered_moves).map { |m| m.from_group.location.name }.join(" #{Constant::ARROW_CHAR} ")
+
+    return @name_with_arrows if @name_with_arrows.present?
+
+    @name_with_arrows = ([ordered_moves.last] + ordered_moves).map { |m| m.from_group.location.name }.join(" #{Constant::ARROW_CHAR} ")
   end
 
-  def name_for_user(user)
+  def name_for_user(_user)
     name_with_arrows
   end
 

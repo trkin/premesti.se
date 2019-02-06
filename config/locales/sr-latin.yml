@@ -112,6 +112,8 @@ sr-latin:
   chats_empty_new_will_show_up_automatically: Trenutno nema dogovaranja. Nova dogovaranja će se pojaviti kada se desi poklapanje
   last_few_requests: Nekoliko nedavnih želja
   last_few_chats: Nekoliko nedavnih dogovaranja
+  last_request: Poslednja želja
+  last_chat: Poslednje dogovaranje
   groups_have_to_be_same_age: Grupe moraju biti u istim godištima
   to_group_can_not_be_on_same_location: Željena grupa ne može biti na trenutnoj lokaciji
   ignored_sending_notifications_unconfirmed_user: Slanje poruka je preskočeno pošto korisnik nije potvrđen
@@ -158,3 +160,6 @@ sr-latin:
   recaptcha:
     errors:
       verification_failed: Verifikacija reCAPTCHA nije uspela, pokushajte ponovo.
+  please_select_age: Izaberite starost
+  go: Idi
+  see_all: Vidi sve želje

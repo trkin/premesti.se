@@ -146,6 +146,7 @@ module MapHelper
     latitude = object.latitude
     longitude = object.longitude
     return "<div class='map-not-set'>Map position is not set</div>".html_safe unless latitude
+
     img_options = {}
     img_options[:class] = options[:class] if options[:class].present?
     url = '//maps.googleapis.com/maps/api/staticmap?'
@@ -212,6 +213,7 @@ module MapHelper
     latitude = object.latitude
     longitude = object.longitude
     return "<div class='map-not-set'>Map position is not set</div>".html_safe unless latitude
+
     content = content_tag(:div, nil, id: 'preview-map', class: "show-map-container #{options[:class]}")
     content << %(
       <script>
@@ -386,7 +388,7 @@ module MapHelper
         } // function initMap
       </script>
     ).html_safe
-    content << async_load unless options[:async_load] == false
+    content << async_load(callback_name) unless options[:async_load] == false
     content
   end
 

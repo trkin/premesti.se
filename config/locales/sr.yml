@@ -112,6 +112,8 @@ sr:
   chats_empty_new_will_show_up_automatically: Тренутно нема договарања. Нова договарања ће се појавити када се деси поклапање
   last_few_requests: Неколико недавних жеља
   last_few_chats: Неколико недавних договарања
+  last_request: Последња жеља
+  last_chat: Последње договарање
   groups_have_to_be_same_age: Групе морају бити у истим годиштима
   to_group_can_not_be_on_same_location: Жељена гупа не може бити на тренутној локацији
   ignored_sending_notifications_unconfirmed_user: Слање порука је прескочено пошто корисник није потврђен
@@ -158,3 +160,6 @@ sr:
   recaptcha:
     errors:
       verification_failed: Верификација реЦАПТЦХА није успела, покушајте поново.
+  please_select_age: Изаберите старост
+  go: Иди
+  see_all_moves: Види све жеље

@@ -28,4 +28,16 @@ module MoveHelper
 
     link_to t('share_on_facebook').html_safe, uri.to_s, { target: '_blank' }.merge(opts)
   end
+
+  def latest_move_timestamp
+    return @latest_move_timestamp if @latest_move_timestamp.present?
+
+    @latest_move_timestamp = Neo4j::ActiveBase.current_session.query('MATCH (n:Move) RETURN max(n.updated_at) AS m').first.m
+  end
+
+  def latest_chat_timestamp
+    return @latest_chat_timestamp if @latest_chat_timestamp.present?
+
+    @latest_chat_timestamp = Neo4j::ActiveBase.current_session.query('MATCH (n:Chat) RETURN max(n.updated_at) AS m').first.m
+  end
 end

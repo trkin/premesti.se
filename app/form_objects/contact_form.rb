@@ -1,3 +1,5 @@
+require 'recaptcha/verify'
+
 class ContactForm
   include ActiveModel::Model
   include Recaptcha::Verify

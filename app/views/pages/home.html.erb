@@ -108,32 +108,6 @@
     <%= render 'layouts/alerts' %>
   </div>
 </div>
-<% cache ['moves-markers', I18n.locale, latest_move_timestamp] do %>
-  <%
-    markers = Move.all.limit(home_page_references_limit).map { |move| move.to_groups.present? ? [move.from_group.location, move.to_groups.map(&:location)] : nil }.flatten.compact.uniq
-    lines = []
-    Move.all.limit(home_page_references_limit).each do |move|
-      move.to_groups.each do |to_group|
-        lines << OpenStruct.new(from: move.from_group.location, to: to_group.location, age: move.from_group.age)
-      end
-    end
-  %>
-  <%= show_lines_map markers, lines, class: 'show-all-lines-map-container', id: 'map-moves', async_load: false %>
-  <%
-    chats = Chat.active.limit(home_page_references_limit).select { |c| c.moves.length > 1 }
-    markers = chats.map { |chat| chat.moves.from_group.location }.flatten.uniq
-    lines = []
-    chats.each do |chat|
-      age = chat.moves.first.from_group.age
-      locations = chat.ordered_moves.map(&:from_group).map(&:location)
-      locations.zip(locations.rotate).each do |from_location, to_location|
-        lines << OpenStruct.new(from: from_location, to: to_location, age: age)
-      end
-    end
-  %>
-  <%= show_lines_map markers, lines, class: 'show-all-lines-map-container', id: 'map-chats', async_load: false %>
-  <%= async_load_map_ids 'map-moves', 'map-chats' %>
-<% end %>
 
 <svg id="abc" class="abc" preserveAspectRatio="none" viewBox="-1 -1 102 102">
   <text class="text abc__color-a abc__color-fill-a" x="50" y="3" dx="-<%= font_drift %>" dy="<%= font_drift %>"><%= t 'abc.a' %></text>

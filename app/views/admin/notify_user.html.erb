@@ -1,4 +1,5 @@
 <%= bootstrap_form_for @notify_user_form, url: admin_submit_notify_user_path do |f| %>
+  <p>Please write in cyrilic so we can translate to latin if needed (cannot easilly translate latin and html tags to cyrilic and html tags</p>
   <%= f.text_field :subject %>
   <%= f.text_area :message %>
   <%= f.select :user_id, options_from_collection_for_select(f.object.confirmed_users, :id, :email, selected: f.object.user_id), { include_blank: 'All' }, 'data-select2-initialize': true %>

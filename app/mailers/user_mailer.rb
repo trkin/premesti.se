@@ -32,12 +32,21 @@ class UserMailer < ApplicationMailer
 
   def notification(user_id, subject, message, tag)
     @user = User.find user_id
-    @subject = subject
-    @message = message
+    @subject = _translate_message_from_cyr_to_lat @user.locale, subject
+    @message = _translate_message_from_cyr_to_lat @user.locale, message
     @tag = tag
     return unless @user.subscribe_to_news_mailing_list
 
     # when subject use I18n.t, define it with Proc becaus we use with_locale
     mail to: @user.email, subject: -> { "[#{t('site_title')}] #{subject}" }
+  end
+
+  def _translate_message_from_cyr_to_lat(locale, message)
+    case locale
+    when 'sr'
+      message
+    else
+      message.to_lat
+    end
   end
 end

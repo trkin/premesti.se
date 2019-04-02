@@ -1,6 +1,31 @@
 <%
   breadcrumb
 %>
+<h1 class='show-on-hover'>
+  <%= t('my_chats') %>
+  <% if current_user.moves.chats.archived.present? %>
+    <small>
+      <%= link_to t('my_archived_chats'), my_data_path, class: 'show-on-hover-target' %>
+    </small>
+  <% end %>
+</h1>
+<% if current_user.moves.chats.active.present? %>
+  <ul class="list-unstyled">
+    <% current_user.moves.chats.active.each do |chat| %>
+      <li>
+        <%= link_to chat do %>
+          <%= chat.name_for_user(current_user) %>
+        <% end %>
+        <% if Rails.env.development? %>
+          only on development
+          <%= link_to t("delete"), chat, method: :delete, class: 'text-danger' %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <%= t('chats_empty_new_will_show_up_automatically') %>
+<% end %>
 <h1>
   <%= t('my_moves') %>
 </h1>
@@ -39,28 +64,3 @@
 </span>
 
 
-<h1 class='show-on-hover'>
-  <%= t('my_chats') %>
-  <% if current_user.moves.chats.archived.present? %>
-    <small>
-      <%= link_to t('my_archived_chats'), my_data_path, class: 'show-on-hover-target' %>
-    </small>
-  <% end %>
-</h1>
-<% if current_user.moves.chats.active.present? %>
-  <ul class="list-unstyled">
-    <% current_user.moves.chats.active.each do |chat| %>
-      <li>
-        <%= link_to chat do %>
-          <%= chat.name_for_user(current_user) %>
-        <% end %>
-        <% if Rails.env.development? %>
-          only on development
-          <%= link_to t("delete"), chat, method: :delete, class: 'text-danger' %>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <%= t('chats_empty_new_will_show_up_automatically') %>
-<% end %>

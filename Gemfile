@@ -86,7 +86,7 @@ gem 'inline_svg'
 gem 'cyrillizer'
 
 # adding vendor prefixes (webkit) to css rules
-gem 'autoprefixer-rails'
+# gem 'autoprefixer-rails'
 
 # error notification to EXCEPTION_RECIPIENTS emails
 gem 'exception_notification'

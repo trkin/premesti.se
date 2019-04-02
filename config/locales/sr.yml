@@ -169,3 +169,8 @@ sr:
   please_select_age: Изаберите старост
   go: Иди
   see_all_moves: Види све жеље
+  phone_number_will_show_up_in_chat_page: Телефон ће се појавити на страници за договарање
+  initial_chat_message_will_show_up_as_first_message_from_you: Ова порука ће бити прва ваша порука када се догоди поклапање
+  email_address_is_visible_on_chat_page: Ваша имејл адреса се приказује на страници за договарање
+  i_am_interested_to_find_but_from_next_month: Ја сам заинтересована за премештај али тек од септембра месеца
+  for_example: На пример

@@ -40,7 +40,12 @@ en:
         confirmation_token: Confirmation token
         remember_me: Remember me
         locale: Language
-        subscribe_to_news_mailing_list: Subscribe to mailing list
+        subscribe_to_news_mailing_list: Enable news email notification
+        subscribe_to_new_chat_message: Enable chat email notification
+        subscribe_to_new_match: Enable new match email notification
+        phone_number: Telephone
+        initial_chat_message: Initial chat message
+        visible_email_address: Visible email address
       location:
         city: City
         name: Name

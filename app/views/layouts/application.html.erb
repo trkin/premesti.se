@@ -81,8 +81,8 @@
                 <%= current_user.email_username %>
               </a>
               <div class="dropdown-menu" aria-labelledby="userDropdown">
-                <%= link_to t('my_account'), edit_user_registration_path, class: 'dropdown-item' %>
                 <%= link_to t('my_settings'), my_settings_path, class: 'dropdown-item' %>
+                <%= link_to t('my_account'), edit_user_registration_path, class: 'dropdown-item' %>
                 <%= link_to t('my_data'), my_data_path, class: 'dropdown-item' %>
                 <div class="dropdown-divider"></div>
                 <%= link_to t("privacy_policy"), privacy_policy_path, class: 'dropdown-item' %>

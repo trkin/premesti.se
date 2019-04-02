@@ -46,7 +46,12 @@ sr-latin:
         confirmation_token: Ključ za potvrdu
         remember_me: Zapamti me
         locale: Jezik i pismo
-        subscribe_to_news_mailing_list: Prijavi me na imejl listu
+        subscribe_to_news_mailing_list: Omogući imejl notifikacije za novosti
+        subscribe_to_new_chat_message: Omogući imejl notifikacije za nove poruke u dogovaranju
+        subscribe_to_new_match: Omogući imejl notifikacije za nova poklapanja
+        phone_number: Telefon
+        initial_chat_message: Prva poruka u dogovaranju
+        visible_email_address: Vidljiva imejl adresa
       location:
         city: Grad
         name: Naziv

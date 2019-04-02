@@ -14,6 +14,8 @@ class UserMailer < ApplicationMailer
     @missing_move = Move.find missing_move_id
     @chat = Chat.find chat_id
     @tag = __method__
+    return unless @move.user.subscribe_to_new_match
+
     mail to: @move.user.email, subject: "#{t('new_match')} #{@move.from_group.location.name}"
   end
 
@@ -21,6 +23,8 @@ class UserMailer < ApplicationMailer
     @move = Move.find move_id
     @message = Message.find message_id
     @tag = __method__
+    return unless @move.user.subscribe_to_new_chat_message
+
     mail to: @move.user.email, subject: "#{t('new_message')} #{@move.from_group.location.name}"
   end
 
@@ -29,6 +33,8 @@ class UserMailer < ApplicationMailer
     @subject = subject
     @message = message
     @tag = tag
+    return unless @user.subscribe_to_news_mailing_list
+
     mail to: @user.email, subject: "[#{t('site_title')}] #{subject}"
   end
 end

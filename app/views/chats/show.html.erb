@@ -2,7 +2,27 @@
   breadcrumb "#{Chat.model_name.human.mb_chars.capitalize} #{@chat.name_for_user(current_user)}" => nil
 %>
 <% if @chat.active? %>
-  <div class="btn-group">
+  <% @chat.moves.each do |move| %>
+    <%= move.from_group.location.name %> <%= move.user.email_with_phone_if_present %><br>
+  <% end %>
+  <%= bootstrap_form_for @message_decorator, url: create_message_chat_path(@chat), remote: true do |f| %>
+    <%
+      placeholder = if current_user.admin?
+                      nil
+                    else
+                      t('here_type_message_like', location: @chat.from_location_for_user(current_user).name)
+                    end
+       placeholder = nil if @chat.messages.present?
+    %>
+    <%= f.text_field :text, class: '', id: 'new-message-input', placeholder: placeholder, skip_label: true, required: true, append: f.primary(t_crud('send', Message)), 'data-disable-with': t('sending'), autofocus: true %>
+  <% end %>
+<% end %>
+<ul class="list-unstyled" id='messages' data-chat-page='<%= @chat.id %>' data-user-id='<%= current_user.id %>'>
+  <% @chat.messages.each do |message| %>
+    <%= render "message", message: message, owner: message.user == current_user, current_user_admin: current_user.admin? %>
+  <% end %>
+</ul>
+<div class="btn-group pull-right">
     <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <%= t_crud 'delete', Chat %>
     </button>
@@ -21,23 +41,6 @@
       <% end %>
     </div>
   </div>
-  <%= bootstrap_form_for @message_decorator, url: create_message_chat_path(@chat), remote: true do |f| %>
-    <%
-      placeholder = if current_user.admin?
-                      nil
-                    else
-                      t('here_type_message_like', location: @chat.from_location_for_user(current_user).name)
-                    end
-       placeholder = nil if @chat.messages.present?
-    %>
-    <%= f.text_field :text, class: 'new-message-input', id: 'new-message-input', placeholder: placeholder, skip_label: true, required: true, append: f.primary(t_crud('send', Message)), 'data-disable-with': t('sending'), autofocus: true %>
-  <% end %>
-<% end %>
-<ul class="list-unstyled" id='messages' data-chat-page='<%= @chat.id %>' data-user-id='<%= current_user.id %>'>
-  <% @chat.messages.each do |message| %>
-    <%= render "message", message: message, owner: message.user == current_user, current_user_admin: current_user.admin? %>
-  <% end %>
-</ul>
 <%
   markers = @chat.ordered_moves.map(&:from_group).map(&:location)
   lines = []

@@ -103,7 +103,8 @@ class LandingSinupTest < ActiveSupport::TestCase
         end
       end
     end
-    chat_mail, another_chat_mail, move_mail = all_mails
+    chat_mail, another_chat_mail, move_mail, should_be_nil = give_me_all_mail_and_clear_mails
+    assert_nil should_be_nil
     assert_match t('user_mailer.landing_signup.description_of_service'), move_mail.html_part.decoded
     assert_match t('user_mailer.new_match.chat_link'), chat_mail.html_part.decoded
     assert_match t('user_mailer.new_match.chat_link'), another_chat_mail.html_part.decoded
@@ -132,7 +133,7 @@ class LandingSinupTest < ActiveSupport::TestCase
         end
       end
     end
-    chat_mail, other_user_chat_mail, move_mail = all_mails
+    chat_mail, other_user_chat_mail, move_mail = give_me_all_mail_and_clear_mails
     assert_match t('user_mailer.landing_signup.description_of_service'), move_mail.html_part.decoded
     assert_match t('user_mailer.new_match.chat_link'), chat_mail.html_part.decoded
     assert_match t('user_mailer.new_match.chat_link'), other_user_chat_mail.html_part.decoded
@@ -189,7 +190,7 @@ class LandingSinupTest < ActiveSupport::TestCase
         end
       end
     end
-    chat_mail, other_user_chat_mail, move_mail = all_mails
+    chat_mail, other_user_chat_mail, move_mail = give_me_all_mail_and_clear_mails
     assert_match t('user_mailer.landing_signup.description_of_service'), move_mail.html_part.decoded
     assert_match t('user_mailer.new_match.chat_link'), chat_mail.html_part.decoded
     assert_match t('user_mailer.new_match.chat_link'), other_user_chat_mail.html_part.decoded
@@ -219,7 +220,7 @@ class LandingSinupTest < ActiveSupport::TestCase
         end
       end
     end
-    move_mail = all_mails.first
+    move_mail = give_me_all_mail_and_clear_mails.first
     assert_match t('user_mailer.landing_signup.description_of_service'), move_mail.html_part.decoded
   end
 end

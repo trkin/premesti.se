@@ -13,7 +13,7 @@ class AdminPagesControllerTest < ActionDispatch::IntegrationTest
     user = create :user, :admin
     city = create :city
     login_as user
-    assert_difference "Location.count", 1 do
+    assert_difference 'Location.count', 1 do
       post admin_locations_path, xhr: true, params: { location: attributes_for(:location) }.merge(city_id: city.id)
     end
   end
@@ -22,9 +22,9 @@ class AdminPagesControllerTest < ActionDispatch::IntegrationTest
     user = create :user, :admin
     city = create :city
     login_as user
-    assert_difference "Group.count", 3 do
+    assert_difference 'Group.count', 3 do
       post admin_locations_path, xhr: true, params: {
-        location: attributes_for(:location).merge(group_ages: "1 2 3")
+        location: attributes_for(:location).merge(group_ages: '1 2 3')
       }.merge(city_id: city.id)
     end
   end

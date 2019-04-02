@@ -25,6 +25,7 @@ class CreateChatAndSendNotifications
   def perform
     chat = Chat.find_existing_for_moves(@moves + [@move])
     return Error.new(ApplicationController.helpers.t('neo4j.errors.messages.already_exists')) if chat.present?
+
     chat = Chat.create_for_moves((@moves + [@move]).reverse)
     send_notification(chat) if chat
     Result.new 'OK', chat
@@ -32,11 +33,9 @@ class CreateChatAndSendNotifications
 
   def send_notification(chat)
     chat.moves.each do |move|
-      if Move.where(id: move.id).present?
-        UserMailer.new_match(move.id, @move.id, chat.id).deliver_later
-      else
-        # TODO: sometimes we can not find move in db
-      end
+      UserMailer.new_match(move.id, @move.id, chat.id).deliver_later if Move.where(id: move.id).present?
+      # else
+      # TODO: sometimes we can not find move in db
     end
   end
 

@@ -168,4 +168,9 @@ sr-latin:
       verification_failed: Verifikacija reCAPTCHA nije uspela, pokushajte ponovo.
   please_select_age: Izaberite starost
   go: Idi
-  see_all: Vidi sve želje
+  see_all_moves: Vidi sve želje
+  phone_number_will_show_up_in_chat_page: Telefon će se prikazivati na stranici za dogovaranje
+  initial_chat_message_will_show_up_as_first_message_from_you: Ova poruka će biti prva vaša poruka kada se dogodi poklapanje
+  email_address_is_visible_on_chat_page: Vaša imejl adresa se prikazuje na stranici za dogovaranje
+  i_am_interested_to_find_but_from_next_month: Ja sam zainteresovana za premeštaj ali tek od septembra meseca
+  for_example: Na primer

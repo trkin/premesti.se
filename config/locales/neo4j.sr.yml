@@ -49,6 +49,12 @@ sr:
         subscribe_to_news_mailing_list: Пријави ме на имејл листу
         subscribe_to_new_chat_message: Пријави ме за нове поруке договарања
         subscribe_to_new_match: Пријави ме за нова поклапања
+        subscribe_to_news_mailing_list: Омогући имејл нотификације за новости
+        subscribe_to_new_chat_message: Омогући имејл нотификације за нове поруке у договарању
+        subscribe_to_new_match: Омогући имејл нотификације за нова поклапања
+        phone_number: Телефон
+        initial_chat_message: Прва порука у договарању
+        visible_email_address: Видљива имејл адреса
       location:
         city: Град
         name: Назив

@@ -63,13 +63,15 @@ class Chat
   def self.create_for_moves(*moves)
     moves = moves.flatten
     raise 'can_not_create_for_less_than_two_moves' if moves.length < 2
+
     chat = Chat.create
+    Message.create! chat: chat, text: I18n.t('new_match_for_moves', moves: chat.name_with_arrows)
     # we need to add property on relationship so we know which is next jump
     moves.each_with_index do |move, i|
       # chat.moves << move
       Matches.create from_node: chat, to_node: move, order: i
+      Message.create!(chat: chat, text: move.user.initial_chat_message, user: move.user) if move.user.initial_chat_message.present?
     end
-    Message.create! chat: chat, text: I18n.t('new_match_for_moves', moves: chat.name_with_arrows)
     chat
   end
 

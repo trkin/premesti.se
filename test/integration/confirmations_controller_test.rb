@@ -16,7 +16,7 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     follow_redirect!
     follow_redirect!
 
-    chat_mail, another_chat_mail = all_mails
+    chat_mail, another_chat_mail = give_me_all_mail_and_clear_mails
     assert_match t('user_mailer.new_match.chat_link'), chat_mail.html_part.decoded
     assert_match t('user_mailer.new_match.chat_link'), another_chat_mail.html_part.decoded
   end

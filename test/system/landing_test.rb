@@ -56,7 +56,7 @@ class LandingTest < ApplicationSystemTestCase
     end
 
     # we send 2 emails, to both parties
-    new_match_for_him, new_match_for_me = all_mails
+    new_match_for_him, new_match_for_me = give_me_all_mail_and_clear_mails
     assert_equal [user.email], new_match_for_me.to
     assert_equal [reverse_move.user.email], new_match_for_him.to
     assert_equal "#{t('new_match')} #{from_group.location.name}", new_match_for_me.subject

@@ -169,3 +169,8 @@ en:
   please_select_age: Please select age
   go: Go
   see_all_moves: See all moves
+  phone_number_will_show_up_in_chat_page: The phone will appear on the chat page
+  initial_chat_message_will_show_up_as_first_message_from_you: This message will be your first message when a match occurs
+  email_address_is_visible_on_chat_page: Your email address is displayed on the chat page
+  i_am_interested_to_find_but_from_next_month: I am interested but from September
+  for_example: For example

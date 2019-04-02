@@ -68,6 +68,10 @@ class User
   property :subscribe_to_new_chat_message, type: Boolean, default: true
   property :subscribe_to_news_mailing_list, type: Boolean, default: true
 
+  property :phone_number, type: String
+  property :initial_chat_message, type: String
+  property :visible_email_address, type: Boolean
+
   has_many :out, :moves, type: :WANTS
 
   has_many :out, :messages, type: :AUTHOR_OF
@@ -82,6 +86,15 @@ class User
 
   def email_username
     email.split('@').first
+  end
+
+  def email_with_phone_if_present
+    return nil if phone_number.blank? && !visible_email_address
+
+    res = ''
+    res += phone_number if phone_number.present?
+    res += "#{' ' if phone_number.present?}#{email}" if visible_email_address
+    res
   end
 
   def my_data

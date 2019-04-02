@@ -16,7 +16,8 @@ class UserMailer < ApplicationMailer
     @tag = __method__
     return unless @move.user.subscribe_to_new_match
 
-    mail to: @move.user.email, subject: "#{t('new_match')} #{@move.from_group.location.name}"
+    # when subject use I18n.t, define it with Proc becaus we use with_locale
+    mail to: @move.user.email, subject: -> { "[#{t('site_title')}] #{t('new_match')} #{@move.from_group.location.name}" }
   end
 
   def new_message(move_id, message_id)
@@ -25,7 +26,8 @@ class UserMailer < ApplicationMailer
     @tag = __method__
     return unless @move.user.subscribe_to_new_chat_message
 
-    mail to: @move.user.email, subject: "#{t('new_message')} #{@move.from_group.location.name}"
+    # when subject use I18n.t, define it with Proc becaus we use with_locale
+    mail to: @move.user.email, subject: -> { "[#{t('site_title')}] #{t('new_message')} #{@move.from_group.location.name}" }
   end
 
   def notification(user_id, subject, message, tag)
@@ -35,6 +37,7 @@ class UserMailer < ApplicationMailer
     @tag = tag
     return unless @user.subscribe_to_news_mailing_list
 
-    mail to: @user.email, subject: "[#{t('site_title')}] #{subject}"
+    # when subject use I18n.t, define it with Proc becaus we use with_locale
+    mail to: @user.email, subject: -> { "[#{t('site_title')}] #{subject}" }
   end
 end

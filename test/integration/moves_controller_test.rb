@@ -40,6 +40,7 @@ class MovesControllerTest < ActionDispatch::IntegrationTest
     assert_difference 'move.to_groups.count', 1 do
       assert_performed_jobs 2, only: ActionMailer::DeliveryJob do
         post create_to_group_move_path(move, to_location_id: group.location.id)
+        give_me_all_mail_and_clear_mails
       end
     end
     follow_redirect!

@@ -7,6 +7,8 @@ class NotifyUserForm
   def perform
     return Error.new(errors.full_messages.to_sentence) unless valid?
 
+    return Error.new('Tag is required when sending to all') if user_id.blank? && tag.blank?
+
     unconfirmed = []
     non_active = []
     sent = []
@@ -37,18 +39,23 @@ class NotifyUserForm
   end
 
   def send_to_users
-    result = if user_id.present?
-               [User.find(user_id)]
-             else
-               confirmed_users
-             end
-    if tag.present?
-      # TODO: move this to query
-      result = result.reject do |user|
-        user.email_messages.where(tag: tag).present?
-      end
+    if user_id.present?
+      _send_to_particular_user
+    else
+      _send_to_all_users
     end
-    result = result.first(limit.to_i) if limit.present? && user_id.blank?
-    result
+  end
+
+  def _send_to_particular_user
+    [User.find(user_id)]
+  end
+
+  def _send_to_all_users
+    res = User.query_as(:user)
+              .where('user.confirmed_at IS NOT NULL')
+              .where("NOT (user)-[:RECEIVED]-(:EmailMessage { tag: '#{tag}'})")
+              .pluck(:user)
+    res = res.first(limit.to_i) if limit.present?
+    res
   end
 end

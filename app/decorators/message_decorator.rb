@@ -18,6 +18,7 @@ class MessageDecorator < SimpleDelegator
   def _send_to_email
     message.chat.moves.each do |move|
       next if move.user == message.user
+
       UserMailer.new_message(move.id, message.id).deliver_later
     end
     true

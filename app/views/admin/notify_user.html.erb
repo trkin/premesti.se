@@ -1,5 +1,8 @@
 <%= bootstrap_form_for @notify_user_form, url: admin_submit_notify_user_path do |f| %>
   <%= f.text_field :subject %>
   <%= f.text_area :message %>
+  <%= f.select :user_id, options_from_collection_for_select(f.object.confirmed_users, :id, :email, selected: f.object.user_id), { include_blank: 'All' }, 'data-select2-initialize': true %>
+  <%= f.text_field :tag, help: "If present, users with same tag will be ignored. Recent tags: #{f.object.recent_tags}" %>
+  <%= f.number_field :limit, help: 'If you select ALL, you can limit and repeat sending' %>
   <%= f.submit %>
 <% end %>

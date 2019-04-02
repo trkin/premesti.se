@@ -46,6 +46,7 @@ sr-latin:
         confirmation_token: Ključ za potvrdu
         remember_me: Zapamti me
         locale: Jezik i pismo
+        subscribe_to_news_mailing_list: Prijavi me na imejl listu
       location:
         city: Grad
         name: Naziv

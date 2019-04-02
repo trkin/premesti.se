@@ -9,5 +9,8 @@
 <h1><%= t('my_settings') %></h1>
 <%= bootstrap_form_for current_user, url: my_settings_path do |f| %>
   <%= f.select :locale, options_for_languages %>
+  <%= f.check_box :subscribe_to_new_match %>
+  <%= f.check_box :subscribe_to_new_chat_message %>
+  <%= f.check_box :subscribe_to_news_mailing_list %>
   <%= f.submit t('update') %>
 <% end %>

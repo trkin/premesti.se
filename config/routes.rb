@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get 'select2_locations', to: 'pages#select2_locations'
   get 'my-move/:id/:some_name', to: 'pages#my_move', as: :my_move
   post 'my-move/:id/:some_name', to: 'pages#submit_my_move'
+  get 'unsubscribe', to: 'pages#unsubscribe'
 
   get 'sample-error', to: 'pages#sample_error'
   get 'sample-error-in-javascript', to: 'pages#sample_error_in_javascript'

@@ -1,0 +1,10 @@
+<%
+  login_layout
+%>
+<h3><%= t('hi_name', name: @user.email) %></h3>
+<h4><%= @message %></h4>
+<% if current_user.present? && @user != current_user %>
+  <%= t('you_unsubscribed_for_user_email_but_you_are_still_logged_in_as_name', user_email: @user.email, logged_in_as_name: current_user.email) %>
+<% else %>
+  <%= link_to t('you_can_adjust_all_your_mailing_settings_in_link_name', link_name: t('my_settings')), my_settings_path %>
+<% end %>

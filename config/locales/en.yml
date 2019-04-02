@@ -46,6 +46,12 @@ en:
   success_delete: Successfully deleted
   success_archived: Successfully deleted
   successfully: Successfully
+  successfully_unsubscribed_from_item_name: Successfully unsubscribed so you wont get %{item_name}
+  you_can_adjust_all_your_mailing_settings_in_link_name: You can adjust all your mailing settings in %{link_name}
+  you_unsubscribed_for_user_email_but_you_are_still_logged_in_as_name: You unscribed for user %{user_email} but you are still logged in as %{logged_in_as_name}
+  notifications_for_new_match: match notification
+  notifications_for_new_chat_message: chat message notifications
+  notifications_for_news: news notifications
   continue: Continue
   add_another_location: Add another location
   add_requested_location: Add requested location

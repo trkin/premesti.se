@@ -11,14 +11,19 @@ class ApplicationMailer < ActionMailer::Base
 
   def mail(attr)
     user = _find_user
+    mailer_locale user.locale
+    @unsubscribe_type = User.find_subscribe_type(@tag)
+    @unsubscribe_token = Rails.application.message_verifier(:unsubscribe_generation).generate([user.id, @unsubscribe_type])
     res = super(attr)
     text = ActionController::Base.helpers.strip_tags(res.body.to_s).split.join ' '
-    EmailMessage.create user: user, to: attr[:to], subject: attr[:subject], body: res.body.to_s, text: text
+    EmailMessage.create user: user, to: attr[:to], subject: attr[:subject], body: res.body.to_s, text: text, tag: @tag
     res
   end
 
   def _find_user
+    return @user if @user.present?
     return @move.user if @move.present?
+
     raise 'can_not_find_user_receiver'
   end
 end

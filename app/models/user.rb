@@ -64,6 +64,10 @@ class User
   property :initial_referrer, type: String
   property :last_referrer, type: String
 
+  property :subscribe_to_new_match, type: Boolean, default: true
+  property :subscribe_to_new_chat_message, type: Boolean, default: true
+  property :subscribe_to_news_mailing_list, type: Boolean, default: true
+
   has_many :out, :moves, type: :WANTS
 
   has_many :out, :messages, type: :AUTHOR_OF
@@ -98,6 +102,35 @@ class User
       move.destroy_and_archive_chats 'user_canceled_account'
     end
     destroy
+  end
+
+  def self.find_subscribe_type(tag)
+    case tag
+    when :new_match
+      :notifications_for_new_match
+    when :new_message
+      :notifications_for_new_chat_message
+    else
+      :notifications_for_news
+    end
+  end
+
+  def unsubscribe_from_type(subscribe_type)
+    case subscribe_type.to_s.to_sym
+    when :notifications_for_new_match
+      self.subscribe_to_new_match = false
+      message = I18n.t('successfully_unsubscribed_from_item_name', item_name: I18n.t('notifications_for_new_match'))
+    when :notifications_for_new_chat_message
+      self.subscribe_to_new_chat_message = false
+      message = I18n.t('successfully_unsubscribed_from_item_name', item_name: I18n.t('notifications_for_new_chat_message'))
+    when :notifications_for_news
+      self.subscribe_to_news_mailing_list = false
+      message = I18n.t('successfully_unsubscribed_from_item_name', item_name: I18n.t('notifications_for_news'))
+    else
+      raise "can_not_find_subscribe_type #{subscribe_type}"
+    end
+    save!
+    Result.new message
   end
 
   # This method overwrites devise's own `send_devise_notification`

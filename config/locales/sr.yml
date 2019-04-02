@@ -46,6 +46,12 @@ sr:
   success_delete: Успешно сте обрисали
   success_archived: Успешно сте обрисали
   successfully: Успешно
+  successfully_unsubscribed_from_item_name: Успешно сте одјављени и нећете добијати %{item_name}
+  you_can_adjust_all_your_mailing_settings_in_link_name: Можете подесити ваше имејл нотификације у %{link_name}
+  you_unsubscribed_for_user_email_but_you_are_still_logged_in_as_name: Ви сте се одјавили са нотификација за корисника %{user_email} али ви сте још увек улоговани као %{logged_in_as_name}
+  notifications_for_new_match: обавештења за нова поклапања
+  notifications_for_new_chat_message: обавештења за нове поруке договарања
+  notifications_for_news: обавештења за новости
   continue: Настави
   add_another_location: Додај још један вртић
   add_requested_location: Додај жељени вртић

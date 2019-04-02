@@ -1,5 +1,5 @@
 en:
-  unsubscribe: If you do not want to receive this kind of messages you can <a href='%{link}'>unsubscribe here</a>
+  unsubscribe_from_type_name_and_link: If you do not want to receive %{type_name} you can <a href='%{link}'>unsubscribe here</a>
   user_mailer:
     landing_signup:
       subject: Thanks for registration!

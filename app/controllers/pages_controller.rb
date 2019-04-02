@@ -21,7 +21,7 @@ class PagesController < ApplicationController
 
   def my_move
     @move = Move.find_by id: params[:id]
-    redirect_to root_path, alert: t('this_move_was_deleted') and return unless @move
+    redirect_to(root_path, alert: t('this_move_was_deleted')) && return unless @move
     @landing_signup = LandingSignup.new
     @landing_signup.from_group_age = @move.from_group.age
     @landing_signup.current_location = @move.to_groups.first&.location&.id
@@ -72,6 +72,13 @@ class PagesController < ApplicationController
       flash.now[:alert] = @contact_form.errors.full_messages.join(', ')
     end
     render :contact
+  end
+
+  def unsubscribe
+    user_id, subscribe_type = Rails.application.message_verifier(:unsubscribe_generation).verify params[:unsubscribe_token]
+    @user = User.find user_id
+    result = @user.unsubscribe_from_type subscribe_type
+    @message = result.message
   end
 
   def sample_error

@@ -1,5 +1,5 @@
 sr:
-  unsubscribe: Уколико не желите да примате овакве поруке, можете се <a href='%{link}'>одјавити овде</a>
+  unsubscribe_from_type_name_and_link: Уколико не желите да примате %{type_name}, можете се <a href='%{link}'>одјавити овде</a>
   user_mailer:
     landing_signup:
       subject: Хвала на регистрацији!

@@ -40,6 +40,7 @@ en:
         confirmation_token: Confirmation token
         remember_me: Remember me
         locale: Language
+        subscribe_to_news_mailing_list: Subscribe to mailing list
       location:
         city: City
         name: Name

@@ -18,6 +18,17 @@
       <%= link_to status.to_s.titleize, admin_user_path(@user, user: { status: status }), method: :patch, class: 'btn btn-danger' %>
     <% end %>
   <% end %>
+  <span class='text-danger'>
+    <% unless @user.subscribe_to_new_match %>
+      Unsubscribed to new match
+    <% end %>
+    <% unless @user.subscribe_to_new_chat_message %>
+      Unsubscribed to new chat message
+    <% end %>
+    <% unless @user.subscribe_to_news_mailing_list %>
+      Unsubscribed to news mailing list
+    <% end %>
+  </span>
 </div>
 <div class='row'>
   <div class='col'>
@@ -108,8 +119,11 @@
       <% @user.email_messages.each do |email_message| %>
         <li>
           <strong>
-          <%= email_message.created_at.to_s :short %>
+            <%= email_message.created_at.to_s :short %>
+          </strong>
           <%= email_message.subject %>
+          <strong class='text-primary'>
+            <%= email_message.tag %>
           </strong>
           <br>
           <small>

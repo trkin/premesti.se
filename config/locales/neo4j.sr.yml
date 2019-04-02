@@ -46,6 +46,9 @@ sr:
         confirmation_token: Кључ за потврду
         remember_me: Запамти ме
         locale: Језик и писмо
+        subscribe_to_news_mailing_list: Пријави ме на имејл листу
+        subscribe_to_new_chat_message: Пријави ме за нове поруке договарања
+        subscribe_to_new_match: Пријави ме за нова поклапања
       location:
         city: Град
         name: Назив

@@ -16,7 +16,7 @@ class NotifyUserForm
     return Error.new(errors.full_messages.to_sentence) unless valid?
 
     send_to_users.each do |user|
-      UserMailer.notification(user.id, subject, message, tag).deliver_later
+      UserMailer.notification(user.id, subject, message, tag).deliver_later(Rails.env.production? ? {wait: 3.minutes} : {})
     end
     message = "Send to #{send_to_users.count} users (#{send_to_users.first(5).map(&:email).to_sentence})"
     Result.new message

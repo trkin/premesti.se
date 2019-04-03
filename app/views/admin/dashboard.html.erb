@@ -1,6 +1,7 @@
 <%
 %>
 <%= link_to "Notify confirmed users (#{User.confirmed.size})", admin_notify_users_path %>
+<%= link_to 'Email messages', admin_email_messages_path %>
 <% City.all.each do |city| %>
   <div>
     <%= link_to city.name, admin_locations_path(city_id: city.id) %>

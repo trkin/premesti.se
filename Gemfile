@@ -96,3 +96,7 @@ gem 'sidekiq'
 
 # captcha on contact form
 gem 'recaptcha'
+
+# pagination
+gem 'kaminari'
+gem 'kaminari-neo4j'

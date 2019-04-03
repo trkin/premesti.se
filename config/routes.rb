@@ -70,6 +70,7 @@ Rails.application.routes.draw do
     resources :locations
     resources :groups
     resources :notify_users
+    resources :email_messages
   end
 end
 # rubocop:enable Metrics/BlockLength

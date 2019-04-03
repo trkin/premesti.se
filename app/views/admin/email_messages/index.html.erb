@@ -1,0 +1,16 @@
+<%= paginate @email_messages %>
+<ul>
+  <% @email_messages.each do |email_message| %>
+    <li>
+      <%= link_to email_message.to, admin_user_path(email_message.user) %>
+      <%= email_message.created_at.to_s :short %>
+      <strong class='text-warning'>
+        <%= email_message.tag %>
+      </strong>
+      <strong>
+        <%= email_message.subject %>
+      </strong>
+      <%= email_message.text.first(200) %>
+    </li>
+  <% end %>
+</ul>

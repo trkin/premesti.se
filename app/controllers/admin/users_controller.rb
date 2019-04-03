@@ -1,6 +1,13 @@
 class Admin::UsersController < AdminController
   before_action :_set_user, except: %i[index]
-  def show; end
+  def show
+    if @user.auth.present?
+      auth = JSON.parse @user.auth
+      @image = auth['info']['image']
+    end
+  rescue JSON::ParserError => e
+    flash.now[:alert] = e.message
+  end
 
   def index
     @users = User

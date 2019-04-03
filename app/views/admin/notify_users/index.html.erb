@@ -1,4 +1,4 @@
-<%= bootstrap_form_for @notify_user_form, url: admin_submit_notify_user_path do |f| %>
+<%= bootstrap_form_for @notify_user_form, url: admin_notify_users_path do |f| %>
   <p>Please write in cyrilic so we can translate to latin if needed (cannot easilly translate latin and html tags to cyrilic and html tags</p>
   <%= f.text_field :subject %>
   <%= f.text_area :message %>

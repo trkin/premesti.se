@@ -15,6 +15,18 @@ class LandingSinupTest < ActiveSupport::TestCase
     end
   end
 
+  test 'do not include unconfirmed and non active' do
+    create :unconfirmed_user
+    create :user, status: User.statuses[:email_bounce]
+    user = create :user
+    assert_performed_jobs 1, only: ActionMailer::DeliveryJob do
+      NotifyUserForm.new(subject: 'Hi', message: 'Bye', user_id: nil, tag: 'some_tag').perform
+      mail1, should_be_nil = give_me_all_mail_and_clear_mails
+      assert_match user.email, mail1.html_part.decoded
+      assert_nil should_be_nil
+    end
+  end
+
   test 'ignore unsubscribed' do
     user = create :user
     create :user, subscribe_to_news_mailing_list: false

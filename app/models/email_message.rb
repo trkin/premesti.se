@@ -12,4 +12,8 @@ class EmailMessage
   property :tag, type: String
 
   has_one :in, :user, origin: :email_messages
+
+  def self.last_tag
+    query_as(:e).order('e.created_at DESC').where('e.tag IS NOT NULL AND e.tag <> ""').limit(1).pluck(:e).first.tag
+  end
 end

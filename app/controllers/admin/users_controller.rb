@@ -14,6 +14,7 @@ class Admin::UsersController < AdminController
              .as(:u)
              .with_associations(moves: { from_group: [:location], to_groups: [:location] })
              .order('u.last_sign_in_at DESC')
+             .page params[:page]
   end
 
   def update

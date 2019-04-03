@@ -1,4 +1,5 @@
-<% cache [ 'users', Neo4j::ActiveBase.current_session.query('MATCH (n:User) RETURN max(n.updated_at) AS m').first.m ] do %>
+<% cache [ 'users', Neo4j::ActiveBase.current_session.query('MATCH (n:User) RETURN max(n.updated_at) AS m').first.m, params[:page] ] do %>
+  <%= paginate @users %>
   <ul>
     <% @users.each do |user| %>
       <li>

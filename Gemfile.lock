@@ -82,6 +82,10 @@ GEM
     arel (9.0.0)
     bcrypt (3.1.12)
     bindex (0.5.0)
+    browser-timezone-rails (1.0.3)
+      js_cookie_rails
+      jstz-rails3-plus
+      rails (>= 3.1)
     builder (3.2.3)
     byebug (10.0.2)
     callsite (0.0.11)
@@ -183,7 +187,11 @@ GEM
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
+    js_cookie_rails (2.2.0)
+      railties (>= 3.1)
     json (2.1.0)
+    jstz-rails3-plus (1.0.5)
+      railties (>= 3.1)
     jwt (1.5.6)
     kaminari (1.1.1)
       activesupport (>= 4.1.0)
@@ -385,6 +393,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap_form!
+  browser-timezone-rails
   byebug
   capybara (~> 2.13)
   chromedriver-helper

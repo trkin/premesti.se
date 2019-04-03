@@ -100,3 +100,6 @@ gem 'recaptcha'
 # pagination
 gem 'kaminari'
 gem 'kaminari-neo4j'
+
+# sets timezone based on browser timezone for each request
+gem "browser-timezone-rails"

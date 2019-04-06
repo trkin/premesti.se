@@ -28,8 +28,8 @@ class CreateChatAndSendNotificationsTest < ActiveSupport::TestCase
     end
     assert_equal_when_sorted_by_id result.chat.moves, [m1, m2]
     chat_mail1, chat_mail2 = give_me_all_mail_and_clear_mails
-    assert_nil chat_mail2
     assert_match Rails.application.routes.url_helpers.chat_url(result.chat), chat_mail1.html_part.decoded
+    assert_nil chat_mail2
   end
 
   def test_create_chat_3_moves_send_notification

@@ -34,4 +34,21 @@ class ChatTest < ActiveSupport::TestCase
     expected = [g_d, g_a, g_b, g_c, g_d].map { |g| g.location.name }.join " #{Constant::ARROW_CHAR} "
     assert_equal expected, chat.name_with_arrows
   end
+
+  test '#create_for_moves' do
+    m1 = create :move
+    m1.user.initial_chat_message = 'HiFromMove1'
+    m1.user.phone_number = '111111'
+    m1.user.save!
+    m2 = create :move
+    m2.user.initial_chat_message = 'HiFromMove2'
+    m2.user.phone_number = '222222'
+    m2.user.save!
+    chat = Chat.create_for_moves [m1, m2]
+    assert_equal 3, chat.messages.size
+    message2, message1, message_init = chat.messages
+    assert_equal 'HiFromMove1', message1.text
+    assert_equal 'HiFromMove2', message2.text
+    assert_match(/222222.*111111/, message_init.text)
+  end
 end

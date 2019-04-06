@@ -30,6 +30,8 @@ class UserMailerTest < ActionMailer::TestCase
   test 'new_match locale based on user locale' do
     user = create :user, locale: :sr
     move = create :move, user: user
+    move.from_group.location.name_sr = 'name_sr'
+    move.from_group.location.save!
     chat = Chat.create_for_moves [move, move]
     mail = UserMailer.new_match(move.id, move.id, chat.id)
     assert_match t('new_match', locale: :sr), mail.subject

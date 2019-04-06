@@ -34,6 +34,7 @@ class ChatsController < ApplicationController
 
   def destroy
     raise 'only_development' unless Rails.env.development?
+
     @chat.destroy
     redirect_to dashboard_path
   end

@@ -27,7 +27,10 @@ class Chat
 
     return @name_with_arrows if @name_with_arrows.present?
 
-    @name_with_arrows = ([ordered_moves.last] + ordered_moves).map { |m| m.from_group.location.name }.join(" #{Constant::ARROW_CHAR} ")
+    @name_with_arrows = ([ordered_moves.last] + ordered_moves).map do |m|
+      m.from_group.location.name +
+        "(#{m.user.email_with_phone_if_present})"
+    end.join(" #{Constant::ARROW_CHAR} ")
   end
 
   def name_for_user(_user)
@@ -65,12 +68,16 @@ class Chat
     raise 'can_not_create_for_less_than_two_moves' if moves.length < 2
 
     chat = Chat.create
-    Message.create! chat: chat, text: I18n.t('new_match_for_moves', moves: chat.name_with_arrows)
     # we need to add property on relationship so we know which is next jump
     moves.each_with_index do |move, i|
       # chat.moves << move
       Matches.create from_node: chat, to_node: move, order: i
-      Message.create!(chat: chat, text: move.user.initial_chat_message, user: move.user) if move.user.initial_chat_message.present?
+    end
+    Message.create! chat: chat, text: I18n.t('new_match_for_moves', moves: chat.name_with_arrows)
+    moves.each do |move|
+      next unless move.user.initial_chat_message.present?
+
+      Message.create!(chat: chat, text: move.user.initial_chat_message, user: move.user)
     end
     chat
   end

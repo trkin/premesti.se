@@ -13,7 +13,7 @@ class Admin::UsersController < AdminController
     @users = User
              .as(:u)
              .with_associations(moves: { from_group: [:location], to_groups: [:location] })
-             .order('u.last_sign_in_at DESC')
+             .order('u.created_at DESC')
              .page params[:page]
   end
 

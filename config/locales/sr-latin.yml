@@ -174,3 +174,24 @@ sr-latin:
   email_address_is_visible_on_chat_page: Vaša imejl adresa se prikazuje na stranici za dogovaranje
   i_am_interested_to_find_but_from_next_month: Ja sam zainteresovana za premeštaj ali tek od septembra meseca
   for_example: Na primer
+  views:
+    pagination:
+      first: "&laquo; Prva"
+      last: Poslednja &raquo;
+      previous: "&lsaquo; Predhodna"
+      next: Sledeća &rsaquo;
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      entry:
+        zero: Podaci
+        one: Podatak
+        other: Podaci
+      one_page:
+        display_entries:
+          zero: "%{entry_name} nije pronađen"
+          one: Prikazuje <b>1</b> %{entry_name}
+          other: Prikaz <b>svih %{count}</b> %{entry_name}
+      more_pages:
+        display_entries: Prikazano %{entry_name} <b>%{first} - %{last}</b> od <b>%{total}</b>
+                         ukupno

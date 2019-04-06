@@ -3,7 +3,7 @@
 <% if Rails.env.development? %>
   <small>
     Only on development
-    <% User.order(:created_at).limit(2).each do |user| %>
+    <% User.order(:created_at).limit(10).each do |user| %>
       <%= link_to user.email, sign_in_as_path(user_id: user.id) %>
     <% end %>
   </small>

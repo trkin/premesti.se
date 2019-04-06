@@ -141,9 +141,22 @@ namespace :db do
   desc 'setup = drop, migrate and seed'
   task setup: :environment do
     puts sh "rm -rf db/neo4j/#{Rails.env}/data/databases/graph.db"
+    puts sh "rm db/neo4j/#{Rails.env}/logs/neo4j.log"
     Rake::Task['neo4j:restart'].invoke Rails.env
-    puts 'sleeping and running neo4j:migrate'
-    sleep 5
+    puts 'wait for server to became live'
+    timeout = 20
+    i = 0
+    while i < timeout
+      output = `grep "Remote interface available" db/neo4j/#{Rails.env}/logs/neo4j.log`
+      break if output.present?
+      sleep 1
+      i += 1
+      puts '.'
+    end
+    if i == timeout
+      fail "Hey man, i=timeout can not find available server"
+    end
+    puts 'running neo4j:migrate'
     Rake::Task['neo4j:migrate'].invoke Rails.env
     Rake::Task['db:seed'].invoke Rails.env
   end

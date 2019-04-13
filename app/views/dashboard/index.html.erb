@@ -40,7 +40,7 @@
       <% else %>
         <%= link_to move do %>
           <i class="fa fa-plus" aria-hidden="true"></i>
-          <%= t('add_requested_location') %>
+          <%= t('add_request_location_for_move_from_location_name', location_name: move.from_group.location.name) %>
         <% end %>
       <% end %>
     </li>

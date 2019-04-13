@@ -7,7 +7,11 @@ en:
         from_group_age: Which group do you belong ?
         to_location: Where do you want to move ?
         email: What is your email ?
+        visible_email_address: Visible email address ?
         password: Your password for this site ?
+        phone_number: Phone number
+        subscribe_to_new_match: Subscribe to email notification for new match and chats
+        subscribe_to_news_mailing_list: Subscribe to new mailing list
         submit: Notify me
     errors:
       messages:

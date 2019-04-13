@@ -1,6 +1,7 @@
 class Select2LocationsService
-  def initialize(term)
+  def initialize(term, except_location_id = nil)
     @term = term
+    @except_location_id = except_location_id
   end
 
   def perform
@@ -10,8 +11,8 @@ class Select2LocationsService
     results = Location.query_as(:location)
                       .where(query)
                       .params(term: "(?iu).*#{@term}.*")
-                      .pluck(:location)
-    results.map do |location|
+    results = results.where("location.uuid <> '#{@except_location_id}'") if @except_location_id.present?
+    results.pluck(:location).map do |location|
       { id: location.id, text: location.name_with_address }
     end
   end

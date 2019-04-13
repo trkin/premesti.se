@@ -18,7 +18,7 @@ class MySettingsController < ApplicationController
 
   def _my_settings_params
     params.require(:user).permit(
-      :locale, :subscribe_to_new_match, :subscribe_to_new_chat_message,
+      :locale, :subscribe_to_new_match,
       :subscribe_to_news_mailing_list, :phone_number, :visible_email_address,
       :initial_chat_message,
     )

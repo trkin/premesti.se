@@ -36,7 +36,7 @@ class ChatsTest < ApplicationSystemTestCase
     # now we are creating same to_group and it should create another chat
     move_ab.reload
     click_on move_ab.group_age_and_locations
-    find('label', text: t('add_requested_location')).click
+    find('label', text: t('add_request_location_for_move_from_location_name', location_name: move_ab.from_group.location.name)).click
     select2_ajax location_b.name_with_address, selector:
       'span.select2-selection__rendered', text:
       t('activemodel.attributes.landing_signup.to_location')

@@ -2,8 +2,8 @@
 class LandingSignup
   include ActiveModel::Model
   REQUIRED_FIELDS = %i[current_city current_location from_group_age].freeze
-  REQUIRED_IF_NO_CURRENT_USER = %i[email password].freeze
-  OPTIONAL_FIELDS = %i[to_location].freeze
+  REQUIRED_IF_NO_CURRENT_USER = %i[email password subscribe_to_new_match].freeze
+  OPTIONAL_FIELDS = %i[to_location phone_number visible_email_address subscribe_to_news_mailing_list].freeze
   FIELDS = REQUIRED_FIELDS + REQUIRED_IF_NO_CURRENT_USER + OPTIONAL_FIELDS
   attr_accessor(*FIELDS)
   attr_accessor :current_user
@@ -33,7 +33,13 @@ class LandingSignup
     elsif User.find_by email: @email
       _valid_password_for_existing_user?
     else
-      @user = User.new email: @email, password: @password, locale: I18n.locale
+      @user = User.new(
+        email: @email, password: @password, locale: I18n.locale,
+        phone_number: phone_number,
+        visible_email_address: visible_email_address == '1',
+        subscribe_to_new_match: subscribe_to_new_match == '1',
+        subscribe_to_news_mailing_list: subscribe_to_news_mailing_list == '1',
+      )
       @user.skip_confirmation_notification! # we will manually send confirmation
       if @user.save
         true

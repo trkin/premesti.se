@@ -2,8 +2,7 @@
 // the biggest form is on last page .contact-field with username and password
 $carousel-diameter: 38.7vw
 $carousel-diameter-top: 31.9vw
-$carousel-diameter-responsive: 53.6vw
-$carousel-diameter-responsive-top: 25vw
+$carousel-diameter-responsive: 30em
 $min-abc-height: 300px
 
 $max-abc-length: 145
@@ -17,8 +16,8 @@ $max-abc-length: 145
   width: $carousel-diameter
   padding-top: $carousel-diameter-top
   +media-breakpoint-down(sm)
-    width: $carousel-diameter-responsive
-    padding-top: $carousel-diameter-responsive-top
+    width: 100%
+    padding-top: 2em
   margin: auto
   z-index: 2
 
@@ -39,7 +38,9 @@ $max-abc-length: 145
     opacity: 0.6
     +media-breakpoint-down(sm)
       // background-image: asset-url("cityscape_bigger_circle_without_shadow.png")
-      background-image: asset-url('cityscape_bigger_circle.png')
+      // background-image: asset-url('cityscape_bigger_circle.png')
+      background-image: none
+      background-color: initial
 
 .landing-page-header
   min-height: 100vh
@@ -194,6 +195,8 @@ $offset: -4.5px
   padding: 0.1em
   border: 1px solid #ccc
   border-radius: 300px
+  +media-breakpoint-down(sm)
+    border-radius: 100px
   box-shadow: 2px 2px 10px #ccc
   overflow: hidden
   height: $carousel-diameter
@@ -204,9 +207,9 @@ $offset: -4.5px
     padding-left: 3vw
     padding-right: 3vw
     padding-bottom: 5vw
-    padding-top: 14vw
+    padding-top: 2em
     +media-breakpoint-down(xs)
-      padding-top: 10vw
+      padding-top: 1em
     margin: 0
     width: 100%
     list-style: none
@@ -214,7 +217,9 @@ $offset: -4.5px
     position: absolute
 
     // at least maximum carousel-diameter
-    top: $carousel-diameter-responsive
+    top: $carousel-diameter
+    +media-breakpoint-down(xs)
+      top: $carousel-diameter-responsive
 
     &.current
       top: 0px

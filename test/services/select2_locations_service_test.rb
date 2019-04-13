@@ -1,7 +1,7 @@
 require 'test_helper'
 class Select2LocationsServiceTest < ActiveSupport::TestCase
-  def result_ids_for_term(term)
-    results = Select2LocationsService.new(term).perform
+  def result_ids_for_term(term, except_location_id = nil)
+    results = Select2LocationsService.new(term, except_location_id).perform
     results.map { |r| r[:id] }
   end
 
@@ -40,5 +40,13 @@ class Select2LocationsServiceTest < ActiveSupport::TestCase
     assert_equal [my_location.id], result_ids_for_term('ђу')
     assert_equal [my_location.id], result_ids_for_term('ĐU')
     assert_equal [my_location.id], result_ids_for_term('đu')
+  end
+
+  test 'except_location_id' do
+    city = create :city
+    my_location = create :location, city: city, name: 'my_location_name'
+    excepted_location = create :location, city: city, name: 'another_location_name'
+    assert_equal [my_location.id, excepted_location.id].sort, result_ids_for_term('location_name').sort
+    assert_equal [my_location.id], result_ids_for_term('location_name', excepted_location.id)
   end
 end

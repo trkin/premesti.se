@@ -24,7 +24,7 @@ class UserMailer < ApplicationMailer
     @move = Move.find move_id
     @message = Message.find message_id
     @tag = __method__
-    return unless @move.user.subscribe_to_new_chat_message
+    return unless @move.user.subscribe_to_new_match
 
     # when subject use I18n.t, define it with Proc becaus we use with_locale
     mail to: @move.user.email, subject: -> { "[#{t('site_title')}] #{t('new_message')} #{@move.from_group.location.name}" }

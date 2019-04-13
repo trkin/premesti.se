@@ -65,7 +65,6 @@ class User
   property :last_referrer, type: String
 
   property :subscribe_to_new_match, type: Boolean, default: true
-  property :subscribe_to_new_chat_message, type: Boolean, default: true
   property :subscribe_to_news_mailing_list, type: Boolean, default: true
 
   property :phone_number, type: String
@@ -121,8 +120,6 @@ class User
     case tag
     when :new_match
       :notifications_for_new_match
-    when :new_message
-      :notifications_for_new_chat_message
     else
       :notifications_for_news
     end
@@ -133,9 +130,6 @@ class User
     when :notifications_for_new_match
       self.subscribe_to_new_match = false
       message = I18n.t('successfully_unsubscribed_from_item_name', item_name: I18n.t('notifications_for_new_match'))
-    when :notifications_for_new_chat_message
-      self.subscribe_to_new_chat_message = false
-      message = I18n.t('successfully_unsubscribed_from_item_name', item_name: I18n.t('notifications_for_new_chat_message'))
     when :notifications_for_news
       self.subscribe_to_news_mailing_list = false
       message = I18n.t('successfully_unsubscribed_from_item_name', item_name: I18n.t('notifications_for_news'))

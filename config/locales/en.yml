@@ -49,12 +49,11 @@ en:
   successfully_unsubscribed_from_item_name: Successfully unsubscribed so you wont get %{item_name}
   you_can_adjust_all_your_mailing_settings_in_link_name: You can adjust all your mailing settings in %{link_name}
   you_unsubscribed_for_user_email_but_you_are_still_logged_in_as_name: You unscribed for user %{user_email} but you are still logged in as %{logged_in_as_name}
-  notifications_for_new_match: match notification
-  notifications_for_new_chat_message: chat message notifications
+  notifications_for_new_match: match and chat notification
   notifications_for_news: news notifications
   continue: Continue
   add_another_location: Add another location
-  add_requested_location: Add requested location
+  add_request_location_for_move_from_location_name: Add requested location for move from %{location_name}
   group_with_that_age_already_exists: Group with that age already exists
   only_one_from_same_location_and_group: You already have that age and location. Do not need to add twice (for example for twins) since you will get chat for each new oportunity (if there are two matches, you will get two chats)
   year: year
@@ -195,3 +194,5 @@ en:
           other: "Displaying <b>all %{count}</b> %{entry_name}"
       more_pages:
         display_entries: "Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> in total"
+  phone_or_email_address_will_be_shown: Email will be shown to other participants when there is a match
+  if_you_do_not_want_to_receive_notification_for_new_math_please_delete_your_account_link_name: If you do not want to receive notifications for new match and chat than delete your account on <a href='%{link_name}'>this page</a>

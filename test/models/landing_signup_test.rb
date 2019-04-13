@@ -7,13 +7,14 @@ class LocationTest < ActiveSupport::TestCase
       password: '123456',
       current_city: group.location.city.id,
       current_location: group.location.id,
-      from_group_age: group.age
+      from_group_age: group.age,
+      subscribe_to_new_match: '1',
     }
   end
 
-  def valid?(h = {})
+  def valid?(attr = {})
     group = create :group
-    LandingSignup.new(valid_params(group).merge(h)).valid?
+    LandingSignup.new(valid_params(group).merge(attr)).valid?
   end
 
   test 'validation' do

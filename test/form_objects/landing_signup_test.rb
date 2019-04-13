@@ -11,6 +11,7 @@ class LandingSinupTest < ActiveSupport::TestCase
       current_city: group.location.city.id,
       current_location: group.location.id,
       from_group_age: group.age,
+      subscribe_to_new_match: '1',
     }
     landing_signup = LandingSignup.new params
     assert_difference 'User.count', 1 do
@@ -35,6 +36,7 @@ class LandingSinupTest < ActiveSupport::TestCase
       current_city: group.location.city.id,
       current_location: group.location.id,
       from_group_age: group.age,
+      subscribe_to_new_match: '1',
     }
     landing_signup = LandingSignup.new params
     assert_difference 'User.count', 0 do
@@ -62,6 +64,7 @@ class LandingSinupTest < ActiveSupport::TestCase
       current_city: group_b.location.city.id,
       current_location: group_b.location.id,
       from_group_age: group_b.age,
+      subscribe_to_new_match: '1',
       to_location: group_a.location.id,
     }
     landing_signup = LandingSignup.new params
@@ -91,6 +94,7 @@ class LandingSinupTest < ActiveSupport::TestCase
       current_city: group_b.location.city.id,
       current_location: group_b.location.id,
       from_group_age: group_b.age,
+      subscribe_to_new_match: '1',
       to_location: group_a.location.id,
     }
     landing_signup = LandingSignup.new params

@@ -49,12 +49,11 @@ sr-latin:
   successfully_unsubscribed_from_item_name: Uspešno ste odjavljeni i nećete dobijati  %{item_name}
   you_can_adjust_all_your_mailing_settings_in_link_name: Možete podesiti vaše imejl notifikacije u %{link_name}
   you_unsubscribed_for_user_email_but_you_are_still_logged_in_as_name: Vi ste se odjavili sa notifikacija za korisnika %{user_email} ali vi ste još uvek ulogovani kao %{logged_in_as_name}
-  notifications_for_new_match: obaveštenja za nova poklapanja
-  notifications_for_new_chat_message: obaveštenja za nove poruke dogovaranja
+  notifications_for_new_match: obaveštenja za nova poklapanja i dogovaranja
   notifications_for_news: obaveštenja za novosti
   continue: Nastavi
   add_another_location: Dodaj još jedan vrtić
-  add_requested_location: Dodaj željeni vrtić
+  add_request_location_for_move_from_location_name: Dodaj željeni vrtić za premeštaj iz vrtića %{location_name}
   group_with_that_age_already_exists: Grupa sa tim godištem već postoji
   only_one_from_same_location_and_group: Već postoji želja za ovu grupu i vrtić. Nema potrebe da dodajete duplo (na primer u slučaju blizanaca) zato što će se svakako otvoriti dogovaranje za svaku mogućnost (ako postoji dve mogućnosti, dobićete dva dogovaranja)
   year: god
@@ -170,7 +169,9 @@ sr-latin:
   go: Idi
   see_all_moves: Vidi sve želje
   phone_number_will_show_up_in_chat_page: Telefon će se prikazivati na stranici za dogovaranje
-  initial_chat_message_will_show_up_as_first_message_from_you: Ova poruka će biti prva vaša poruka kada se dogodi poklapanje
+  initial_chat_message_will_show_up_as_first_message_from_you: Ova poruka će
+    biti vaša inicijalna poruka kada se dogodi poklapanje (korisno je imati ovu
+    poruku da ne biste svaki put pisali istu poruku)
   email_address_is_visible_on_chat_page: Vaša imejl adresa se prikazuje na stranici za dogovaranje
   i_am_interested_to_find_but_from_next_month: Ja sam zainteresovana za premeštaj ali tek od septembra meseca
   for_example: Na primer
@@ -195,3 +196,5 @@ sr-latin:
       more_pages:
         display_entries: Prikazano %{entry_name} <b>%{first} - %{last}</b> od <b>%{total}</b>
                          ukupno
+  phone_or_email_address_will_be_shown: Vidljiva imejl adresa znači da će korisnici sa kojima se desi poklapanje moći da je vide
+  if_you_do_not_want_to_receive_notification_for_new_math_please_delete_your_account_link_name: Ako više ne želite da primate obaveštenja o novim poklapanjima i dogovaranjima, obrišite vaš nalog na <a href='%{link_name}'>ovoj stranici</a>

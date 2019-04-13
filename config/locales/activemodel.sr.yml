@@ -7,7 +7,11 @@ sr:
         from_group_age: Којој групи припадаш ?
         to_location: На коју локацију тражиш премештај ?
         email: Који је твој имејл ?
+        visible_email_address: Видљива имејл адреса ?
         password: Лозинка за овај сајт ?
+        phone_number: Broj telefona
+        subscribe_to_new_match: Пријави ме за имејл обавештења за нова поклапања и договарања
+        subscribe_to_news_mailing_list: Пријави ме за имејл обавештења за новости
         submit: Обавести ме
     errors:
       messages:

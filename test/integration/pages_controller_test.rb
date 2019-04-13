@@ -16,6 +16,7 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
       current_city: group.location.city.id,
       current_location: group.location.id,
       from_group_age: group.age,
+      subscribe_to_new_match: '1',
     }
     assert_difference 'User.count', 1 do
       assert_difference 'Move.count', 1 do
@@ -49,6 +50,7 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
       current_city: group.location.city.id,
       current_location: group.location.id,
       from_group_age: group.age,
+      subscribe_to_new_match: '1',
     }
     assert_difference 'User.count', 1 do
       assert_difference 'Move.count', 1 do
@@ -78,6 +80,7 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
       current_location: to_group.location.id,
       from_group_age: move.from_group.age,
       to_location: move.from_group.location.id,
+      subscribe_to_new_match: '1',
     }
     assert_difference 'User.count', 0 do
       assert_difference 'Move.count', 1 do

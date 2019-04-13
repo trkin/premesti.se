@@ -31,6 +31,11 @@ $(document).on 'turbolinks:load', ->
       e.preventDefault()
       $($(this).data().preventSubmit).click() if $(this).data().preventSubmitOnEnter != true
 
+  $('[data-validate]').each ->
+    $(this).validate(
+      errorClass: 'text-danger'
+    )
+
 determine_language = ->
   switch window.location.hostname
     when '<%= Constant::DOMAINS[Rails.env.to_sym][:sr] %>' then 'sr-Cyrl'

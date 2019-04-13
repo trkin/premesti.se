@@ -7,7 +7,11 @@ sr-latin:
         from_group_age: Kojoj grupi pripadaš ?
         to_location: Na koju lokaciju tražiš premeštaj ?
         email: Koji je tvoj imejl ?
+        visible_email_address: Vidljiva imejl adresa ?
         password: Lozinka za ovaj sajt ?
+        phone_number: Број телефона
+        subscribe_to_new_match: Prijavi me za imejl obaveštenja za nova poklapanja i dogovaranja
+        subscribe_to_news_mailing_list: Prijavi me za imejl obaveštenja za novosti
         submit: Obavesti me
     errors:
       messages:

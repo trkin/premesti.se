@@ -62,12 +62,11 @@ sr:
     нотификације у %{link_name}
   you_unsubscribed_for_user_email_but_you_are_still_logged_in_as_name: Ви сте се одјавили
     са нотификација за корисника %{user_email} али ви сте још увек улоговани као %{logged_in_as_name}
-  notifications_for_new_match: обавештења за нова поклапања
-  notifications_for_new_chat_message: обавештења за нове поруке договарања
+  notifications_for_new_match: обавештења за нова поклапања и договарања
   notifications_for_news: обавештења за новости
   continue: Настави
   add_another_location: Додај још један вртић
-  add_requested_location: Додај жељени вртић
+  add_request_location_for_move_from_location_name: Додај жељени вртић за премештај из вртића %{location_name}
   group_with_that_age_already_exists: Група са тим годиштем већ постоји
   only_one_from_same_location_and_group: Већ постоји жеља за ову групу и вртић. Нема
     потребе да додајете дупло (на пример у случају близанаца) зато што ће се свакако
@@ -211,8 +210,9 @@ sr:
   go: Иди
   see_all_moves: Види све жеље
   phone_number_will_show_up_in_chat_page: Телефон ће се појавити на страници за договарање
-  initial_chat_message_will_show_up_as_first_message_from_you: Ова порука ће бити
-    прва ваша порука када се догоди поклапање
+  initial_chat_message_will_show_up_as_first_message_from_you: Ова порука ће
+    бити ваша иницијална порука када се догоди поклапање (корисно је имати ову
+    поруку да не бисте сваки пут писали исту поруку)
   email_address_is_visible_on_chat_page: Ваша имејл адреса се приказује на страници
     за договарање
   i_am_interested_to_find_but_from_next_month: Ја сам заинтересована за премештај
@@ -239,3 +239,5 @@ sr:
       more_pages:
         display_entries: Приказано %{entry_name} <b>%{first} - %{last}</b> од <b>%{total}</b>
           укупно
+  phone_or_email_address_will_be_shown: Kорисници са којима се деси поклапање моћи ће да виде овај телефон или имејл адресу
+  if_you_do_not_want_to_receive_notification_for_new_math_please_delete_your_account_link_name: Ако више не желите да примате обавештења о новим поклапањима и договарањима, обришите ваш налог на <a href='%{link_name}'>овој страници</a>

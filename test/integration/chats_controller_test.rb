@@ -22,7 +22,7 @@ class ChatsControllerTest < ActionDispatch::IntegrationTest
   test 'ignore unsubscribed' do
     chat = create_chat_and_sign_in
     user = chat.moves.to_a.second.user
-    user.subscribe_to_new_chat_message = false
+    user.subscribe_to_new_match = false
     user.save!
     assert_performed_jobs 2, only: ActionMailer::DeliveryJob do
       post create_message_chat_path(chat), params: { message: { text: 'first_message' } }, xhr: true

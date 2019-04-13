@@ -5,7 +5,9 @@ class PagesController < ApplicationController
   ]
 
   def home
-    @landing_signup = LandingSignup.new
+    @landing_signup = LandingSignup.new(
+      visible_email_address: '1',
+    )
   end
 
   def landing_signup
@@ -41,7 +43,7 @@ class PagesController < ApplicationController
   end
 
   def select2_locations
-    results = Select2LocationsService.new(params[:term]).perform
+    results = Select2LocationsService.new(params[:term], params[:except_location_id]).perform
     render json: { results: results }
   end
 

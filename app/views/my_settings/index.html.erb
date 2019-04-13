@@ -11,15 +11,16 @@
   <div class='row'>
     <div class='col-md-6'>
       <%= f.select :locale, options_for_languages %>
-      <%= f.check_box :subscribe_to_new_match %>
-      <%= f.check_box :subscribe_to_new_chat_message %>
+      <%= f.form_group help: t('if_you_do_not_want_to_receive_notification_for_new_math_please_delete_your_account_link_name', link_name: edit_user_registration_path).html_safe do %>
+        <%= f.check_box :subscribe_to_new_match, disabled: true %>
+      <% end %>
       <%= f.check_box :subscribe_to_news_mailing_list %>
     </div>
     <div class='col-md-6'>
       <%= f.check_box :visible_email_address, help: t('email_address_is_visible_on_chat_page') %>
       <small class="form-text text-muted"><%= t('email_address_is_visible_on_chat_page') %></small>
       <%= f.text_field :phone_number, help: t('phone_number_will_show_up_in_chat_page'), placeholder: "#{t('for_example')}: 063xxxxxx" %>
-      <%= f.text_field :initial_chat_message, help: t('initial_chat_message_will_show_up_as_first_message_from_you'), placeholder: "#{t('for_example')}: #{t('i_am_interested_to_find_but_from_next_month')}" %>
+      <%= f.text_area :initial_chat_message, help: t('initial_chat_message_will_show_up_as_first_message_from_you'), placeholder: "#{t('for_example')}: #{t('i_am_interested_to_find_but_from_next_month')}" %>
     </div>
   </div>
   <%= f.submit t('update'), class: 'btn btn-primary btn-block' %>

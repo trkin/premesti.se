@@ -295,6 +295,7 @@ GEM
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
+    rack-timeout (0.5.1)
     rails (5.2.1)
       actioncable (= 5.2.1)
       actionmailer (= 5.2.1)
@@ -423,6 +424,7 @@ DEPENDENCIES
   premailer-rails
   puma (~> 3.7)
   rack-livereload
+  rack-timeout
   rails (~> 5.2)
   recaptcha
   redis

@@ -102,4 +102,7 @@ gem 'kaminari'
 gem 'kaminari-neo4j'
 
 # sets timezone based on browser timezone for each request
-gem "browser-timezone-rails"
+gem 'browser-timezone-rails'
+
+# raise timeout error before server timeouts
+gem 'rack-timeout', require: 'rack/timeout/base'

@@ -291,6 +291,8 @@ GEM
       rack (~> 2.0)
     rack-livereload (0.3.17)
       rack
+    rack-mini-profiler (1.0.0)
+      rack (>= 1.2.0)
     rack-protection (2.0.3)
       rack
     rack-test (1.1.0)
@@ -424,6 +426,7 @@ DEPENDENCIES
   premailer-rails
   puma (~> 3.7)
   rack-livereload
+  rack-mini-profiler
   rack-timeout
   rails (~> 5.2)
   recaptcha

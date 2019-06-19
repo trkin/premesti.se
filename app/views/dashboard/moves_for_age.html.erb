@@ -7,8 +7,12 @@
 <br>
 
 <% if @moves.present? %>
-  <% cache ['moves-markers', I18n.locale, latest_move_timestamp] do %>
-    <%= @moves.size %>
+  <% cache ['moves-markers', params[:page], params[:age], I18n.locale, latest_move_timestamp] do %>
+    <h2>
+      <%= Group.short_title_for_age params[:age] %>
+      (<%= paginate_explanation @moves %>)
+    </h2>
+    <%= paginate @moves %>
     <%
       markers = @moves.map { |move| move.to_groups.present? ? [move.from_group.location, move.to_groups.map(&:location)] : nil }.flatten.compact.uniq
       lines = []

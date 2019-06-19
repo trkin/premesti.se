@@ -106,3 +106,6 @@ gem 'browser-timezone-rails'
 
 # raise timeout error before server timeouts
 gem 'rack-timeout', require: 'rack/timeout/base'
+
+# for profiling
+gem 'rack-mini-profiler'

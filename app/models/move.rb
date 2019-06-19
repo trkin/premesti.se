@@ -25,8 +25,6 @@ class Move
   validate :_same_age
   validate :_only_one_from_same_location_and_group, on: :create
 
-  scope :for_age, ->(age) { Move.all(:m).from_group(:g).where(age: age).pluck(:m) }
-
   def group_age_and_locations
     from_group.location.name + ' ' +
       from_group.age_with_short_title + '(↪ ' +

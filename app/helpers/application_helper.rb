@@ -70,4 +70,14 @@ module ApplicationHelper
   def main_app
     Rails.application.class.routes.url_helpers
   end
+
+  def paginate_explanation(records)
+    <<~HERE_DOC
+      #{(records.current_page - 1) * records.per_page + 1}
+      -
+      #{[records.current_page * records.per_page, records.total_count].min}
+      #{t('from_total')}
+      #{records.total_count}
+    HERE_DOC
+  end
 end

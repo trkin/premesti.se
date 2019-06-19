@@ -7,10 +7,14 @@ class DashboardController < ApplicationController
   end
 
   def moves_for_age
-    @moves = if params[:age].present?
-               Move.for_age params[:age].to_i
-             else
-               []
-             end
+    return [] unless params[:age].present?
+
+    @moves = \
+      Move
+      .query_as(:m)
+      .match('(m)-[:CURRENT]-(g)')
+      .where(g: { age: params[:age].to_i })
+      .proxy_as(Move, :m)
+      .page(params[:page])
   end
 end

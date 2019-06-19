@@ -375,6 +375,12 @@ module MapHelper
             });
           }
           map.fitBounds(bounds);
+          // https://developers.google.com/maps/documentation/javascript/examples/overlay-symbol-arrow
+          // Define a symbol using a predefined path (an arrow)
+          // supplied by the Google Maps JavaScript API.
+          var lineSymbol = {
+            path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+          };
           linesJs.forEach(function(line) {
             var geodesicPoly = new google.maps.Polyline({
               strokeColor: ageColors[line.age - 1],
@@ -383,6 +389,10 @@ module MapHelper
               geodesic: true,
               map: map,
               path: line.path,
+              icons: [{
+                icon: lineSymbol,
+                offset: '100%',
+              }],
             });
           });
         } // function initMap

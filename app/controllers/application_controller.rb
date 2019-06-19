@@ -6,10 +6,12 @@ class ApplicationController < ActionController::Base
   # before_action :sleep_some_time # add delay for testing real conditions
   after_action :check_flash_message
   before_action :save_referrer
+  before_action :_redirect_to_trk
 
   # rubocop:disable Metrics/AbcSize
   def check_flash_message
     return unless request.xhr? && request.format.js?
+
     response.body += "flash_alert('#{view_context.j flash.now[:alert]}');" if flash.now[:alert].present?
     response.body += "flash_notice('#{view_context.j flash.now[:notice]}');" if flash.now[:notice].present?
   end
@@ -17,12 +19,13 @@ class ApplicationController < ActionController::Base
 
   def save_referrer
     return if session['referrer'].present?
+
     if params[:utm_campaign].present?
       session[:referrer] = params[:utm_campaign]
     elsif request.env[:HTTP_REFERER].present?
       session[:referrer] = request.env[:HTTP_REFERER]
     else
-      session['referrer'] = 'http://www.premesti.se'
+      session['referrer'] = Constant::DOMAINS[:production][:sr]
     end
   end
 
@@ -57,6 +60,14 @@ class ApplicationController < ActionController::Base
     request.env['devise.skip_trackable'] = true
     sign_in :user, user, byepass: true
     redirect_to root_path, notice: t(:successfully)
+  end
+
+  def _redirect_to_trk
+    return unless %w[premesti.se www.premesti.se sr-latin.premesti.se en.premesti.se].include? request.host
+
+    link = Rails.application.secrets.default_url.symbolize_keys
+    port = (Rails.env.development? ? ":#{link[:port]}" : '')
+    redirect_to request.protocol + Constant::DOMAINS[Rails.env.to_sym][:sr] + port
   end
 
   before_action :configure_permitted_parameters, if: :devise_controller?

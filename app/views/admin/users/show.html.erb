@@ -72,7 +72,8 @@
       <% end %>
     </div>
     <h1>Chats active</h1>
-    <% @user.moves.chats.active.each do |chat| %>
+    <%= paginate @chats_active %>
+    <% @chats_active.each do |chat| %>
       <%= link_to chat.name_for_user(@user), chat_path(chat) %>
       <ul id='active_chat'>
         <% chat.messages.each do |message| %>
@@ -84,7 +85,8 @@
       </ul>
     <% end %>
     <h1>Chats archived</h1>
-    <% @user.moves.chats.archived.each do |chat| %>
+    <%= paginate @chats_archived %>
+    <% @chats_archived.each do |chat| %>
       <%= chat.name_for_user @user %>
       <ul id='archived_chat'>
         <% chat.messages.each do |message| %>
@@ -110,9 +112,10 @@
     <%# <% end %1> %>
   </div>
   <div class='col'>
-    <h1>EmailMessages <%= @user.email_messages.size %></h1>
+    <h1>EmailMessages <%= @email_messages.total_count %></h1>
+    <%= paginate @email_messages %>
     <ul>
-      <% @user.email_messages.each do |email_message| %>
+      <% @email_messages.each do |email_message| %>
         <li>
           <strong>
             <%= email_message.created_at.to_s :short %>

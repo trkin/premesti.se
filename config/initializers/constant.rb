@@ -1,19 +1,19 @@
 class Constant
   DOMAINS = {
     production: {
-      sr: 'www.premesti.se',
-      'sr-latin': 'sr-latin.premesti.se',
-      en: 'en.premesti.se',
+      sr: 'premesti-se.trk.in.rs',
+      'sr-latin': 'sr-latin-premesti-se.trk.in.rs',
+      en: 'en-premesti-se.trk.in.rs',
     },
     development: {
-      sr: 'sr.localhost',
-      'sr-latin': 'sr-latin.localhost',
-      en: 'en.localhost',
+      sr: 'premesti-se-trk.in.localhost',
+      'sr-latin': 'sr-latin-premesti-se.trk.in.localhost',
+      en: 'en-premesti-se.trk.in.localhost',
     },
     test: {
-      sr: 'sr.localhost',
-      'sr-latin': 'sr-latin.localhost',
-      en: 'en.localhost',
+      sr: 'premesti.se.trk.in.localhost',
+      'sr-latin': 'sr-latin.premesti.se.trk.in.localhost',
+      en: 'en.premesti.se.trk.in.localhost',
     },
   }.freeze
 

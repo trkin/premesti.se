@@ -1,10 +1,14 @@
 class Admin::UsersController < AdminController
   before_action :_set_user, except: %i[index]
+
   def show
     if @user.auth.present?
       auth = JSON.parse @user.auth
       @image = auth['info']['image']
     end
+    @chats_active = @user.moves.chats.active.page(params[:page]).per(5)
+    @chats_archived = @user.moves.chats.archived.page(params[:page]).per(5)
+    @email_messages = @user.email_messages.page(params[:page]).per(5)
   rescue JSON::ParserError => e
     flash.now[:alert] = e.message
   end

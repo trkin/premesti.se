@@ -7,5 +7,6 @@ class Admin::ChatsController < AdminController
       @chats = @chats.archived
     end
     @chats = @chats.where(archived_reason: params[:archived_reason]) if params[:archived_reason].present?
+    @chats = @chats.page params[:page]
   end
 end

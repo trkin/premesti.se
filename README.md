@@ -178,9 +178,14 @@ https://premesti.se/* -> https://www.premesti.se/$1
 
 ## New school year
 
-On 01.09 every year we need to increase age. Do not need to create new groups
-for age 1 since we use `Group.find_or_create_by_location_id_and_age`.
-We need to destoy moves for kids that are older than 7.
+On 01.09 every year we need to increase age. But since first results of
+applications are in June, we can show two messages.
+* from June to August: instead of `Mlađa jaslena` we use `od septembra Starija jaslena`
+* from Sep to May: we show `Starija jaslena`
+Do not need to create new groups for age 1 since we use
+`Group.find_or_create_by_location_id_and_age`.
+We need to destroy moves for kids that are older than 7.
+So all we need is to run on 1. September this commands:
 
 ~~~
 Location.all.each {|l| l.groups.query_as(:g).order('g.age DESC').pluck(:g).map { |g| g.age += 1; g.save! } }

@@ -77,6 +77,13 @@ en:
   group_name_for_age_5: Medium
   group_name_for_age_6: Older
   group_name_for_age_7: Pre-school
+  group_name_for_age_1_sept: from sept Younger crib
+  group_name_for_age_2_sept: from sept Older crib
+  group_name_for_age_3_sept: from sept Youth
+  group_name_for_age_4_sept: from sept Medium
+  group_name_for_age_5_sept: from sept Older
+  group_name_for_age_6_sept: from sept Pre-school
+  group_name_for_age_7_sept: from sept school
   born: born
   or: or
   find_on_map: Find on map

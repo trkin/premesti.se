@@ -35,7 +35,14 @@ class Group
   end
 
   def self.short_title_for_age(age)
-    "#{I18n.t("group_name_for_age_#{age}")} #{Group.model_name.human}"
+    # during Jun-Aug, we need to show at which group kids will belong after Sept
+    # since application results (which are available in Juna) are for that
+    # groups (not for current group, which kid will go now)
+    if [6, 7, 8].include? Time.zone.today.month
+      "#{I18n.t("group_name_for_age_#{age}_sept")} #{Group.model_name.human}"
+    else
+      "#{I18n.t("group_name_for_age_#{age}")} #{Group.model_name.human}"
+    end
   end
 
   def age_with_title

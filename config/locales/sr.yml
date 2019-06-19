@@ -93,6 +93,13 @@ sr:
   group_name_for_age_5: Средња
   group_name_for_age_6: Старија
   group_name_for_age_7: Предшколска
+  group_name_for_age_1_sept: од септембра Млађа јаслена
+  group_name_for_age_2_sept: од септембра Старија јаслена
+  group_name_for_age_3_sept: од септембра Млађа
+  group_name_for_age_4_sept: од септембра Средња
+  group_name_for_age_5_sept: од септембра Старија
+  group_name_for_age_6_sept: од септембра Предшколска
+  group_name_for_age_7_sept: од септембра у школи
   born: рођени
   or: или
   find_on_map: Пронађи на мапи

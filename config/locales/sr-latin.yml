@@ -77,6 +77,13 @@ sr-latin:
   group_name_for_age_5: Srednja
   group_name_for_age_6: Starija
   group_name_for_age_7: Predškolska
+  group_name_for_age_1_sept: od septembra Mlađa jaslena
+  group_name_for_age_2_sept: od septembra Starija jaslena
+  group_name_for_age_3_sept: od septembra Mlađa
+  group_name_for_age_4_sept: od septembra Srednja
+  group_name_for_age_5_sept: od septembra Starija
+  group_name_for_age_6_sept: od septembra Predškolska
+  group_name_for_age_7_sept: od septembra u školi
   born: rođeni
   or: ili
   find_on_map: Pronađi na mapi

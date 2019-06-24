@@ -2,8 +2,17 @@
 <div>
   <%= link_to sign_in_as_path(user_id: @user.id) do %>
     sign in as <%= @user.email %>
-    <% if @image.present? %>
-      <%= image_tag @image, class: 'fb-image' %>
+    <% if @user.auth.present? %>
+      <% begin
+           auth = JSON.parse @user.auth
+           @image = auth['info']['image']
+      rescue JSON::ParserError => e
+      end %>
+      <% if @image.present? %>
+        <%= image_tag @image, class: 'fb-image' %>
+      <% else %>
+        <%= @user.auth.first 10 %>
+      <% end %>
     <% end %>
   <% end %>
   <% unless @user.confirmed? %>

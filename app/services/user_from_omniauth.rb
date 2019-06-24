@@ -25,6 +25,7 @@ class UserFromOmniauth
   def perform
     user = _find_existing
     return Result.new('Existing', user: user) if user
+
     user = create_new_with_generated_password
     if user.new_record?
       Error.new user.errors.full_messages.join(', ')
@@ -45,12 +46,13 @@ class UserFromOmniauth
                User.find_by(google_uid: @auth.uid)
              end
     return nil unless user
+
     update_auth user
     user
   end
 
   def update_auth(user)
-    if user.auth != @auth
+    if user.auth != @auth.to_json
       user.auth = @auth.to_json
       if @auth.provider == 'facebook'
         user.facebook_uid = @auth.uid
@@ -74,7 +76,7 @@ class UserFromOmniauth
       password: Devise.friendly_token[0, 20],
       confirmed_at: Time.zone.now,
       locale: I18n.locale,
-      auth: @auth,
+      auth: @auth.to_json,
       initial_referrer: @referrer,
     }
     if @auth.provider == 'facebook'

@@ -103,6 +103,9 @@ GEM
     capistrano-rails (1.4.0)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
+    capistrano-rails-logs-tail (1.0.5)
+      capistrano (>= 3.4.0, < 4.0.0)
+      capistrano-rails
     capistrano-rbenv (2.1.4)
       capistrano (~> 3.1)
       sshkit (~> 1.3)
@@ -314,13 +317,10 @@ GEM
       rack (~> 2.0)
     rack-livereload (0.3.17)
       rack
-    rack-mini-profiler (1.0.0)
-      rack (>= 1.2.0)
     rack-protection (2.0.3)
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
-    rack-timeout (0.5.1)
     rails (5.2.1)
       actioncable (= 5.2.1)
       actionmailer (= 5.2.1)
@@ -427,6 +427,7 @@ DEPENDENCIES
   capistrano (~> 3.11)
   capistrano-passenger (~> 0.2.0)
   capistrano-rails (~> 1.4)
+  capistrano-rails-logs-tail
   capistrano-rbenv (~> 2.1, >= 2.1.4)
   capistrano-sidekiq
   capybara (~> 2.13)
@@ -457,8 +458,6 @@ DEPENDENCIES
   premailer-rails
   puma (~> 3.7)
   rack-livereload
-  rack-mini-profiler
-  rack-timeout
   rails (~> 5.2)
   recaptcha
   redis

@@ -32,6 +32,7 @@ group :development do
   gem 'capistrano', '~> 3.11'
   gem 'capistrano-passenger', '~> 0.2.0'
   gem 'capistrano-rails', '~> 1.4'
+  gem 'capistrano-rails-logs-tail'
   gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
   gem 'capistrano-sidekiq'
 end
@@ -109,8 +110,5 @@ gem 'kaminari-neo4j'
 # sets timezone based on browser timezone for each request
 gem 'browser-timezone-rails'
 
-# raise timeout error before server timeouts
-gem 'rack-timeout', require: 'rack/timeout/base'
-
 # for profiling
-gem 'rack-mini-profiler'
+# gem 'rack-mini-profiler'

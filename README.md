@@ -143,7 +143,15 @@ You can pause test with `byebug` and open neo4j <http://localhost:7047/browser/>
 
 ## Production
 
-It is currently deployed to Heroku using free services. For graph database I use
+It is currently deployed to my computer using capistrano 3.
+
+```
+cap production deploy
+```
+
+## Staging
+
+Staging can be deployed to Heroku using free services. For graph database I use
 my own hosting since GrapheneDB has very low limit for free tier.
 Since we are using npm, we need to add buildpack
 
@@ -161,7 +169,7 @@ rails neo4j:restart[development]
 rake neo4j:migrate
 ~~~
 
-Cloudflare points directly for https herokuapp.
+Cloudflare points directly on https herokuapp.
 Use root domain `@` and `www`, `en` and `sr-latin` domain to point to herokuappp
 ```
 CNAME premesti.se is an alias of premesti-se.herokuapp.com

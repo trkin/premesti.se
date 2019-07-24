@@ -14,6 +14,13 @@ class Select2LocationsServiceTest < ActiveSupport::TestCase
     assert_equal [my_location.id], result_ids_for_term('My_Location')
   end
 
+  test 'filter by address' do
+    city = create :city
+    my_location = create :location, city: city, name: 'my_location_name', address: 'my_address'
+    _another_location = create :location, city: city, name: 'another_location_name'
+    assert_equal [my_location.id], result_ids_for_term('my_Address')
+  end
+
   test 'filter by different language' do
     city = create :city
     my_location = create :location, city: city, name: 'my_location_name'

@@ -6,7 +6,7 @@ class Select2LocationsService
 
   def perform
     query = I18n.available_locales.map do |locale|
-      "location.`name_#{locale}` =~ {term}"
+      "location.`name_#{locale}` =~ {term} OR location.`address_#{locale}` =~ {term}"
     end.join(' OR ')
     results = Location.query_as(:location)
                       .where(query)

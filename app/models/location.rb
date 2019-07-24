@@ -18,6 +18,7 @@ class Location
   def create_groups(ages)
     ages.each do |age|
       next unless age.positive?
+
       Group.create location: self, age: age
     end
   end

@@ -49,7 +49,7 @@ en:
   successfully_unsubscribed_from_item_name: Successfully unsubscribed so you wont get %{item_name}
   you_can_adjust_all_your_mailing_settings_in_link_name: You can adjust all your mailing settings in %{link_name}
   you_unsubscribed_for_user_email_but_you_are_still_logged_in_as_name: You unscribed for user %{user_email} but you are still logged in as %{logged_in_as_name}
-  notifications_for_new_match: match and chat notification
+  notifications_for_new_match: match and chat notification, ie to remove the move,
   notifications_for_news: news notifications
   continue: Continue
   add_another_location: Add another location
@@ -204,3 +204,4 @@ en:
   phone_or_email_address_will_be_shown: Email will be shown to other participants when there is a match
   if_you_do_not_want_to_receive_notification_for_new_math_please_delete_your_account_link_name: If you do not want to receive notifications for new match and chat than delete your account on <a href='%{link_name}'>this page</a>
   from_total: from total
+  can_not_find_move_id_name: Can not find move #{id_name}

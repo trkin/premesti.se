@@ -81,7 +81,7 @@
     </div>
     <span class='email-footer'>
       <%= link_to t('site_title'), root_url %> <%= t('site_description') %><br>
-      <%= t('unsubscribe_from_type_name_and_link', type_name: t(@unsubscribe_type), link: unsubscribe_url(unsubscribe_token: @unsubscribe_token)).html_safe %><br>
+      <%= t('unsubscribe_from_type_name_and_link', type_name: t(UserUnsubscribe.find_unsubscribe_type @tag), link: unsubscribe_url(unsubscribe_token: @unsubscribe_token)).html_safe %><br>
     </span>
   </body>
 </html>

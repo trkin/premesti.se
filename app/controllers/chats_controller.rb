@@ -51,7 +51,7 @@ class ChatsController < ApplicationController
             else
               @current_user.moves.chats.where(id: params[:id]).first
             end
-    raise Neo4j::ActiveNode::Labels::RecordNotFound unless @chat
+    redirect_to root_path, alert: t('this_move_does_not_belong_to_you') unless @chat
   end
 
   def _message_params

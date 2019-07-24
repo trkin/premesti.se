@@ -116,30 +116,6 @@ class User
     destroy
   end
 
-  def self.find_subscribe_type(tag)
-    case tag
-    when :new_match
-      :notifications_for_new_match
-    else
-      :notifications_for_news
-    end
-  end
-
-  def unsubscribe_from_type(subscribe_type)
-    case subscribe_type.to_s.to_sym
-    when :notifications_for_new_match
-      self.subscribe_to_new_match = false
-      message = I18n.t('successfully_unsubscribed_from_item_name', item_name: I18n.t('notifications_for_new_match'))
-    when :notifications_for_news
-      self.subscribe_to_news_mailing_list = false
-      message = I18n.t('successfully_unsubscribed_from_item_name', item_name: I18n.t('notifications_for_news'))
-    else
-      raise "can_not_find_subscribe_type #{subscribe_type}"
-    end
-    save!
-    Result.new message
-  end
-
   # This method overwrites devise's own `send_devise_notification`
   # message = devise_mailer.send(notification, self, *args)
   # message.deliver_now

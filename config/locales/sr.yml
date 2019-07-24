@@ -62,7 +62,7 @@ sr:
     нотификације у %{link_name}
   you_unsubscribed_for_user_email_but_you_are_still_logged_in_as_name: Ви сте се одјавили
     са нотификација за корисника %{user_email} али ви сте још увек улоговани као %{logged_in_as_name}
-  notifications_for_new_match: обавештења за нова поклапања и договарања
+  notifications_for_new_match: обавештења за нова поклапања и договарања, тј. да обришете жељени вртић
   notifications_for_news: обавештења за новости
   continue: Настави
   add_another_location: Додај још један вртић
@@ -249,3 +249,4 @@ sr:
   phone_or_email_address_will_be_shown: Kорисници са којима се деси поклапање моћи ће да виде овај телефон или имејл адресу
   if_you_do_not_want_to_receive_notification_for_new_math_please_delete_your_account_link_name: Ако више не желите да примате обавештења о новим поклапањима и договарањима, обришите ваш налог на <a href='%{link_name}'>овој страници</a>
   from_total: од укупно
+  can_not_find_move_id_name: Ne mogu da nadjem želju za premeštajem

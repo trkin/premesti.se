@@ -77,9 +77,10 @@ class PagesController < ApplicationController
   end
 
   def unsubscribe
-    user_id, subscribe_type = Rails.application.message_verifier(:unsubscribe_generation).verify params[:unsubscribe_token]
+    user_id, unsubscribe_type, data = UserUnsubscribe.user_id_unsubscribe_type_and_data_from_token \
+      params[:unsubscribe_token]
     @user = User.find user_id
-    result = @user.unsubscribe_from_type subscribe_type
+    result = UserUnsubscribe.new(@user).perform unsubscribe_type, data
     @message = result.message
   end
 

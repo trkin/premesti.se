@@ -5,8 +5,9 @@ class ApplicationMailer < ActionMailer::Base
 
   def mail(attr)
     user = _find_user
-    @unsubscribe_type = User.find_subscribe_type(@tag)
-    @unsubscribe_token = Rails.application.message_verifier(:unsubscribe_generation).generate([user.id, @unsubscribe_type])
+    data_for_token = { move_id: @move&.id }
+    unsubscribe_type = UserUnsubscribe.find_unsubscribe_type @tag
+    @unsubscribe_token = UserUnsubscribe.generate_token user.id, unsubscribe_type, data_for_token
     res = nil
     I18n.with_locale user.locale do
       domain = Constant::DOMAINS[Rails.env.to_sym][I18n.locale]

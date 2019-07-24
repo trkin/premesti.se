@@ -21,7 +21,9 @@ class UserMailer < ApplicationMailer
   end
 
   def new_message(move_id, message_id)
-    @move = Move.find move_id
+    @move = Move.find_by id: move_id
+    return unless @move # it could be that user deleted account
+
     @message = Message.find message_id
     @tag = __method__
     return unless @move.user.subscribe_to_new_match

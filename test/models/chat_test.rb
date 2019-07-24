@@ -31,7 +31,7 @@ class ChatTest < ActiveSupport::TestCase
     assert result.success?
     chat = Chat.last
 
-    expected = [g_d, g_a, g_b, g_c, g_d].map { |g| g.location.name + '()' }.join " #{Constant::ARROW_CHAR} "
+    expected = [g_d, g_a, g_b, g_c, g_d].map { |g| g.location.name }.join " #{Constant::ARROW_CHAR} "
     assert_equal expected, chat.name_with_arrows
   end
 

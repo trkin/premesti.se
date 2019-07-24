@@ -149,6 +149,12 @@ It is currently deployed to my computer using capistrano 3.
 cap production deploy
 ```
 
+To dump you can use the script
+
+```
+bin/dump_db.sh
+```
+
 ## Staging
 
 Staging can be deployed to Heroku using free services. For graph database I use

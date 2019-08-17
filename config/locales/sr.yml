@@ -250,3 +250,4 @@ sr:
   if_you_do_not_want_to_receive_notification_for_new_math_please_delete_your_account_link_name: Ако више не желите да примате обавештења о новим поклапањима и договарањима, обришите ваш налог на <a href='%{link_name}'>овој страници</a>
   from_total: од укупно
   can_not_find_move_id_name: Ne mogu da nadjem želju za premeštajem
+  blog: Vesti

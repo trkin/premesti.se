@@ -21,12 +21,12 @@
 - CONSTRAINT ON ( location:Location ) ASSERT location.uuid IS UNIQUE
 - CONSTRAINT ON ( message:Message ) ASSERT message.uuid IS UNIQUE
 - CONSTRAINT ON ( move:Move ) ASSERT move.uuid IS UNIQUE
+- CONSTRAINT ON ( user:User ) ASSERT user.email IS UNIQUE
 - CONSTRAINT ON ( user:User ) ASSERT user.uuid IS UNIQUE
 :indexes:
 - INDEX ON :Chat(status)
 - INDEX ON :Message(status)
 - INDEX ON :User(confirmation_token)
-- INDEX ON :User(email)
 - INDEX ON :User(remember_token)
 - INDEX ON :User(reset_password_token)
 - INDEX ON :User(status)
@@ -44,3 +44,4 @@
 - '20180912112838'
 - '20180912134929'
 - '20180913085028'
+- '20190724121203'

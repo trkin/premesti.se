@@ -206,3 +206,4 @@ sr-latin:
   phone_or_email_address_will_be_shown: Vidljiva imejl adresa znači da će korisnici sa kojima se desi poklapanje moći da je vide
   if_you_do_not_want_to_receive_notification_for_new_math_please_delete_your_account_link_name: Ako više ne želite da primate obaveštenja o novim poklapanjima i dogovaranjima, obrišite vaš nalog na <a href='%{link_name}'>ovoj stranici</a>
   from_total: od ukupno
+  blog: Vesti

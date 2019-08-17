@@ -149,6 +149,14 @@ It is currently deployed to my computer using capistrano 3.
 cap production deploy
 ```
 
+When you update a blog pages than you need to build and commit changes
+
+```
+cd blog
+jekyll s
+
+```
+
 To dump you can use the script
 
 ```

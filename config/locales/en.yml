@@ -205,3 +205,4 @@ en:
   if_you_do_not_want_to_receive_notification_for_new_math_please_delete_your_account_link_name: If you do not want to receive notifications for new match and chat than delete your account on <a href='%{link_name}'>this page</a>
   from_total: from total
   can_not_find_move_id_name: Can not find move #{id_name}
+  blog: Blog

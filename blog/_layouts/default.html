@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {%- include head.html -%}
+
+  <body class='background-gradient'>
+
+    <nav class="navbar p-0">
+      <a class="navbar-brand d-none d-sm-block" href="/">
+        {{ site.data.t['title'][page.lang] }}
+      </a>
+      <div class="ml-auto">
+        <a href='/'>{{ site.data.t['dashboard'][page.lang] }}</a>
+      </div>
+    </nav>
+
+    {{ content }}
+
+  </body>
+
+</html>

@@ -17,6 +17,8 @@ class Constant
     },
   }.freeze
 
+  BLOG_PATH = '/blog/'.freeze
+
   COLORS = {
     a: '#b13ede',
     b: '#7cd7f7',

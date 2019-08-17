@@ -4,7 +4,7 @@
   bc_y_offset = 65
   last_chats = Chat.active.query_as(:c).order('c.created_at DESC').limit(1).pluck(:c)
 %>
-<div class="background-color">
+<div class="background-gradient">
   <nav class="navbar p-0">
     <%= render 'layouts/choose_language' %>
     <a class="navbar-brand d-none d-sm-block" href="/">
@@ -16,6 +16,7 @@
           <% if current_user.admin? %>
             <%= link_to t("admin_dashboard"), admin_dashboard_path %>
           <% end %>
+          <%= link_to t('blog'), Constant::BLOG_PATH %>
           <%= link_to t('dashboard'), dashboard_path %>
         </div>
       <% else %>
@@ -27,7 +28,7 @@
             <% end %>
           </small>
         <% end %>
-        <%= link_to t('blog'), '/blog' %>
+        <%= link_to t('blog'), Constant::BLOG_PATH %>
         <%# <%= link_to t("register"), new_user_registration_path %1> %>
         <%# | %>
         <%= link_to t("sign_in"), new_user_session_path %>

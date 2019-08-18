@@ -6,15 +6,17 @@
   <body class='background-gradient'>
 
     <nav class="navbar p-0">
-      <a class="navbar-brand d-none d-sm-block" href="/">
+      <a class="nav-link" href="/">
         {{ site.data.t['title'][page.lang] }}
       </a>
-      <div class="ml-auto">
-        <a href='/'>{{ site.data.t['dashboard'][page.lang] }}</a>
+      <div class="nav-link ml-auto">
+        <a href='/blog/'>{{ site.data.t['dashboard'][page.lang] }}</a>
       </div>
     </nav>
 
-    {{ content }}
+    <div class='container'>
+      {{ content }}
+    </div>
 
   </body>
 

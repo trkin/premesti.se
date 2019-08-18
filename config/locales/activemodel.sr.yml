@@ -2,14 +2,14 @@ sr:
   activemodel:
     attributes:
       landing_signup:
-        current_city: Који је твој град ?
-        current_location: Која је твоја тренутна локација ?
-        from_group_age: Којој групи припадаш ?
-        to_location: На коју локацију тражиш премештај ?
-        email: Који је твој имејл ?
+        current_city: Изабери град
+        current_location: Изабери тренутну локацију
+        from_group_age: Изабери групу
+        to_location: Изабери жељену локацију
+        email: Упиши имејл
         visible_email_address: Видљива имејл адреса ?
-        password: Лозинка за овај сајт ?
-        phone_number: Broj telefona
+        password: Упиши лозинку
+        phone_number: Упиши телефон
         subscribe_to_new_match: Пријави ме за имејл обавештења за нова поклапања и договарања
         subscribe_to_news_mailing_list: Пријави ме за имејл обавештења за новости
         submit: Обавести ме

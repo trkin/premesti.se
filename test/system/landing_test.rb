@@ -11,13 +11,12 @@ class LandingTest < ApplicationSystemTestCase
 
     visit root_url
     # select from_group.location.city.name, from: t('activemodel.attributes.landing_signup.current_city')
-    select2_ajax from_group.location.name_with_address, text: t('activemodel.attributes.landing_signup.current_location')
+    select2_ajax from_group.location.name_with_address, text: nil, selector: '#select2-current_location-container'
     select from_group.age_with_title, from: t('activemodel.attributes.landing_signup.from_group_age')
-    select2_ajax to_location.name_with_address, text: t('activemodel.attributes.landing_signup.to_location')
+    select2_ajax to_location.name_with_address, text: nil, selector: '#select2-to_location-container'
     fill_in t('activemodel.attributes.landing_signup.email'), with: email
     check LandingSignup.human_attribute_name(:visible_email_address)
     fill_in t('activemodel.attributes.landing_signup.password'), with: '1234567'
-    click_on t'continue'
     check LandingSignup.human_attribute_name(:subscribe_to_new_match)
     check LandingSignup.human_attribute_name(:subscribe_to_news_mailing_list)
     assert_difference 'Move.count', 1 do
@@ -68,5 +67,22 @@ class LandingTest < ApplicationSystemTestCase
     assert_equal [reverse_move.user.email], new_match_for_him.to
     assert_match "#{t('new_match')} #{from_group.location.name}", new_match_for_me.subject
     assert_match "#{t('new_match')} #{reverse_move.from_group.location.name}", new_match_for_him.subject
+  end
+
+  test 'sign up on move page' do
+    email = 'my@email.com'
+    move = create :move
+    visit my_move_path move, move.group_age_and_locations
+
+    select2_ajax move.from_group.location.name_with_address, text: t('activemodel.attributes.landing_signup.current_location')
+    fill_in t('activemodel.attributes.landing_signup.email'), with: email
+    fill_in t('activemodel.attributes.landing_signup.password'), with: '1234567'
+    check LandingSignup.human_attribute_name(:subscribe_to_new_match)
+
+    assert_difference 'User.count', 1 do
+      click_on t('activemodel.attributes.landing_signup.submit')
+    end
+    user = User.find_by email: email
+    assert_kind_of User, user
   end
 end

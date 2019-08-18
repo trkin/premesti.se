@@ -1,4 +1,5 @@
 module MoveHelper
+  #  image_tag move_static_map_url(move), class: 'show-lines-map-container'
   def move_static_map_url(move)
     show_static_lines_map_url(
       move.from_group.location,
@@ -7,8 +8,10 @@ module MoveHelper
     )
   end
 
-  def move_static_map(move)
-    image_tag move_static_map_url(move), class: 'show-lines-map-container'
+  # image_tag chat_static_map_url(chat)
+  def chat_static_map_url(chat)
+    locations = chat.ordered_moves.map(&:from_group).map(&:location)
+    show_static_circle_map_url locations
   end
 
   def move_share_link(move, opts = {})

@@ -2,14 +2,14 @@ sr-latin:
   activemodel:
     attributes:
       landing_signup:
-        current_city: Koji je tvoj grad ?
-        current_location: Koja je tvoja trenutna lokacija ?
-        from_group_age: Kojoj grupi pripadaš ?
-        to_location: Na koju lokaciju tražiš premeštaj ?
-        email: Koji je tvoj imejl ?
+        current_city: Izaberi grad
+        current_location: Izaberi trenutnu lokaciju
+        from_group_age: Izaberi grupu
+        to_location: Izaberi željenu lokaciju
+        email: Upiši imejl
         visible_email_address: Vidljiva imejl adresa ?
-        password: Lozinka za ovaj sajt ?
-        phone_number: Број телефона
+        password: Upiši lozinku
+        phone_number: Upiši telefon
         subscribe_to_new_match: Prijavi me za imejl obaveštenja za nova poklapanja i dogovaranja
         subscribe_to_news_mailing_list: Prijavi me za imejl obaveštenja za novosti
         submit: Obavesti me

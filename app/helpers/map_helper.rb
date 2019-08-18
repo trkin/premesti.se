@@ -181,6 +181,7 @@ module MapHelper
     url
   end
 
+  # image_tag show_static_circle_map_url(locations, options), class: options[:class]
   def show_static_circle_map_url(locations, options = {})
     url = '//maps.googleapis.com/maps/api/staticmap?'
     url += 'size=600x315'
@@ -203,10 +204,6 @@ module MapHelper
 
   def show_static_lines_map(from_location, to_locations, options = {})
     image_tag show_static_lines_map_url(from_location, to_locations, options), class: options[:class]
-  end
-
-  def show_static_circle_map(locations, options = {})
-    image_tag show_static_circle_map_url(locations, options), class: options[:class]
   end
 
   def show_map(object, options = {})

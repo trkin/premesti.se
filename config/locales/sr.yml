@@ -13,7 +13,7 @@ sr:
     онда могу поднети захтеве за премештај. Захтеви не морају бити усвојени из разних
     разлога (преоптерећености групе итд.), али ова комуникација свакако може да помогне
     у процесу пребацивања. Молимо Вас да не постављате лажне жеље.
-  please_select: Молим изаберите
+  please_select: Молим изаберитеizaberite
   select: Изаберите
   where_do_you_want_to_move: Где хоћеш да се преместиш ?
   abc:
@@ -103,7 +103,7 @@ sr:
   born: рођени
   or: или
   find_on_map: Пронађи на мапи
-  or_choose_any_on_map: или изабери неки на мапи
+  or_choose_any_on_map: или изабери неку на мапи
   add_later: Додај касније
   problem_with_account: Проблем са налогом ?
   send: Пошаљи
@@ -249,5 +249,5 @@ sr:
   phone_or_email_address_will_be_shown: Kорисници са којима се деси поклапање моћи ће да виде овај телефон или имејл адресу
   if_you_do_not_want_to_receive_notification_for_new_math_please_delete_your_account_link_name: Ако више не желите да примате обавештења о новим поклапањима и договарањима, обришите ваш налог на <a href='%{link_name}'>овој страници</a>
   from_total: од укупно
-  can_not_find_move_id_name: Ne mogu da nadjem želju za premeštajem
-  blog: Vesti
+  can_not_find_move_id_name: Не могу да надјем жељу за премештајем
+  blog: Блог

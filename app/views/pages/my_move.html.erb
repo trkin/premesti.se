@@ -4,10 +4,10 @@
   meta_tags 'og:url': request.url, 'og:type': 'website', 'og:title': @move.group_age_and_locations, 'og:description': strip_tags(headline), 'og:image': move_static_map_url(@move), 'image:width': '600', 'image:height': '315', 'fb:app_id': Rails.application.secrets.FACEBOOK_APP_ID, 'place:location:latitude': @move.from_group.location.latitude, 'place:location:longitude': @move.from_group.location.longitude
   site_description "#{t('site_title')} #{@move.from_group.location.name} #{@move.to_groups.map(&:location).map(&:name).join}"
 %>
-<div class="background-color text-center">
+<div class="text-center">
   <nav class="navbar p-0">
     <%= render 'layouts/choose_language' %>
-    <a class="navbar-brand d-none d-sm-block" href="/">
+    <a class="navbar-brand" href="/">
       <%= t 'site_title' %>
     </a>
     <div class="m-auto">
@@ -51,12 +51,26 @@
       </div>
       <% unless current_user %>
         <div class=''>
-          <%= f.text_field :email, 'data-select-target': '#password', 'data-prevent-submit-on-enter': '#email-continue', id: 'email' %>
+          <%= f.text_field :email %>
         </div>
         <div>
-          <%= f.password_field :password, id: 'password' %>
+          <%= f.password_field :password %>
         </div>
-      <% end # unless current_user %>
+        <%= f.form_group do %>
+          <%= f.label :visible_email_address %>
+          <%= f.check_box :visible_email_address, hide_label: true %>
+        <% end %>
+        <%= help_icon t('phone_or_email_address_will_be_shown') %>
+        <%= f.text_field :phone_number, size: 10 %>
+        <%= f.form_group do %>
+          <%= f.label :subscribe_to_new_match %>
+          <%= f.check_box :subscribe_to_new_match, required: true, hide_label: true %>
+        <% end %>
+        <%= f.form_group do %>
+          <%= f.label :subscribe_to_news_mailing_list %>
+          <%= f.check_box :subscribe_to_news_mailing_list, hide_label: true %>
+        <% end %>
+      <% end %><%# unless current_user %>
       <div class=''>
         <%= f.button type: :submit, class: 'btn btn-primary' do %>
           <i class="fa fa-envelope" aria-hidden="true"></i>

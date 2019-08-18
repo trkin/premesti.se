@@ -22,22 +22,19 @@ class Chat
     @ordered_moves = query_as(:c).match('(c)-[r:MATCHES]-(m:Move)').order('r.order').pluck(:m)
   end
 
-  def name_with_arrows_and_email_and_phone
-    name_with_arrows true
-  end
-
-  def name_with_arrows(show_email_with_phone = false)
+  def name_with_arrows(email_and_phone: false)
     return I18n.t('all_moves_are_deleted') unless moves.present?
 
     return @name_with_arrows if @name_with_arrows.present?
 
     @name_with_arrows = ([ordered_moves.last] + ordered_moves).map do |m|
-      m.from_group.location.name + (show_email_with_phone ? "(#{m.user.email_with_phone_if_present})" : '')
+      m.from_group.location.name + \
+        (email_and_phone && m.user.email_with_phone_if_present ? "(#{m.user.email_with_phone_if_present})" : '')
     end.join(" #{Constant::ARROW_CHAR} ")
   end
 
   def name_for_user(_user)
-    name_with_arrows
+    name_with_arrows email_and_phone: true
   end
 
   def from_location_for_user(user)
@@ -76,7 +73,7 @@ class Chat
       # chat.moves << move
       Matches.create from_node: chat, to_node: move, order: i
     end
-    Message.create! chat: chat, text: I18n.t('new_match_for_moves', moves: chat.name_with_arrows_and_email_and_phone)
+    Message.create! chat: chat, text: I18n.t('new_match_for_moves', moves: chat.name_with_arrows(email_and_phone: true))
     moves.each do |move|
       next unless move.user.initial_chat_message.present?
 

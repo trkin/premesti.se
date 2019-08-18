@@ -17,7 +17,12 @@ $(document).on 'turbolinks:load', ->
         url: url
         dataType: 'json'
       }
+      width: 'resolve'
     }
+    if $(this).attr 'placeholder'
+      options['placeholder'] = $(this).attr 'placeholder'
+    else
+      options['placeholder'] = '<%= I18n.translate 'please_select' %>'
     $(this).select2 options
     # click on label should trigger open and focus
     # https://github.com/select2/select2/issues/2311#issuecomment-180666626
@@ -38,7 +43,7 @@ $(document).on 'turbolinks:load', ->
 
 determine_language = ->
   switch window.location.hostname
-    when '<%= Constant::DOMAINS[Rails.env.to_sym][:sr] %>' then 'sr-Cyrl'
-    when '<%= Constant::DOMAINS[Rails.env.to_sym][:'sr-latin'] %>' then 'sr'
-    when '<%= Constant::DOMAINS[Rails.env.to_sym][:en] %>' then 'en'
+    when '<%= Constant::DOMAINS[Rails.env.production? ? :production : :development][:sr] %>' then 'sr-Cyrl'
+    when '<%= Constant::DOMAINS[Rails.env.production? ? :production : :development][:'sr-latin'] %>' then 'sr'
+    when '<%= Constant::DOMAINS[Rails.env.production? ? :production : :development][:en] %>' then 'en'
 

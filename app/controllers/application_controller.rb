@@ -67,7 +67,7 @@ class ApplicationController < ActionController::Base
 
     link = Rails.application.secrets.default_url.symbolize_keys
     port = (Rails.env.development? ? ":#{link[:port]}" : '')
-    redirect_to request.protocol + Constant::DOMAINS[Rails.env.to_sym][:sr] + port
+    redirect_to request.protocol + Constant::DOMAINS[Rails.env.production? ? :production : :development][:sr] + port
   end
 
   before_action :configure_permitted_parameters, if: :devise_controller?

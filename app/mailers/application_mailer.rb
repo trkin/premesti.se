@@ -10,7 +10,7 @@ class ApplicationMailer < ActionMailer::Base
     @unsubscribe_token = UserUnsubscribe.generate_token user.id, unsubscribe_type, data_for_token
     res = nil
     I18n.with_locale user.locale do
-      domain = Constant::DOMAINS[Rails.env.to_sym][I18n.locale]
+      domain = Constant::DOMAINS[Rails.env.production? ? :production : :development][I18n.locale]
       ActionMailer::Base.default_url_options[:host] = domain
       attr[:subject] = attr[:subject].call if attr[:subject].is_a? Proc
       res = super(attr)

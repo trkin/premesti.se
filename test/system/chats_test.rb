@@ -37,9 +37,7 @@ class ChatsTest < ApplicationSystemTestCase
     move_ab.reload
     click_on move_ab.group_age_and_locations
     find('label', text: t('add_request_location_for_move_from_location_name', location_name: move_ab.from_group.location.name)).click
-    select2_ajax location_b.name_with_address, selector:
-      'span.select2-selection__rendered', text:
-      t('activemodel.attributes.landing_signup.to_location')
+    select2_ajax location_b.name_with_address, text: nil, selector: '#select2-to_location_id-container'
     old = FindMatchesForOneMove::MAX_LENGTH_OF_THE_ROTATION
     FindMatchesForOneMove::MAX_LENGTH_OF_THE_ROTATION = 3
     click_on t('add')

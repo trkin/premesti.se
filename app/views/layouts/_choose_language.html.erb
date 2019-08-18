@@ -11,9 +11,9 @@
       <% end %>
     </a>
     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <li class="dropdown-item"><a href="<%= root_url subdomain: nil, domain: Constant::DOMAINS[Rails.env.to_sym][:sr] %>"><%= image_tag 'flag-serbia.png' %> <%= t('current_language', locale: :sr) %></a></li>
-      <li class="dropdown-item"><a href="<%= root_url subdomain: nil, domain: Constant::DOMAINS[Rails.env.to_sym][:'sr-latin'] %>"><%= image_tag 'flag-serbia.png' %> <%= t('current_language', locale: :'sr-latin') %></a></li>
-      <li class="dropdown-item"><a href="<%= root_url subdomain: nil, domain: Constant::DOMAINS[Rails.env.to_sym][:en] %>"><%= image_tag 'flag-usa.png' %> <%= t('current_language', locale: :en) %></a></li>
+      <li class="dropdown-item"><a href="<%= root_url subdomain: nil, domain: Constant::DOMAINS[Rails.env.production? ? :production : :development][:sr] %>"><%= image_tag 'flag-serbia.png' %> <%= t('current_language', locale: :sr) %></a></li>
+      <li class="dropdown-item"><a href="<%= root_url subdomain: nil, domain: Constant::DOMAINS[Rails.env.production? ? :production : :development][:'sr-latin'] %>"><%= image_tag 'flag-serbia.png' %> <%= t('current_language', locale: :'sr-latin') %></a></li>
+      <li class="dropdown-item"><a href="<%= root_url subdomain: nil, domain: Constant::DOMAINS[Rails.env.production? ? :production : :development][:en] %>"><%= image_tag 'flag-usa.png' %> <%= t('current_language', locale: :en) %></a></li>
     </ul>
   </div>
 <% end %>

@@ -46,7 +46,7 @@ module ApplicationHelper
 
   def link_for_current_user_locale
     # clear subdomain www and change domain
-    link = root_url(subdomain: nil, domain: Constant::DOMAINS[Rails.env.to_sym][current_user.locale.to_sym])
+    link = root_url(subdomain: nil, domain: Constant::DOMAINS[Rails.env.production? ? :production : :development][current_user.locale.to_sym])
     "<a href='#{link}'>#{link}</a>"
   end
 

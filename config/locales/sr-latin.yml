@@ -5,7 +5,7 @@ sr-latin:
   site_description_2: radi pronalaženja zamene
   site_description_3: mesta u vrtićima
   site_disclaimer: Ovaj sajt nije povezan sa Predškolskim ustanovama već služi za dogovor oko pronalaženja rokada već upisane dece u vrtićima. Kada se roditelji dogovore onda mogu podneti zahteve za premeštaj. Zahtevi ne moraju biti usvojeni iz raznih razloga (preopterećenosti grupe itd.), ali ova komunikacija svakako može da pomogne u procesu prebacivanja. Molimo Vas da ne postavljate lažne želje.
-  please_select: Molim izaberite
+  please_select: Molim izaberite izaberite
   select: Izaberite
   where_do_you_want_to_move: Gde hoćeš da se premestiš ?
   abc:
@@ -87,7 +87,7 @@ sr-latin:
   born: rođeni
   or: ili
   find_on_map: Pronađi na mapi
-  or_choose_any_on_map: ili izaberi neki na mapi
+  or_choose_any_on_map: ili izaberi neku na mapi
   add_later: Dodaj kasnije
   problem_with_account: Problem sa nalogom ?
   send: Pošalji
@@ -206,4 +206,4 @@ sr-latin:
   phone_or_email_address_will_be_shown: Vidljiva imejl adresa znači da će korisnici sa kojima se desi poklapanje moći da je vide
   if_you_do_not_want_to_receive_notification_for_new_math_please_delete_your_account_link_name: Ako više ne želite da primate obaveštenja o novim poklapanjima i dogovaranjima, obrišite vaš nalog na <a href='%{link_name}'>ovoj stranici</a>
   from_total: od ukupno
-  blog: Vesti
+  blog: Blog

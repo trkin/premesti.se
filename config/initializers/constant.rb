@@ -10,11 +10,6 @@ class Constant
       'sr-latin': 'sr-latin-premesti-se.trk.in.localhost',
       en: 'en-premesti-se.trk.in.localhost',
     },
-    test: {
-      sr: 'premesti.se.trk.in.localhost',
-      'sr-latin': 'sr-latin.premesti.se.trk.in.localhost',
-      en: 'en.premesti.se.trk.in.localhost',
-    },
   }.freeze
 
   BLOG_PATH = '/blog/'.freeze

@@ -4,7 +4,7 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
   test 'should get index' do
     get '/'
     assert_response :success
-    assert_select 'label', t('activemodel.attributes.landing_signup.current_location')
+    assert_select 'a', t('sign_in')
   end
 
   test 'landing signup success' do

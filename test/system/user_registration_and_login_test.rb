@@ -138,7 +138,7 @@ class UsersTest < ApplicationSystemTestCase
   test 'register new user in non default url' do
     email = 'new@email.com'
     password = 'some_password'
-    visit new_user_registration_url host: Constant::DOMAINS[:test][:sr]
+    visit new_user_registration_url host: Constant::DOMAINS[:development][:sr]
     fill_in t('neo4j.attributes.user.email', locale: :sr), with: email
     fill_in t('neo4j.attributes.user.password', locale: :sr), with: password
     fill_in t('neo4j.attributes.user.password_confirmation', locale: :sr), with: password

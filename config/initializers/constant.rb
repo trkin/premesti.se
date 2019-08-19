@@ -15,16 +15,13 @@ class Constant
   BLOG_PATH = '/blog/'.freeze
 
   COLORS = {
-    a: '#b13ede',
-    b: '#7cd7f7',
-    c: '#fdcc00',
   }.freeze
 
   # 0..6
   AGE_COLORS = [
-    COLORS[:a],
-    COLORS[:b],
-    COLORS[:c],
+    '#b13ede',
+    '#7cd7f7',
+    '#fdcc00',
     '#e63232',
     '#4eab31',
     '#722ada',

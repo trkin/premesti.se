@@ -1,9 +1,10 @@
 ---
+# NOTE that you can not import css file, it needs to be sass/scss
+# import "file.css" # this will not be imported at compile time, but in browser
+# import "file" # this will search for file.sass and import at compile time
 ---
 
 $enable-gradients: true
 @import '../../node_modules/bootstrap/scss/bootstrap'
-
-@import '../../app/assets/stylesheets/pangolin.font.css'
-
+@import '../../app/assets/stylesheets/pangolin.font'
 @import 'common'

@@ -39,15 +39,13 @@
     <%= f.hidden_field :current_city %>
     <div class='my-move m-3 d-flex flex-wrap align-items-start justify-content-center'>
       <div class=''>
-        <%= f.select :current_location, @landing_signup.already_selected_current_location_options, {}, id: 'current_location', 'data-select2-ajax-initialize': select2_locations_path %>
-        <%= link_to t('or_choose_any_on_map'), find_on_map_path(select_element: '#current_location'), "data-toggle": "modal", "data-target": "#find-on-map-modal" %>
+        <%= f.select :current_location, @landing_signup.already_selected_current_location_options, { help: link_to(t('or_choose_any_on_map'), find_on_map_path(select_element: '#current_location'), "data-toggle": "modal", "data-target": "#find-on-map-modal") }, id: 'current_location', 'data-select2-ajax-initialize': select2_locations_path %>
       </div>
       <div class=''>
         <%= f.select :from_group_age, 1.upto(7).map {|a| [Group.title_for_age(a), a]}, { selected: f.object.from_group_age }, 'data-select2-initialize': true %>
       </div>
       <div class=''>
-        <%= f.select :to_location, @landing_signup.already_selected_to_location_options, {}, id: 'to_location', 'data-select2-ajax-initialize': select2_locations_path %>
-        <%= link_to t('or_choose_any_on_map'), find_on_map_path(select_element: '#to_location'), "data-toggle": "modal", "data-target": "#find-on-map-modal" %>
+        <%= f.select :to_location, @landing_signup.already_selected_to_location_options, { help: link_to(t('or_choose_any_on_map'), find_on_map_path(select_element: '#to_location'), "data-toggle": "modal", "data-target": "#find-on-map-modal")}, id: 'to_location', 'data-select2-ajax-initialize': select2_locations_path %>
       </div>
       <% unless current_user %>
         <div class=''>
@@ -56,12 +54,12 @@
         <div>
           <%= f.password_field :password %>
         </div>
+        <%= f.text_field :phone_number, size: 10 %>
+        <%= help_icon t('phone_or_email_address_will_be_shown') %>
         <%= f.form_group do %>
           <%= f.label :visible_email_address %>
           <%= f.check_box :visible_email_address, hide_label: true %>
         <% end %>
-        <%= help_icon t('phone_or_email_address_will_be_shown') %>
-        <%= f.text_field :phone_number, size: 10 %>
         <%= f.form_group do %>
           <%= f.label :subscribe_to_new_match %>
           <%= f.check_box :subscribe_to_new_match, required: true, hide_label: true %>

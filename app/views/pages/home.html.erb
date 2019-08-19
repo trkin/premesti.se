@@ -1,8 +1,5 @@
 <%
   landing_layout
-  font_drift = 1.7
-  bc_y_offset = 65
-  last_chats = Chat.active.query_as(:c).order('c.created_at DESC').limit(1).pluck(:c)
 %>
 <div class="">
   <nav class="navbar p-0">
@@ -31,21 +28,20 @@
         <%= link_to t('blog'), Constant::BLOG_PATH %>
         <%= link_to t('faq'), faq_path %>
         <%= link_to t('contact'), contact_path %>
-        <br class='d-block d-sm-none'>
         <%# <%= link_to t("register"), new_user_registration_path %1> %>
         <%# | %>
         <%= link_to t("sign_in"), new_user_session_path %>
-        <%= link_to user_facebook_omniauth_authorize_path, title: t("my_devise.sign_in_with", provider: t('provider.facebook')), class: 'btn btn-social' do %>
+        <%= link_to user_facebook_omniauth_authorize_path, title: t("my_devise.sign_in_with", provider: t('provider.facebook')), class: 'btn-xs btn-social' do %>
           <i class="fa fa-facebook-official"></i>
         <% end %>
-        <%= link_to user_google_oauth2_omniauth_authorize_path, title: t("my_devise.sign_in_with", provider: t('provider.google_oauth2')), class: 'btn btn-social' do %>
+        <%= link_to user_google_oauth2_omniauth_authorize_path, title: t("my_devise.sign_in_with", provider: t('provider.google_oauth2')), class: 'btn-xs btn-social' do %>
           <i class="fa fa-google" aria-hidden="true"></i>
         <% end %>
       <% end %>
     </div>
   </nav>
   <div class="text-center site-description">
-    <h2 class="mb-5 colorize-text-background">
+    <h2 class="mb-3 colorize-text-background">
       <%= t 'site_description_1' %>
       <br>
       <%= t 'site_description_2' %>
@@ -63,11 +59,11 @@
           <% unless current_user %>
             <%= f.text_field :email, label_as_placeholder: true, size: 10 %>
             <%= f.password_field :password, label_as_placeholder: true, size: 8 %>
+            <%= f.text_field :phone_number, label_as_placeholder: true, size: 10 %>
+            <%= help_icon t('phone_or_email_address_will_be_shown') %>
             <%= f.form_group do %>
               <%= f.check_box :visible_email_address %>
             <% end %>
-            <%= help_icon t('phone_or_email_address_will_be_shown') %>
-            <%= f.text_field :phone_number, label_as_placeholder: true, size: 10 %>
             <%= f.form_group do %>
               <%= f.check_box :subscribe_to_new_match, required: true %>
             <% end %>
@@ -100,7 +96,8 @@
     </div>
     <div class='col-md-6'>
       <small><%= t('last_chat') %></small>
-      <% chat = Chat.order(created_at: :desc).first %>
+      <% chat = Chat.active.order(created_at: :desc).first %>
+      <% chat = Chat.order(created_at: :desc).first unless chat %>
       <% if chat %>
         <% cache ['chat-map', chat] do %>
           <%= chat.name_with_arrows %>

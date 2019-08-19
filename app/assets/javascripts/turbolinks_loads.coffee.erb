@@ -1,5 +1,6 @@
 $(document).on 'turbolinks:load', ->
   console.log 'turbolinks:load'
+  $('[data-toggle="tooltip"]').tooltip()
   $('[data-select2-initialize]').each ->
     options = {}
     if $(this).attr 'placeholder'

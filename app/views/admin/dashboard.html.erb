@@ -21,3 +21,18 @@
 <div>
   <%= link_to t('report', count: Message.reported.length), admin_reported_messages_path %>
 </div>
+
+<ul>
+  <li>
+    <%= link_to 'sample-error', sample_error_path %>
+  </li>
+  <li>
+    <%= link_to 'sample-error-in-javascript', sample_error_in_javascript_path %>
+  </li>
+  <li>
+    <%= link_to 'sample-error-in-sidekiq', sample_error_in_sidekiq_path %>
+  </li>
+  <li>
+    <%= link_to 'sidekiq', sidekiq_web_path %>
+  </li>
+</ul>

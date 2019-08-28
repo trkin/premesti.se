@@ -116,7 +116,7 @@ en:
   faq_8_a: The site was made by TRK INOVACIJE DOO NOVI SAD.
   system_message: System message
   new_match: New match
-  new_match_for_moves: 'There is a match between locations: %{moves}. You can together apply for a relocation'
+  new_match_for_moves: 'There is a match between locations: %{moves}. You can together apply for a relocation. If you have not set a phone number and you do not reply on this chat, your move will be removed'
   new_message: New message
   there_is_a_match_for_your_location: There is a match for your location %{location}.
   your_move_completed_the_circle_path: Your move completed circle path %{path}.

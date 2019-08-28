@@ -116,7 +116,7 @@ sr-latin:
   faq_8_a: Sajt je napravila kompanija TRK INOVACIJE DOO NOVI SAD.
   system_message: Poruka sistema
   new_match: Novo poklapanje
-  new_match_for_moves: 'Dogodilo se poklapanje između lokacija: %{moves}. Probajte da se dogovorite oko zajedničkog premeštanja'
+  new_match_for_moves: 'Dogodilo se poklapanje između lokacija: %{moves}. Probajte da se dogovorite oko zajedničkog premeštanja. Ukoliko niste upisali vaš broj telefona i ne odgovorite u sledećih tri dana, vaša želja će biti obrisana'
   new_message: Nova poruka
   there_is_a_match_for_your_location: Postoji novo poklapanje za vašu želju za premeštajem iz vrtića %{location}.
   your_move_completed_the_circle_path: Vaša želja je kompletirala rotaciju između %{path}.

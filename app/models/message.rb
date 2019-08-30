@@ -29,7 +29,7 @@ class Message
           I18n.t('system_message')
         end
     m += " #{user.email_with_phone_if_present}" if user&.email_with_phone_if_present.present?
-    m + ' ' + I18n.localize(created_at, format: :short)
+    m + ' ' + I18n.localize(created_at, format: :long)
   end
 
   def report_by(user)

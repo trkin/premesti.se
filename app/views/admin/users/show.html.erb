@@ -21,17 +21,36 @@
   <% if @user.admin? %>
     <span class='badge badge-primary'>admin</span>
   <% end %>
-  <% User.statuses.each do |status, value| %>
-    <% unless @user.send "#{status}?" %>
-      <%= link_to status.to_s.titleize, admin_user_path(@user, user: { status: status }), method: :patch, class: 'btn btn-danger' %>
+  <label for="toggle-active-status" class='btn-link'>
+    <i class="fa fa-" aria-hidden="true"></i>
+    Change status
+  </label>
+  <input type="checkbox" id="toggle-active-status" class="toggle-active" />
+  <span class="toggle-active-adjacent-sibling hide-not-important">
+    <%= User.statuses %>
+    <% User.statuses.each do |status, value| %>
+      <% unless @user.send "#{status}?" %>
+        <%= link_to status.to_s.titleize, admin_user_path(@user, user: { status: status }), method: :patch, class: 'btn btn-danger' %>
+      <% end %>
     <% end %>
-  <% end %>
+  </span>
   <span class='text-danger'>
     <% unless @user.subscribe_to_new_match %>
       Unsubscribed to new match
     <% end %>
     <% unless @user.subscribe_to_news_mailing_list %>
       Unsubscribed to news mailing list
+    <% end %>
+  </span>
+  <label for="toggle-active" class='btn-link'>
+    <i class="fa fa-trash" aria-hidden="true"></i>
+    Destroy
+  </label>
+  <input type="checkbox" id="toggle-active" class="toggle-active" />
+  <span class="toggle-active-adjacent-sibling hide-not-important">
+    <%= bootstrap_form_tag url: admin_user_path(@user), method: :delete do |f| %>
+      <%= f.text_area :any_reason, label: t('my_devise.any_reason'), value: 'inactive_user' %>
+      <%= f.button 'Cancel account', class: 'btn btn-danger' %>
     <% end %>
   </span>
 </div>

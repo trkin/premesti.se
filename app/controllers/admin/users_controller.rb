@@ -27,6 +27,13 @@ class Admin::UsersController < AdminController
     redirect_to admin_user_path(@user)
   end
 
+  def destroy
+    Notify.message "destroy_user #{@user.email}", any_reason: params[:any_reason], my_data: @user.my_data
+    @user.destroy_moves_and_messages
+    @user.destroy
+    redirect_to admin_users_path
+  end
+
   def _set_user
     @user = User.find params[:id]
   end

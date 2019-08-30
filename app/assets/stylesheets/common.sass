@@ -39,16 +39,16 @@ body, html
   visibility: visible
 
 // toggle active without javascript
-// <input type="checkbox" id="toggle-active" class="toggle-active" />
 // <label for="toggle-active"><%= t('add') %></label>
-// <div class="toggle-active-target hide-not-important">
+// <input type="checkbox" id="toggle-active" class="toggle-active" />
+// <div class="toggle-active-adjacent-sibling hide-not-important">
 // </div>
 // https://www.sitepoint.com/pure-css-off-screen-navigation-menu/
 .toggle-active
   position: absolute
   clip: rect(0, 0, 0, 0)
 
-  &:checked ~ .toggle-active-target
+  &:checked + .toggle-active-adjacent-sibling
     display: initial
 
 label[for="toggle-active"]

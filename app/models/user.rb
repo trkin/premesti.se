@@ -104,14 +104,15 @@ class User
     }
   end
 
-  def destroy_moves_and_messages
+  # If user does not insert any_reason, we will use user_canceled_account
+  def destroy_moves_and_messages(archived_reason = 'user_canceled_account')
     messages.each do |message|
       message.user = nil
       message.text = I18n.t('user_canceled_account')
       message.save!
     end
     moves.each do |move|
-      move.destroy_and_archive_chats 'user_canceled_account'
+      move.destroy_and_archive_chats archived_reason
     end
     destroy
   end

@@ -28,13 +28,19 @@ class MovesController < ApplicationController
 
   def destroy_to_group
     to_group = @move.to_groups.find params[:to_group_id]
-    Notify.message "other_reason: #{params[:other_reason]}", current_user.email, move_url(@move), to_group: to_group.location.name if params[:other_reason].present?
+    if params[:other_reason].present?
+      Notify.message "other_reason: #{params[:other_reason]}",\
+                     current_user.email, move_url(@move), to_group: to_group.location.name
+    end
     @move.destroy_to_group_and_archive_chats to_group, params[:commit]
     redirect_to move_path(@move), notice: t_crud('success_delete', Location)
   end
 
   def destroy
-    Notify.message 'other_reason', other_reason: params[:other_reason], current_user: current_user.email, move: move_url(@move) if params[:other_reason].present?
+    if params[:other_reason].present?
+      Notify.message "other_reason: #{params[:other_reason]}",\
+                     current_user: current_user.email, move: move_url(@move)
+    end
     if @move.destroy_and_archive_chats params[:commit]
       redirect_to dashboard_path, notice: t_crud('success_delete', Move)
     else
@@ -47,6 +53,7 @@ class MovesController < ApplicationController
   def set_move
     @move = current_user.moves.where(id: params[:id]).first
     return if @move
+
     alert = if Move.where(id: params[:id]).present?
               t('this_move_does_not_belong_to_you')
             else

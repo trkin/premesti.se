@@ -164,6 +164,7 @@ sr-latin:
   this_chat_completed_successfully: Ово договарање се успешно завршило и предали смо захтев за премештај
   here_write_other_reason: Ovde upišite drugi razlog
   other_reason: Iz drugih razloga hoću da obrišem
+  inactive_user: Neaktivan korisnik
   user_archived_chat_with_message: 'Korisnik %{location} je arhivirao dogovaranje sa razlogom: %{message}'
   here_type_message_like: 'Ovde napišite poruku tipa: Da li tražite premeštaj u vrtić %{location} ?'
   delete_all_moves: Obriši sve želje za premeštaj sa ove lokacije

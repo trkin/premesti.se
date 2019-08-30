@@ -164,6 +164,7 @@ en:
   this_chat_completed_successfully: This chat was successfully and we file a request to move
   here_write_other_reason: Here you can write other reason
   other_reason: Other reason
+  inactive_user: Inactive user
   user_archived_chat_with_message: 'User %{location} archived the chat with a message: %{message}'
   here_type_message_like: 'Here you can write message like: Do you search for a move to %{location} ?'
   delete_all_moves: Delete all moves

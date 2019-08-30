@@ -58,7 +58,16 @@ class Chat
     self.archived_reason = archived_reason
     archived!
     save!
-    Message.create! chat: self, text: I18n.t('user_archived_chat_with_message', location: location.name, message: I18n.t(archived_reason))
+    message_params = {
+      chat: self,
+      text: I18n.t(
+        'user_archived_chat_with_message',
+        location: location.name, message: I18n.t(archived_reason)
+      ),
+    }
+    message_decorator = MessageDecorator.new Message.new message_params
+    message_decorator.save!
+    message_decorator.save_and_send_notifications
   end
 
   # you can call Chat.create_for_moves [m1, m2] or without square brackets

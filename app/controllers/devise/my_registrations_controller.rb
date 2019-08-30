@@ -16,7 +16,7 @@ module Devise
 
     def destroy
       Notify.message "destroy_user #{resource.email}", any_reason: params[:any_reason], my_data: resource.my_data
-      resource.destroy_moves_and_messages
+      resource.destroy_moves_and_messages params[:any_reason].presence
       super
     end
   end

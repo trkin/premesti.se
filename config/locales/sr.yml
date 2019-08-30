@@ -202,6 +202,7 @@ sr:
     smo zahtev za premeštaj
   here_write_other_reason: Овде упишите други разлог
   other_reason: Из других разлога хоћу да обришем
+  inactive_user: Неактиван корисник
   user_archived_chat_with_message: 'Корисник %{location} је архивирао договарање са
     разлогом: %{message}'
   here_type_message_like: 'Овде напишите поруку типа: Да ли тражите премештај у вртић

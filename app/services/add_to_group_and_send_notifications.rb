@@ -25,6 +25,7 @@ class AddToGroupAndSendNotifications
     return Error.new(@move.errors.values.join(', ')) unless _validate_that_group_can_be_added?
 
     @move.to_groups << @group
+    @move.touch # we need thise because of cache on landing page
     create_and_send_notifications max_length_of_the_rotation: max_length_of_the_rotation
   end
 

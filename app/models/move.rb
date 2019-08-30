@@ -64,6 +64,7 @@ class Move
       chat.archive_for_location_and_reason from_group.location, archived_reason
     end
     to_groups.delete target_group
+    touch # we need this because of cache on landing page
   end
 
   def destroy_and_archive_chats(archived_reason)

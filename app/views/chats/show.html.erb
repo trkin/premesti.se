@@ -22,7 +22,8 @@
     <%= render "message", message: message, owner: message.user == current_user, current_user_admin: current_user.admin? %>
   <% end %>
 </ul>
-<div class="btn-group pull-right">
+<% if @chat.active? %>
+  <div class="btn-group pull-right">
     <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <%= t_crud 'delete', Chat %>
     </button>
@@ -41,6 +42,7 @@
       <% end %>
     </div>
   </div>
+<% end %>
 <%
   markers = @chat.ordered_moves.map(&:from_group).map(&:location)
   lines = []

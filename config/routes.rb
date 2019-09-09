@@ -64,6 +64,9 @@ Rails.application.routes.draw do
       member do
         delete :destroy_move
       end
+      collection do
+        post :search
+      end
     end
     resources :chats
     get :reported_messages

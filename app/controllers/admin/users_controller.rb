@@ -8,11 +8,11 @@ class Admin::UsersController < AdminController
   end
 
   def index
-    @users = User
-             .as(:u)
-             .with_associations(moves: { from_group: [:location], to_groups: [:location] })
-             .order('u.created_at DESC')
-             .page params[:page]
+    @datatable = UsersDatatable.new view_context
+  end
+
+  def search
+    render json: UsersDatatable.new(view_context)
   end
 
   def update

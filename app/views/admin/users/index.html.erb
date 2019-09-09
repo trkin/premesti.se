@@ -1,29 +1,4 @@
-<% cache [ 'users', Neo4j::ActiveBase.current_session.query('MATCH (n:User) RETURN max(n.updated_at) AS m').first.m, params[:page] ] do %>
-  <%= paginate @users %>
-  <ul>
-    <% @users.each do |user| %>
-      <li>
-        <% if user.facebook_uid.present? %>
-          <i class="fa fa-facebook-official"></i>
-        <% end %>
-        <% if user.google_uid.present? %>
-          <i class="fa fa-google" aria-hidden="true"></i>
-        <% end %>
-        <%= link_to user.email, admin_user_path(user) %>
-        <%= user.created_at.to_s :long %>
-        <%= link_to sign_in_as_path(user_id: user.id) do %>
-          sign_in_as
-          <% unless user.confirmed? %>
-            <span class='badge badge-danger'>unconfirmed</span>
-          <% end %>
-          <% if user.admin? %>
-            <span class='badge badge-primary'>admin</span>
-          <% end %>
-        <% end %>
-        <% user.moves.each do |move| %>
-          <%= move.group_age_and_locations %>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
+<% cache [ 'users', Neo4j::ActiveBase.current_session.query('MATCH (n:User) RETURN max(n.updated_at) AS m').first.m ] do %>
+  <%= @datatable.render_html search_admin_users_path(format: :json) %>
+
 <% end %>

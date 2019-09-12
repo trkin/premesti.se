@@ -8,6 +8,7 @@ namespace :translate do
           klass.constantize.all.each do |item|
             method = "#{property}_#{locale}"
             next if item.send(method).present?
+
             puts "#{klass} method=#{method} id=#{item.id}"
           end
         end
@@ -24,6 +25,7 @@ namespace :translate do
           I18n.available_locales.each do |locale|
             method = "#{property}_#{locale}"
             next if item.send(method).present?
+
             print "#{klass} method=#{method} id=#{item.id} "
             if locale == :sr
               if item.send("#{property}_en").present?
@@ -50,9 +52,11 @@ namespace :translate do
               end
             end
           end
-        end # properties.each do |property|
+          # properties.each do |property|
+        end
         item.save!
-      end # klass.constantize.all.each do |item|
+        # klass.constantize.all.each do |item|
+      end
     end
   end
 end

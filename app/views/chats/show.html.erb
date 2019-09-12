@@ -1,10 +1,26 @@
 <%
   breadcrumb "#{Chat.model_name.human.mb_chars.capitalize} #{@chat.name_for_user(current_user)}" => nil
 %>
-<% if @chat.active? %>
-  <% @chat.moves.each do |move| %>
-    <%= move.from_group.location.name %> <%= move.user.email_with_phone_if_present %><br>
+<% if @chat.groups.present? %>
+   <% location_names = @chat.groups.map {|group| group.location.name }.to_sentence %>
+   <h1>
+     <%= t('chat_for_group_name_and_location_names', group_name: Group.title_for_age(@chat.groups.first.age), location_names: location_names) %>
+   </h1>
+<% end %>
+<% @chat.moves.each do |move| %>
+  <%= move.from_group.location.name %> <%= move.user.email_with_phone_if_present %>
+  <% if current_user.admin? %>
+    (only admin
+    <%= link_to "sign_in_as #{move.user.email}", sign_in_as_path(user_id: move.user.id) %>
+      <%= form_tag archive_chat_path(@chat, user_id: move.user.id), class: 'd-inline' do %>
+        <%= hidden_field_tag :commit, Move::ADMIN_INACTIVE_ARCHIVED_REASON %>
+        <%= button_tag Move::ADMIN_INACTIVE_ARCHIVED_REASON, class: 'btn-danger' %>
+      <% end %>
+    )
   <% end %>
+  <br>
+<% end %>
+<% if @chat.active? %>
   <%= bootstrap_form_for @message_decorator, url: create_message_chat_path(@chat), remote: true do |f| %>
     <%
       placeholder = if current_user.admin?
@@ -28,23 +44,24 @@
       <%= t_crud 'delete', Chat %>
     </button>
     <div class="dropdown-menu">
-      <% (Chat::ARCHIVED_REASONS + Move::ARCHIVED_REASONS).each do |reason| %>
+      <% Move::ARCHIVED_REASONS.each do |reason| %>
         <%= form_tag archive_chat_path(@chat) do %>
           <%= hidden_field_tag :commit, reason %>
           <%= button_tag t(reason), class: 'dropdown-item' %>
         <% end %>
       <% end %>
-      <div class="dropdown-divider"></div>
-      <%= form_tag archive_chat_path(@chat) do %>
-        <%= text_field_tag :other_reason, nil, placeholder: t('here_write_other_reason'), required: true, autocomplete: 'off' %>
-        <%= hidden_field_tag :commit, :other_reason %>
-        <%= button_tag t('other_reason'), class: 'dropdown-item' %>
-      <% end %>
+      <%# no other reason for now... we need to remove inactive moves %>
+      <%# <div class="dropdown-divider"></div> %>
+      <%# <%= form_tag archive_chat_path(@chat) do %1> %>
+      <%#   <%= text_field_tag :other_reason, nil, placeholder: t('here_write_other_reason'), required: true, autocomplete: 'off' %1> %>
+      <%#   <%= hidden_field_tag :commit, :other_reason %1> %>
+      <%#   <%= button_tag t('other_reason'), class: 'dropdown-item' %1> %>
+      <%# <% end %1> %>
     </div>
   </div>
 <% end %>
 <%
-  markers = @chat.ordered_moves.map(&:from_group).map(&:location)
+  markers = @chat.ordered_groups.map(&:location)
   lines = []
 
   markers.zip(markers.rotate).each do |location_a, location_b|

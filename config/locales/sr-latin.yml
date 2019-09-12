@@ -1,10 +1,19 @@
+---
 sr-latin:
   site_title: Premesti Se
-  site_description: lakša komunikacija roditelja radi pronalaženja zamene mesta u vrtićima
-  site_description_1: Kad premeštamo dete iz jednog vrtića u drugi i kada nema slobodnih mesta
-  site_description_2: potrebno je da nađemo odgovarajuću zamenu, sa jednim ili više drugara.
-  site_description_3: Upišite Vaše želje, a mi ćemo Vam poslati imejl ✉️ kada se desi poklapanje
-  site_disclaimer: Ovaj sajt nije povezan sa Predškolskim ustanovama već služi za dogovor oko pronalaženja rokada već upisane dece u vrtićima. Kada se roditelji dogovore onda mogu podneti zahteve za premeštaj. Zahtevi ne moraju biti usvojeni iz raznih razloga (preopterećenosti grupe itd.), ali ova komunikacija svakako može da pomogne u procesu prebacivanja. Molimo Vas da ne postavljate lažne želje.
+  site_description: lakša komunikacija roditelja radi pronalaženja zamene mesta u
+    vrtićima
+  site_description_1: Kad premeštamo dete iz jednog vrtića u drugi i kada nema slobodnih
+    mesta
+  site_description_2: potrebno je da nađemo odgovarajuću zamenu, sa jednim ili više
+    drugara.
+  site_description_3: Upišite Vaše želje, a mi ćemo Vam poslati imejl ✉️ kada se desi
+    poklapanje
+  site_disclaimer: Ovaj sajt nije povezan sa Predškolskim ustanovama već služi za
+    dogovor oko pronalaženja rokada već upisane dece u vrtićima. Kada se roditelji
+    dogovore onda mogu podneti zahteve za premeštaj. Zahtevi ne moraju biti usvojeni
+    iz raznih razloga (preopterećenosti grupe itd.), ali ova komunikacija svakako
+    može da pomogne u procesu prebacivanja. Molimo Vas da ne postavljate lažne želje.
   please_select: Molim izaberite izaberite
   select: Izaberite
   where_do_you_want_to_move: Gde hoćeš da se premestiš ?
@@ -30,8 +39,10 @@ sr-latin:
   autocomplete_contains_no_geometry: Traženi pojam nema položaj na mapi
   current_language: Premesti se (latinica)
   change_language: Promeni jezik
-  visit_link_to_start_using_new_language: Posetite %{link} da bi ste počeli da koristite izabrani jezik i pismo
-  visit_link_to_switch_language: Vaš izbor jezika i pisma je %{language}. Posetite %{link} da bi ste koristili izabrani jezik i pismo ili ga promenite na %{settings_link}
+  visit_link_to_start_using_new_language: Posetite %{link} da bi ste počeli da koristite
+    izabrani jezik i pismo
+  visit_link_to_switch_language: Vaš izbor jezika i pisma je %{language}. Posetite
+    %{link} da bi ste koristili izabrani jezik i pismo ili ga promenite na %{settings_link}
   show: Prikaži
   create: Napravi
   close: Zatvori
@@ -47,15 +58,22 @@ sr-latin:
   success_archived: Uspešno ste obrisali
   successfully: Uspešno
   successfully_unsubscribed_from_item_name: Uspešno ste odjavljeni i nećete dobijati  %{item_name}
-  you_can_adjust_all_your_mailing_settings_in_link_name: Možete podesiti vaše imejl notifikacije u %{link_name}
-  you_unsubscribed_for_user_email_but_you_are_still_logged_in_as_name: Vi ste se odjavili sa notifikacija za korisnika %{user_email} ali vi ste još uvek ulogovani kao %{logged_in_as_name}
-  notifications_for_new_match: obaveštenja za nova poklapanja i dogovaranja, tj. da obrišete željeni vrtić
+  you_can_adjust_all_your_mailing_settings_in_link_name: Možete podesiti vaše imejl
+    notifikacije u %{link_name}
+  you_unsubscribed_for_user_email_but_you_are_still_logged_in_as_name: Vi ste se odjavili
+    sa notifikacija za korisnika %{user_email} ali vi ste još uvek ulogovani kao %{logged_in_as_name}
+  notifications_for_new_match: obaveštenja za nova poklapanja i dogovaranja, tj. da
+    obrišete željeni vrtić
   notifications_for_news: obaveštenja za novosti
   continue: Nastavi
   add_another_location: Dodaj još jedan vrtić
-  add_request_location_for_move_from_location_name: Dodaj željeni vrtić za premeštaj iz vrtića %{location_name}
+  add_request_location_for_move_from_location_name: Dodaj željeni vrtić za premeštaj
+    iz vrtića %{location_name}
   group_with_that_age_already_exists: Grupa sa tim godištem već postoji
-  only_one_from_same_location_and_group: Već postoji želja za ovu grupu i vrtić. Nema potrebe da dodajete duplo (na primer u slučaju blizanaca) zato što će se svakako otvoriti dogovaranje za svaku mogućnost (ako postoji dve mogućnosti, dobićete dva dogovaranja)
+  only_one_from_same_location_and_group: Već postoji želja za ovu grupu i vrtić. Nema
+    potrebe da dodajete duplo (na primer u slučaju blizanaca) zato što će se svakako
+    otvoriti dogovaranje za svaku mogućnost (ako postoji dve mogućnosti, dobićete
+    dva dogovaranja)
   year: god
   my_moves: Moji vrtići
   my_requests: Moje želje
@@ -93,65 +111,92 @@ sr-latin:
   send: Pošalji
   sending: Šaljem...
   contact: Kontakt
-  contact_description: Unapred smo zahvalni za sve dobre i loše stvari na sajtu koje nam javite.
+  contact_description: Unapred smo zahvalni za sve dobre i loše stvari na sajtu koje
+    nam javite.
   find_us_on: nas nađite na
   our_fb_page: Naša Fejs stranica
   contact_thanks: Hvala na poruci
   we_will_reply_back_soon: Uskoro ćemo se javiti
   faq_1: Kome je namenjen ovaj sajt ?
-  faq_1_a: Premesti.se je namenjen roditeljima koji tragaju za premeštajem svoje dece iz jednog vrtića u drugi.
+  faq_1_a: Premesti.se je namenjen roditeljima koji tragaju za premeštajem svoje dece
+    iz jednog vrtića u drugi.
   faq_2: Kako radi ovaj sajt ?
-  faq_2_a: Kada se nađe poklapanje sa namerama drugih roditelja, roditelji dobiju imejl i mogu da stupe u međusobni kontakt i da zajedno podnesu zahtev za premeštaj.
-  faq_3: Da li ovaj sajt ima veze sa zahtevom koji se podnosti ustanovi, npr. Radosno Detinjstvo ?
-  faq_3_a: Ovaj sajt nema nikakve veze sa nadležnim ustanovama, sajt je namenjen isključivo da olakša komunikaciju među roditeljima. Roditelji moraju da podnesu zahtev u pismenoj formi nadležnoj ustanovi.
+  faq_2_a: Kada se nađe poklapanje sa namerama drugih roditelja, roditelji dobiju
+    imejl i mogu da stupe u međusobni kontakt i da zajedno podnesu zahtev za premeštaj.
+  faq_3: Da li ovaj sajt ima veze sa zahtevom koji se podnosti ustanovi, npr. Radosno
+    Detinjstvo ?
+  faq_3_a: Ovaj sajt nema nikakve veze sa nadležnim ustanovama, sajt je namenjen isključivo
+    da olakša komunikaciju među roditeljima. Roditelji moraju da podnesu zahtev u
+    pismenoj formi nadležnoj ustanovi.
   faq_4: Koja je svrha ovog sajta ?
-  faq_4_a: Predškolske ustanove uglavnom rade punim kapacitetom i u toku godine nema slobodnih mesta za primanje novih članova. Ipak roditelji imaju potrebu da promene vrtić zbog selidbe ili im je predalek vrtić koji im je trenutno dodeljen i ovaj sajt im omogućava da nađu partnera sa kojim bi mogli da izvrše rotaciju mesta, bez potrebe da čekaju da se pojavi novo slobodno mesto.
+  faq_4_a: Predškolske ustanove uglavnom rade punim kapacitetom i u toku godine nema
+    slobodnih mesta za primanje novih članova. Ipak roditelji imaju potrebu da promene
+    vrtić zbog selidbe ili im je predalek vrtić koji im je trenutno dodeljen i ovaj
+    sajt im omogućava da nađu partnera sa kojim bi mogli da izvrše rotaciju mesta,
+    bez potrebe da čekaju da se pojavi novo slobodno mesto.
   faq_5: U čemu je prednost ovog sajta ?
-  faq_5_a: Roditelji mogu da pokušaju da nađu zamenu u željenim vrtićima postavljajući papirni oglas na tablu za roditelje u traženim vrtićima. Ipak takvo traženje je prilično sporo i ne ažurno (zastareli oglasi). Takođe se ne očuvava privatnost želje, na primer žele da promene vrtić ali ne žele da to saznaju svi ostali, pa roditelji retko stavljaju te oglase. Koristeći ovaj sajt, roditelji mogu da pronađu više opciju za premeštanje pošto rotacija može da se izvrši između dva (A-B i B-A) ili više članova (A-B, B-V, V-G, G-D, D-A).
+  faq_5_a: Roditelji mogu da pokušaju da nađu zamenu u željenim vrtićima postavljajući
+    papirni oglas na tablu za roditelje u traženim vrtićima. Ipak takvo traženje je
+    prilično sporo i ne ažurno (zastareli oglasi). Takođe se ne očuvava privatnost
+    želje, na primer žele da promene vrtić ali ne žele da to saznaju svi ostali, pa
+    roditelji retko stavljaju te oglase. Koristeći ovaj sajt, roditelji mogu da pronađu
+    više opciju za premeštanje pošto rotacija može da se izvrši između dva (A-B i
+    B-A) ili više članova (A-B, B-V, V-G, G-D, D-A).
   faq_6: Koliko je sigurna moja privatnost ?
-  faq_6_a: Korišćenje sajta ne zahteva unos imena niti bilo koje druge informacije osim imejl adrese (pošto se ona koristi za slanje poruka o poklapanjima). Korisnici sami biraju da li će podeliti svoje podatke drugim osobama.
+  faq_6_a: Korišćenje sajta ne zahteva unos imena niti bilo koje druge informacije
+    osim imejl adrese (pošto se ona koristi za slanje poruka o poklapanjima). Korisnici
+    sami biraju da li će podeliti svoje podatke drugim osobama.
   faq_7: Dobio sam obaveštenje o poklapanju, ali niko ne odgovara na moje poruke ?
-  faq_7_a: Mi se trudimo da uočimo neaktivne korisnike (oni koji postave želje koje nisu stvarne i ne odgovaraju na poruke) i da ih deaktiviramo sa liste željenih rotacija. Javite nam ukoliko primetite takve "lažne" korisnike
+  faq_7_a: Mi se trudimo da uočimo neaktivne korisnike (oni koji postave želje koje
+    nisu stvarne i ne odgovaraju na poruke) i da ih deaktiviramo sa liste željenih
+    rotacija. Javite nam ukoliko primetite takve "lažne" korisnike
   faq_8: Ko je napravio ovaj sajt ?
   faq_8_a: Sajt je napravila kompanija TRK INOVACIJE DOO NOVI SAD.
   system_message: Poruka sistema
   new_match: Novo poklapanje
-  new_match_for_moves: 'Dogodilo se poklapanje između lokacija: %{moves}. Probajte da se dogovorite oko zajedničkog premeštanja. Ukoliko niste upisali vaš broj telefona i ne odgovorite u sledećih tri dana, vaša želja će biti obrisana'
+  new_match_for_moves: 'Dogodilo se poklapanje između lokacija: %{moves}. Probajte
+    da se dogovorite oko zajedničkog premeštanja. Ukoliko niste upisali vaš broj telefona
+    i ne odgovorite u sledećih tri dana, vaša želja će biti obrisana'
   new_message: Nova poruka
-  there_is_a_match_for_your_location: Postoji novo poklapanje za vašu želju za premeštajem iz vrtića %{location}.
-  your_move_completed_the_circle_path: Vaša želja je kompletirala rotaciju između %{path}.
-  user_of_missing_location_completed_the_circle_path: Vrtić %{missing_location} je zaokružio rotaciju između %{path}.
-  chats_empty_new_will_show_up_automatically: Trenutno nema dogovaranja. Nova dogovaranja će se pojaviti kada se desi poklapanje
+  there_is_a_match_for_your_location: Postoji novo poklapanje za vašu želju za premeštajem
+    iz vrtića %{location}.
+  your_move_completed_the_circle_path: Vaša želja je kompletirala rotaciju između
+    %{path}.
+  user_of_missing_location_completed_the_circle_path: Vrtić %{missing_location} je
+    zaokružio rotaciju između %{path}.
+  chats_empty_new_will_show_up_automatically: Trenutno nema dogovaranja. Nova dogovaranja
+    će se pojaviti kada se desi poklapanje
   last_few_requests: Nekoliko nedavnih želja
   last_few_chats: Nekoliko nedavnih dogovaranja
   last_request: Poslednja želja
   last_chat: Poslednje dogovaranje
   groups_have_to_be_same_age: Grupe moraju biti u istim godištima
   to_group_can_not_be_on_same_location: Željena grupa ne može biti na trenutnoj lokaciji
-  ignored_sending_notifications_unconfirmed_user: Slanje poruka je preskočeno pošto korisnik nije potvrđen
+  ignored_sending_notifications_unconfirmed_user: Slanje poruka je preskočeno pošto
+    korisnik nije potvrđen
   request_created: Željena grupa je napravljena
   request_created_and_sent_notifications_successfully:
-    # 1, 21, 31 ...
     one: Želja je kreirana i %{count} poruka je poslata
-    # 2, 3, 4, 22, 23, 24, 32, 33, 34 ...
     few: Želja je kreirana i %{count} poruke su poslate
-    # all other integers: 5, 6, ... 9, 10, 11, 12, 13, 14 ... 20, 25, ...
     other: Želja je kreirana i %{count} poruka je poslato
   hi_name: Zdravo %{name}
   report:
     # 1, 21, 31 ...
-    one: '%{count} prijava'
-    # 2, 3, 4, 22, 23, 24, 32, 33, 34 ...
-    few: '%{count} prijave'
+    one: "%{count} prijava"
+    # 2, 3, 4, 22, 23, 24, 32, 33, 34, ...
+    few: "%{count} prijave"
     # all other integers: 5, 6, ... 9, 10, 11, 12, 13, 14 ... 20, 25, ...
-    other: '%{count} prijava'
+    other: "%{count} prijava"
   report_abuse: Prijavu zloupotrebu
   cancel_report_abuse: Odustani od prijave zloupotrebe
   we_received_report_successfully: Uspešno smo primili prijavu zloupotrebe
-  are_you_sure_to_report_abuse: Da li hoćete da naš tim proveri upotrebljivost ove poruke ?
-  are_you_sure_to_cancel_report_abuse: Da li ste sigurni da ne treba da proveravamo upotrebljivost ove poruke ?
+  are_you_sure_to_report_abuse: Da li hoćete da naš tim proveri upotrebljivost ove
+    poruke ?
+  are_you_sure_to_cancel_report_abuse: Da li ste sigurni da ne treba da proveravamo
+    upotrebljivost ove poruke ?
   we_cancel_report_successfully: Uspešno smo otkazali prijavu zloupotrebe
-  my_move_introduction: Menjamo mesto u vrtiću <b>%{from}</b> za <b>%{to}</b> grupa %{age}
+  my_move_introduction: Menjamo mesto u vrtiću <b>%{from}</b> za <b>%{to}</b> grupa
+    %{age}
   share: Podeli
   share_on_facebook: Podeli na <i class="fa fa-facebook-official"></i> Fejsbuku
   see_public_page: Vidi javnu stranicu koju možeš da deliš
@@ -160,13 +205,15 @@ sr-latin:
   added_move_by_mistake: Mojom greškom je dodat ovaj premeštaj
   it_moved_in_the_meantime: U međuvremenu smo pronašli premeštaj na drugi način
   do_not_need_to_move_anymore: Više ne želim ovaj premeštaj
-  other_participants_do_not_reply: Drugi članovi ne odgovaraju na poruke
-  this_chat_completed_successfully: Ово договарање се успешно завршило и предали смо захтев за премештај
+  inactive_user: Neaktivan korisnik
+  this_chat_completed_successfully: Ово договарање се успешно завршило и предали смо
+    захтев за премештај
   here_write_other_reason: Ovde upišite drugi razlog
   other_reason: Iz drugih razloga hoću da obrišem
-  inactive_user: Neaktivan korisnik
-  user_archived_chat_with_message: 'Korisnik %{location} je arhivirao dogovaranje sa razlogom: %{message}'
-  here_type_message_like: 'Ovde napišite poruku tipa: Da li tražite premeštaj u vrtić %{location} ?'
+  user_from_location_name_archived_with_message: 'Vrtić %{location_name} je arhivirao dogovaranje %{location_name} sa razlogom: %{message}'
+  admin_archived_chat_for_location_name_with_message: 'Administrator je arhivirao dogovaranje zbog vrtića %{location_name} sa razlogom: %{message}'
+  here_type_message_like: 'Ovde napišite poruku tipa: Da li tražite premeštaj u vrtić
+    %{location} ?'
   delete_all_moves: Obriši sve želje za premeštaj sa ove lokacije
   user_canceled_account: Korisnik je obrisao nalog
   all_moves_are_deleted: Sve želje su obrisane
@@ -176,12 +223,15 @@ sr-latin:
   please_select_age: Izaberite starost
   go: Idi
   see_all_moves: Vidi sve želje
-  phone_number_will_show_up_in_chat_page: Telefon će se prikazivati na stranici za dogovaranje
-  initial_chat_message_will_show_up_as_first_message_from_you: Ova poruka će
-    biti vaša inicijalna poruka kada se dogodi poklapanje (korisno je imati ovu
-    poruku da ne biste svaki put pisali istu poruku)
-  email_address_is_visible_on_chat_page: Vaša imejl adresa se prikazuje na stranici za dogovaranje
-  i_am_interested_to_find_but_from_next_month: Ja sam zainteresovana za premeštaj ali tek od septembra meseca
+  phone_number_will_show_up_in_chat_page: Telefon će se prikazivati na stranici za
+    dogovaranje
+  initial_chat_message_will_show_up_as_first_message_from_you: Ova poruka će biti
+    vaša inicijalna poruka kada se dogodi poklapanje (korisno je imati ovu poruku
+    da ne biste svaki put pisali istu poruku)
+  email_address_is_visible_on_chat_page: Vaša imejl adresa se prikazuje na stranici
+    za dogovaranje
+  i_am_interested_to_find_but_from_next_month: Ja sam zainteresovana za premeštaj
+    ali tek od septembra meseca
   for_example: Na primer
   views:
     pagination:
@@ -203,8 +253,12 @@ sr-latin:
           other: Prikaz <b>svih %{count}</b> %{entry_name}
       more_pages:
         display_entries: Prikazano %{entry_name} <b>%{first} - %{last}</b> od <b>%{total}</b>
-                         ukupno
-  phone_or_email_address_will_be_shown: Vidljiva imejl adresa znači da će korisnici sa kojima se desi poklapanje moći da je vide
-  if_you_do_not_want_to_receive_notification_for_new_math_please_delete_your_account_link_name: Ako više ne želite da primate obaveštenja o novim poklapanjima i dogovaranjima, obrišite vaš nalog na <a href='%{link_name}'>ovoj stranici</a>
+          ukupno
+  phone_or_email_address_will_be_shown: Vidljiva imejl adresa znači da će korisnici
+    sa kojima se desi poklapanje moći da je vide
+  if_you_do_not_want_to_receive_notification_for_new_math_please_delete_your_account_link_name: Ako
+    više ne želite da primate obaveštenja o novim poklapanjima i dogovaranjima, obrišite
+    vaš nalog na <a href='%{link_name}'>ovoj stranici</a>
   from_total: od ukupno
   blog: Blog
+  chat_for_group_name_and_location_names: Dogovaranje za %{group_name} između %{location_names}

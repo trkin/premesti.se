@@ -114,12 +114,19 @@ rails translate:missing
 rails translate:copy
 ~~~
 
-and you can use helper
+For hard coded string you can use helper
 
 ~~~
 'my string'.to_cyr
  => "мy стринг"
 ~~~
+
+or from
+[yml_google_translate_api](https://github.com/duleorlovic/config/blob/master/bin/yml_google_translate_api.rb)
+
+```
+yml_google_translate_api.rb config/locales/sr-latin.yml  sr_to_cyr en
+```
 
 ## Mails
 

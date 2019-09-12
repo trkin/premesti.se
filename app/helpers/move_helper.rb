@@ -10,7 +10,7 @@ module MoveHelper
 
   # image_tag chat_static_map_url(chat)
   def chat_static_map_url(chat)
-    locations = chat.ordered_moves.map(&:from_group).map(&:location)
+    locations = chat.ordered_groups.map(&:location)
     show_static_circle_map_url locations
   end
 

@@ -1,8 +1,6 @@
 class Move
   include Neo4j::ActiveNode
-  SYSTEM_ARCHIVED_REASONS = %i[
-    end_of_kindergarten
-  ].freeze
+  ADMIN_INACTIVE_ARCHIVED_REASON = :inactive_user
   ARCHIVED_REASONS = %i[
     added_move_by_mistake
     it_moved_in_the_meantime
@@ -48,7 +46,7 @@ class Move
       '(↪ ' + to_groups.map { |group| group.location.name }.join(',') + ')'
   end
 
-  def destroy_to_group_and_archive_chats(target_group, archived_reason)
+  def destroy_to_group_and_archive_chats(target_group, archived_reason, admin: false)
     # chats have chat1, chat2 and each
     # chat have move1, move2... each belongs to location1, location2 and
     # if target_group belongs to same location that it means that move was
@@ -61,7 +59,7 @@ class Move
       l.uuid = '#{target_group.location.id}'
     )).pluck(:c)
     target_chats.each do |chat|
-      chat.archive_for_location_and_reason from_group.location, archived_reason
+      chat.archive_for_move_and_reason self, archived_reason, admin: admin
     end
     to_groups.delete target_group
     touch # we need this because of cache on landing page
@@ -69,7 +67,7 @@ class Move
 
   def destroy_and_archive_chats(archived_reason)
     chats.active.each do |chat|
-      chat.archive_for_location_and_reason from_group.location, archived_reason
+      chat.archive_for_move_and_reason self, archived_reason
     end
     destroy
   end

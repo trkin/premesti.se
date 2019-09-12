@@ -40,9 +40,9 @@ namespace :db do
         MapHelper::INITIAL_LATITUDE + 0.01, longitude: MapHelper::INITIAL_LONGITUDE + 0.01 },
       { var: :loc3_city1, city: b[:city1], address: 'address3', latitude:
         MapHelper::INITIAL_LATITUDE - 0.01, longitude: MapHelper::INITIAL_LONGITUDE + 0.01 },
-      { var: :loc1_city2, city: b[:city2], address: 'address4', latitude:
+      { var: :loc4_city1, city: b[:city2], address: 'address4', latitude:
         MapHelper::INITIAL_LATITUDE + 0.02, longitude: MapHelper::INITIAL_LONGITUDE + 0.02  },
-      { var: :loc2_city2, city: b[:city2], address: 'address5', latitude:
+      { var: :loc5_city1, city: b[:city2], address: 'address5', latitude:
         MapHelper::INITIAL_LATITUDE + 0.02, longitude: MapHelper::INITIAL_LONGITUDE + 0.02  },
     ].each do |doc|
       params = doc.except(:var).merge(name: doc[:var])
@@ -59,9 +59,10 @@ namespace :db do
       { var: :g2_l1, location: b[:loc1_city1], age: 2 },
       { var: :g2_l2, location: b[:loc2_city1], age: 2 },
       { var: :g2_l3, location: b[:loc3_city1], age: 2 },
-      { var: :g2_l4, location: b[:loc1_city2], age: 2 },
-      { var: :g2_l5, location: b[:loc2_city2], age: 2 },
+      { var: :g2_l4, location: b[:loc4_city1], age: 2 },
+      { var: :g2_l5, location: b[:loc5_city1], age: 2 },
       { var: :g4_l1, location: b[:loc1_city1], age: 4 },
+      { var: :g4_l2, location: b[:loc2_city1], age: 4 },
     ].each do |doc|
       params = doc.except(:var).merge(name: doc[:var])
       group = Group.find_by params
@@ -79,7 +80,11 @@ namespace :db do
       { var: :m2_l3_l4, from_group: b[:g2_l3], to_groups: b[:g2_l4],
         user: b[:user2] },
       { var: :m3_l4_l1, from_group: b[:g2_l4], to_groups: b[:g2_l1],
-        user: b[:user3], }
+        user: b[:user3] },
+      { var: :m4_l1_l2, from_group: b[:g4_l1], to_groups: b[:g4_l2],
+        user: b[:user1] },
+      { var: :m5_l2_l1, from_group: b[:g4_l2], to_groups: b[:g4_l1],
+        user: b[:user2] },
     ].each do |doc|
       params = doc.except(:var).merge(a_name: doc[:var])
       move = Move.find_by params
@@ -92,7 +97,7 @@ namespace :db do
 
     # Chat
     [
-      { var: :c1_m1_m2, moves: [b[:m1_l1_l3], b[:m2_l3_l4]] },
+      { var: :c1_m1_m2, moves: [b[:m4_l1_l2], b[:m5_l2_l1]] },
       { var: :c2_m1_m2_m3, moves: [b[:m1_l1_l3], b[:m2_l3_l4], b[:m3_l4_l1]] },
     ].each do |doc|
       chat = Chat.find_existing_for_moves doc[:moves]
@@ -149,13 +154,13 @@ namespace :db do
     while i < timeout
       output = `grep "Remote interface available" db/neo4j/#{Rails.env}/logs/neo4j.log`
       break if output.present?
+
       sleep 1
       i += 1
       puts '.'
     end
-    if i == timeout
-      fail "Hey man, i=timeout can not find available server"
-    end
+    raise 'Hey man, i=timeout can not find available server' if i == timeout
+
     puts 'running neo4j:migrate'
     Rake::Task['neo4j:migrate'].invoke Rails.env
     Rake::Task['db:seed'].invoke Rails.env
@@ -165,6 +170,7 @@ namespace :db do
   task create_groups: :environment do
     Location.all.each do |location|
       next if location.groups.present?
+
       (1..7).each do |age|
         Group.create!(
           age: age,

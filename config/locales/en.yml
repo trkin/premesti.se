@@ -1,10 +1,15 @@
+---
 en:
   site_title: Move your place
   site_description: Parenting website for easier site replacement in kindergartens
   site_description_1: Parenting website
   site_description_2: for easier site replacement
   site_description_3: in kindergartens
-  site_disclaimer: This site has nothing to do with pre-school institutions, but it finds matches and when parents agree then they can file transfer requests. Requests do not have to be accepted for various reasons (overloading the group, etc.), but this communication can certainly help in this transfer process. Please do not post fake moves.
+  site_disclaimer: This site has nothing to do with pre-school institutions, but it
+    finds matches and when parents agree then they can file transfer requests. Requests
+    do not have to be accepted for various reasons (overloading the group, etc.),
+    but this communication can certainly help in this transfer process. Please do
+    not post fake moves.
   please_select: Please select
   select: Select
   where_do_you_want_to_move: Where do you want to Move?
@@ -26,12 +31,14 @@ en:
   home_page: Home Page
   are_you_sure: Are you sure ?
   are_you_sure_to_remove_item: Are you sure you want to delete %{item} ?
-  write_address_than_move_marker: Write approximate address and than move the marker icon
+  write_address_than_move_marker: Write approximate address and than move the marker
+    icon
   autocomplete_contains_no_geometry: Autocomplete's returned place contains no geometry
   current_language: Move Your Place (english)
   change_language: Change language
   visit_link_to_start_using_new_language: Visit %{link} to start using new language
-  visit_link_to_switch_language: Your choosen language is %{language}. Visit %{link} to use that language or change it on %{settings_link}
+  visit_link_to_switch_language: Your choosen language is %{language}. Visit %{link}
+    to use that language or change it on %{settings_link}
   show: Show
   create: Create
   close: Close
@@ -46,16 +53,22 @@ en:
   success_delete: Successfully deleted
   success_archived: Successfully deleted
   successfully: Successfully
-  successfully_unsubscribed_from_item_name: Successfully unsubscribed so you wont get %{item_name}
-  you_can_adjust_all_your_mailing_settings_in_link_name: You can adjust all your mailing settings in %{link_name}
-  you_unsubscribed_for_user_email_but_you_are_still_logged_in_as_name: You unscribed for user %{user_email} but you are still logged in as %{logged_in_as_name}
+  successfully_unsubscribed_from_item_name: Successfully unsubscribed so you wont
+    get %{item_name}
+  you_can_adjust_all_your_mailing_settings_in_link_name: You can adjust all your mailing
+    settings in %{link_name}
+  you_unsubscribed_for_user_email_but_you_are_still_logged_in_as_name: You unscribed
+    for user %{user_email} but you are still logged in as %{logged_in_as_name}
   notifications_for_new_match: match and chat notification, ie to remove the move,
   notifications_for_news: news notifications
   continue: Continue
   add_another_location: Add another location
-  add_request_location_for_move_from_location_name: Add requested location for move from %{location_name}
+  add_request_location_for_move_from_location_name: Add requested location for move
+    from %{location_name}
   group_with_that_age_already_exists: Group with that age already exists
-  only_one_from_same_location_and_group: You already have that age and location. Do not need to add twice (for example for twins) since you will get chat for each new oportunity (if there are two matches, you will get two chats)
+  only_one_from_same_location_and_group: You already have that age and location. Do
+    not need to add twice (for example for twins) since you will get chat for each
+    new oportunity (if there are two matches, you will get two chats)
   year: year
   my_moves: My Places
   my_requests: My Requests
@@ -93,65 +106,87 @@ en:
   send: Send
   sending: Sending...
   contact: Contact
-  contact_description: We are grateful for all the good and bad things on the site that you report to us.
+  contact_description: We are grateful for all the good and bad things on the site
+    that you report to us.
   find_us_on: find us on
   our_fb_page: Our Facebook Pagel
   contact_thanks: Thank You for the message
   we_will_reply_back_soon: We will reply back soon
   faq_1: Who is this site for ?
-  faq_1_a: Move-index is for parents who are looking for moving their children from one to another institution.
+  faq_1_a: Move-index is for parents who are looking for moving their children from
+    one to another institution.
   faq_2: What does this website do ?
-  faq_2_a: When there is a matching with some other move intentions, parents receive emails and can continue communication off-site.
-  faq_3: Does this site have something with official procedure that is needed to be submitted to competent institution ?
-  faq_3_a: This site has nothing to do with the relevant institutions. The site is intended exclusively to facilitate communication between parents. Parents must submit written request to the competent institution.
+  faq_2_a: When there is a matching with some other move intentions, parents receive
+    emails and can continue communication off-site.
+  faq_3: Does this site have something with official procedure that is needed to be
+    submitted to competent institution ?
+  faq_3_a: This site has nothing to do with the relevant institutions. The site is
+    intended exclusively to facilitate communication between parents. Parents must
+    submit written request to the competent institution.
   faq_4: What is the purpose of this site?
-  faq_4_a: Pre-school institutions generally work full capacity and during the year there are no vacancies for new members. However, parents have the need to change the kindergarten due to the move or have assigned kindergarten to them is far away and this site allows them to find a partner with whom they could rotate the site, without the need to wait for a new vacancy to appear.
+  faq_4_a: Pre-school institutions generally work full capacity and during the year
+    there are no vacancies for new members. However, parents have the need to change
+    the kindergarten due to the move or have assigned kindergarten to them is far
+    away and this site allows them to find a partner with whom they could rotate the
+    site, without the need to wait for a new vacancy to appear.
   faq_5: What's the advantage of this site?
-  faq_5_a: Parents may try to find a replacement in their preferred kindergartens by placing a paper ad on the parents' table in the requested kindergarten. However, such a search is rather slow and not up-to-date (outdated ads). Also, the privacy of desire is not preserved, for example, they want to change the kindergarten, but do not want everyone else to find out, so parents rarely place those ads. Using this site, parents can find more options to move since rotation can be performed between two (A-B and B-A) or more members (A-B, B-V, V-G, G-D, D-A).
+  faq_5_a: Parents may try to find a replacement in their preferred kindergartens
+    by placing a paper ad on the parents' table in the requested kindergarten. However,
+    such a search is rather slow and not up-to-date (outdated ads). Also, the privacy
+    of desire is not preserved, for example, they want to change the kindergarten,
+    but do not want everyone else to find out, so parents rarely place those ads.
+    Using this site, parents can find more options to move since rotation can be performed
+    between two (A-B and B-A) or more members (A-B, B-V, V-G, G-D, D-A).
   faq_6: How safe is my privacy?
-  faq_6_a: Using the site does not require entering a name or any other information other than the email address (since it is used to send match messages). Users choose to share their information with others.
+  faq_6_a: Using the site does not require entering a name or any other information
+    other than the email address (since it is used to send match messages). Users
+    choose to share their information with others.
   faq_7: I got a matching notice, but nobody answers my messages?
-  faq_7_a: We are trying to spot inactive users (those who place wishes that are not real and do not respond to messages) and deactivate them from the list of desired rotations. Let us know if you notice such "bogus" users
+  faq_7_a: We are trying to spot inactive users (those who place wishes that are not
+    real and do not respond to messages) and deactivate them from the list of desired
+    rotations. Let us know if you notice such "bogus" users
   faq_8: Who created this site?
   faq_8_a: The site was made by TRK INOVACIJE DOO NOVI SAD.
   system_message: System message
   new_match: New match
-  new_match_for_moves: 'There is a match between locations: %{moves}. You can together apply for a relocation. If you have not set a phone number and you do not reply on this chat, your move will be removed'
+  new_match_for_moves: 'There is a match between locations: %{moves}. You can together
+    apply for a relocation. If you have not set a phone number and you do not reply
+    on this chat, your move will be removed'
   new_message: New message
   there_is_a_match_for_your_location: There is a match for your location %{location}.
   your_move_completed_the_circle_path: Your move completed circle path %{path}.
-  user_of_missing_location_completed_the_circle_path: Location %{missing_location} completed circle path %{path}.
-  chats_empty_new_will_show_up_automatically: There are no chats currently. Chat will show up when there is a match
+  user_of_missing_location_completed_the_circle_path: Location %{missing_location}
+    completed circle path %{path}.
+  chats_empty_new_will_show_up_automatically: There are no chats currently. Chat will
+    show up when there is a match
   last_few_requests: Last few requests
   last_few_chats: Last few chats
   last_request: Last request
   last_chat: Last chat
   groups_have_to_be_same_age: Groups have to be at the same age
   to_group_can_not_be_on_same_location: Request group can not be on the same location
-  ignored_sending_notifications_unconfirmed_user: Ignore sending notifications because user is not confirmed
+  ignored_sending_notifications_unconfirmed_user: Ignore sending notifications because
+    user is not confirmed
   request_created: Request created
   request_created_and_sent_notifications_successfully:
-    # 1, 21, 31 ...
     one: Request created and sent one notification successfully
-    # 2, 3, 4, 22, 23, 24, 32, 33, 34 ...
     few: Request created and sent %{count} notifications successfully
-    # all other integers: 5, 6, ... 9, 10, 11, 12, 13, 14 ... 20, 25, ...
     other: Request created and sent %{count} notifications successfully
   hi_name: Hi %{name}
   report:
-    # 1, 21, 31 ...
-    one: '%{count} report'
-    # 2, 3, 4, 22, 23, 24, 32, 33, 34 ...
-    few: '%{count} reports'
-    # all other integers: 5, 6, ... 9, 10, 11, 12, 13, 14 ... 20, 25, ...
-    other: '%{count} reports'
+    one: "%{count} report"
+    few: "%{count} reports"
+    other: "%{count} reports"
   report_abuse: Report abuse
   cancel_report_abuse: Cancel report abuse
   we_received_report_successfully: We received report successfully
-  are_you_sure_to_report_abuse: Do you want our team to check usefulness of this message ?
-  are_you_sure_to_cancel_report_abuse: Are you sure that we do not need to check usefullness of this message ?
+  are_you_sure_to_report_abuse: Do you want our team to check usefulness of this message
+    ?
+  are_you_sure_to_cancel_report_abuse: Are you sure that we do not need to check usefullness
+    of this message ?
   we_cancel_report_successfully: We cancelled report successfully
-  my_move_introduction: We want to move from <b>%{from}</b> to <b>%{to}</b> group %{age}
+  my_move_introduction: We want to move from <b>%{from}</b> to <b>%{to}</b> group
+    %{age}
   share: Share
   share_on_facebook: Share on <i class="fa fa-facebook-official"></i> Facebook
   see_public_page: See public page which you can share
@@ -160,13 +195,17 @@ en:
   added_move_by_mistake: I created a move by my mistake
   it_moved_in_the_meantime: It moved in the meantime without this service
   do_not_need_to_move_anymore: Do not need to move anymore
-  other_participants_do_not_reply: Other participants do not reply
-  this_chat_completed_successfully: This chat was successfully and we file a request to move
+  inactive_user: Inactive user
+  this_chat_completed_successfully: This chat was successfully and we file a request
+    to move
   here_write_other_reason: Here you can write other reason
   other_reason: Other reason
-  inactive_user: Inactive user
-  user_archived_chat_with_message: 'User %{location} archived the chat with a message: %{message}'
-  here_type_message_like: 'Here you can write message like: Do you search for a move to %{location} ?'
+  user_from_location_name_archived_with_message: 'User %{location_name} archived the
+    chat with a message: %{message}'
+  admin_archived_chat_for_location_name_with_message: 'An administrator has archived
+    an appointment for Kindergarten %{location_name} for a reason: %{message}'
+  here_type_message_like: 'Here you can write message like: Do you search for a move
+    to %{location} ?'
   delete_all_moves: Delete all moves
   user_canceled_account: User cancelled account
   all_moves_are_deleted: All moves are deleted
@@ -177,33 +216,38 @@ en:
   go: Go
   see_all_moves: See all moves
   phone_number_will_show_up_in_chat_page: The phone will appear on the chat page
-  initial_chat_message_will_show_up_as_first_message_from_you: This message will be your first message when a match occurs
-  email_address_is_visible_on_chat_page: Your email address is displayed on the chat page
+  initial_chat_message_will_show_up_as_first_message_from_you: This message will be
+    your first message when a match occurs
+  email_address_is_visible_on_chat_page: Your email address is displayed on the chat
+    page
   i_am_interested_to_find_but_from_next_month: I am interested but from September
   for_example: For example
-  # https://github.com/kaminari/kaminari/blob/master/kaminari-core/config/locales/kaminari.yml
   views:
     pagination:
       first: "&laquo; First"
-      last: "Last &raquo;"
+      last: Last &raquo;
       previous: "&lsaquo; Prev"
-      next: "Next &rsaquo;"
+      next: Next &rsaquo;
       truncate: "&hellip;"
   helpers:
     page_entries_info:
       entry:
-        zero: "entries"
-        one: "entry"
-        other: "entries"
+        zero: entries
+        one: entry
+        other: entries
       one_page:
         display_entries:
-          zero: "No %{entry_name} found"
-          one: "Displaying <b>1</b> %{entry_name}"
-          other: "Displaying <b>all %{count}</b> %{entry_name}"
+          zero: No %{entry_name} found
+          one: Displaying <b>1</b> %{entry_name}
+          other: Displaying <b>all %{count}</b> %{entry_name}
       more_pages:
-        display_entries: "Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> in total"
-  phone_or_email_address_will_be_shown: Email will be shown to other participants when there is a match
-  if_you_do_not_want_to_receive_notification_for_new_math_please_delete_your_account_link_name: If you do not want to receive notifications for new match and chat than delete your account on <a href='%{link_name}'>this page</a>
+        display_entries: Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b>
+          of <b>%{total}</b> in total
+  phone_or_email_address_will_be_shown: Email will be shown to other participants
+    when there is a match
+  if_you_do_not_want_to_receive_notification_for_new_math_please_delete_your_account_link_name: If
+    you do not want to receive notifications for new match and chat than delete your
+    account on <a href='%{link_name}'>this page</a>
   from_total: from total
-  can_not_find_move_id_name: Can not find move #{id_name}
   blog: Blog
+  chat_for_group_name_and_location_names: Negotiating for %{group_name} between %{location_names}

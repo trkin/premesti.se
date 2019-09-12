@@ -41,7 +41,11 @@ class ChatsController < ApplicationController
 
   def archive
     Notify.message "other_reason: #{params[:other_reason]}", current_user.email, chat_url(@chat) if params[:other_reason].present?
-    @chat.archive_all_for_user_and_reason current_user, params[:commit]
+    if current_user.admin? && params[:user_id].present?
+      @chat.archive_all_for_user_and_reason User.find(params[:user_id]), params[:commit], admin: true
+    else
+      @chat.archive_all_for_user_and_reason current_user, params[:commit]
+    end
     redirect_to dashboard_path
   end
 

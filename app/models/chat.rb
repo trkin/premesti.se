@@ -1,10 +1,5 @@
 class Chat
   include Neo4j::ActiveNode
-  ARCHIVED_REASONS = %i[
-    this_chat_completed_successfully
-    other_participants_do_not_reply
-  ].freeze
-
   property :name, type: String
   property :created_at, type: DateTime
   property :updated_at, type: DateTime
@@ -15,11 +10,22 @@ class Chat
 
   has_many :out, :messages, type: :HAS_MESSAGES
   has_many :out, :moves, rel_class: :Matches
+  has_many :out, :groups, rel_class: :MatchedGroups
 
   def ordered_moves
     return @ordered_moves if @ordered_moves.present?
 
     @ordered_moves = query_as(:c).match('(c)-[r:MATCHES]-(m:Move)').order('r.order').pluck(:m)
+  end
+
+  def ordered_groups
+    return @ordered_groups if @ordered_groups.present?
+
+    @ordered_groups = if groups.present?
+                        query_as(:c).match('(c)-[r:MATCHED_GROUPS]-(m:Group)').order('r.order').pluck(:m)
+                      else
+                        query_as(:c).match('(c)-[r:MATCHES]-(m:Move)').order('r.order').pluck(:m).map(&:from_group)
+                      end
   end
 
   def name_with_arrows(email_and_phone: false)
@@ -42,27 +48,29 @@ class Chat
     move.from_group.location
   end
 
-  def archive_all_for_user_and_reason(user, archived_reason)
-    if Move::ARCHIVED_REASONS.include? archived_reason.to_sym
-      # delete to_group in move which will delete all chats
-      move = moves.find_by(user: user)
-      from_locations = moves.from_group.location
-      target_group = move.to_groups.select { |to_group| from_locations.include? to_group.location }.first
-      move.destroy_to_group_and_archive_chats(target_group, archived_reason)
-    else
-      archive_for_location_and_reason from_location_for_user(user), archived_reason
-    end
+  def archive_all_for_user_and_reason(user, archived_reason, admin: false)
+    # delete to_group in move which will delete all chats
+    move = moves.find_by(user: user)
+    from_locations = groups.location
+    target_group = move.to_groups.select { |to_group| from_locations.include? to_group.location }.first
+    move.destroy_to_group_and_archive_chats(target_group, archived_reason, admin: admin)
   end
 
-  def archive_for_location_and_reason(location, archived_reason)
+  def archive_for_move_and_reason(move, archived_reason, admin: false)
+    moves.delete move
     self.archived_reason = archived_reason
     archived!
     save!
+    message = if admin
+                'admin_archived_chat_for_location_name_with_message'
+              else
+                'user_from_location_name_archived_with_message'
+              end
     message_params = {
       chat: self,
       text: I18n.t(
-        'user_archived_chat_with_message',
-        location: location.name, message: I18n.t(archived_reason)
+        message,
+        location_name: move.from_group.location.name, message: I18n.t(archived_reason)
       ),
     }
     message_decorator = MessageDecorator.new Message.new message_params
@@ -81,6 +89,7 @@ class Chat
     moves.each_with_index do |move, i|
       # chat.moves << move
       Matches.create from_node: chat, to_node: move, order: i
+      MatchedGroups.create from_node: chat, to_node: move.from_group, order: i
     end
     Message.create! chat: chat, text: I18n.t('new_match_for_moves', moves: chat.name_with_arrows(email_and_phone: true))
     moves.each do |move|

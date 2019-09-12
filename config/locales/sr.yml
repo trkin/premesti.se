@@ -202,6 +202,8 @@ sr:
   it_moved_in_the_meantime: У међувремену смо пронашли премештај на други начин
   do_not_need_to_move_anymore: Више не желим овај премештај
   inactive_user: Неактиван корисник
+  successfully_replaced: Сви смо се успешно преместили
+  successfully_replaced_notice: Жеље свих учесника у договарању ће бити обрисане!
   this_chat_completed_successfully: Ovo dogovaranje se uspešno završilo i predali
     smo zahtev za premeštaj
   here_write_other_reason: Овде упишите други разлог
@@ -213,6 +215,7 @@ sr:
   here_type_message_like: 'Овде напишите поруку типа: Да ли тражите премештај у вртић
     %{location} ?'
   delete_all_moves: Обриши све жеље за премештај са ове локације
+  delete_chat_and_my_move: Архивирај договарање и обриши моју жељу
   user_canceled_account: Корисник је обрисао налог
   all_moves_are_deleted: Све жеље су обрисане
   recaptcha:

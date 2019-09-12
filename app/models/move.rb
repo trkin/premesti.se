@@ -1,7 +1,8 @@
 class Move
   include Neo4j::ActiveNode
   ADMIN_INACTIVE_ARCHIVED_REASON = :inactive_user
-  ARCHIVED_REASONS = %i[
+  SUCCESS_ARHIVED_REASON = :successfully_replaced
+  FAILED_ARCHIVED_REASONS = %i[
     added_move_by_mistake
     it_moved_in_the_meantime
     do_not_need_to_move_anymore
@@ -51,7 +52,7 @@ class Move
     # chat have move1, move2... each belongs to location1, location2 and
     # if target_group belongs to same location that it means that move was
     # used for matching, so we remove that chat
-    target_chats = chats.active.query_as(:c).match(%(
+    target_chats = chats.query_as(:c).match(%(
       (c)-[:MATCHES]->(m:Move),
       (m)-[:CURRENT]-(g:Group),
       (g)-[:HAS_GROUPS]-(l:Location)

@@ -53,6 +53,8 @@ class Chat
     move = moves.find_by(user: user)
     from_locations = groups.location
     target_group = move.to_groups.select { |to_group| from_locations.include? to_group.location }.first
+    raise if target_group.nil?
+
     move.destroy_to_group_and_archive_chats(target_group, archived_reason, admin: admin)
   end
 

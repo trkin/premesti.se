@@ -29,7 +29,7 @@ class ChatsTest < ApplicationSystemTestCase
 
     # now we archive and also delete to_group
     click_on t_crud('delete', Chat)
-    click_on t(Move::ARCHIVED_REASONS.first)
+    click_on t(Move::FAILED_ARCHIVED_REASONS.first)
     refute_selector 'a', text: chat.name_for_user(user)
     refute_selector 'a', text: move_ab.group_age_and_locations
 

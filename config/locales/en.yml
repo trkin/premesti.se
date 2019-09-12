@@ -196,6 +196,9 @@ en:
   it_moved_in_the_meantime: It moved in the meantime without this service
   do_not_need_to_move_anymore: Do not need to move anymore
   inactive_user: Inactive user
+  successfully_replaced: We all moved successfully
+  successfully_replaced_notice: The wishes of all parties to the agreement will be
+    deleted!
   this_chat_completed_successfully: This chat was successfully and we file a request
     to move
   here_write_other_reason: Here you can write other reason
@@ -207,6 +210,7 @@ en:
   here_type_message_like: 'Here you can write message like: Do you search for a move
     to %{location} ?'
   delete_all_moves: Delete all moves
+  delete_chat_and_my_move: Archive the appointment and delete my wish
   user_canceled_account: User cancelled account
   all_moves_are_deleted: All moves are deleted
   recaptcha:

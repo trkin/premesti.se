@@ -10,7 +10,7 @@
       <%= t 'delete_all_moves' %>
     </button>
     <div class="dropdown-menu">
-      <% Move::ARCHIVED_REASONS.each do |reason| %>
+      <% Move::FAILED_ARCHIVED_REASONS.each do |reason| %>
         <%= form_tag move_path(@move), method: :delete do %>
           <%= hidden_field_tag :commit, reason %>
           <%= button_tag t(reason), class: 'dropdown-item' %>
@@ -36,7 +36,7 @@
               <%= t_crud 'delete', Move %>
             </button>
             <div class="dropdown-menu">
-              <% Move::ARCHIVED_REASONS.each do |reason| %>
+              <% Move::FAILED_ARCHIVED_REASONS.each do |reason| %>
                 <%= form_tag destroy_to_group_move_path(@move, to_group_id: group.id), method: :delete do %>
                   <%= hidden_field_tag :commit, reason %>
                   <%= button_tag t(reason), class: 'dropdown-item' %>

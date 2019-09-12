@@ -40,9 +40,13 @@ class ChatsController < ApplicationController
   end
 
   def archive
-    Notify.message "other_reason: #{params[:other_reason]}", current_user.email, chat_url(@chat) if params[:other_reason].present?
     if current_user.admin? && params[:user_id].present?
       @chat.archive_all_for_user_and_reason User.find(params[:user_id]), params[:commit], admin: true
+    elsif params[:commit] == Move::SUCCESS_ARHIVED_REASON
+      Notify.message 'SUCCESS_ARHIVED_REASON', current_user.email, chat_url(@chat)
+      # TODO: send confirmation email to others
+      user = current_user
+      @chat.archive_all_for_user_and_reason user, params[:commit]
     else
       @chat.archive_all_for_user_and_reason current_user, params[:commit]
     end

@@ -32,21 +32,21 @@ class MoveTest < ActiveSupport::TestCase
     archived_chat = Chat.create_for_moves [move, move_b]
     archived_chat.archived!
     archived_chat.save!
-    archived_reason = Move::ARCHIVED_REASONS.second
+    archived_reason = Move::FAILED_ARCHIVED_REASONS.second
 
     move.destroy_to_group_and_archive_chats group_b, archived_reason
 
     assert_equal :archived, chat.reload.status
-    assert chat.messages.map(&:text).include?(t('admin_archived_chat_for_location_name_with_message', location_name: move.from_group.location.name, message: t(archived_reason)))
+    assert chat.messages.map(&:text).include?(t('user_from_location_name_archived_with_message', location_name: move.from_group.location.name, message: t(archived_reason)))
 
     assert_equal :archived, chat_bc.reload.status
-    assert chat_bc.messages.map(&:text).include?(t('admin_archived_chat_for_location_name_with_message', location_name: move.from_group.location.name, message: t(archived_reason)))
+    assert chat_bc.messages.map(&:text).include?(t('user_from_location_name_archived_with_message', location_name: move.from_group.location.name, message: t(archived_reason)))
 
     assert_equal :active, chat_c.reload.status
     assert_equal 1, chat_c.messages.count
 
     assert_equal :archived, archived_chat.status
-    assert_equal 1, archived_chat.messages.count
+    assert_equal 2, archived_chat.messages.count
   end
 
   test '#destroy_and_archive_chats' do
@@ -58,15 +58,15 @@ class MoveTest < ActiveSupport::TestCase
     archived_chat = Chat.create_for_moves [move, another_move]
     archived_chat.archived!
     archived_chat.save!
-    archived_reason = Move::ARCHIVED_REASONS.second
+    archived_reason = Move::FAILED_ARCHIVED_REASONS.second
 
     move.destroy_and_archive_chats archived_reason
 
     assert_equal :archived, chat.reload.status
-    assert chat.messages.map(&:text).include?(t('admin_archived_chat_for_location_name_with_message', location_name: move.from_group.location.name, message: t(archived_reason)))
+    assert chat.messages.map(&:text).include?(t('user_from_location_name_archived_with_message', location_name: move.from_group.location.name, message: t(archived_reason)))
 
     assert_equal :archived, another_chat.reload.status
-    assert another_chat.messages.map(&:text).include?(t('admin_archived_chat_for_location_name_with_message', location_name: move.from_group.location.name, message: t(archived_reason)))
+    assert another_chat.messages.map(&:text).include?(t('user_from_location_name_archived_with_message', location_name: move.from_group.location.name, message: t(archived_reason)))
 
     assert_equal :archived, archived_chat.reload.status
     assert_equal 1, archived_chat.messages.count

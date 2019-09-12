@@ -24,8 +24,10 @@ class AddToGroupAndSendNotificationsTest < ActiveSupport::TestCase
   end
 
   def test_validate_that_group_can_be_added_same_age
-    move = build :move
-    same_age_group = build :group, age: move.from_group.age
+    # we can not use build :move, since it's location would be the same as build
+    # :group
+    move = create :move
+    same_age_group = create :group, age: move.from_group.age
 
     assert AddToGroupAndSendNotifications.new(move, same_age_group)._validate_that_group_can_be_added?
   end

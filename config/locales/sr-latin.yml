@@ -265,3 +265,4 @@ sr-latin:
   from_total: od ukupno
   blog: Blog
   chat_for_group_name_and_location_names: Dogovaranje za %{group_name} između %{location_names}
+  until_now_number_name_sent: 'Do sada poslato %{number_name}'

@@ -35,7 +35,7 @@ sr-latin:
       message:
         one: poruka
         few: poruke
-        other: poruke
+        other: poruka
         accusative: poruku
     attributes:
       user:

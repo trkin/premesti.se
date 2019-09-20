@@ -33,10 +33,11 @@ class Chat
 
     return @name_with_arrows if @name_with_arrows.present?
 
-    @name_with_arrows = ([ordered_moves.last] + ordered_moves).map do |m|
-      m.from_group.location.name + \
-        (email_and_phone && m.user.email_with_phone_if_present ? "(#{m.user.email_with_phone_if_present})" : '')
-    end.join(" #{Constant::ARROW_CHAR} ")
+    array = ([ordered_moves.last] + ordered_moves).map do |m|
+      m.from_group.location.name.html_safe + \
+        (email_and_phone && m.user.email_with_phone_if_present ? m.user.email_with_phone_if_present : ''.html_safe)
+    end
+    @name_with_arrows = ActionController::Base.helpers.safe_join(array, " #{Constant::ARROW_CHAR} ")
   end
 
   def name_for_user(_user)

@@ -255,3 +255,4 @@ en:
   from_total: from total
   blog: Blog
   chat_for_group_name_and_location_names: Negotiating for %{group_name} between %{location_names}
+  until_now_number_name_sent: "%{number_name} sent so far"

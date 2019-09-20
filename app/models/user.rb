@@ -89,10 +89,11 @@ class User
 
   def email_with_phone_if_present
     count = messages.count
-    badge = "<span class='badge #{badge_for_count(count)}'>#{count}</span>".html_safe
+    title = I18n.t('until_now_number_name_sent', number_name: (count.to_s + ' ' + Message.model_name.human(count: count)))
+    badge = "<span class='badge #{badge_for_count(count)}' title='#{title}'>#{count}</span>".html_safe
     return badge if phone_number.blank? && !visible_email_address
 
-    res = ''
+    res = ''.html_safe
     res += phone_number if phone_number.present?
     res += "#{' ' if phone_number.present?}#{email}" if visible_email_address
     res += badge

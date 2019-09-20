@@ -262,3 +262,4 @@ sr:
   from_total: од укупно
   blog: Блог
   chat_for_group_name_and_location_names: Договарање за %{group_name} између %{location_names}
+  until_now_number_name_sent: До сада послато %{number_name}

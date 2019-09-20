@@ -51,7 +51,7 @@ class Chat
   def archive_all_for_user_and_reason(user, archived_reason, admin: false)
     # delete to_group in move which will delete all chats
     move = moves.find_by(user: user)
-    from_locations = groups.location
+    from_locations = ordered_groups.location
     target_group = move.to_groups.select { |to_group| from_locations.include? to_group.location }.first
     raise if target_group.nil?
 

@@ -67,10 +67,10 @@
       <dd class='col'><%= @user.sign_in_count %></dd>
       <dt class='w-100'></dt>
       <dt class='col-sm-4'>Current Sign In at</dt>
-      <dd class='col'><%= @user.current_sign_in_at.to_s :short %></dd>
+      <dd class='col'><%= @user.current_sign_in_at.to_s %></dd>
       <dt class='w-100'></dt>
       <dt class='col-sm-4'>Last Sign In at</dt>
-      <dd class='col'><%= @user.last_sign_in_at.to_s :short %></dd>
+      <dd class='col'><%= @user.last_sign_in_at.to_s %></dd>
       <dt class='w-100'></dt>
       <dt class='col-sm-4'>Current Sign In IP</dt>
       <dd class='col'><%= @user.current_sign_in_ip %></dd>
@@ -99,7 +99,7 @@
         </div>
       <% end %>
     </div>
-    <h1>Chats active</h1>
+    <h1>Chats active (<%= @chats_active.size %>)</h1>
     <%= paginate @chats_active %>
     <% @chats_active.each do |chat| %>
       <%= link_to chat.name_for_user(@user), chat_path(chat) %>
@@ -140,6 +140,7 @@
     <%# <% end %1> %>
   </div>
   <div class='col'>
+    <h1>Messages (<%= @user.messages.size %>)</h1>
     <h1>EmailMessages <%= @email_messages.total_count %></h1>
     <%= paginate @email_messages %>
     <ul>

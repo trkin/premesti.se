@@ -88,12 +88,27 @@ class User
   end
 
   def email_with_phone_if_present
-    return nil if phone_number.blank? && !visible_email_address
+    count = messages.count
+    badge = "<span class='badge #{badge_for_count(count)}'>#{count}</span>".html_safe
+    return badge if phone_number.blank? && !visible_email_address
 
     res = ''
     res += phone_number if phone_number.present?
     res += "#{' ' if phone_number.present?}#{email}" if visible_email_address
+    res += badge
     res
+  end
+
+  def badge_for_count(count)
+    if count.zero?
+      'badge-danger'
+    elsif count < 5
+      'badge-secondary'
+    elsif count < 10
+      'badge-warning'
+    else
+      'badge-success'
+    end
   end
 
   def my_data

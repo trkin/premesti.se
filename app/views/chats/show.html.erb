@@ -11,7 +11,7 @@
   <%= move.from_group.location.name %> <%= move.user.email_with_phone_if_present %>
   <% if current_user.admin? %>
     (only admin
-    <%= link_to move.user.email, admin_user_path(move.user) %>
+      <%= link_to move.user.email, admin_user_path(move.user) %>
       <%= form_tag archive_chat_path(@chat, user_id: move.user.id), class: 'd-inline' do %>
         <%= hidden_field_tag :commit, Move::ADMIN_INACTIVE_ARCHIVED_REASON %>
         <%= button_tag Move::ADMIN_INACTIVE_ARCHIVED_REASON, class: 'btn-danger' %>

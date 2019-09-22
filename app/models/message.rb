@@ -21,14 +21,13 @@ class Message
     m = if user
           move = chat.moves.find_by(user: user)
           if move
-            move.from_group.location.name
+            move.from_group.location.name.html_safe + user.email_with_phone_if_present
           else
             I18n.t('message_of_deleted_move')
           end
         else
           I18n.t('system_message')
         end
-    m += " #{user.email_with_phone_if_present}" if user&.email_with_phone_if_present.present?
     m + ' ' + I18n.localize(created_at, format: :long)
   end
 

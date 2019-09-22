@@ -28,15 +28,17 @@ class Chat
                       end
   end
 
-  def name_with_arrows(email_and_phone: false)
+  def name_with_arrows(email_and_phone: false, skip_badges: false)
     return I18n.t('all_moves_are_deleted') unless moves.present?
 
     return @name_with_arrows if @name_with_arrows.present?
 
     array = ([ordered_moves.last] + ordered_moves).map do |m|
       m.from_group.location.name.html_safe + \
-        (email_and_phone && m.user.email_with_phone_if_present ? m.user.email_with_phone_if_present : ''.html_safe)
+        (email_and_phone ? m.user.email_with_phone_if_present(skip_badges: skip_badges) : '')
     end
+    # even result is SafeJoin we need to use .html_safe for
+    # I18n.('name', name: chat.name_with_arrows).html_safe
     @name_with_arrows = ActionController::Base.helpers.safe_join(array, " #{Constant::ARROW_CHAR} ")
   end
 
@@ -94,7 +96,7 @@ class Chat
       Matches.create from_node: chat, to_node: move, order: i
       MatchedGroups.create from_node: chat, to_node: move.from_group, order: i
     end
-    Message.create! chat: chat, text: I18n.t('new_match_for_moves', moves: chat.name_with_arrows(email_and_phone: true))
+    Message.create! chat: chat, text: I18n.t('new_match_for_moves', moves: chat.name_with_arrows(email_and_phone: true, skip_badges: true)).html_safe
     moves.each do |move|
       next unless move.user.initial_chat_message.present?
 

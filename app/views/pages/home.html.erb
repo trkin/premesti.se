@@ -49,33 +49,37 @@
       <%= t 'site_description_3' %>
     </h2>
     <div>
-      <%= modal id: 'find-on-map-modal', title: t('find_on_map'), fade: false %>
-      <%= bootstrap_form_for @landing_signup, url: landing_signup_path, builder: MyFormBuilder, layout: :inline do |f| %>
-        <%= f.hidden_field :current_city %>
-        <div class='form-inline justify-content-center form-inline__around'>
-          <%= f.select :current_location, @landing_signup.already_selected_current_location_options, { help: link_to(t('or_choose_any_on_map'), find_on_map_path(select_element: '#current_location'), "data-toggle": "modal", "data-target": "#find-on-map-modal"), label_as_placeholder: true, label_as_prompt: true}, id: 'current_location', 'data-select2-ajax-initialize': select2_locations_path %>
-          <%= f.select :from_group_age, 1.upto(7).map {|a| [Group.title_for_age(a), a]}, { selected: f.object.from_group_age, label_as_placeholder: true }, 'data-select2-initialize': true %>
-          <%= f.select :to_location, @landing_signup.already_selected_to_location_options, { help: link_to(t('or_choose_any_on_map'), find_on_map_path(select_element: '#to_location'), "data-toggle": "modal", "data-target": "#find-on-map-modal"), label_as_placeholder: true, label_as_prompt: true }, id: 'to_location', 'data-select2-ajax-initialize': select2_locations_path %>
-          <% unless current_user %>
-            <%= f.text_field :email, label_as_placeholder: true, size: 10 %>
-            <%= f.password_field :password, label_as_placeholder: true, size: 8 %>
-            <%= f.text_field :phone_number, label_as_placeholder: true, size: 10 %>
-            <%= help_icon t('phone_or_email_address_will_be_shown') %>
-            <%= f.form_group do %>
-              <%= f.check_box :visible_email_address %>
+      <% if current_user&.moves.present? %>
+        <%= link_to t('dashboard'), dashboard_path %>
+      <% else %>
+        <%= modal id: 'find-on-map-modal', title: t('find_on_map'), fade: false %>
+        <%= bootstrap_form_for @landing_signup, url: landing_signup_path, builder: MyFormBuilder, layout: :inline do |f| %>
+          <%= f.hidden_field :current_city %>
+          <div class='form-inline justify-content-center form-inline__around'>
+            <%= f.select :current_location, @landing_signup.already_selected_current_location_options, { help: link_to(t('or_choose_any_on_map'), find_on_map_path(select_element: '#current_location'), "data-toggle": "modal", "data-target": "#find-on-map-modal"), label_as_placeholder: true, label_as_prompt: true}, id: 'current_location', 'data-select2-ajax-initialize': select2_locations_path %>
+            <%= f.select :from_group_age, 1.upto(7).map {|a| [Group.title_for_age(a), a]}, { selected: f.object.from_group_age, label_as_placeholder: true }, 'data-select2-initialize': true %>
+            <%= f.select :to_location, @landing_signup.already_selected_to_location_options, { help: link_to(t('or_choose_any_on_map'), find_on_map_path(select_element: '#to_location'), "data-toggle": "modal", "data-target": "#find-on-map-modal"), label_as_placeholder: true, label_as_prompt: true }, id: 'to_location', 'data-select2-ajax-initialize': select2_locations_path %>
+            <% unless current_user %>
+              <%= f.text_field :email, label_as_placeholder: true, size: 10 %>
+              <%= f.password_field :password, label_as_placeholder: true, size: 8 %>
+              <%= f.text_field :phone_number, label_as_placeholder: true, size: 10 %>
+              <%= help_icon t('phone_or_email_address_will_be_shown') %>
+              <%= f.form_group do %>
+                <%= f.check_box :visible_email_address %>
+              <% end %>
+              <%= f.form_group do %>
+                <%= f.check_box :subscribe_to_new_match, required: true %>
+              <% end %>
+              <%= f.form_group do %>
+                <%= f.check_box :subscribe_to_news_mailing_list %>
+              <% end %>
+            <% end %><%# unless current_user %>
+            <%= f.button type: :submit, class: 'btn btn-primary form-group' do %>
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+              <%= t('activemodel.attributes.landing_signup.submit') %>
             <% end %>
-            <%= f.form_group do %>
-              <%= f.check_box :subscribe_to_new_match, required: true %>
-            <% end %>
-            <%= f.form_group do %>
-              <%= f.check_box :subscribe_to_news_mailing_list %>
-            <% end %>
-          <% end %><%# unless current_user %>
-          <%= f.button type: :submit, class: 'btn btn-primary form-group' do %>
-            <i class="fa fa-envelope" aria-hidden="true"></i>
-            <%= t('activemodel.attributes.landing_signup.submit') %>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>

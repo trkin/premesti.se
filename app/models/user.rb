@@ -87,10 +87,11 @@ class User
     email.split('@').first
   end
 
-  def email_with_phone_if_present
+  # rubocop:disable Metrics/CyclomaticComplexity
+  def email_with_phone_if_present(skip_badges: false)
     count = messages.count
     title = I18n.t('until_now_number_name_sent', number_name: (count.to_s + ' ' + Message.model_name.human(count: count)))
-    badge = "<span class='badge #{badge_for_count(count)}' title='#{title}'>#{count}</span>".html_safe
+    badge = skip_badges ? '' : " <span class='badge #{badge_for_count(count)}' title='#{title}'>#{count}</span>".html_safe
     return badge if phone_number.blank? && !visible_email_address
 
     res = ''.html_safe
@@ -99,6 +100,7 @@ class User
     res += badge
     res
   end
+  # rubocop:enable Metrics/CyclomaticComplexity
 
   def badge_for_count(count)
     if count.zero?

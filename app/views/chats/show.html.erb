@@ -1,11 +1,11 @@
 <%
-  breadcrumb "#{Chat.model_name.human.mb_chars.capitalize} #{@chat.name_for_user(current_user)}" => nil
+  breadcrumb Chat.model_name.human.mb_chars.capitalize.html_safe + ' ' + @chat.name_for_user(current_user) => nil
 %>
 <% if @chat.groups.present? %>
    <% location_names = @chat.groups.map {|group| group.location.name }.to_sentence %>
-   <h1>
+   <h3>
      <%= t('chat_for_group_name_and_location_names', group_name: Group.title_for_age(@chat.groups.first.age), location_names: location_names) %>
-   </h1>
+   </h3>
 <% end %>
 <% @chat.moves.each do |move| %>
   <%= move.from_group.location.name %> <%= move.user.email_with_phone_if_present %>

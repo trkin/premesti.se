@@ -19,13 +19,14 @@ module MoveHelper
       host: 'www.facebook.com',
       path: '/sharer/sharer.php',
       query: {
-        s: 100,
-        p: {
-          url: my_move_url(move, move.group_age_and_locations),
-          images: [
-            move_static_map_url(move),
-          ],
-        }
+        u: my_move_url(move, move.group_age_and_locations),
+        # s: 100,
+        # p: {
+        #   url: my_move_url(move, move.group_age_and_locations),
+        #   images: [
+        #     move_static_map_url(move),
+        #   ],
+        # }
       }.to_query
     )
 

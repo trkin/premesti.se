@@ -156,6 +156,12 @@ It is currently deployed to my computer using capistrano 3.
 cap production deploy
 ```
 
+To see logs you can inspect
+
+```
+tail -f /var/log/nginx/* ~/premesti.se/current/log/*
+```
+
 When you update a blog pages than you need to build and commit changes
 
 ```

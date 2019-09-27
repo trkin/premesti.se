@@ -193,6 +193,8 @@ sr:
   we_cancel_report_successfully: Успешно смо отказали пријаву злоупотребе
   my_move_introduction: Мењамо место у вртићу <b>%{from}</b> за <b>%{to}</b> група
     %{age}
+  if_you_have_some_of_this_locations_we_can_match: Ако и ви имате жељу да пребаците
+    дете, упишите се па ћете добити имејл обавештење уколико се деси поклапање
   share: Подели
   share_on_facebook: Подели на <i class="fa fa-facebook-official"></i> Фејсбуку
   see_public_page: Види јавну страницу коју можеш да делиш

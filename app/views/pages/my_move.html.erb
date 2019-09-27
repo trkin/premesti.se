@@ -31,9 +31,13 @@
       <% end %>
     </div>
   </nav>
-  <div class='my-move-introduction'>
+  <h1 class='my-move-introduction'>
     <%= headline.html_safe %>
-  </div>
+  </h1>
+  <p>
+    <%= t('if_you_have_some_of_this_locations_we_can_match') %>
+  </p>
+  <%= move_share_link @move, class: 'animated fadeIn' %>
   <%= modal id: 'find-on-map-modal', title: t('find_on_map'), fade: false %>
   <%= bootstrap_form_for @landing_signup, url: my_move_path, builder: MyFormBuilder do |f| %>
     <%= f.hidden_field :current_city %>

@@ -1,7 +1,7 @@
 <%
     breadcrumb t('my_data') => nil
 %>
-<h1><%= t('my_moves') %></h1>
+<h2><%= t('my_moves') %></h2>
 <ul class="list-unstyled">
   <% current_user.moves.each do |move| %>
     <li>
@@ -10,7 +10,7 @@
   <% end %>
 </ul>
 
-<h1><%= t('my_chats') %></h1>
+<h2><%= t('my_chats') %></h2>
 <ul class="list-unstyled">
   <% current_user.moves.chats.active.each do |chat| %>
     <li>
@@ -27,9 +27,9 @@
   <% end %>
 </ul>
 
-<h1>
-<%= t('my_archived_chats') %>
-</h1>
+<h2>
+  <%= t('my_archived_chats') %>
+</h2>
 <ul class="list-unstyled">
   <% current_user.moves.chats.archived.each do |chat| %>
     <li>

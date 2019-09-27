@@ -197,6 +197,7 @@ sr-latin:
   we_cancel_report_successfully: Uspešno smo otkazali prijavu zloupotrebe
   my_move_introduction: Menjamo mesto u vrtiću <b>%{from}</b> za <b>%{to}</b> grupa
     %{age}
+  if_you_have_some_of_this_locations_we_can_match: Ako i vi imate želju da prebacite dete, upišite se pa ćete dobiti imejl obaveštenje ukoliko se desi poklapanje
   share: Podeli
   share_on_facebook: Podeli na <i class="fa fa-facebook-official"></i> Fejsbuku
   see_public_page: Vidi javnu stranicu koju možeš da deliš
@@ -208,8 +209,7 @@ sr-latin:
   inactive_user: Neaktivan korisnik
   successfully_replaced: Svi smo se uspešno premestili
   successfully_replaced_notice: Želje svih učesnika u dogovaranju će biti obrisane!
-  this_chat_completed_successfully: Ово договарање се успешно завршило и предали смо
-    захтев за премештај
+  this_chat_completed_successfully: Ovo dogovaranje se uspešno završilo i predali smo zahtev za premeštaj
   here_write_other_reason: Ovde upišite drugi razlog
   other_reason: Iz drugih razloga hoću da obrišem
   user_from_location_name_archived_with_message: 'Vrtić %{location_name} je arhivirao dogovaranje %{location_name} sa razlogom: %{message}'

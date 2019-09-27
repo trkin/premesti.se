@@ -187,6 +187,8 @@ en:
   we_cancel_report_successfully: We cancelled report successfully
   my_move_introduction: We want to move from <b>%{from}</b> to <b>%{to}</b> group
     %{age}
+  if_you_have_some_of_this_locations_we_can_match: If you also want to transfer your
+    child, sign up and receive an email if a match occurs
   share: Share
   share_on_facebook: Share on <i class="fa fa-facebook-official"></i> Facebook
   see_public_page: See public page which you can share

@@ -53,7 +53,7 @@
       <div class='background-gradient height-100'>
         <nav class='navbar navbar-expand background-same-as-cute'>
           <div class='navbar-nav mr-auto'>
-            <%= link_to '/', class: 'navbar-brand' do %>
+            <%= link_to dashboard_path, class: 'navbar-brand' do %>
               <%= image_tag 'premesti_se_lines_logo.png', class: 'root-icon' %>
               <%# <span class='d-none d-sm-inline colorize-text-background-radial'> %>
                 <%= t('site_title') %>
@@ -62,18 +62,20 @@
             <% if current_user.admin? %>
               <%= link_to t("admin_dashboard"), admin_dashboard_path, class: 'nav-item nav-link' %>
             <% end %>
-            <% find_breadcrumb_list.each_with_index do |(text, link), i| %>
-              <% if link.present? %>
-                <%= link_to link, class: 'nav-item nav-link' do %>
-                  <%= text %>
+            <div class='d-none d-sm-flex'>
+              <% find_breadcrumb_list.each_with_index do |(text, link), i| %>
+                <% if link.present? %>
+                  <%= link_to link, class: 'nav-item nav-link' do %>
+                    <%= text %>
+                  <% end %>
+                  <i class="nav-link fa fa-angle-right" aria-hidden="true"></i>
+                <% else %>
+                  <span class='navbar-text'>
+                    <%= text %>
+                  </span>
                 <% end %>
-                <i class="nav-link fa fa-angle-right" aria-hidden="true"></i>
-              <% else %>
-                <span class='navbar-text'>
-                  <%= text %>
-                </span>
               <% end %>
-            <% end %>
+            </div>
           </div>
           <div class='navbar-nav'>
             <div class='nav-item dropdown dropleft'>
@@ -105,7 +107,7 @@
             <%= alert_for_user.html_safe %>
           </div>
         <% end %>
-        <div class='container mt-1'>
+        <div class='mt-1'>
           <%= yield %>
         </div>
         <%= render 'layouts/alerts' %>

@@ -1,7 +1,7 @@
 <%
   breadcrumb "#{Move.model_name.human.mb_chars.capitalize} #{@move.from_group.location.name}" => nil
 %>
-<h1 class='show-on-hover'>
+<h2 class='show-on-hover'>
   <%= t('my_requests') %>
   <%= @move.from_group.location.name %>
   (<%= @move.from_group.age_with_short_title %>)
@@ -24,9 +24,9 @@
       <% end %>
     </div>
   </div>
-</h1>
-<div class='d-flex justify-content-between'>
-  <div>
+</h2>
+<div class='row'>
+  <div class='col-md'>
     <ul class="list-unstyled">
       <% @move.to_groups.each do |group| %>
         <li class="show-on-hover">
@@ -54,7 +54,7 @@
       <% end %>
     </ul>
     <%= modal id: 'find-on-map-modal', title: t('find_on_map'), fade: false %>
-    <label for="toggle-active" class='btn btn-default <%= 'animated fadeIn infinite' unless @move.to_groups.present? %>'>
+    <label for="toggle-active" class='btn btn__text_wrap btn-default <%= 'animated fadeIn infinite' unless @move.to_groups.present? %>'>
       <i class="fa fa-plus" aria-hidden="true"></i>
       <%= t('add_request_location_for_move_from_location_name', location_name: @move.from_group.location.name) %>
     </label>
@@ -68,14 +68,14 @@
       <% end %>
     </span>
   </div>
-  <div class='text-center'>
+  <div class='col-md text-center'>
     <%= link_to t('see_public_page'), my_move_path(@move, @move.group_age_and_locations) %>
     <br>
     <%# show_lines_map [@move.from_group.location, @move.to_groups.map(&:location)].flatten, @move.to_groups.map(&:location).map { |loc| OpenStruct.new from: @move.from_group.location, to: loc, age: @move.from_group.age }, class: 'show-lines-map-container' %>
     <%= image_tag move_static_map_url(@move), class: 'show-lines-map-container' %>
     <br>
     <% if @move.to_groups.present? %>
-      <%= move_share_link @move, class: 'animated fadeIn infinite' %>
+      <%= move_share_link @move, class: 'animated fadeIn' %>
     <% end %>
   </div>
 </div>

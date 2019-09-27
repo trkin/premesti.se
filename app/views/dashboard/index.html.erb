@@ -1,14 +1,14 @@
 <%
   breadcrumb
 %>
-<h1 class='show-on-hover'>
+<h2 class='show-on-hover'>
   <%= t('my_chats') %>
   <% if current_user.moves.chats.archived.present? %>
     <small>
       <%= link_to t('my_archived_chats'), my_data_path, class: 'show-on-hover-target' %>
     </small>
   <% end %>
-</h1>
+</h2>
 <% if current_user.moves.chats.active.present? %>
   <ul class="list-unstyled">
     <% current_user.moves.chats.active.each do |chat| %>
@@ -26,9 +26,9 @@
 <% else %>
   <%= t('chats_empty_new_will_show_up_automatically') %>
 <% end %>
-<h1>
+<h2>
   <%= t('my_moves') %>
-</h1>
+</h2>
 <ul class="list-unstyled">
   <% current_user.moves.each do |move| %>
     <li class="">
@@ -36,7 +36,7 @@
         <%= move.group_age_and_locations %>
       <% end %>
       <% if move.to_groups.present? %>
-        <%= move_share_link move, class: 'animated fadeIn infinite' %>
+        <%= move_share_link move, class: 'animated fadeIn' %>
       <% else %>
         <%= link_to move do %>
           <i class="fa fa-plus" aria-hidden="true"></i>

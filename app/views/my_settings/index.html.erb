@@ -6,7 +6,7 @@
     [ t('current_language', locale: :en), 'en'],
   ]
 %>
-<h1><%= t('my_settings') %></h1>
+<h2><%= t('my_settings') %></h2>
 <%= bootstrap_form_for current_user, url: my_settings_path do |f| %>
   <div class='row'>
     <div class='col-md-6'>

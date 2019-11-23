@@ -59,9 +59,6 @@
                 <%= t('site_title') %>
               <%# </span> %>
             <% end %>
-            <% if current_user.admin? %>
-              <%= link_to t("admin_dashboard"), admin_dashboard_path, class: 'nav-item nav-link' %>
-            <% end %>
             <div class='d-none d-sm-flex'>
               <% find_breadcrumb_list.each_with_index do |(text, link), i| %>
                 <% if link.present? %>
@@ -83,6 +80,9 @@
                 <%= current_user.email_username %>
               </a>
               <div class="dropdown-menu p-1" aria-labelledby="userDropdown">
+                <% if current_user.admin? %>
+                  <%= link_to t("admin_dashboard"), admin_dashboard_path, class: 'dropdown-item' %>
+                <% end %>
                 <%= link_to t('my_settings'), my_settings_path, class: 'dropdown-item' %>
                 <%= link_to t('my_account'), edit_user_registration_path, class: 'dropdown-item' %>
                 <%= link_to t('my_data'), my_data_path, class: 'dropdown-item' %>

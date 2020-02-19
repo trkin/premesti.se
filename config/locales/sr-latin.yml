@@ -154,9 +154,10 @@ sr-latin:
   faq_8_a: Sajt je napravila kompanija TRK INOVACIJE DOO NOVI SAD.
   system_message: Poruka sistema
   new_match: Novo poklapanje
-  new_match_for_moves: 'Dogodilo se poklapanje između lokacija: %{moves}. Probajte
-    da se dogovorite oko zajedničkog premeštanja. Ukoliko niste upisali vaš broj telefona
-    i ne odgovorite u sledećih tri dana, vaša želja će biti obrisana'
+  new_match_for_moves: 'Dogodilo se poklapanje između lokacija: %{moves}. Da bi
+    sistem znao da ste još uvek aktivni korisnik upišite vašu poruku u sledećih
+    tri dana, u protivnom, smatraćemo da ste odustali i vaša želja će biti
+    obrisana. Hvala'
   new_message: Nova poruka
   there_is_a_match_for_your_location: Postoji novo poklapanje za vašu želju za premeštajem
     iz vrtića %{location}.
@@ -200,6 +201,7 @@ sr-latin:
   if_you_have_some_of_this_locations_we_can_match: Ako i vi imate želju da prebacite dete, upišite se pa ćete dobiti imejl obaveštenje ukoliko se desi poklapanje
   share: Podeli
   share_on_facebook: Podeli na <i class="fa fa-facebook-official"></i> Fejsbuku
+  share_reason: Korisnici koji podele svoje želje će biti ranije obavešteni nego ovi drugi
   see_public_page: Vidi javnu stranicu koju možeš da deliš
   unauthorized: Niste autorizovani
   message_archived: Poruka je obrisana

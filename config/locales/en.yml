@@ -149,9 +149,10 @@ en:
   faq_8_a: The site was made by TRK INOVACIJE DOO NOVI SAD.
   system_message: System message
   new_match: New match
-  new_match_for_moves: 'There is a match between locations: %{moves}. You can together
-    apply for a relocation. If you have not set a phone number and you do not reply
-    on this chat, your move will be removed'
+  new_match_for_moves: 'There is a match between locations: %{moves}. To let the
+    system know that you are still an active user, type your message in the next
+    three days; otherwise, we will assume that you have canceled and your wish
+    will be deleted. Thank you'
   new_message: New message
   there_is_a_match_for_your_location: There is a match for your location %{location}.
   your_move_completed_the_circle_path: Your move completed circle path %{path}.
@@ -191,6 +192,7 @@ en:
     child, sign up and receive an email if a match occurs
   share: Share
   share_on_facebook: Share on <i class="fa fa-facebook-official"></i> Facebook
+  share_reason: People who shares their moves will get notified before other people
   see_public_page: See public page which you can share
   unauthorized: Unauthorized
   message_archived: Message deleted

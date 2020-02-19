@@ -159,7 +159,7 @@ class UsersTest < ApplicationSystemTestCase
     sign_in user
     visit dashboard_path
     assert_text move.from_group.location.name
-    click_on chat.name_for_user(user)
+    click_on chat.only_text_for_name_for_user(user)
     assert_text 'blabla'
 
     visit edit_user_registration_path

@@ -27,7 +27,7 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to dashboard_path
     follow_redirect!
-    assert_select 'h1', t('my_moves')
+    assert_notice_message t('activemodel.models.landing_signup.success_notice') + ' ' + t('devise.registrations.signed_up_but_unconfirmed')
 
     move_mail = give_me_last_mail_and_clear_mails
     assert_match t('user_mailer.landing_signup.description_of_service_unconfirmed'), move_mail.html_part.decoded
@@ -61,7 +61,7 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to dashboard_path
     follow_redirect!
-    assert_select 'h1', t('my_moves')
+    assert_notice_message t('activemodel.models.landing_signup.success_notice') + ' ' + t('devise.registrations.signed_up_but_unconfirmed')
 
     move_mail = give_me_last_mail_and_clear_mails
     assert_match t('user_mailer.landing_signup.description_of_service_unconfirmed'), move_mail.html_part.decoded
@@ -91,7 +91,7 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to dashboard_path
     follow_redirect!
-    assert_select 'h1', t('my_moves')
+    assert_notice_message t('activemodel.models.landing_signup.success_notice')
 
     chat_mail, another_chat_mail, move_mail = give_me_all_mail_and_clear_mails
     assert_match t('user_mailer.landing_signup.description_of_service'), move_mail.html_part.decoded

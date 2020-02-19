@@ -17,9 +17,9 @@ class ChatsTest < ApplicationSystemTestCase
     sign_in user
     visit dashboard_path
 
-    assert_selector 'a', text: chat.name_for_user(user)
+    assert_selector 'a', text: chat.only_text_for_name_for_user(user)
     assert_selector 'a', text: move_ab.group_age_and_locations
-    click_on chat.name_for_user user
+    click_on chat.only_text_for_name_for_user user
 
     fill_in 'new-message-input', with: 'hello there'
     click_on t_crud('send', Message)
@@ -28,9 +28,9 @@ class ChatsTest < ApplicationSystemTestCase
     # find("a[title='#{t_crud('delete', Message)}']", visible: false, match: :first).click
 
     # now we archive and also delete to_group
-    click_on t_crud('delete', Chat)
+    click_on t('delete_chat_and_my_move')
     click_on t(Move::FAILED_ARCHIVED_REASONS.first)
-    refute_selector 'a', text: chat.name_for_user(user)
+    refute_selector 'a', text: chat.only_text_for_name_for_user(user)
     refute_selector 'a', text: move_ab.group_age_and_locations
 
     # now we are creating same to_group and it should create another chat
@@ -43,6 +43,6 @@ class ChatsTest < ApplicationSystemTestCase
     click_on t('add')
     FindMatchesForOneMove::MAX_LENGTH_OF_THE_ROTATION = old
     visit dashboard_path
-    assert_selector 'a', text: chat.name_for_user(user)
+    assert_selector 'a', text: chat.only_text_for_name_for_user(user)
   end
 end

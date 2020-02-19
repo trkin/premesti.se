@@ -10,7 +10,7 @@ class MovesControllerTest < ActionDispatch::IntegrationTest
   test 'show' do
     move = create_move_and_sign_in
     get move_path(move)
-    assert_select 'h1', /#{move.from_group.location.name}/
+    assert_select 'h2', /#{move.from_group.location.name}/
   end
 
   test 'delete to_group' do

@@ -31,11 +31,9 @@ class Chat
   def name_with_arrows(email_and_phone: false, skip_badges: false)
     return I18n.t('all_moves_are_deleted') unless moves.present?
 
-    return @name_with_arrows if @name_with_arrows.present?
-
     array = ([ordered_moves.last] + ordered_moves).map do |m|
       m.from_group.location.name.html_safe + \
-        (email_and_phone ? m.user.email_with_phone_if_present(skip_badges: skip_badges) : '')
+        (email_and_phone ? " #{m.user.email_with_phone_if_present(skip_badges: skip_badges)}".html_safe : '')
     end
     # even result is SafeJoin we need to use .html_safe for
     # I18n.('name', name: chat.name_with_arrows).html_safe
@@ -46,6 +44,10 @@ class Chat
     name_with_arrows email_and_phone: true
   end
 
+  def only_text_for_name_for_user(_user)
+    ActionController::Base.helpers.strip_tags(name_for_user(_user))
+  end
+
   def from_location_for_user(user)
     move = moves.find_by user: user
     move.from_group.location
@@ -54,7 +56,7 @@ class Chat
   def archive_all_for_user_and_reason(user, archived_reason, admin: false)
     # delete to_group in move which will delete all chats
     move = moves.find_by(user: user)
-    from_locations = ordered_groups.location
+    from_locations = ordered_groups.map(&:location)
     target_group = move.to_groups.select { |to_group| from_locations.include? to_group.location }.first
     raise if target_group.nil?
 

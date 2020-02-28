@@ -335,7 +335,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
     public_suffix (4.0.1)
-    puma (3.12.1)
+    puma (3.12.3)
     rack (2.0.7)
     rack-contrib (2.1.0)
       rack (~> 2.0)
@@ -490,7 +490,7 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-google-oauth2
   premailer-rails
-  puma (~> 3.7)
+  puma (~> 3.12)
   rack-livereload
   rails (~> 5.2)
   recaptcha

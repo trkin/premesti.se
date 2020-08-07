@@ -17,7 +17,7 @@ In source you can see usage of the:
 * chat with ActionCable
 * test with minitests, headless chrome
 * sign up with facebook, google and email
-* ssl is enabled using free cloudflare https
+* ssl is enabled using free cloudflare https and lets encrypt
 
 Graph database is chosen since we need to match moves in format A->B, B->A
 (I want to move from A to B, so please find me who wants to move from B to A).
@@ -230,11 +230,11 @@ Move.all.select {|m| m.from_group.age>7}.map {|m| m.destroy_and_archive_chats :e
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at
-[github.com/duleorlovic/premesti.se/issues].
+[github.com/trkin/premesti.se/issues].
 Thank you [contributors]!
 
-[github.com/duleorlovic/premesti.se/issues]: https://github.com/duleorlovic/premesti.se/issues
-[contributors]: https://github.com/duleorlovic/premesti.se/graphs/contributors
+[github.com/trkin/premesti.se/issues]: https://github.com/trkin/premesti.se/issues
+[contributors]: https://github.com/trkin/premesti.se/graphs/contributors
 
 ## License
 
@@ -245,4 +245,4 @@ The project is available as open source under the terms of the
 
 This project is designed and created at TRK INNOVATIONS LLC by:
 
-* [duleorlovic](https://github.com/duleorlovic)
+* [trkin](https://github.com/trkin)

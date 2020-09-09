@@ -14,24 +14,32 @@ module MoveHelper
     show_static_circle_map_url locations
   end
 
-  def move_share_link(move, opts = {})
-    uri = URI::HTTP.build(
-      host: 'www.facebook.com',
-      path: '/sharer/sharer.php',
-      query: {
-        u: my_move_url(move, move.group_age_and_locations),
-        # s: 100,
-        # p: {
-        #   url: my_move_url(move, move.group_age_and_locations),
-        #   images: [
-        #     move_static_map_url(move),
-        #   ],
-        # }
-      }.to_query
-    )
+  # This is url based share, but here we can not receive response
+  # def move_share_link(move, opts = {})
+  #   uri = URI::HTTP.build(
+  #     host: 'www.facebook.com',
+  #     path: '/sharer/sharer.php',
+  #     query: {
+  #       u: my_move_url(move, move.group_age_and_locations),
+  #       # s: 100,
+  #       # p: {
+  #       #   url: my_move_url(move, move.group_age_and_locations),
+  #       #   images: [
+  #       #     move_static_map_url(move),
+  #       #   ],
+  #       # }
+  #     }.to_query
+  #   )
+  #   link_to t('share_on_facebook').html_safe, uri.to_s, { target: '_blank' }.merge(opts)
+  # end
 
-    link_to t('share_on_facebook').html_safe, uri.to_s, { target: '_blank' }.merge(opts)
+  # This is javascript based share
+  def move_share_link(move, options = {})
+    options['data-facebook-share'] = my_move_url(move, move.group_age_and_locations)
+    options['data-facebook-image'] = move_static_map_url(move)
+    link_to t('share_on_facebook').html_safe, '#', options
   end
+
 
   def latest_move_timestamp
     return @latest_move_timestamp if @latest_move_timestamp.present?

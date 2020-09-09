@@ -28,6 +28,17 @@
   </head>
 
   <body class='background-gradient background-color px-3'>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId            : '<%= Rails.application.secrets.facebook_app_id %>',
+          autoLogAppEvents : true,
+          xfbml            : true,
+          version          : 'v8.0'
+        });
+      };
+    </script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
     <% if landing_layout? %>
       <%= yield %>
     <% elsif login_layout? # if login_layout? %>

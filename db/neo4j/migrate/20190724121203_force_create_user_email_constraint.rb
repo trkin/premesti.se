@@ -3,7 +3,7 @@ class ForceCreateUserEmailConstraint < Neo4j::Migrations::Base
     say 'starting ForceCreateUserEmailConstraint'
     # drop_index :User, :email, force: true
     say 'drop_index finished ForceCreateUserEmailConstraint'
-    # add_constraint :User, :email, force: true
+    add_constraint :User, :email, force: true
     say 'add_constraint finished ForceCreateUserEmailConstraint'
   end
 

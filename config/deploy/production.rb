@@ -1,4 +1,4 @@
-server '192.168.1.3', user: 'orlovic', roles: %w[app web]
+server 'd.trk.in.rs', user: 'orlovic', roles: %w[app web]
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.

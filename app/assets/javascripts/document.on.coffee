@@ -27,3 +27,15 @@ $(document).on 'click', '[data-toggle="modal"]', (e) ->
     .then (html) ->
       # modalBodyFooter.innerHTML = html
       $(modalBodyFooter).html html
+
+window.responseFn = (response) ->
+  debugger
+  console.log(response)
+
+$(document).on 'click', '[data-facebook-share]', (e) ->
+  e.preventDefault
+  href = e.currentTarget.href
+  FB.ui({
+    method: 'share'
+    href: href
+  }, responseFn)

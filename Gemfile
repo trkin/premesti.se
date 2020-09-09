@@ -114,6 +114,8 @@ gem 'browser-timezone-rails'
 # for profiling
 # gem 'rack-mini-profiler'
 
+gem 'webpacker'
+
 # datatables
-gem 'trk_datatables', '~>0.1'
-# gem 'trk_datatables', path: '/home/orlovic/gems/trk_datatables'
+gem 'trk_datatables', '0.2.3'
+# gem 'trk_datatables', path: '~/gems/trk_datatables'

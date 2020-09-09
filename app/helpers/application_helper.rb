@@ -21,7 +21,8 @@ module ApplicationHelper
   end
 
   def breadcrumb(list = {})
-    @breadcrumb = { I18n.t('dashboard') => (list.present? ? dashboard_path : nil) }.merge list
+    dash_path = params[:controller].start_with?('admin/') ? admin_dashboard_path : dashboard_path
+    @breadcrumb = { I18n.t('dashboard') => (list.present? ? dash_path : nil) }.merge list
   end
 
   def find_breadcrumb_list

@@ -1,5 +1,5 @@
 class Admin::UsersController < AdminController
-  before_action :_set_user, except: %i[index]
+  before_action :_set_user, except: %i[index search]
 
   def show
     @chats_active = @user.moves.chats.active.page(params[:page]).per(5)

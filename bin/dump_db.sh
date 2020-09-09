@@ -4,7 +4,7 @@ if [ "$1" == "-h" ]; then
 Dump production database to local neo4j.
 Example usage:
   bin/dump_db.sh development
-  bin/dump_db.sh development downloaded
+  bin/dump_db.sh development tmp/graph.2020-09-07.zip
 HERE_DOC
   exit 1
 fi
@@ -17,26 +17,29 @@ HERE_DOC
 fi
 
 env=$1
-downloaded=$2
-server_url=192.168.1.3
+filepath=$2
 
+# SERVER_URL=192.168.1.3
+SERVER_URL=d.trk.in.rs
 GRAPH_DB_PATH=db/neo4j/$env/data/databases/graph.db
 REMOTE_DB_PATH=/var/lib/neo4j/data/databases/graph.db
-OUTPUT=graphdb.$(date '+%F').zip
 bundle exec rails neo4j:stop[$env]
 echo removing $GRAPH_DB_PATH
 rm -rf $GRAPH_DB_PATH
 mkdir $GRAPH_DB_PATH
 
-if [ "$downloaded" != 'downloaded' ]; then
+if [ -z "$filepath" ]
+then
+  filename=graphdb.$(date '+%F').zip
+  filepath=tmp/$filename
   echo downloading database
-  ssh $server_url "cd $REMOTE_DB_PATH; zip -r ~/neo4j/$OUTPUT ."
+  ssh $SERVER_URL "cd $REMOTE_DB_PATH; zip -r ~/neo4j/$filename ."
   echo 'downloading'
-  scp $server_url:~/neo4j/$OUTPUT tmp/
+  scp $SERVER_URL:~/neo4j/$filename $filepath
 else
-  echo skipping ssh and use downloaded db
+  echo skipping ssh and use downloaded db $filepath
 fi
-unzip tmp/$OUTPUT -d $GRAPH_DB_PATH
+unzip $filepath -d $GRAPH_DB_PATH
 bundle exec rails neo4j:start[$env]
 sleep 3
 bundle exec rake neo4j:migrate

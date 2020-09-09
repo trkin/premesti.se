@@ -5,9 +5,7 @@
 //= require browser_timezone_rails/set_time_zone
 //
 // node_modules/
-//= require jquery/dist/jquery.js
-//= require popper.js/dist/umd/popper.js
-//= require bootstrap/dist/js/bootstrap.js
+// TODO: move to webpacker
 //= require snapsvg/dist/snap.svg.js
 //= require select2/dist/js/select2.js
 //= require select2/dist/js/i18n/sr.js

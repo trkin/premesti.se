@@ -1,7 +1,7 @@
 # Move your place
 
-<a href="http;//www.premesti.se">Premesti.Se</a> is a site for communications
-between parents when they want to switch places in kindergartens.
+<a href='https://en-premesti-se.trk.in.rs'>TRK Premesti Se</a> is a site for
+communication between parents when they want to switch places in kindergartens.
 
 ## Getting Started
 
@@ -19,14 +19,14 @@ In source you can see usage of the:
 * sign up with facebook, google and email
 * ssl is enabled using free cloudflare https and lets encrypt
 
-Graph database is chosen since we need to match moves in format A->B, B->A
-(I want to move from A to B, so please find me who wants to move from B to A).
-But there is also trio variant; A->B, B->C and C->A.
+Graph database is chosen since we need to store move wish like A->B, A->C, C->D,
+D->A and we want to find all matches like A->C->D->A.
 
 ## Neo4j Database
 
 It runs on Java 8 so download Java SDK from Oracle.
 To install Neo4j use this rails tasks
+https://github.com/neo4jrb/neo4j-rake_tasks
 
 ~~~
 rails neo4j:install[community-latest,development]
@@ -53,15 +53,22 @@ Start neo4j server with:
 
 ~~~
 rails neo4j:start[development]
-gnome-open http://localhost:$NEO4J_PORT # http://localhost:7042/browser/
+xdg-open http://localhost:$NEO4J_PORT # http://localhost:7042/browser/
 rails neo4j:start[test]
-gnome-open http://localhost:$NEO4J_TEST_PORT # http://localhost:7047/
+xdg-open http://localhost:$NEO4J_TEST_PORT # http://localhost:7047/
 
 tail -f db/neo4j/development/logs/*
 ~~~
 
 Note that when you are changing the ports, then run `spring stop` to reload new
 env.
+
+If you receive an error `ERROR! Neo4j cannot be started using java version
+11.0.8.` than you can use older java on ubuntu with command:
+```
+sudo update-alternatives --config java
+```
+
 
 Drop migrate and seed with custom rake tasks.
 
@@ -78,6 +85,16 @@ RAILS_ENV=test rake db:migrate
 # this will actually run
 RAILS_ENV=test rake neo4j:migrate
 ~~~
+
+You can also run neo4j from default ubuntu software, it's config is located at
+`/etc/neo4j/neo4j.conf` and database folder is
+`/var/lib/neo4j/data/databases/graph.db`
+and you need to set port
+
+```
+sudo neo4j start
+export NEO4J_PORT=7474
+```
 
 ## Run
 

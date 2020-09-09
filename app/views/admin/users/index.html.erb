@@ -1,4 +1,4 @@
+<% breadcrumb 'Users' => nil %>
 <% cache [ 'users', Neo4j::ActiveBase.current_session.query('MATCH (n:User) RETURN max(n.updated_at) AS m').first.m ] do %>
   <%= @datatable.render_html search_admin_users_path(format: :json) %>
-
 <% end %>

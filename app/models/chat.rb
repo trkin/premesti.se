@@ -37,7 +37,7 @@ class Chat
     end
     # even result is SafeJoin we need to use .html_safe for
     # I18n.('name', name: chat.name_with_arrows).html_safe
-    @name_with_arrows = ActionController::Base.helpers.safe_join(array, " #{Constant::ARROW_CHAR} ")
+    @name_with_arrows = ActionController::Base.helpers.safe_join(array, "#{Constant::ARROW_CHAR}")
   end
 
   def name_for_user(_user)

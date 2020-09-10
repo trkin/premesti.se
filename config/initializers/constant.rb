@@ -28,5 +28,6 @@ class Constant
     '#123099',
   ].freeze
 
-  ARROW_CHAR = '↪'.freeze
+  # ARROW_CHAR = ' ↪ '.freeze
+  ARROW_CHAR = ' -> '.freeze
 end

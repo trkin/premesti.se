@@ -4,6 +4,7 @@ sr:
       landing_signup:
         current_city: Изабери град
         current_location: Изабери тренутну локацију
+        from_location_id: Изабери тренутну локацију
         from_group_age: Изабери групу
         to_location: Изабери жељену локацију
         email: Упиши имејл

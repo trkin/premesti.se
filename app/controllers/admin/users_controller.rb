@@ -16,8 +16,19 @@ class Admin::UsersController < AdminController
   end
 
   def update
-    @user.status = params[:user][:status]
+    @user.status = params[:user][:status] if params[:user][:status].present?
+    @user.buyed_a_coffee = params[:user][:buyed_a_coffee] if params[:user][:buyed_a_coffee].present?
     @user.save!
+    redirect_to admin_user_path(@user)
+  end
+
+  def add_to_shared_chats
+    chat = Chat.find params[:chat_id]
+    if params[:remove].present?
+      @user.shared_chats.delete chat
+    else
+      @user.shared_chats << chat
+    end
     redirect_to admin_user_path(@user)
   end
 

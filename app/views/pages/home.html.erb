@@ -7,15 +7,14 @@
     <a class="navbar-brand" href="/">
       <%= t 'site_title' %>
     </a>
-    <div class="ml-auto">
+    <div class="ml-auto pr-3">
+      <% if current_user&.admin? %>
+        <%= link_to t("admin_dashboard"), admin_dashboard_path %>
+      <% end %>
+      <%= link_buy_me_a_coffee %> |
       <% if current_user %>
-        <div class='p-3'>
-          <% if current_user.admin? %>
-            <%= link_to t("admin_dashboard"), admin_dashboard_path %>
-          <% end %>
-          <%= link_to t('blog'), Constant::BLOG_PATH %>
-          <%= link_to t('dashboard'), dashboard_path %>
-        </div>
+        <%= link_to t('blog'), Constant::BLOG_PATH %>
+        <%= link_to t('dashboard'), dashboard_path %>
       <% else %>
         <% if false # Rails.env.development? %>
           <small>
@@ -25,9 +24,9 @@
             <% end %>
           </small>
         <% end %>
-        <%= link_to t('blog'), Constant::BLOG_PATH %>
-        <%= link_to t('faq'), faq_path %>
-        <%= link_to t('contact'), contact_path %>
+        <%= link_to t('blog'), Constant::BLOG_PATH %> |
+        <%= link_to t('faq'), faq_path %> |
+        <%= link_to t('contact'), contact_path %> |
         <%# <%= link_to t("register"), new_user_registration_path %1> %>
         <%# | %>
         <%= link_to t("sign_in"), new_user_session_path %>
@@ -40,74 +39,78 @@
       <% end %>
     </div>
   </nav>
-  <div class="text-center site-description">
-    <h2 class="mb-3 colorize-text-background">
-      <%= t 'site_description_1' %>
-      <br>
-      <%= t 'site_description_2' %>
-      <br>
-      <%= t 'site_description_3' %>
-    </h2>
-    <div>
-      <% if current_user&.moves.present? %>
-        <%= link_to t('dashboard'), dashboard_path %>
-      <% else %>
-        <%= modal id: 'find-on-map-modal', title: t('find_on_map'), fade: false %>
-        <%= bootstrap_form_for @landing_signup, url: landing_signup_path, builder: MyFormBuilder, layout: :inline do |f| %>
-          <%= f.hidden_field :current_city %>
-          <div class='form-inline justify-content-center form-inline__around'>
-            <%= f.select :current_location, @landing_signup.already_selected_current_location_options, { help: link_to(t('or_choose_any_on_map'), find_on_map_path(select_element: '#current_location'), "data-toggle": "modal", "data-target": "#find-on-map-modal"), label_as_placeholder: true, label_as_prompt: true}, id: 'current_location', 'data-select2-ajax-initialize': select2_locations_path %>
-            <%= f.select :from_group_age, 1.upto(7).map {|a| [Group.title_for_age(a), a]}, { selected: f.object.from_group_age, label_as_placeholder: true }, 'data-select2-initialize': true %>
-            <%= f.select :to_location, @landing_signup.already_selected_to_location_options, { help: link_to(t('or_choose_any_on_map'), find_on_map_path(select_element: '#to_location'), "data-toggle": "modal", "data-target": "#find-on-map-modal"), label_as_placeholder: true, label_as_prompt: true }, id: 'to_location', 'data-select2-ajax-initialize': select2_locations_path %>
-            <% unless current_user %>
-              <%= f.text_field :email, label_as_placeholder: true, size: 10 %>
-              <%= f.password_field :password, label_as_placeholder: true, size: 8 %>
-              <%= f.text_field :phone_number, label_as_placeholder: true, size: 10 %>
-              <%= help_icon t('phone_or_email_address_will_be_shown') %>
-              <%= f.form_group do %>
-                <%= f.check_box :visible_email_address %>
+  <div class='p-2'>
+    <div class="text-center site-description">
+      <h3 class="mb-3 colorize-text-background">
+        <%= t 'site_description_1' %>
+        <br>
+        <%= t 'site_description_2' %>
+        <br>
+        <%= t 'site_description_3' %>
+      </h3>
+      <div>
+        <% if current_user&.moves.present? %>
+          <%= link_to t('dashboard'), dashboard_path %>
+        <% else %>
+          <%= modal id: 'find-on-map-modal', title: t('find_on_map'), fade: false %>
+          <%= bootstrap_form_for @landing_signup, url: landing_signup_path, builder: MyFormBuilder, layout: :inline do |f| %>
+            <%= f.hidden_field :current_city %>
+            <div class='form-inline justify-content-center form-inline__around'>
+              <%= f.select :current_location, @landing_signup.already_selected_current_location_options, { help: link_to(t('or_choose_any_on_map'), find_on_map_path(select_element: '#current_location'), "data-toggle": "modal", "data-target": "#find-on-map-modal"), label_as_placeholder: true, label_as_prompt: true}, id: 'current_location', 'data-select2-ajax-initialize': select2_locations_path %>
+              <%= f.select :from_group_age, 1.upto(7).map {|a| [Group.title_for_age(a), a]}, { selected: f.object.from_group_age, label_as_placeholder: true }, 'data-select2-initialize': true %>
+              <%= f.select :to_location, @landing_signup.already_selected_to_location_options, { help: link_to(t('or_choose_any_on_map'), find_on_map_path(select_element: '#to_location'), "data-toggle": "modal", "data-target": "#find-on-map-modal"), label_as_placeholder: true, label_as_prompt: true }, id: 'to_location', 'data-select2-ajax-initialize': select2_locations_path %>
+              <% unless current_user %>
+                <%= f.text_field :email, label_as_placeholder: true, size: 10 %>
+                <%= f.password_field :password, label_as_placeholder: true, size: 8 %>
+                <%= f.text_field :phone_number, label_as_placeholder: true, size: 10 %>
+                <%= help_icon t('phone_or_email_address_will_be_shown') %>
+                <%= f.form_group do %>
+                  <%= f.check_box :visible_email_address %>
+                <% end %>
+                <%= f.form_group do %>
+                  <%= f.check_box :subscribe_to_new_match, required: true %>
+                <% end %>
+                <%= f.form_group do %>
+                  <%= f.check_box :subscribe_to_news_mailing_list %>
+                <% end %>
+              <% end %><%# unless current_user %>
+              <%= f.button type: :submit, class: 'btn btn-primary form-group' do %>
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                <%= t('activemodel.attributes.landing_signup.submit') %>
               <% end %>
-              <%= f.form_group do %>
-                <%= f.check_box :subscribe_to_new_match, required: true %>
-              <% end %>
-              <%= f.form_group do %>
-                <%= f.check_box :subscribe_to_news_mailing_list %>
-              <% end %>
-            <% end %><%# unless current_user %>
-            <%= f.button type: :submit, class: 'btn btn-primary form-group' do %>
-              <i class="fa fa-envelope" aria-hidden="true"></i>
-              <%= t('activemodel.attributes.landing_signup.submit') %>
-            <% end %>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-  <div class='mt-3 row text-center'>
-    <div class='col-md-6'>
-      <small><%= t('last_request') %></small>
-      <% move = Move.order(created_at: :desc).first %>
-      <% if move %>
-        <% cache ['move-map', move] do %>
-          <%= link_to move.group_age_and_locations, my_move_path(move, move.group_age_and_locations), title: move.name_address_group_full_age_and_locations.html_safe %>
-          <%= link_to "(#{t('see_all_moves')})", all_moves_path %>
-          <br>
-          <%= link_to my_move_path(move, move.group_age_and_locations), title: move.name_address_group_full_age_and_locations do %>
-            <%= image_tag move_static_map_url(move), class: 'landing-map' %>
+            </div>
           <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
-    <div class='col-md-6'>
-      <small><%= t('last_chat') %></small>
-      <% chat = Chat.active.order(created_at: :desc).first %>
-      <% chat = Chat.order(created_at: :desc).first unless chat %>
-      <% if chat %>
-        <% cache ['chat-map', chat] do %>
-          <%= chat.name_with_arrows %>
-          <%= image_tag chat_static_map_url(chat), class: 'landing-map' %>
+    <div class='mt-3 row text-center'>
+      <div class='col-md-6'>
+        <small><%= t('last_request') %></small>
+        <% move = Move.order(created_at: :desc).first %>
+        <% if move %>
+          <% cache ['move-map', move] do %>
+            <%= link_to move.group_age_and_locations, public_move_path(move, move.group_age_and_locations), title: move.name_address_group_full_age_and_locations.html_safe %>
+            <%= link_to "(#{t('see_all_moves')})", all_moves_path %>
+            <br>
+            <%= link_to public_move_path(move, move.group_age_and_locations), title: move.name_address_group_full_age_and_locations do %>
+              <%= image_tag move_static_map_url(move), class: 'w-100' %>
+            <% end %>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
+      <div class='col-md-6'>
+        <small><%= t('last_chat') %></small>
+        <% chat = Chat.active.order(created_at: :desc).first %>
+        <% chat = Chat.order(created_at: :desc).first unless chat %>
+        <% if chat %>
+          <% cache ['chat-map', chat] do %>
+            <%= link_to chat.name_with_arrows, public_chat_path(chat, chat.name_with_arrows) %>
+            <%= link_to public_chat_path(chat, chat.name_with_arrows) do %>
+              <%= image_tag chat_static_map_url(chat), class: 'w-100' %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
   <div class='py-4 text-center'>

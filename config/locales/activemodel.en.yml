@@ -4,6 +4,7 @@ en:
       landing_signup:
         current_city: What is your city ?
         current_location: What is your current location ?
+        from_location_id: What is your current location ?
         from_group_age: Which group do you belong ?
         to_location: Where do you want to move ?
         email: What is your email ?

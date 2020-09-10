@@ -1,5 +1,12 @@
 <%
-  breadcrumb Chat.model_name.human.mb_chars.capitalize.html_safe + ' ' + @chat.name_for_user(current_user) => nil
+  breadcrumb Chat.model_name.human.mb_chars.capitalize.html_safe + ': ' + @chat.name_with_arrows => nil
+
+  placeholder = if current_user.admin?
+                  nil
+                else
+                  t('here_type_message_like', location: @chat.from_location_for_user(current_user).name)
+                end
+  placeholder = nil if @chat.messages.present?
 %>
 <% if @chat.groups.present? %>
    <% location_names = @chat.groups.map {|group| group.location.name }.to_sentence %>
@@ -7,75 +14,58 @@
      <%= t('chat_for_group_name_and_location_names', group_name: Group.title_for_age(@chat.groups.first.age), location_names: location_names) %>
    </h3>
 <% end %>
-<% @chat.moves.each do |move| %>
-  <%= move.from_group.location.name %> <%= move.user.email_with_phone_if_present %>
-  <% if current_user.admin? %>
-    (only admin
-      <%= link_to move.user.email, admin_user_path(move.user) %>
-      <%= form_tag archive_chat_path(@chat, user_id: move.user.id), class: 'd-inline' do %>
-        <%= hidden_field_tag :commit, Move::ADMIN_INACTIVE_ARCHIVED_REASON %>
-        <%= button_tag Move::ADMIN_INACTIVE_ARCHIVED_REASON, class: 'btn-danger' %>
+<div class='row'>
+  <div class='col-md-6'>
+    <% if @chat.active? %>
+      <%= bootstrap_form_for @message_decorator, url: create_message_chat_path(@chat), remote: true do |f| %>
+        <%= f.text_field :text, class: '', id: 'new-message-input', placeholder: placeholder, skip_label: true, required: true, append: f.primary(t_crud('send', Message)), 'data-disable-with': t('sending'), autofocus: true %>
       <% end %>
-      <%= form_tag archive_chat_path(@chat, user_id: move.user.id), class: 'd-inline' do %>
-        <%= hidden_field_tag :commit, Move::SUCCESS_ARHIVED_REASON %>
-        <%= button_tag t(Move::SUCCESS_ARHIVED_REASON), class: 'btn-success', 'data-confirm': t('successfully_replaced_notice') %>
+    <% end %>
+    <ul class="list-unstyled" id='messages' data-chat-page='<%= @chat.id %>' data-user-id='<%= current_user.id %>'>
+      <% @chat.messages.each do |message| %>
+        <%= render "message", message: message, owner: message.user == current_user, current_user_admin: current_user.admin? %>
       <% end %>
-    )
-  <% end %>
-  <br>
-<% end %>
-<% if @chat.active? %>
-  <%= bootstrap_form_for @message_decorator, url: create_message_chat_path(@chat), remote: true do |f| %>
-    <%
-      placeholder = if current_user.admin?
-                      nil
-                    else
-                      t('here_type_message_like', location: @chat.from_location_for_user(current_user).name)
-                    end
-       placeholder = nil if @chat.messages.present?
-    %>
-    <%= f.text_field :text, class: '', id: 'new-message-input', placeholder: placeholder, skip_label: true, required: true, append: f.primary(t_crud('send', Message)), 'data-disable-with': t('sending'), autofocus: true %>
-  <% end %>
-<% end %>
-<ul class="list-unstyled" id='messages' data-chat-page='<%= @chat.id %>' data-user-id='<%= current_user.id %>'>
-  <% @chat.messages.each do |message| %>
-    <%= render "message", message: message, owner: message.user == current_user, current_user_admin: current_user.admin? %>
-  <% end %>
-</ul>
-<% if @chat.active? %>
-  <div class="btn-group pull-right">
-    <% unless current_user.admin? %>
-      <%= form_tag archive_chat_path(@chat) do %>
-        <%= hidden_field_tag :commit, Move::SUCCESS_ARHIVED_REASON %>
-        <%= button_tag t(Move::SUCCESS_ARHIVED_REASON), class: 'btn btn-success', 'data-confirm': t('successfully_replaced_notice') %>
-      <% end %>
-      <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <%= t('delete_chat_and_my_move') %>
-      </button>
-      <div class="dropdown-menu">
-        <% Move::FAILED_ARCHIVED_REASONS.each do |reason| %>
-          <%= form_tag archive_chat_path(@chat) do %>
-            <%= hidden_field_tag :commit, reason %>
-            <%= button_tag t(reason), class: 'dropdown-item' %>
-          <% end %>
+    </ul>
+  </div>
+  <div class='col-md-6'>
+    <% @chat.moves.each do |move| %>
+      <%= move.from_group.location.name %> <%= move.user.email_with_phone_if_present %>
+      <br>
+      <% if current_user.admin? %>
+        (only admin
+        <%= link_to move.user.email, admin_user_path(move.user) %>
+        <%= form_tag archive_chat_path(@chat, user_id: move.user.id), class: 'd-inline' do %>
+          <%= hidden_field_tag :commit, Move::ADMIN_INACTIVE_ARCHIVED_REASON %>
+          <%= button_tag Move::ADMIN_INACTIVE_ARCHIVED_REASON, class: 'btn-danger' %>
         <% end %>
-        <%# no other reason for now... we need to remove inactive moves %>
-        <%# <div class="dropdown-divider"></div> %>
-        <%# <%= form_tag archive_chat_path(@chat) do %1> %>
-        <%#   <%= text_field_tag :other_reason, nil, placeholder: t('here_write_other_reason'), required: true, autocomplete: 'off' %1> %>
-        <%#   <%= hidden_field_tag :commit, :other_reason %1> %>
-        <%#   <%= button_tag t('other_reason'), class: 'dropdown-item' %1> %>
-        <%# <% end %1> %>
+        <%= form_tag archive_chat_path(@chat, user_id: move.user.id), class: 'd-inline' do %>
+          <%= hidden_field_tag :commit, Move::SUCCESS_ARHIVED_REASON %>
+          <%= button_tag t(Move::SUCCESS_ARHIVED_REASON), class: 'btn-success', 'data-confirm': t('successfully_replaced_notice') %>
+        <% end %>
+        )
+      <% end %>
+    <% end %>
+    <% if @chat.active? %>
+      <div class="btn-group pull-right">
+        <% unless current_user.admin? %>
+          <%= form_tag archive_chat_path(@chat) do %>
+            <%= hidden_field_tag :commit, Move::SUCCESS_ARHIVED_REASON %>
+            <%= button_tag t(Move::SUCCESS_ARHIVED_REASON), class: 'btn btn-success', 'data-confirm': t('successfully_replaced_notice') %>
+          <% end %>
+          <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= t('delete_chat_and_my_move') %>
+          </button>
+          <div class="dropdown-menu">
+            <% Move::FAILED_ARCHIVED_REASONS.each do |reason| %>
+              <%= form_tag archive_chat_path(@chat) do %>
+                <%= hidden_field_tag :commit, reason %>
+                <%= button_tag t(reason), class: 'dropdown-item' %>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     <% end %>
+    <%= image_tag chat_static_map_url(@chat), class: 'w-100' %>
   </div>
-<% end %>
-<%
-  markers = @chat.ordered_groups.map(&:location)
-  lines = []
-
-  markers.zip(markers.rotate).each do |location_a, location_b|
-    lines << OpenStruct.new(from: location_a, to: location_b, age: @chat.moves.first.from_group.age)
-  end
-%>
-<%= show_lines_map markers, lines, class: 'show-all-map-container' %>
+</div>

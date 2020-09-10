@@ -72,7 +72,7 @@ class LandingTest < ApplicationSystemTestCase
   test 'sign up on move page' do
     email = 'my@email.com'
     move = create :move
-    visit my_move_path move, move.group_age_and_locations
+    visit public_move_path move, move.group_age_and_locations
 
     select2_ajax move.from_group.location.name_with_address, text: t('activemodel.attributes.landing_signup.current_location')
     fill_in t('activemodel.attributes.landing_signup.email'), with: email

@@ -59,7 +59,8 @@ class ChatsController < ApplicationController
             else
               @current_user.moves.chats.where(id: params[:id]).first
             end
-    redirect_to root_path, alert: t('this_move_does_not_belong_to_you') unless @chat
+    redirect_to root_path, alert: t('this_move_does_not_belong_to_you') and return unless @chat
+    redirect_to buy_me_a_coffee_path(chat_id: @chat.id) and return unless current_user.can_see_chat(@chat)
   end
 
   def _message_params

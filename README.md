@@ -184,7 +184,6 @@ When you update a blog pages than you need to build and commit changes
 ```
 cd blog
 jekyll s
-
 ```
 
 To dump you can use the script
@@ -260,6 +259,4 @@ The project is available as open source under the terms of the
 
 ## Authors
 
-This project is designed and created at TRK INNOVATIONS LLC by:
-
-* [trkin](https://github.com/trkin)
+This project is designed and created by duleorlovic

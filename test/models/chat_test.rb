@@ -31,7 +31,7 @@ class ChatTest < ActiveSupport::TestCase
     assert result.success?
     chat = Chat.last
 
-    expected = [g_d, g_a, g_b, g_c, g_d].map { |g| g.location.name }.join " #{Constant::ARROW_CHAR} "
+    expected = [g_d, g_a, g_b, g_c, g_d].map { |g| g.location.name }.join " -&gt; "
     assert_equal expected, chat.name_with_arrows
   end
 
@@ -50,5 +50,21 @@ class ChatTest < ActiveSupport::TestCase
     assert_equal 'HiFromMove1', message1.text
     assert_equal 'HiFromMove2', message2.text
     assert_match(/222222.*111111/, message_init.text)
+  end
+
+  test '#can_see_chat' do
+    moveAB = create :move
+    moveBA = create :move
+    chat = Chat.create_for_moves moveAB, moveBA
+    moveAB.user.shared_chats << chat
+
+    user = create :user
+    admin_user = create :user, :admin
+    buyed_a_coffee_user = create :user, buyed_a_coffee: true
+
+    assert admin_user.can_see_chat(chat)
+    assert buyed_a_coffee_user.can_see_chat(chat)
+    assert moveAB.user.can_see_chat(chat)
+    refute moveBA.user.can_see_chat(chat)
   end
 end

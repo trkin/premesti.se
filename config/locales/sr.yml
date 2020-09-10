@@ -67,6 +67,7 @@ sr:
   notifications_for_news: обавештења за новости
   continue: Настави
   add_another_location: Додај још један вртић
+  add_request_location_for_move: Додај жељени вртић
   add_request_location_for_move_from_location_name: Додај жељени вртић за премештај
     из вртића %{location_name}
   group_with_that_age_already_exists: Група са тим годиштем већ постоји
@@ -192,8 +193,9 @@ sr:
   are_you_sure_to_cancel_report_abuse: Да ли сте сигурни да не треба да проверавамо
     употребљивост ове поруке ?
   we_cancel_report_successfully: Успешно смо отказали пријаву злоупотребе
-  my_move_introduction: Мењамо место у вртићу <b>%{from}</b> за <b>%{to}</b> група
+  public_move_introduction: Мењамо место у вртићу <b>%{from}</b> за <b>%{to}</b> група
     %{age}
+  public_chat_introduction: Поклапање између вртића <b>%{locations}</b> за <b>%{age}</b> групу
   if_you_have_some_of_this_locations_we_can_match: Ако и ви имате жељу да пребаците
     дете, упишите се па ћете добити имејл обавештење уколико се деси поклапање
   share: Подели
@@ -267,3 +269,6 @@ sr:
   blog: Блог
   chat_for_group_name_and_location_names: Договарање за %{group_name} између %{location_names}
   until_now_number_name_sent: До сада послато %{number_name}
+  buy_me_a_coffee: Купи ми кафу
+  to_reward_active_users: Да би смо наградили активне кориснике морамо спречити неактивне кориснике.<br>Молим вас да поделите ову страницу на фејсбуку, или купите кафу.
+  do_you_have_a_question: Имате питање ?

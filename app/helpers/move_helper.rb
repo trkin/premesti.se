@@ -20,10 +20,10 @@ module MoveHelper
   #     host: 'www.facebook.com',
   #     path: '/sharer/sharer.php',
   #     query: {
-  #       u: my_move_url(move, move.group_age_and_locations),
+  #       u: public_move_url(move, move.group_age_and_locations),
   #       # s: 100,
   #       # p: {
-  #       #   url: my_move_url(move, move.group_age_and_locations),
+  #       #   url: public_move_url(move, move.group_age_and_locations),
   #       #   images: [
   #       #     move_static_map_url(move),
   #       #   ],
@@ -35,11 +35,18 @@ module MoveHelper
 
   # This is javascript based share
   def move_share_link(move, options = {})
-    options['data-facebook-share'] = my_move_url(move, move.group_age_and_locations)
-    options['data-facebook-image'] = move_static_map_url(move)
+    options['data-facebook-share'] = public_move_url(move, move.group_age_and_locations),
+    options['data-facebook-model-id'] = "move_id:#{move.id}"
+    options['data-facebook-success-link'] = move_path(move)
     link_to t('share_on_facebook').html_safe, '#', options
   end
 
+  def chat_share_link(chat, options = {})
+    options['data-facebook-share'] = public_chat_url(chat, chat.name_with_arrows)
+    options['data-facebook-model-id'] = "chat_id:#{chat.id}"
+    options['data-facebook-success-link'] = chat_path(chat)
+    link_to t('share_on_facebook').html_safe, '#', options
+  end
 
   def latest_move_timestamp
     return @latest_move_timestamp if @latest_move_timestamp.present?

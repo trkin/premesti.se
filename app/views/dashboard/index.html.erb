@@ -9,58 +9,75 @@
     </small>
   <% end %>
 </h2>
-<% if current_user.moves.chats.active.present? %>
-  <ul class="list-unstyled">
+<div class='d-flex flex-wrap justify-content-center'>
+  <% if current_user.moves.chats.active.present? %>
     <% current_user.moves.chats.active.each do |chat| %>
-      <li>
+      <div class='card m-2 max-card-width'>
         <%= link_to chat do %>
-          <%= chat.name_for_user(current_user) %>
+          <%= image_tag chat_static_map_url(chat), class: 'card-img-top' %>
         <% end %>
-        <% if Rails.env.development? %>
-          only on development
-          <%= link_to t("delete"), chat, method: :delete, class: 'text-danger' %>
-        <% end %>
-      </li>
+        <div class='card-body'>
+          <p class='card-text'>
+            <%= chat.name_with_arrows %>
+          </p>
+          <%= link_to t('show'), chat, class: 'btn btn-primary' %>
+          <% if Rails.env.development? %>
+            only on development
+            <%= link_to t("delete"), chat, method: :delete, class: 'text-danger' %>
+          <% end %>
+        </div>
+      </div>
     <% end %>
-  </ul>
-<% else %>
-  <%= t('chats_empty_new_will_show_up_automatically') %>
-<% end %>
+  <% else %>
+    <%= t('chats_empty_new_will_show_up_automatically') %>
+  <% end %>
+</div>
 <h2>
   <%= t('my_moves') %>
 </h2>
-<ul class="list-unstyled">
+<div class='d-flex flex-wrap justify-content-center'>
   <% current_user.moves.each do |move| %>
-    <li class="">
-      <%= link_to move, title: move.name_address_group_full_age_and_locations.html_safe do %>
-        <%= move.group_age_and_locations %>
-      <% end %>
-      <% if move.to_groups.present? %>
-        <%= move_share_link move, class: 'animated fadeIn' %>
-      <% else %>
-        <%= link_to move do %>
-          <i class="fa fa-plus" aria-hidden="true"></i>
-          <%= t('add_request_location_for_move_from_location_name', location_name: move.from_group.location.name) %>
+    <div class='card m-2 max-card-width'>
+      <%= image_tag move_static_map_url(move), class: 'card-img-top' %>
+      <div class='card-body'>
+        <p class='card-text'>
+          <%= move.group_age_and_locations %>
+        </p>
+        <%= link_to t('edit'), move, class: 'btn btn-primary' %>
+        <% if move.to_groups.present? %>
+          <%= move_share_link move, class: 'btn btn-success animated fadeIn' %>
+        <% else %>
+          <%= link_to move, class: 'btn' do %>
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            <%= t('add_request_location_for_move') %>
+          <% end %>
         <% end %>
-      <% end %>
-    </li>
+      </div>
+    </div>
   <% end %>
-</ul>
-<%= modal id: 'find-on-map-modal', title: t('find_on_map'), fade: false %>
-<label for="toggle-active" class='btn btn-default'>
-  <i class="fa fa-plus" aria-hidden="true"></i>
-  <%= t('add_another_location') %>
-</label>
-<input type="checkbox" id="toggle-active" class="toggle-active" />
-<span class="toggle-active-adjacent-sibling hide-not-important">
-  <%= form_tag create_from_group_moves_path, class: 'inline' do %>
-    <%= select_tag :from_group_age, options_for_select(1.upto(7).map {|a| [Group.title_for_age(a), a]}), label: t('activemodel.attributes.landing_signup.from_group_age'), required: true %>
-    <%= select_tag :from_location_id, "", include_blank: t('activemodel.attributes.landing_signup.current_location'), id: 'from_location_id', 'data-select2-ajax-initialize': select2_locations_path, class: 'add-new-to-groups', required: true %>
-    <span><%= t('or') %></span>
-    <%= link_to t('find_on_map'), find_on_map_path(select_element: '#from_location_id'), "data-toggle": "modal", "data-target": "#find-on-map-modal" %>
+  <div class='card max-card-width pt-5'>
+    <div class='card-body'>
+      <h5 class='card-title text-center'>
+        <%= modal id: 'find-on-map-modal', title: t('find_on_map'), fade: false %>
+        <label for="toggle-active" class='btn btn-default'>
+          <i class="fa fa-plus" aria-hidden="true"></i>
+          <%= t('add_another_location') %>
+        </label>
+      </h5>
+      <input type="checkbox" id="toggle-active" class="toggle-active" />
+      <span class="toggle-active-adjacent-sibling hide-not-important">
+        <%= bootstrap_form_with model: LandingSignup.new, url: create_from_group_moves_path, class: 'inline', local: true do |f| %>
+          <%= f.select :from_group_age, options_for_select(1.upto(7).map {|a| [Group.title_for_age(a), a]}), label: t('activemodel.attributes.landing_signup.from_group_age'), required: true %>
+          <%= f.select :from_location_id, "", { include_blank: t('activemodel.attributes.landing_signup.current_location')}, id: 'from_location_id', 'data-select2-ajax-initialize': select2_locations_path, class: 'add-new-to-groups', required: true %>
+          <span><%= t('or') %></span>
+          <%= link_to t('find_on_map'), find_on_map_path(select_element: '#from_location_id'), "data-toggle": "modal", "data-target": "#find-on-map-modal" %>
 
-    <%= button_tag t("add"), class: 'btn btn-primary' %>
-  <% end %>
-</span>
+          <%= f.submit t("add"), class: 'btn btn-primary btn-block' %>
+        <% end %>
+      </span>
+
+    </div>
+  </div>
+</div>
 
 

@@ -28,14 +28,19 @@ $(document).on 'click', '[data-toggle="modal"]', (e) ->
       # modalBodyFooter.innerHTML = html
       $(modalBodyFooter).html html
 
-window.responseFn = (response) ->
-  debugger
-  console.log(response)
 
 $(document).on 'click', '[data-facebook-share]', (e) ->
   e.preventDefault
-  href = e.currentTarget.href
+  href = e.currentTarget.dataset.facebookShare
+  model_id = e.currentTarget.dataset.facebookModelId
+  success_link = e.currentTarget.dataset.facebookSuccessLink
   FB.ui({
     method: 'share'
     href: href
-  }, responseFn)
+  }, (response) ->
+    if typeof(response) != 'undefined'
+      fetch("/shared-callback?model_id=#{model_id}").then((response) ->
+        window.location.assign success_link
+      )
+    console.log(response)
+  )

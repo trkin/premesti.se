@@ -18,8 +18,9 @@ Rails.application.routes.draw do
   post 'contact', to: 'pages#submit_contact'
   get 'find_on_map', to: 'pages#find_on_map'
   get 'select2_locations', to: 'pages#select2_locations'
-  get 'my-move/:id/:some_name', to: 'pages#my_move', as: :my_move
-  post 'my-move/:id/:some_name', to: 'pages#submit_my_move'
+  get 'public-move/:id/:some_name', to: 'pages#public_move', as: :public_move
+  post 'public-move/:id/:some_name', to: 'pages#submit_public_move'
+  get 'public-chat/:id/:some_name', to: 'pages#public_chat', as: :public_chat
   get 'unsubscribe', to: 'pages#unsubscribe'
 
   get 'sample-error', to: 'pages#sample_error'
@@ -31,6 +32,8 @@ Rails.application.routes.draw do
   get 'sign_in_as', to: 'application#sign_in_as'
 
   get 'dashboard', to: 'dashboard#index'
+  get 'buy-me-a-coffee', to: 'dashboard#buy_me_a_coffee'
+  get 'shared-callback', to: 'dashboard#shared_callback'
   get 'resend-confirmation-instructions', to: 'dashboard#resend_confirmation_instructions'
   get 'moves-for-age', to: 'dashboard#moves_for_age', as: :all_moves
   get 'moves-for-age/:age', to: 'dashboard#moves_for_age', as: :moves_for_age
@@ -63,6 +66,7 @@ Rails.application.routes.draw do
     resources :users do
       member do
         delete :destroy_move
+        post 'add_to_shared_chats/:chat_id', to: 'users#add_to_shared_chats', as: :add_to_shared_chats
       end
       collection do
         post :search

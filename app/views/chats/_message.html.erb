@@ -14,29 +14,32 @@
   <%= 'animated bounce' if bounce %>
   <%= 'reported' if message.reported_at %>
   ">
-  <div class='message-text'>
+  <div class='message-text mb-2'>
     <% if message.archived? %>
       <%= t 'message_archived' %>
     <% else %>
-      <%= message.text %>
+      <div class='border p-2 rounded border-secondary'>
+        <%= message.text %>
+      </div>
     <% end %>
-    <% if current_user_admin && message.user.present? %>
-      <%= link_to admin_user_path message.user do %>
-        <small class=''><%= message.user_location_name %></small>
-      <% end %>
+    <% if owner %>
+      <div class='pb-2'></div>
     <% else %>
-      <small class=''><%= message.user_location_name %></small>
-    <% end %>
-    <%= link_to archive_message_chat_path(message.chat, message_id: message.id), method: :delete, class: "message-owner-section text-danger show-on-hover-target", 'data-confirm': t_crud('are_you_sure_to_remove_item', item: Message), title: t_crud('delete', Message) do %>
-      <i class="fa fa-remove" aria-hidden="true"></i>
-    <% end %>
-    <% if message.reported_at %>
-      <%= link_to report_message_chat_path(message.chat, message_id: message.id, cancel_report: true), method: :patch, class: "message-not-owner-section text-danger show-on-hover-target", 'data-confirm': t('are_you_sure_to_cancel_report_abuse'), title: t('cancel_report_abuse') do %>
-        <i class="fa fa-flag-o" aria-hidden="true"></i>
+      <small class='label'><%= message.user_location_name %></small>
+      <small>
+        <%= I18n.localize(message.created_at, format: :short) %>
+      </small>
+      <%= link_to archive_message_chat_path(message.chat, message_id: message.id), method: :delete, class: "message-owner-section text-danger show-on-hover-target", 'data-confirm': t_crud('are_you_sure_to_remove_item', item: Message), title: t_crud('delete', Message) do %>
+        <i class="fa fa-remove" aria-hidden="true"></i>
       <% end %>
-    <% else %>
-      <%= link_to report_message_chat_path(message.chat, message_id: message.id), method: :patch, class: "message-not-owner-section text-danger show-on-hover-target", 'data-confirm': t('are_you_sure_to_report_abuse'), title: t('report_abuse') do %>
-        <i class="fa fa-flag" aria-hidden="true"></i>
+      <% if message.reported_at %>
+        <%= link_to report_message_chat_path(message.chat, message_id: message.id, cancel_report: true), method: :patch, class: "message-not-owner-section text-danger show-on-hover-target", 'data-confirm': t('are_you_sure_to_cancel_report_abuse'), title: t('cancel_report_abuse') do %>
+          <i class="fa fa-flag-o" aria-hidden="true"></i>
+        <% end %>
+      <% else %>
+        <%= link_to report_message_chat_path(message.chat, message_id: message.id), method: :patch, class: "message-not-owner-section text-danger show-on-hover-target", 'data-confirm': t('are_you_sure_to_report_abuse'), title: t('report_abuse') do %>
+          <i class="fa fa-flag" aria-hidden="true"></i>
+        <% end %>
       <% end %>
     <% end %>
   </div>

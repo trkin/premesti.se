@@ -7,6 +7,18 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_select 'a', t('sign_in')
   end
 
+  test 'get public_move' do
+    move = create :move
+    get public_move_path(move, move.group_age_and_locations)
+    assert_response :success
+  end
+
+  test 'get public_chat' do
+    chat = create :chat
+    get public_chat_path(chat, chat.name_with_arrows)
+    assert_response :success
+  end
+
   test 'landing signup success' do
     email = 'my@email.com'
     group = create :group
@@ -55,7 +67,7 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_difference 'User.count', 1 do
       assert_difference 'Move.count', 1 do
         assert_performed_jobs 1, only: ActionMailer::DeliveryJob do
-          post my_move_path(move, move.group_age_and_locations), params: { landing_signup: params }
+          post public_move_path(move, move.group_age_and_locations), params: { landing_signup: params }
         end
       end
     end
@@ -85,7 +97,7 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_difference 'User.count', 0 do
       assert_difference 'Move.count', 1 do
         assert_performed_jobs 3, only: ActionMailer::DeliveryJob do
-          post my_move_path(move, move.group_age_and_locations), params: { landing_signup: params }
+          post public_move_path(move, move.group_age_and_locations), params: { landing_signup: params }
         end
       end
     end

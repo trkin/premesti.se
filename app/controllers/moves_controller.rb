@@ -16,7 +16,7 @@ class MovesController < ApplicationController
 
   def create_from_group
     move = Move.new(
-      from_group: Group.find_or_create_by_location_id_and_age(params[:from_location_id], params[:from_group_age]),
+      from_group: Group.find_or_create_by_location_id_and_age(params[:landing_signup][:from_location_id], params[:landing_signup][:from_group_age]),
       user: current_user,
     )
     if move.save

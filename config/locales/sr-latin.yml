@@ -67,6 +67,7 @@ sr-latin:
   notifications_for_news: obaveštenja za novosti
   continue: Nastavi
   add_another_location: Dodaj još jedan vrtić
+  add_request_location_for_move: Dodaj željeni vrtić
   add_request_location_for_move_from_location_name: Dodaj željeni vrtić za premeštaj
     iz vrtića %{location_name}
   group_with_that_age_already_exists: Grupa sa tim godištem već postoji
@@ -150,8 +151,8 @@ sr-latin:
   faq_7_a: Mi se trudimo da uočimo neaktivne korisnike (oni koji postave želje koje
     nisu stvarne i ne odgovaraju na poruke) i da ih deaktiviramo sa liste željenih
     rotacija. Javite nam ukoliko primetite takve "lažne" korisnike
-  faq_8: Ko je napravio ovaj sajt ?
-  faq_8_a: Sajt je napravila kompanija TRK INOVACIJE DOO NOVI SAD.
+  faq_8: Ko rukovodi ovim sajtom ?
+  faq_8_a: Sajt se pokreće na mom računaru kod kuće i rukovodi ga Dušan Orlović, kao fizičko lice u svoje slobodno vreme.
   system_message: Poruka sistema
   new_match: Novo poklapanje
   new_match_for_moves: 'Dogodilo se poklapanje između lokacija: %{moves}. Da bi
@@ -196,8 +197,9 @@ sr-latin:
   are_you_sure_to_cancel_report_abuse: Da li ste sigurni da ne treba da proveravamo
     upotrebljivost ove poruke ?
   we_cancel_report_successfully: Uspešno smo otkazali prijavu zloupotrebe
-  my_move_introduction: Menjamo mesto u vrtiću <b>%{from}</b> za <b>%{to}</b> grupa
+  public_move_introduction: Menjamo mesto u vrtiću <b>%{from}</b> za <b>%{to}</b> grupa
     %{age}
+  public_chat_introduction: Poklapanje između vrtića <b>%{locations}</b> za <b>%{age}</b> grupu
   if_you_have_some_of_this_locations_we_can_match: Ako i vi imate želju da prebacite dete, upišite se pa ćete dobiti imejl obaveštenje ukoliko se desi poklapanje
   share: Podeli
   share_on_facebook: Podeli na <i class="fa fa-facebook-official"></i> Fejsbuku
@@ -268,3 +270,6 @@ sr-latin:
   blog: Blog
   chat_for_group_name_and_location_names: Dogovaranje za %{group_name} između %{location_names}
   until_now_number_name_sent: 'Do sada poslato %{number_name}'
+  buy_me_a_coffee: Kupi mi kafu
+  to_reward_active_users: Da bi smo nagradili aktivne korisnike moramo sprečiti neaktivne korisnike.<br>Molim vas da podelite ovu stranicu na facebook, ili kupite kafu.
+  do_you_have_a_question: Imate pitanje ?

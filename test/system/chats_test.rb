@@ -28,7 +28,7 @@ class ChatsTest < ApplicationSystemTestCase
     # find("a[title='#{t_crud('delete', Message)}']", visible: false, match: :first).click
 
     # now we archive and also delete to_group
-    click_on t('delete_chat_and_my_move')
+    click_on t('delete_chat_and_public_move')
     click_on t(Move::FAILED_ARCHIVED_REASONS.first)
     refute_selector 'a', text: chat.only_text_for_name_for_user(user)
     refute_selector 'a', text: move_ab.group_age_and_locations

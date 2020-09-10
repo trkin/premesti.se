@@ -1,0 +1,18 @@
+<%
+  landing_layout
+  headline = t('public_chat_introduction', age: Group.title_for_age(@chat.moves.first&.from_group&.age || 1), locations: @chat.name_with_arrows)
+  meta_tags 'og:url': request.url, 'og:type': 'website', 'og:title': @chat.name_with_arrows, 'og:description': strip_tags(headline), 'og:image': chat_static_map_url(@chat), 'image:width': '600', 'image:height': '315'
+  site_description "#{t('site_title')} #{@chat.name_with_arrows}"
+%>
+  <%= render 'public_header' %>
+<div class='container text-center'>
+  <h1><%= Chat.model_name.human.capitalize %></h1>
+  <div class=''>
+    <%= @chat.name_with_arrows %>
+    <br>
+    <%= image_tag chat_static_map_url(@chat) %>
+  </div>
+    <%= link_buy_me_a_coffee %>
+    <%= t('or') %>
+    <%= chat_share_link @chat %>
+</div>

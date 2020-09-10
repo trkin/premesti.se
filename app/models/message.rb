@@ -18,17 +18,16 @@ class Message
   scope :reported, -> { query_as('message').where('message.reported_at IS NOT NULL').pluck('*') }
 
   def user_location_name
-    m = if user
-          move = chat.moves.find_by(user: user)
-          if move
-            move.from_group.location.name.html_safe + user.email_with_phone_if_present
-          else
-            I18n.t('message_of_deleted_move')
-          end
-        else
-          I18n.t('system_message')
-        end
-    m + ' ' + I18n.localize(created_at, format: :long)
+    if user
+      move = chat.moves.find_by(user: user)
+      if move
+        move.from_group.location.name.html_safe
+      else
+        I18n.t('message_of_deleted_move')
+      end
+    else
+      I18n.t('system_message')
+    end
   end
 
   def report_by(user)

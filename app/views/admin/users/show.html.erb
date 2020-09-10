@@ -1,64 +1,70 @@
 <% breadcrumb 'Users' => admin_users_path, 'Show': nil %>
 <div>
-  <%= link_to sign_in_as_path(user_id: @user.id) do %>
-    sign in as <%= @user.email %>
-    <% if @user.auth.present? %>
-      <% begin
-           auth = JSON.parse @user.auth
-           @image = auth['info']['image']
-      rescue JSON::ParserError => e
-      end %>
-      <% if @image.present? %>
-        <%= image_tag @image, class: 'fb-image' %>
-      <% else %>
-        <%= @user.auth.first 10 %>
+  <h4>
+    <%= @user.email_with_phone_if_present %>
+    <%= link_to sign_in_as_path(user_id: @user.id), class: 'btn btn-primary' do %>
+      sign in as
+    <% end %>
+    <% unless @user.confirmed? %>
+      <span class='badge badge-danger'>unconfirmed</span>
+    <% end %>
+    <% if @user.admin? %>
+      <span class='badge badge-primary'>admin</span>
+    <% end %>
+    <span class='text-danger'>
+      <% unless @user.subscribe_to_new_match %>
+        Unsubscribed to new match
       <% end %>
-    <% end %>
-  <% end %>
-  <% unless @user.confirmed? %>
-    <span class='badge badge-danger'>unconfirmed</span>
-  <% end %>
-  <% if @user.admin? %>
-    <span class='badge badge-primary'>admin</span>
-  <% end %>
-  <label for="toggle-active-status" class='btn-link'>
-    <i class="fa fa-" aria-hidden="true"></i>
-    Change status
-  </label>
-  <input type="checkbox" id="toggle-active-status" class="toggle-active" />
-  <span class="toggle-active-adjacent-sibling hide-not-important">
-    <%= User.statuses %>
-    <% User.statuses.each do |status, value| %>
-      <% unless @user.send "#{status}?" %>
-        <%= link_to status.to_s.titleize, admin_user_path(@user, user: { status: status }), method: :patch, class: 'btn btn-danger' %>
+      <% unless @user.subscribe_to_news_mailing_list %>
+        Unsubscribed to news mailing list
       <% end %>
-    <% end %>
-  </span>
-  <span class='text-danger'>
-    <% unless @user.subscribe_to_new_match %>
-      Unsubscribed to new match
-    <% end %>
-    <% unless @user.subscribe_to_news_mailing_list %>
-      Unsubscribed to news mailing list
-    <% end %>
-  </span>
-  <label for="toggle-active" class='btn-link'>
-    <i class="fa fa-trash" aria-hidden="true"></i>
-    Destroy
-  </label>
-  <input type="checkbox" id="toggle-active" class="toggle-active" />
-  <span class="toggle-active-adjacent-sibling hide-not-important">
-    <%= bootstrap_form_tag url: admin_user_path(@user), method: :delete do |f| %>
-      <%= f.text_area :any_reason, label: t('my_devise.any_reason'), value: 'inactive_user' %>
-      <%= f.button 'Cancel account', class: 'btn btn-danger' %>
-    <% end %>
-  </span>
+    </span>
+    <label for="toggle-active" class='text-danger btn-link'>
+      <i class="fa fa-trash" aria-hidden="true"></i>
+      Destroy
+    </label>
+    <input type="checkbox" id="toggle-active" class="toggle-active" />
+    <span class="toggle-active-adjacent-sibling hide-not-important">
+      <%= bootstrap_form_tag url: admin_user_path(@user), method: :delete do |f| %>
+        <%= f.text_area :any_reason, label: t('my_devise.any_reason'), value: 'inactive_user' %>
+        <%= f.button 'Cancel account', class: 'btn btn-danger' %>
+      <% end %>
+    </span>
+  </h4>
 </div>
 <div class='row'>
   <div class='col'>
     <dl class='row justify-content-start'>
+      <dt class='col-sm-4'>Email</dt>
+      <dd class='col'><%= @user.email %></dd>
+      <dt class='w-100'></dt>
       <dt class='col-sm-4'>Status</dt>
-      <dd class='col'><%= @user.status %></dd>
+      <dd class='col'>
+        <%= @user.status %>
+        <label for="toggle-active-status" class=''>
+          <i class="fa fa-arrow" aria-hidden="true"></i>
+          Change status
+        </label>
+        <input type="checkbox" id="toggle-active-status" class="toggle-active" />
+        <span class="toggle-active-adjacent-sibling hide-not-important">
+          <%= User.statuses %>
+          <% User.statuses.each do |status, value| %>
+            <% unless @user.send "#{status}?" %>
+              <%= link_to status.to_s.titleize, admin_user_path(@user, user: { status: status }), method: :patch, class: 'btn btn-danger' %>
+            <% end %>
+          <% end %>
+        </span>
+      </dd>
+      <dt class='w-100'></dt>
+      <dt class='col-sm-4'>Buyed a coffee</dt>
+      <dd class='col'>
+
+        <% if @user.buyed_a_coffee %>
+          <%= button_to 'Remove', admin_user_path(@user, user: { buyed_a_coffee: false }), method: :patch, class: '' %>
+        <% else %>
+          <%= button_to 'Buy', admin_user_path(@user, user: { buyed_a_coffee: true }), method: :patch, class: '' %>
+        <% end %>
+      </dd>
       <dt class='w-100'></dt>
       <dt class='col-sm-4'>Created At</dt>
       <dd class='col'><%= @user.created_at.to_s :short %></dd>
@@ -85,10 +91,23 @@
       <dd class='col'><%= @user.last_referrer %></dd>
       <dt class='w-100'></dt>
       <dt class='col-sm-4'>Auth</dt>
-      <dd class='col'><%= @user.auth %></dd>
+      <dd class='col'>
+        <% if @user.auth.present? %>
+          <% begin
+               auth = JSON.parse @user.auth
+               @image = auth['info']['image']
+          rescue JSON::ParserError => e
+          end %>
+          <% if @image.present? %>
+            <%= image_tag @image, class: 'fb-image' %>
+          <% else %>
+            <%= @user.auth.first 10 %>
+          <% end %>
+        <% end %>
+      </dd>
     </dl>
 
-    <h1>Moves</h1>
+    <h3>Moves</h3>
     <div class='show-on-hover'>
       <% @user.moves.each do |move| %>
         <div>
@@ -99,10 +118,15 @@
         </div>
       <% end %>
     </div>
-    <h1>Chats active (<%= @chats_active.size %>)</h1>
+    <h3>Chats active (<%= @chats_active.size %>)</h3>
     <%= paginate @chats_active %>
     <% @chats_active.each do |chat| %>
       <%= link_to chat.name_for_user(@user), chat_path(chat) %>
+      <% if @user.shared_chats.include? chat %>
+        <%= button_to 'Remove from shared_chats', add_to_shared_chats_admin_user_path(@user, chat, remove: true) %>
+      <% else %>
+        <%= button_to 'Add to shared_chats', add_to_shared_chats_admin_user_path(@user, chat) %>
+      <% end %>
       <ul id='active_chat'>
         <% chat.messages.each do |message| %>
           <li>
@@ -112,7 +136,7 @@
         <% end %>
       </ul>
     <% end %>
-    <h1>Chats archived</h1>
+    <h3>Chats archived</h3>
     <%= paginate @chats_archived %>
     <% @chats_archived.each do |chat| %>
       <%= chat.name_for_user @user %>
@@ -125,7 +149,7 @@
         <% end %>
       </ul>
     <% end %>
-    <%# <h1>Chats move deleted</h1> %>
+    <%# <h3>Chats move deleted</h3> %>
     <%# <% deleted_move_chats = Message.query_as(:m).match('(m)--(u:User), (m)--(c:Chat)').where('NOT c.uuid IN {direct_chat_ids}').params(direct_chat_ids: @user.moves.chats.map(&:uuid)).pluck(:c) %1> %>
     <%# <% deleted_move_chats.each do |chat| %1> %>
     <%#   <%= chat.name_for_user @user %1> %>
@@ -140,8 +164,8 @@
     <%# <% end %1> %>
   </div>
   <div class='col'>
-    <h1>Messages (<%= @user.messages.size %>)</h1>
-    <h1>EmailMessages <%= @email_messages.total_count %></h1>
+    <h3>Messages (<%= @user.messages.size %>)</h3>
+    <h3>EmailMessages <%= @email_messages.total_count %></h3>
     <%= paginate @email_messages %>
     <ul>
       <% @email_messages.each do |email_message| %>

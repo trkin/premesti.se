@@ -63,6 +63,7 @@ en:
   notifications_for_news: news notifications
   continue: Continue
   add_another_location: Add another location
+  add_request_location_for_move: Add requested location
   add_request_location_for_move_from_location_name: Add requested location for move
     from %{location_name}
   group_with_that_age_already_exists: Group with that age already exists
@@ -146,7 +147,7 @@ en:
     real and do not respond to messages) and deactivate them from the list of desired
     rotations. Let us know if you notice such "bogus" users
   faq_8: Who created this site?
-  faq_8_a: The site was made by TRK INOVACIJE DOO NOVI SAD.
+  faq_8_a: The site was made by Dusan Orlovic
   system_message: System message
   new_match: New match
   new_match_for_moves: 'There is a match between locations: %{moves}. To let the
@@ -186,8 +187,9 @@ en:
   are_you_sure_to_cancel_report_abuse: Are you sure that we do not need to check usefullness
     of this message ?
   we_cancel_report_successfully: We cancelled report successfully
-  my_move_introduction: We want to move from <b>%{from}</b> to <b>%{to}</b> group
+  public_move_introduction: We want to move from <b>%{from}</b> to <b>%{to}</b> group
     %{age}
+  public_chat_introduction: Match between <b>%{locations}</b> for <b>%{age}</b> group
   if_you_have_some_of_this_locations_we_can_match: If you also want to transfer your
     child, sign up and receive an email if a match occurs
   share: Share
@@ -260,3 +262,6 @@ en:
   blog: Blog
   chat_for_group_name_and_location_names: Negotiating for %{group_name} between %{location_names}
   until_now_number_name_sent: "%{number_name} sent so far"
+  buy_me_a_coffee: Buy me a coffee
+  to_reward_active_users: To reward active users we need to prevent inactive users. Please share this page on facebook, or buy a coffee.
+  do_you_have_a_question: Any questions ?

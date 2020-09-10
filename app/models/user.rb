@@ -54,6 +54,7 @@ class User
   property :google_uid, type: String
 
   property :admin, type: Boolean
+  property :buyed_a_coffee, type: Boolean
 
   property :locale, type: String
   validates :locale, presence: true
@@ -75,6 +76,8 @@ class User
 
   has_many :out, :messages, type: :AUTHOR_OF
   has_many :out, :email_messages, type: :RECEIVED
+  has_many :out, :shared_chats, type: :SHARED_CHAT, model_class: :Chat
+  has_many :out, :shared_moves, type: :SHARED_MOVE
 
   scope :confirmed, -> { query_as(:user).where('user.confirmed_at IS NOT NULL').pluck(:user) }
 
@@ -91,7 +94,12 @@ class User
   def email_with_phone_if_present(skip_badges: false)
     count = messages.count
     title = I18n.t('until_now_number_name_sent', number_name: (count.to_s + ' ' + Message.model_name.human(count: count)))
-    badge = skip_badges ? '' : " <span class='badge #{badge_for_count(count)}' title='#{title}'>#{count}</span>".html_safe
+    badge = if skip_badges
+              ''
+            else
+              " <span class='badge #{badge_for_count(count)}' title='#{title}'>#{count}</span>".html_safe
+            end
+    badge += ApplicationController.helpers.coffee_svg if buyed_a_coffee
     return badge if phone_number.blank? && !visible_email_address
 
     res = ''.html_safe
@@ -133,6 +141,13 @@ class User
       move.destroy_and_archive_chats archived_reason
     end
     destroy
+  end
+
+  def can_see_chat(chat)
+    return true if admin || buyed_a_coffee
+    return true if shared_chats.include?(chat)
+
+    false
   end
 
   # This method overwrites devise's own `send_devise_notification`

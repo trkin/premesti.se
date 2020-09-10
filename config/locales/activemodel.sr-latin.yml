@@ -4,6 +4,7 @@ sr-latin:
       landing_signup:
         current_city: Izaberi grad
         current_location: Izaberi trenutnu lokaciju
+        from_location_id: Izaberi trenutnu lokaciju
         from_group_age: Izaberi grupu
         to_location: Izaberi željenu lokaciju
         email: Upiši imejl

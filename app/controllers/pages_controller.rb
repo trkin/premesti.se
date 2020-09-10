@@ -21,7 +21,7 @@ class PagesController < ApplicationController
     end
   end
 
-  def my_move
+  def public_move
     @move = Move.find_by id: params[:id]
     redirect_to(root_path, alert: t('this_move_was_deleted')) && return unless @move
     @landing_signup = LandingSignup.new
@@ -30,7 +30,7 @@ class PagesController < ApplicationController
     # @landing_signup.to_location = @move.from_group.location.id
   end
 
-  def submit_my_move
+  def submit_public_move
     @move = Move.find params[:id]
     @landing_signup = LandingSignup.new _landing_signup_params
     if @landing_signup.perform
@@ -38,8 +38,12 @@ class PagesController < ApplicationController
       redirect_to dashboard_path, notice: @landing_signup.notice
     else
       flash.now[:alert] = @landing_signup.errors.full_messages.join(', ')
-      render :my_move
+      render :public_move
     end
+  end
+
+  def public_chat
+    @chat = Chat.find_by id: params[:id]
   end
 
   def select2_locations

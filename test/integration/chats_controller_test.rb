@@ -6,8 +6,20 @@ class ChatsControllerTest < ActionDispatch::IntegrationTest
     second_move = create :move
     third_move = create :move
     chat = Chat.create_for_moves [move, second_move, third_move]
+    move.user.shared_chats << chat
     sign_in move.user
     chat
+  end
+
+  test 'redirect if not shared' do
+    chat = create_chat_and_sign_in
+    user = chat.moves.select { |m| m.user.shared_chats.present? }.last.user
+    refute_empty user.shared_chats
+    user.shared_chats.delete chat
+    assert_empty user.shared_chats
+    refute user.can_see_chat(chat)
+    get chat_path(chat)
+    assert_redirected_to buy_me_a_coffee_path(chat_id: chat.id)
   end
 
   test 'create message and send notification' do

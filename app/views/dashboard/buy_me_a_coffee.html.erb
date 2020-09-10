@@ -1,0 +1,18 @@
+<div class='text-center'>
+  <%= t('to_reward_active_users').html_safe %>
+  <div class=''>
+    <%= link_buy_me_a_coffee %>
+    <%= t('or') %>
+    <% if params[:chat_id] %>
+      <% chat = Chat.find params[:chat_id] %>
+      <%= chat_share_link chat %>
+      <% if Rails.env.development? %>
+        <%= link_to 'public', public_chat_path(chat, chat.name_with_arrows) %>
+        <%= link_to 'callback', "shared-callback?model_id=chat_id:#{chat.id}" %>
+      <% end %>
+    <% elsif params[:move_id] %>
+      <% move = Move.find params[:move_id] %>
+      <%= move_share_link move %>
+    <% end %>
+  </div>
+</div>

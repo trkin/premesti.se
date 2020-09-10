@@ -27,7 +27,7 @@
 
   </head>
 
-  <body class='background-gradient background-color px-3'>
+  <body class='background-gradient background-color'>
     <script>
       window.fbAsyncInit = function() {
         FB.init({
@@ -88,6 +88,8 @@
               <% end %>
             </div>
           </div>
+
+          <%= link_buy_me_a_coffee %>
           <div class='navbar-nav'>
               <% if current_user.admin? %>
                 <%= link_to t("admin_dashboard"), admin_dashboard_path, class: 'dropdown-item' %>
@@ -127,5 +129,10 @@
         <%= render 'layouts/alerts' %>
       </div>
     <% end # else # elsif login_layout? # if login_layout? %>
+    <% unless params[:action] == 'contact' %>
+      <div class='have-question'>
+        <%= link_to t('do_you_have_a_question'), contact_path %>
+      </div>
+    <% end %>
   </body>
 </html>

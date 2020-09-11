@@ -99,7 +99,7 @@ class User
             else
               " <span class='badge #{badge_for_count(count)}' title='#{title}'>#{count}</span>".html_safe
             end
-    badge += ApplicationController.helpers.coffee_svg if buyed_a_coffee
+    badge += ApplicationController.helpers.coffee_svg if buyed_a_coffee && !skip_badges
     return badge if phone_number.blank? && !visible_email_address
 
     res = ''.html_safe

@@ -98,7 +98,7 @@ class Chat
       Matches.create from_node: chat, to_node: move, order: i
       MatchedGroups.create from_node: chat, to_node: move.from_group, order: i
     end
-    Message.create! chat: chat, text: I18n.t('new_match_for_moves', moves: chat.name_with_arrows(email_and_phone: true, skip_badges: true)).html_safe
+    Message.create! chat: chat, text: I18n.t('new_match_for_moves', moves: chat.name_with_arrows(email_and_phone: false, skip_badges: true)).html_safe
     moves.each do |move|
       next unless move.user.initial_chat_message.present?
 

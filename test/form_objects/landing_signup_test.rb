@@ -101,8 +101,10 @@ class LandingSinupTest < ActiveSupport::TestCase
     assert_difference 'User.count', 0 do
       assert_difference 'Move.count', 1 do
         assert_difference 'Chat.count', 1 do
-          assert_performed_jobs 3, only: ActionMailer::DeliveryJob do
-            landing_signup.perform
+          assert_performed_jobs 4 do
+            perform_enqueued_jobs do
+              landing_signup.perform
+            end
           end
         end
       end
@@ -131,8 +133,12 @@ class LandingSinupTest < ActiveSupport::TestCase
     assert_difference 'User.count', 0 do
       assert_difference 'Move.count', 1 do
         assert_difference 'Chat.count', 1 do
-          assert_performed_jobs 3, only: ActionMailer::DeliveryJob do
-            landing_signup.perform
+          # 1 registration mail, 2 notification mails and
+          # CreateChatAndSendNotificationsJob
+          assert_performed_jobs 4 do
+            perform_enqueued_jobs do
+              landing_signup.perform
+            end
           end
         end
       end
@@ -188,8 +194,12 @@ class LandingSinupTest < ActiveSupport::TestCase
     assert_difference 'User.count', 0 do
       assert_difference 'Move.count', 0 do
         assert_difference 'Chat.count', 1 do
-          assert_performed_jobs 3, only: ActionMailer::DeliveryJob do
-            landing_signup.perform
+          # 1 registration mail, 2 notification mails and
+          # CreateChatAndSendNotificationsJob
+          assert_performed_jobs 4 do
+            perform_enqueued_jobs do
+              landing_signup.perform
+            end
           end
         end
       end

@@ -26,13 +26,13 @@ class Move
 
   def group_age_and_locations
     from_group.location.name + ' ' +
-      from_group.age_with_short_title + '(↪ ' +
-      to_groups.map { |group| group.location.name }.join(',') + ')'
+      from_group.age_with_short_title + ' (' +
+      to_groups.map { |group| group.location.name }.join(', ') + ')'
   end
 
   def group_age_and_particular_group_location(group)
     from_group.location.name + ' ' +
-      from_group.age_with_short_title + '(↪ ' +
+      from_group.age_with_short_title + ' (' +
       group.location.name + ')'
   end
 
@@ -44,7 +44,7 @@ class Move
 
   def show_locations
     from_group.location.name + ' ' \
-      '(↪ ' + to_groups.map { |group| group.location.name }.join(',') + ')'
+      '( ' + to_groups.map { |group| group.location.name }.join(', ') + ')'
   end
 
   def same_moves_for_to_group(to_group)

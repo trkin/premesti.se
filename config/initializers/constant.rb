@@ -29,5 +29,5 @@ class Constant
   ].freeze
 
   # ARROW_CHAR = ' ↪ '.freeze
-  ARROW_CHAR = ' -> '.freeze
+  ARROW_CHAR = ' - '.freeze
 end

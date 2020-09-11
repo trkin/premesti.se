@@ -51,8 +51,7 @@
               <% if number_of_premium.zero? %>
                 <%= t('nobody_buy_a_coffee') %>
               <% else %>
-                <%= number_of_premium %> <%= User.model_name.human(count: number_of_premium) %>
-                <%= t('buyed_a_coffee') %>
+                <%= t('count_users_already_buyed_a_coffee', count: number_of_premium) %>
               <% end %>
             </span>
           <% end %>
@@ -71,8 +70,8 @@
       </div>
     </div>
   <% end %>
-  <div class='card max-card-width pt-5'>
-    <div class='card-body'>
+  <div class='card max-card-width'>
+    <div class='card-body d-flex align-items-center'>
       <h5 class='card-title text-center'>
         <%= modal id: 'find-on-map-modal', title: t('find_on_map'), fade: false %>
         <label for="toggle-active" class='btn btn-default'>

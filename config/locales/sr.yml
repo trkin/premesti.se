@@ -176,10 +176,6 @@ sr:
   ignored_sending_notifications_unconfirmed_user: Слање порука је прескочено пошто
     корисник није потврђен
   request_created: Жељена група је направљена
-  request_created_and_sent_notifications_successfully:
-    one: Жеља је креирана и %{count} порука је послата
-    few: Жеља је креирана и %{count} поруке су послате
-    other: Жеља је креирана и %{count} порука је послато
   hi_name: Здраво %{name}
   report:
     one: "%{count} пријава"
@@ -274,5 +270,8 @@ sr:
   do_you_have_a_question: Имате питање ?
   note_that_there_are_other_moves: За одређене вртиће већ постоји иста потражња
   nobody_buy_a_coffee: Још увек нико није купио кафу
-  buyed_a_coffee: купили кафу
+  count_users_already_buyed_a_coffee:
+    one: Један корисник је већ купио кафу
+    few: "%{count} корисника је већ купио кафу"
+    other: "%{count} корисника је већ купио кафу"
   thanks_for_a_coffee: Хвала за кафу

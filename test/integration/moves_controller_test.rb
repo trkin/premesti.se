@@ -38,12 +38,14 @@ class MovesControllerTest < ActionDispatch::IntegrationTest
     group = create :group, age: move.from_group.age
     create :move, from_group: group, to_groups: move.from_group
     assert_difference 'move.to_groups.count', 1 do
-      assert_performed_jobs 2, only: ActionMailer::DeliveryJob do
-        post create_to_group_move_path(move, to_location_id: group.location.id)
-        give_me_all_mail_and_clear_mails
+      assert_performed_jobs 3 do
+        perform_enqueued_jobs do
+          post create_to_group_move_path(move, to_location_id: group.location.id)
+          give_me_all_mail_and_clear_mails
+        end
       end
     end
     follow_redirect!
-    assert_notice_message I18n.t('request_created_and_sent_notifications_successfully', count: 1)
+    assert_notice_message I18n.t('request_created')
   end
 end

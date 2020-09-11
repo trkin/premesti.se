@@ -27,8 +27,10 @@ class ChatTest < ActiveSupport::TestCase
     _m_cd = create :move, from_group: g_c, to_groups: [g_d, g_y, g_z]
     _m_da = create :move, from_group: g_d, to_groups: [g_b, g_a, g_z]
 
-    result = AddToGroupAndSendNotifications.new(m_ab, g_b).perform max_length_of_the_rotation: 4
-    assert result.success?
+    perform_enqueued_jobs do
+      result = AddToGroupAndSendNotifications.new(m_ab, g_b).perform max_length_of_the_rotation: 4
+      assert result.success?
+    end
     chat = Chat.last
 
     expected = [g_d, g_a, g_b, g_c, g_d].map { |g| g.location.name }.join " -&gt; "

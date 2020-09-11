@@ -33,16 +33,13 @@ class AddToGroupAndSendNotifications
     return Error.new(@move.errors.values.join(', ')) if ignore_sending_notification?
 
     results = FindMatchesForOneMove.perform @move, target_group: @group, max_length_of_the_rotation: max_length_of_the_rotation
-    count = 0
     results.each do |moves|
-      result = CreateChatAndSendNotifications.new(@move, moves).perform
-      count += result.chat.moves.size - 1 if result.success?
+      job = CreateChatAndSendNotificationsJob
+      any_premium = @move.user.buyed_a_coffee || moves.map(&:user).map(&:buyed_a_coffee).any?(true)
+      job = job.set(wait: 1.hour) unless any_premium
+      job.perform_later @move.id, moves.map(&:id)
     end
-    if count.positive?
-      Result.new I18n.t('request_created_and_sent_notifications_successfully', count: count)
-    else
-      Result.new I18n.t('request_created')
-    end
+    Result.new I18n.t('request_created')
   end
 
   def ignore_sending_notification?

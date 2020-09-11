@@ -48,9 +48,12 @@ class AddToGroupAndSendNotificationsTest < ActiveSupport::TestCase
     move_ba = create :move
     same_age_group = create :group, age: move_ab.from_group.age
     FindMatchesForOneMove.stub :perform, [[move_ba]] do
-      result = AddToGroupAndSendNotifications.new(move_ab, same_age_group).perform
-      assert result.success?
-      assert_equal result.message, I18n.t('request_created_and_sent_notifications_successfully', count: 1)
+      # TOOD: test delay time: at: 1.hour.from_now
+      assert_enqueued_with job: CreateChatAndSendNotificationsJob, args: [move_ab.id, [move_ba.id]] do
+        result = AddToGroupAndSendNotifications.new(move_ab, same_age_group).perform
+        assert result.success?
+        assert_equal result.message, I18n.t('request_created')
+      end
     end
   end
 end

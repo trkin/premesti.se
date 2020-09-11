@@ -96,8 +96,10 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     }
     assert_difference 'User.count', 0 do
       assert_difference 'Move.count', 1 do
-        assert_performed_jobs 3, only: ActionMailer::DeliveryJob do
-          post public_move_path(move, move.group_age_and_locations), params: { landing_signup: params }
+        assert_performed_jobs 4 do
+          perform_enqueued_jobs do
+            post public_move_path(move, move.group_age_and_locations), params: { landing_signup: params }
+          end
         end
       end
     end

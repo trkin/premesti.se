@@ -4,7 +4,12 @@ module PageHelper
   end
 
   def link_buy_me_a_coffee
-    link_to coffee_svg + t('buy_me_a_coffee'), Rails.application.secrets.buy_me_a_coffee_link
+    text = if current_user&.buyed_a_coffee
+             t('thanks_for_a_coffee')
+           else
+             t('buy_me_a_coffee')
+           end
+    link_to coffee_svg + text, Rails.application.secrets.buy_me_a_coffee_link
   end
 
   def coffee_svg

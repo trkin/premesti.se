@@ -42,10 +42,26 @@
       <div class='card-body'>
         <p class='card-text'>
           <%= move.group_age_and_locations %>
+          <% same_moves = move.to_groups.map { |to_group| {to_group: to_group, moves: move.same_moves_for_to_group(to_group)} } %>
+          <% unless same_moves.map{|s| s[:moves].size}.all?(0) %>
+            <span class='text-muted' >
+              <%= t('note_that_there_are_other_moves') %>:
+              <%= same_moves.map { |s| s[:to_group].location.name + "(#{s[:moves].size})" }.join(', ') %>.
+              <% number_of_premium = same_moves.map{|s| s[:moves].map(&:user).map(&:buyed_a_coffee) }.flatten.count(true) %>
+              <% if number_of_premium.zero? %>
+                <%= t('nobody_buy_a_coffee') %>
+              <% else %>
+                <%= number_of_premium %> <%= User.model_name.human(count: number_of_premium) %>
+                <%= t('buyed_a_coffee') %>
+              <% end %>
+            </span>
+          <% end %>
         </p>
+      </div>
+      <div class='card-footer'>
         <%= link_to t('edit'), move, class: 'btn btn-primary' %>
         <% if move.to_groups.present? %>
-          <%= move_share_link move, class: 'btn btn-success animated fadeIn' %>
+          <%= move_share_link move, class: 'btn btn-link animated fadeIn pull-right' %>
         <% else %>
           <%= link_to move, class: 'btn' do %>
             <i class="fa fa-plus" aria-hidden="true"></i>

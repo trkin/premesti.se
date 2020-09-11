@@ -47,6 +47,15 @@ class Move
       '(↪ ' + to_groups.map { |group| group.location.name }.join(',') + ')'
   end
 
+  def same_moves_for_to_group(to_group)
+    Move.query_as(:move)
+      .match('(from_g:Group)-[CURRENT]-(move)-[PREFER]-(to_g:Group)')
+      .where('from_g.uuid = ?', from_group.id)
+      .where('to_g.uuid = ?', to_group.id)
+      .where('move.uuid <> ?', id)
+      .pluck(:move)
+  end
+
   def destroy_to_group_and_archive_chats(target_group, archived_reason, admin: false)
     # chats have chat1, chat2 and each
     # chat have move1, move2... each belongs to location1, location2 and

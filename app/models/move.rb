@@ -30,6 +30,12 @@ class Move
       to_groups.map { |group| group.location.name }.join(', ') + ')'
   end
 
+  def group_age_and_locations_en
+    from_group.location.name_en + ' ' +
+      from_group.age_with_short_title + ' (' +
+      to_groups.map { |group| group.location.name_en }.join(', ') + ')'
+  end
+
   def group_age_and_particular_group_location(group)
     from_group.location.name + ' ' +
       from_group.age_with_short_title + ' (' +

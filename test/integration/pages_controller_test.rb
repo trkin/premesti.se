@@ -9,7 +9,7 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
 
   test 'get public_move' do
     move = create :move
-    get public_move_path(move, move.group_age_and_locations)
+    get public_move_path(move, move.group_age_and_locations_en)
     assert_response :success
   end
 
@@ -67,7 +67,7 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_difference 'User.count', 1 do
       assert_difference 'Move.count', 1 do
         assert_performed_jobs 1, only: ActionMailer::DeliveryJob do
-          post public_move_path(move, move.group_age_and_locations), params: { landing_signup: params }
+          post public_move_path(move, move.group_age_and_locations_en), params: { landing_signup: params }
         end
       end
     end
@@ -98,7 +98,7 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
       assert_difference 'Move.count', 1 do
         assert_performed_jobs 4 do
           perform_enqueued_jobs do
-            post public_move_path(move, move.group_age_and_locations), params: { landing_signup: params }
+            post public_move_path(move, move.group_age_and_locations_en), params: { landing_signup: params }
           end
         end
       end

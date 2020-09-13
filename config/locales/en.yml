@@ -9,7 +9,7 @@ en:
     finds matches and when parents agree then they can file transfer requests. Requests
     do not have to be accepted for various reasons (overloading the group, etc.),
     but this communication can certainly help in this transfer process. Please do
-    not post fake moves.
+    not post fake moves. When I got a coffee than I work more on developing new features.
   please_select: Please select
   select: Select
   where_do_you_want_to_move: Where do you want to Move?
@@ -220,7 +220,10 @@ en:
       verification_failed: reCAPTCHA verification failed, please try again.
   please_select_age: Please select age
   go: Go
+  see_all: See all
   see_all_moves: See all moves
+  see_n_active_moves: '%{n} active moves'
+  see_n_active_chats: '%{n} active chats'
   phone_number_will_show_up_in_chat_page: The phone will appear on the chat page
   initial_chat_message_will_show_up_as_first_message_from_you: This message will be
     your first message when a match occurs

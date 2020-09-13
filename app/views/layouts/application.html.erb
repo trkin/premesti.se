@@ -129,6 +129,9 @@
         <%= render 'layouts/alerts' %>
       </div>
     <% end # else # elsif login_layout? # if login_layout? %>
+  <div class='py-4 text-center'>
+    <%=raw t 'site_disclaimer' %>
+  </div>
     <% unless params[:action] == 'contact' %>
       <div class='have-question'>
         <%= link_to t('do_you_have_a_question'), contact_path %>

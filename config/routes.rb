@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   get 'resend-confirmation-instructions', to: 'dashboard#resend_confirmation_instructions'
   get 'moves-for-age', to: 'dashboard#moves_for_age', as: :all_moves
   get 'moves-for-age/:age', to: 'dashboard#moves_for_age', as: :moves_for_age
+  get 'all-chats', to: 'dashboard#all_chats', as: :all_chats
 
   get 'my-settings', to: 'my_settings#index'
   patch 'my-settings', to: 'my_settings#update'

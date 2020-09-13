@@ -10,10 +10,10 @@ sr-latin:
   site_description_3: Upišite Vaše želje, a mi ćemo Vam poslati imejl ✉️ kada se desi
     poklapanje
   site_disclaimer: Ovaj sajt nije povezan sa Predškolskim ustanovama već služi za
-    dogovor oko pronalaženja rokada već upisane dece u vrtićima. Kada se roditelji
+    dogovor oko pronalaženja rokada <b>već upisane dece</b> iz vrtića. Kada se roditelji
     dogovore onda mogu podneti zahteve za premeštaj. Zahtevi ne moraju biti usvojeni
-    iz raznih razloga (preopterećenosti grupe itd.), ali ova komunikacija svakako
-    može da pomogne u procesu prebacivanja. Molimo Vas da ne postavljate lažne želje.
+    iz raznih razloga (npr. preopterećenost grupe), ali ova komunikacija svakako
+    može da pomogne u procesu prebacivanja. Ukoliko imate nekih predloga slobodno me <a href='/contact'>kontaktirajte</a>. Kada dobijem kafu onda više radim na unapređivanju sajta.
   please_select: Molim izaberite izaberite
   select: Izaberite
   where_do_you_want_to_move: Gde hoćeš da se premestiš ?
@@ -225,7 +225,10 @@ sr-latin:
       verification_failed: Verifikacija reCAPTCHA nije uspela, pokushajte ponovo.
   please_select_age: Izaberite starost
   go: Idi
+  see_all: Vidi svih
   see_all_moves: Vidi sve želje
+  see_n_active_moves: '%{n} aktivnih želja'
+  see_n_active_chats: '%{n} aktivnih dogovaranja'
   phone_number_will_show_up_in_chat_page: Telefon će se prikazivati na stranici za
     dogovaranje
   initial_chat_message_will_show_up_as_first_message_from_you: Ova poruka će biti

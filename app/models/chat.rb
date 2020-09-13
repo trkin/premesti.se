@@ -40,6 +40,11 @@ class Chat
     @name_with_arrows = ActionController::Base.helpers.safe_join(array, "#{Constant::ARROW_CHAR}")
   end
 
+  def age_and_name_with_arrows_en
+    ordered_moves.last.from_group.age_with_short_title + ': ' + \
+      ([ordered_moves.last] + ordered_moves).map { |m| m.from_group.location.name_en }.join(Constant::ARROW_CHAR)
+  end
+
   def name_for_user(_user)
     name_with_arrows email_and_phone: true
   end

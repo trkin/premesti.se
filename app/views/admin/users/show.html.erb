@@ -112,6 +112,7 @@
       <% @user.moves.each do |move| %>
         <div>
           <%= move.group_age_and_locations %>
+          <%= 'Shared' if move.sharing_users.where(id: @user.id).present? %>
           <span class='show-on-hover-target'>
             <%= link_to 'destroy', destroy_move_admin_user_path(@user, move_id: move.id), method: :delete, class: 'text-danger' %>
           </span>
@@ -122,6 +123,7 @@
     <%= paginate @chats_active %>
     <% @chats_active.each do |chat| %>
       <%= link_to chat.name_for_user(@user), chat_path(chat) %>
+      <%= 'Shared' if chat.sharing_users.where(id: @user.id).present? %>
       <% if @user.shared_chats.include? chat %>
         <%= button_to 'Remove from shared_chats', add_to_shared_chats_admin_user_path(@user, chat, remove: true) %>
       <% else %>
@@ -164,7 +166,16 @@
     <%# <% end %1> %>
   </div>
   <div class='col'>
-    <h3>Messages (<%= @user.messages.size %>)</h3>
+    <h3>Send Messages (<%= @messages.size %>)</h3>
+    <%= paginate @messages %>
+    <ul>
+      <% @messages.each do |message| %>
+        <li>
+          <%= link_to message.chat_id, chat_path(message.chat) %>
+          <%= message.text %>
+        </li>
+      <% end %>
+    </ul>
     <h3>EmailMessages <%= @email_messages.total_count %></h3>
     <%= paginate @email_messages %>
     <ul>

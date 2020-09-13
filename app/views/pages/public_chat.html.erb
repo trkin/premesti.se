@@ -4,11 +4,11 @@
   meta_tags 'og:url': request.url, 'og:type': 'website', 'og:title': @chat.name_with_arrows, 'og:description': strip_tags(headline), 'og:image': chat_static_map_url(@chat), 'image:width': '600', 'image:height': '315'
   site_description "#{t('site_title')} #{@chat.name_with_arrows}"
 %>
-  <%= render 'public_header' %>
+<%= render 'public_header' %>
 <div class='container text-center'>
   <h1><%= Chat.model_name.human.capitalize %></h1>
   <div class=''>
-    <%= @chat.age_and_name_with_arrows_en %>
+    <%= @chat.age_and_name_with_arrows %>
     <br>
     <%= image_tag chat_static_map_url(@chat) %>
   </div>

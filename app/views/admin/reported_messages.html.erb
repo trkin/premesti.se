@@ -9,7 +9,7 @@
       <%= message.text %>
       <%= message.reported_at.to_s :short %>
       <% user = User.find message.reported_by_user_id %>
-      <%= link_to "reported_by #{user.name} #{user.name}", admin_user_path(user.id) %>
+      <%= link_to "reported_by #{user.email}", admin_user_path(user.id) %>
       <%= link_to 'chat', chat_path(message.chat) %>
     </li>
   <% end %>

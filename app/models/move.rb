@@ -19,6 +19,7 @@ class Move
   has_many :out, :to_groups, type: :PREFER, model_class: :Group, unique: true
   has_one :in, :user, origin: :moves
   has_many :in, :chats, origin: :moves
+  has_many :in, :sharing_users, origin: :shared_moves, model_class: :User
 
   validates :from_group, :user, presence: true
   validate :_same_age

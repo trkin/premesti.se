@@ -11,6 +11,7 @@ class Chat
   has_many :out, :messages, type: :HAS_MESSAGES
   has_many :out, :moves, rel_class: :Matches
   has_many :out, :groups, rel_class: :MatchedGroups
+  has_many :in, :sharing_users, origin: :shared_chats, model_class: :User
 
   def ordered_moves
     return @ordered_moves if @ordered_moves.present?
@@ -38,6 +39,11 @@ class Chat
     # even result is SafeJoin we need to use .html_safe for
     # I18n.('name', name: chat.name_with_arrows).html_safe
     @name_with_arrows = ActionController::Base.helpers.safe_join(array, "#{Constant::ARROW_CHAR}")
+  end
+
+  def age_and_name_with_arrows
+    ordered_moves.last.from_group.age_with_short_title + ': ' + \
+      ([ordered_moves.last] + ordered_moves).map { |m| m.from_group.location.name }.join(Constant::ARROW_CHAR)
   end
 
   def age_and_name_with_arrows_en

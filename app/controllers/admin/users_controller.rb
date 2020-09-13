@@ -5,6 +5,7 @@ class Admin::UsersController < AdminController
     @chats_active = @user.moves.chats.active.page(params[:page]).per(5)
     @chats_archived = @user.moves.chats.archived.page(params[:page]).per(5)
     @email_messages = @user.email_messages.page(params[:page]).per(5)
+    @messages = @user.messages.page(params[:page]).per(10)
   end
 
   def index

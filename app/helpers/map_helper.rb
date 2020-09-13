@@ -183,7 +183,7 @@ module MapHelper
 
   # image_tag show_static_circle_map_url(locations, options), class: options[:class]
   def show_static_circle_map_url(locations, options = {})
-    url = '//maps.googleapis.com/maps/api/staticmap?'
+    url = 'https://maps.googleapis.com/maps/api/staticmap?'
     url += 'size=600x315'
     # custom icon must be http:// not https://
     # markers=icon:http://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png|

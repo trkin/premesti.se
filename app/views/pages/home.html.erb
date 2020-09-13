@@ -85,12 +85,13 @@
     </div>
     <div class='mt-3 row text-center'>
       <div class='col-md-6'>
+        <%= t('see_all') %> <%= link_to t('see_n_active_moves', n: Move.all.size), all_moves_path %>
+        <br>
         <small><%= t('last_request') %></small>
         <% move = Move.order(created_at: :desc).first %>
         <% if move %>
           <% cache ['move-map', move] do %>
             <%= link_to move.group_age_and_locations, public_move_path(move, move.group_age_and_locations_en), title: move.name_address_group_full_age_and_locations.html_safe %>
-            <%= t('see_all') %> <%= link_to t('see_n_active_moves', n: Move.all.size), all_moves_path %>
             <br>
             <%= link_to public_move_path(move, move.group_age_and_locations_en), title: move.name_address_group_full_age_and_locations do %>
               <%= image_tag move_static_map_url(move), class: 'w-100' %>
@@ -99,13 +100,14 @@
         <% end %>
       </div>
       <div class='col-md-6'>
+        <%= t('see_all') %> <%= link_to t('see_n_active_chats', n: Chat.active.size), all_chats_path %>
+        <br>
         <small><%= t('last_chat') %></small>
         <% chat = Chat.active.order(created_at: :desc).first %>
         <% chat = Chat.order(created_at: :desc).first unless chat %>
         <% if chat %>
           <% cache ['chat-map', chat] do %>
             <%= link_to chat.name_with_arrows, public_chat_path(chat, chat.name_with_arrows) %>
-            <%= t('see_all') %> <%= link_to t('see_n_active_chats', n: Chat.active.size), all_chats_path %>
             <%= link_to public_chat_path(chat, chat.name_with_arrows) do %>
               <%= image_tag chat_static_map_url(chat), class: 'w-100' %>
             <% end %>

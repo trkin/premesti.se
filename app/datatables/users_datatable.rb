@@ -2,7 +2,7 @@ class UsersDatatable < TrkDatatables::Neo4j
   def columns
     {
       'users.email': {},
-      'integer_calculated_in_db.moves': {search: false, order: false},
+      'integer_calculated_in_db.moves': {search: false, order: false, title: 'Moves/Shared'},
       'integer_calculated_in_db.chats': {search: false, order: false},
       'users.created_at': {},
       '': {},
@@ -13,6 +13,7 @@ class UsersDatatable < TrkDatatables::Neo4j
     User
       .as(:users)
       .with_associations(moves: { from_group: [:location], to_groups: [:location] })
+      .order(created_at: :desc)
   end
 
   def rows(filtered)
@@ -28,8 +29,8 @@ class UsersDatatable < TrkDatatables::Neo4j
       # <% end %>
       [
         @view.link_to(email_and_social, @view.admin_user_path(user)),
-        user.moves.size,
-        user.moves.chats.size,
+        "#{user.moves.size} / #{user.shared_moves.size}",
+        "#{user.moves.chats.active.size} / #{user.shared_chats.size}",
         user.created_at.to_s(:long),
         login_as,
       ]

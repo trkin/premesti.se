@@ -30,7 +30,6 @@
   <div class='col-md-6'>
     <% @chat.moves.each do |move| %>
       <%= move.from_group.location.name %> <%= move.user.email_with_phone_if_present %>
-      <br>
       <% if current_user.admin? %>
         (only admin
         <%= link_to move.user.email, admin_user_path(move.user) %>
@@ -44,6 +43,7 @@
         <% end %>
         )
       <% end %>
+      <br>
     <% end %>
     <% if @chat.active? %>
       <div class="btn-group pull-right">

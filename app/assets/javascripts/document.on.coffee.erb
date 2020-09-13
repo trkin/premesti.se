@@ -29,18 +29,39 @@ $(document).on 'click', '[data-toggle="modal"]', (e) ->
       $(modalBodyFooter).html html
 
 
+loadFb = (callback) ->
+  if typeof FB != 'undefined'
+    callback()
+    return
+
+  console.log('loading FB sdk')
+  window.fbAsyncInit = ->
+    FB.init(
+      appId            : '<%= Rails.application.secrets.facebook_app_id %>'
+      autoLogAppEvents : true
+      xfbml            : true
+      version          : 'v8.0'
+    )
+  jQuery.ajax(
+    url: 'https://connect.facebook.net/en_US/sdk.js'
+    dataType: 'script'
+    success: callback
+  )
+
 $(document).on 'click', '[data-facebook-share]', (e) ->
   e.preventDefault
   href = e.currentTarget.dataset.facebookShare
   model_id = e.currentTarget.dataset.facebookModelId
   success_link = e.currentTarget.dataset.facebookSuccessLink
-  FB.ui({
-    method: 'share'
-    href: href
-  }, (response) ->
-    if typeof(response) != 'undefined'
-      fetch("/shared-callback?model_id=#{model_id}").then((response) ->
-        window.location.assign success_link
-      )
-    console.log(response)
-  )
+  loadFb ->
+    console.log 'fb loaded'
+    FB.ui({
+      method: 'share'
+      href: href
+    }, (response) ->
+      if typeof(response) != 'undefined'
+        fetch("/shared-callback?model_id=#{model_id}").then((response) ->
+          window.location.assign success_link
+        )
+      console.log(response)
+    )

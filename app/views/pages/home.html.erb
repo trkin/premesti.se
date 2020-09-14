@@ -103,7 +103,8 @@
         <%= t('see_all') %> <%= link_to t('see_n_active_chats', n: Chat.active.size), all_chats_path %>
         <br>
         <small><%= t('last_chat') %></small>
-        <% chat = Chat.active.order(created_at: :desc).first %>
+        <% chat = Chat.where(featured_on_home_page: true).first %>
+        <% chat = Chat.active.order(created_at: :desc).first unless chat %>
         <% chat = Chat.order(created_at: :desc).first unless chat %>
         <% if chat %>
           <% cache ['chat-map', chat] do %>

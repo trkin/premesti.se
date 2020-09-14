@@ -9,4 +9,11 @@ class Admin::ChatsController < AdminController
     @chats = @chats.where(archived_reason: params[:archived_reason]) if params[:archived_reason].present?
     @chats = @chats.page params[:page]
   end
+
+  def featured
+    chat = Chat.find params[:id]
+    chat.featured_on_home_page = true
+    chat.save!
+    redirect_to admin_chats_path
+  end
 end

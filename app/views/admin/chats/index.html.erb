@@ -2,10 +2,11 @@
 <ul>
   <% @chats.each do |chat| %>
     <li>
-      <%= link_to 'chat', chat_url(chat) %>
       <small><%= chat.created_at.to_s :short %></small>
-      <b><%= chat.moves.size %> <%= Move.model_name.human count: chat.moves.size %></b>
-
+      <%= link_to chat_url(chat) do %>
+        <b><%= chat.moves.size %> <%= Move.model_name.human count: chat.moves.size %></b>
+      <% end %>
+      <%= button_to 'Featured', featured_admin_chat_path(chat), method: :patch, form_class: 'd-inline', class: 'btn btn-secondary btn-sm' %>
       <% chat.moves.each do |move| %>
         <% if move.user %>
           <%= link_to move.user.email, admin_user_path(move.user) %>

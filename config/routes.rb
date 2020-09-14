@@ -73,7 +73,11 @@ Rails.application.routes.draw do
         post :search
       end
     end
-    resources :chats
+    resources :chats do
+      member do
+        patch :featured
+      end
+    end
     get :reported_messages
     resources :locations
     resources :groups

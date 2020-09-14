@@ -5,6 +5,7 @@ class Chat
   property :updated_at, type: DateTime
   property :status, type: Integer, default: 0
   property :archived_reason, type: String
+  property :featured_on_home_page, type: Boolean
 
   enum status: %i[active archived]
 

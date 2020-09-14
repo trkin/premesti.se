@@ -81,4 +81,8 @@ module ApplicationHelper
       #{records.total_count}
     HERE_DOC
   end
+
+  def blog_link
+    "/blog/index.#{I18n.locale}.html"
+  end
 end

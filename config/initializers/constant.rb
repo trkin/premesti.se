@@ -12,11 +12,6 @@ class Constant
     },
   }.freeze
 
-  BLOG_PATH = '/blog/'.freeze
-
-  COLORS = {
-  }.freeze
-
   # 0..6
   AGE_COLORS = [
     '#b13ede',

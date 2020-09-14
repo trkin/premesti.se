@@ -9,6 +9,22 @@
       <a class="nav-link" href="/">
         {{ site.data.t['title'][page.lang] }}
       </a>
+      <label for="some-id">
+        {% if page.lang == 'en' %}
+          <img src="{{ site.baseurl }}/assets/images/flag-usa.png">
+        {% else %}
+          <img src="{{ site.baseurl }}/assets/images/flag-serbia.png">
+        {% endif %}
+      </label>
+      {% capture extension %}{{ page.lang| append: '.html' }}{% endcapture %}
+      <input type="checkbox" id="some-id" class="toggle-active" />
+      <div class="toggle-active-adjacent-sibling hide-not-important">
+        <ul class="dropdown-menu show" aria-labelledby="navbarDropdown">
+          <li class="dropdown-item"><a href="//{{ site.data.t['domains']['sr'] }}/blog{{ page.url | replace: extension, 'sr.html' }}"><img src="{{ site.baseurl }}/assets/images/flag-serbia.png"> Премести се (ћирилица)</a></li>
+          <li class="dropdown-item"><a href="//{{ site.data.t['domains']['sr-latin'] }}/blog{{ page.url | replace: extension, 'sr-latin.html' }}"><img src="{{ site.baseurl }}/assets/images/flag-serbia.png"> Premesti se (latinica)</a></li>
+          <li class="dropdown-item"><a href="//{{ site.data.t['domains']['en'] }}/blog{{ page.url | replace: extension, 'en.html' }}"><img src="{{ site.baseurl }}/assets/images/flag-usa.png"> Move Your Place (english)</a></li>
+        </ul>
+      </div>
       <div class="nav-link ml-auto">
         <a href='/blog/'>{{ site.data.t['dashboard'][page.lang] }}</a>
       </div>

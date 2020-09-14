@@ -1,6 +1,6 @@
 ---
 layout: post
-lang: sr
+lang: sr-latin
 title: Uspešna premeštanja u vrtićima
 ---
 

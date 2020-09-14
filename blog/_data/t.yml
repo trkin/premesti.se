@@ -2,14 +2,21 @@ title:
   en: Move your place
   sr: Премести се
   sr-latin: Premesti se
+domains:
+  en: en-premesti-se.trk.in.rs
+  sr: premesti-se.trk.in.rs
+  sr-latin: sr-latin-premesti-se.trk.in.rs
+  # en: en-premesti-se.trk.in.localhost:3004
+  # sr: premesti-se.trk.in.localhost:3004
+  # sr-latin: sr-latin-premesti-se.trk.in.localhost:3004
 description:
   en: >-
-    Blog about changing kindergarden and other similar topics regarding to <a href='/'>Move Your Place</a>
-  sr: >-
-    Blog o premeštanju dece u vrtićima i ostalim sličnim temama vezanih za <a href='/'>Premesti Se</a>
+    Blog about changing kindergarden and other similar topics regarding to
   sr-latin: >-
-    Блог о премештању деце у вртићима и осталим сличним темама, везаних за <a href='/'>Премести Се</a>
+    Blog o premeštanju dece u vrtićima i ostalim sličnim temama vezanih za
+  sr: >-
+    Блог о премештању деце у вртићима и осталим сличним темама, везаних за
 dashboard:
-  en: Dashboard
-  sr: Почетак
-  sr-latin: Početak
+  en: Blog
+  sr: Блог
+  sr-latin: Blog

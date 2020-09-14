@@ -1,6 +1,6 @@
 ---
 layout: post
-lang: sr
+lang: sr-latin
 title: Udaljen vrtić i nije tako loša stvar
 ---
 

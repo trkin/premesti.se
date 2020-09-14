@@ -13,7 +13,7 @@
       <% end %>
       <%= link_buy_me_a_coffee %> |
       <% if current_user %>
-        <%= link_to t('blog'), Constant::BLOG_PATH %>
+        <%= link_to t('blog'), blog_link %> |
         <%= link_to t('dashboard'), dashboard_path %>
       <% else %>
         <% if false # Rails.env.development? %>
@@ -24,7 +24,7 @@
             <% end %>
           </small>
         <% end %>
-        <%= link_to t('blog'), Constant::BLOG_PATH %> |
+        <%= link_to t('blog'), blog_link %> |
         <%= link_to t('faq'), faq_path %> |
         <%= link_to t('contact'), contact_path %> |
         <%# <%= link_to t("register"), new_user_registration_path %1> %>

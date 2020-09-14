@@ -122,7 +122,8 @@
     <h3>Chats active (<%= @chats_active.size %>)</h3>
     <%= paginate @chats_active %>
     <% @chats_active.each do |chat| %>
-      <%= link_to chat.name_for_user(@user), chat_path(chat) %>
+      <%= link_to chat.id, chat_path(chat) %>
+      <%= chat.name_with_arrows %>
       <%= 'Shared' if chat.sharing_users.where(id: @user.id).present? %>
       <% if @user.shared_chats.include? chat %>
         <%= button_to 'Remove from shared_chats', add_to_shared_chats_admin_user_path(@user, chat, remove: true) %>
@@ -141,7 +142,8 @@
     <h3>Chats archived</h3>
     <%= paginate @chats_archived %>
     <% @chats_archived.each do |chat| %>
-      <%= chat.name_for_user @user %>
+      <%= link_to chat.id, chat_path(chat) %>
+      <%= chat.name_with_arrows %>
       <ul id='archived_chat'>
         <% chat.messages.each do |message| %>
           <li>

@@ -54,7 +54,7 @@
       <% end %>
     </ul>
     <%= modal id: 'find-on-map-modal', title: t('find_on_map'), fade: false %>
-    <label for="toggle-active" class='btn btn__text_wrap btn-default <%= 'animated fadeIn infinite' unless @move.to_groups.present? %>'>
+    <label for="toggle-active" class='btn btn__text_wrap btn-success <%= 'animated fadeIn infinite' unless @move.to_groups.present? %>'>
       <i class="fa fa-plus" aria-hidden="true"></i>
       <%= t('add_request_location_for_move_from_location_name', location_name: @move.from_group.location.name) %>
     </label>

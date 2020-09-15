@@ -274,3 +274,5 @@ en:
     other: "%{count} users already buyed a coffee"
   thanks: Thanks
   thanks_for_a_coffee: Thanks for a coffee
+  chat_instructions: 'Write something like: "I am interested in relocating", or "I called on the phone but he gave up on relocating" or "We willll meet at the administration to submit a request for rotation together"'
+  help_for_chat: Help for chat

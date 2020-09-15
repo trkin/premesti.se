@@ -282,3 +282,5 @@ sr-latin:
     other: "%{count} korisnika je već kupio kafu"
   thanks: Hvala
   thanks_for_a_coffee: Hvala za kafu
+  chat_instructions: 'Napišite nešto da bi drugi znali da ste aktivni: <i>"Zainteresovan sam za premeštaj"</i> ili <i>"Nazvao sam telefonom Kolibri ali je on odustao od premeštanja"</i> ili <i>"Nađemo se u upravi da zajedno predamo zahtev za rotaciju"</i>'
+  help_for_chat: Uputstvo za dogovaranje

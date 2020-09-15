@@ -26,6 +26,8 @@
         <%= render "message", message: message, owner: message.user == current_user, current_user_admin: current_user.admin? %>
       <% end %>
     </ul>
+    <%= t('help_for_chat') %>:
+    <span class=' text-muted'> <%=raw t('chat_instructions') %></small>
   </div>
   <div class='col-md-6'>
     <% @chat.moves.each do |move| %>
@@ -56,16 +58,16 @@
       </div>
     <% end %>
     <%= image_tag chat_static_map_url(@chat), class: 'w-100' %>
-        <button type="button" class="mt-2 pull-right btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= t('delete_chat_and_my_move').html_safe %>
-        </button>
-        <div class="dropdown-menu">
-          <% Move::FAILED_ARCHIVED_REASONS.each do |reason| %>
-            <%= form_tag archive_chat_path(@chat) do %>
-              <%= hidden_field_tag :commit, reason %>
-              <%= button_tag t(reason), class: 'dropdown-item' %>
-            <% end %>
-          <% end %>
-        </div>
+    <button type="button" class="mt-2 pull-right btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <%= t('delete_chat_and_my_move').html_safe %>
+    </button>
+    <div class="dropdown-menu">
+      <% Move::FAILED_ARCHIVED_REASONS.each do |reason| %>
+        <%= form_tag archive_chat_path(@chat) do %>
+          <%= hidden_field_tag :commit, reason %>
+          <%= button_tag t(reason), class: 'dropdown-item' %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 </div>

@@ -84,5 +84,6 @@ module ApplicationHelper
 
   def blog_link
     "/blog/index.#{I18n.locale}.html"
+
   end
 end

@@ -57,9 +57,9 @@
         <div class='navbar-nav mr-auto'>
           <%= link_to dashboard_path, class: 'navbar-brand' do %>
             <%= image_tag 'premesti_se_lines_logo.png', class: 'root-icon' %>
-            <%# <span class='d-none d-sm-inline colorize-text-background-radial'> %>
+            <span class='d-none d-sm-inline'>
               <%= t('site_title') %>
-              <%# </span> %>
+              </span>
           <% end %>
           <div class='d-none d-sm-flex'>
             <% find_breadcrumb_list.each_with_index do |(text, link), i| %>

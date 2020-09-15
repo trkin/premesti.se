@@ -38,7 +38,9 @@
 <div class='d-flex flex-wrap justify-content-center'>
   <% current_user.moves.each do |move| %>
     <div class='card m-2 max-card-width'>
-      <%= image_tag move_static_map_url(move), class: 'card-img-top' %>
+      <%= link_to move do %>
+        <%= image_tag move_static_map_url(move), class: 'card-img-top' %>
+      <% end %>
       <div class='card-body'>
         <p class='card-text'>
           <%= move.group_age_and_locations %>
@@ -70,7 +72,7 @@
       </div>
     </div>
   <% end %>
-  <div class='card max-card-width'>
+  <div class='card max-card-width m-2 w-100'>
     <div class='card-body d-flex align-items-center'>
       <h5 class='card-title text-center'>
         <%= modal id: 'find-on-map-modal', title: t('find_on_map'), fade: false %>

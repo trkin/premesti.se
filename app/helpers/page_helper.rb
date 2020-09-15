@@ -5,11 +5,17 @@ module PageHelper
 
   def link_buy_me_a_coffee
     text = if current_user&.buyed_a_coffee
-             t('thanks_for_a_coffee')
+             <<~HERE_DOC
+             <span class='d-sm-none'>#{t('thanks')}</span>
+             <span class='d-none d-sm-inline'>#{t('thanks_for_a_coffee')}</span>
+             HERE_DOC
            else
-             t('buy_me_a_coffee')
+             <<~HERE_DOC
+             <span class='d-sm-none'>#{t('buy')}</span>
+             <span class='d-none d-sm-inline'>#{t('buy_me_a_coffee')}</span>
+             HERE_DOC
            end
-    link_to coffee_svg + text, Rails.application.secrets.buy_me_a_coffee_link
+    link_to coffee_svg + text.html_safe, Rails.application.secrets.buy_me_a_coffee_link
   end
 
   def coffee_svg

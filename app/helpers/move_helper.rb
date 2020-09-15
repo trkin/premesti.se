@@ -38,7 +38,11 @@ module MoveHelper
     options['data-facebook-share'] = public_move_url(move, move.group_age_and_locations),
     options['data-facebook-model-id'] = "move_id:#{move.id}"
     options['data-facebook-success-link'] = move_path(move)
-    link_to t('share_on_facebook').html_safe, '#', options
+    text = <<~HERE_DOC
+    <span class='d-none d-sm-inline'>#{t('share_on_facebook')}</span>
+    <span class='d-sm-none'>#{t('share_facebook')}</span>
+    HERE_DOC
+    link_to text.html_safe, '#', options
   end
 
   def chat_share_link(chat, options = {})

@@ -198,6 +198,7 @@ sr-latin:
   public_chat_introduction: Poklapanje između vrtića <b>%{locations}</b> za <b>%{age}</b> grupu
   if_you_have_some_of_this_locations_we_can_match: Ako i vi imate želju da prebacite dete, upišite se pa ćete dobiti imejl obaveštenje ukoliko se desi poklapanje
   share: Podeli
+  share_facebook: Podeli na <i class="fa fa-facebook-official"></i>
   share_on_facebook: Podeli na <i class="fa fa-facebook-official"></i> Fejsbuku
   share_reason: Korisnici koji podele svoje želje će biti ranije obavešteni nego ovi drugi
   see_public_page: Vidi javnu stranicu koju možeš da deliš
@@ -217,7 +218,7 @@ sr-latin:
   here_type_message_like: 'Ovde napišite poruku tipa: Da li tražite premeštaj u vrtić
     %{location} ?'
   delete_all_moves: Obriši sve želje za premeštaj sa ove lokacije
-  delete_chat_and_my_move: Arhiviraj dogovaranje i obriši moju želju
+  delete_chat_and_my_move: Arhiviraj dogovaranje i<br> obriši moju želju
   user_canceled_account: Korisnik je obrisao nalog
   all_moves_are_deleted: Sve želje su obrisane
   recaptcha:
@@ -269,6 +270,7 @@ sr-latin:
   blog: Blog
   chat_for_group_name_and_location_names: Dogovaranje za %{group_name} između %{location_names}
   until_now_number_name_sent: 'Do sada poslato %{number_name}'
+  buy: Kupi
   buy_me_a_coffee: Kupi mi kafu
   to_reward_active_users: Da bi smo nagradili aktivne korisnike moramo sprečiti neaktivne korisnike.<br>Molim vas da podelite ovu stranicu na facebook, ili kupite kafu.
   do_you_have_a_question: Imate pitanje ?
@@ -278,4 +280,5 @@ sr-latin:
     one: Jedan korisnik je već kupio kafu
     few: "%{count} korisnika je već kupio kafu"
     other: "%{count} korisnika je već kupio kafu"
+  thanks: Hvala
   thanks_for_a_coffee: Hvala za kafu

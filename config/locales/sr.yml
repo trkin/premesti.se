@@ -195,6 +195,7 @@ sr:
   if_you_have_some_of_this_locations_we_can_match: Ако и ви имате жељу да пребаците
     дете, упишите се па ћете добити имејл обавештење уколико се деси поклапање
   share: Подели
+  share_facebook: Подели на <i class="fa fa-facebook-official"></i>
   share_on_facebook: Подели на <i class="fa fa-facebook-official"></i> Фејсбуку
   share_reason: Корисници који поделе своје жеље ће бити раније обавештени него ови други
   see_public_page: Види јавну страницу коју можеш да делиш
@@ -268,6 +269,7 @@ sr:
   blog: Блог
   chat_for_group_name_and_location_names: Договарање за %{group_name} између %{location_names}
   until_now_number_name_sent: До сада послато %{number_name}
+  buy: Купи
   buy_me_a_coffee: Купи ми кафу
   to_reward_active_users: Да би смо наградили активне кориснике морамо спречити неактивне кориснике.<br>Молим вас да поделите ову страницу на фејсбуку, или купите кафу.
   do_you_have_a_question: Имате питање ?
@@ -277,4 +279,5 @@ sr:
     one: Један корисник је већ купио кафу
     few: "%{count} корисника је већ купио кафу"
     other: "%{count} корисника је већ купио кафу"
+  thanks: Хвала
   thanks_for_a_coffee: Хвала за кафу

@@ -10,6 +10,8 @@
         <%= link_to 'public', public_chat_path(chat, chat.name_with_arrows) %>
         <%= link_to 'callback', "shared-callback?model_id=chat_id:#{chat.id}" %>
       <% end %>
+      <%= t('or') %>
+      <%= link_to t('ignore_all_and_see_chat'), ignore_chat_path(chat), method: :patch %>
     <% elsif params[:move_id] %>
       <% move = Move.find params[:move_id] %>
       <%= move_share_link move %>

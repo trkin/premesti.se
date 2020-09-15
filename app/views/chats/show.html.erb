@@ -34,7 +34,10 @@
       <%= move.from_group.location.name %>
       <%= move.user.email_with_phone_if_present %>
       <% if move.user.shared_chats.include?(@chat) %>
-        <span class='badge badge-success'>Shared</span>
+             <span class='badge badge-success'><%= t('shared') %></span>
+      <% end %>
+      <% if move.user.ignored_chats.include?(@chat) %>
+             <span class='badge badge-danger'><%= t('ignored') %></span>
       <% end %>
       <% if current_user.admin? %>
         (only admin

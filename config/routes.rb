@@ -59,6 +59,7 @@ Rails.application.routes.draw do
       delete :archive_message
       patch :report_message
       post :archive
+      patch :ignore
     end
   end
 

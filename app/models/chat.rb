@@ -13,6 +13,7 @@ class Chat
   has_many :out, :moves, rel_class: :Matches
   has_many :out, :groups, rel_class: :MatchedGroups
   has_many :in, :sharing_users, origin: :shared_chats, model_class: :User
+  has_many :in, :ignoring_users, origin: :ignored_chats, model_class: :User
 
   def ordered_moves
     return @ordered_moves if @ordered_moves.present?

@@ -77,6 +77,7 @@ class User
   has_many :out, :messages, type: :AUTHOR_OF
   has_many :out, :email_messages, type: :RECEIVED
   has_many :out, :shared_chats, type: :SHARED_CHAT, model_class: :Chat
+  has_many :out, :ignored_chats, type: :IGNORED_CHAT, model_class: :Chat
   has_many :out, :shared_moves, type: :SHARED_MOVE, model_class: :Move
 
   scope :confirmed, -> { query_as(:user).where('user.confirmed_at IS NOT NULL').pluck(:user) }
@@ -146,6 +147,7 @@ class User
   def can_see_chat(chat)
     return true if admin || buyed_a_coffee
     return true if shared_chats.include?(chat)
+    return true if ignored_chats.include?(chat)
 
     false
   end

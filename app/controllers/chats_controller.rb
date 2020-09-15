@@ -32,6 +32,16 @@ class ChatsController < ApplicationController
     redirect_to chat_path(@chat), notice: t_crud('success_archived', Message)
   end
 
+  def ignore
+    if current_user.ignored_chats.include?(@chat)
+      message = 'user already ignored this chat'
+    else
+      message = 'adding chat to ignored_chats'
+      current_user.ignored_chats << @chat
+    end
+    redirect_to chat_path(@chat)
+  end
+
   def destroy
     raise 'only_development' unless Rails.env.development?
 
@@ -60,7 +70,7 @@ class ChatsController < ApplicationController
               @current_user.moves.chats.where(id: params[:id]).first
             end
     redirect_to root_path, alert: t('this_move_does_not_belong_to_you') and return unless @chat
-    redirect_to buy_me_a_coffee_path(chat_id: @chat.id) and return unless current_user.can_see_chat(@chat)
+    redirect_to buy_me_a_coffee_path(chat_id: @chat.id) and return unless current_user.can_see_chat(@chat) || params[:action] == 'ignore'
   end
 
   def _message_params

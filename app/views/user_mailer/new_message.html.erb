@@ -3,7 +3,7 @@
 %>
 <p><%= t('hi_name', name: @move.user.email) %>!</p>
 
-<p><%= t('user_mailer.new_message.there_are_unread_messages_in_chat_for_location', location: @move.from_group.location.name) %></p>
+<p><%= t('user_mailer.new_message.there_are_unread_messages_in_chat_for_location_name_and_rotation_name', location_name: @move.from_group.location.name, rotation_name: @message.chat.name_with_arrows) %></p>
 <div class='box'>
   <%= @message.text %>
 </div>

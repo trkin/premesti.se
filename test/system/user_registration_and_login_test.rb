@@ -1,6 +1,10 @@
 require 'application_system_test_case'
 
 class UsersTest < ApplicationSystemTestCase
+  def assert_user_logged_in_with_email(email)
+    assert_selector 'a#userDropdown', text: email.split('@').first
+  end
+
   def manual_register(email, password)
     visit new_user_registration_path
     fill_in t('neo4j.attributes.user.email'), with: email
@@ -159,7 +163,9 @@ class UsersTest < ApplicationSystemTestCase
     sign_in user
     visit dashboard_path
     assert_text move.from_group.location.name
-    click_on chat.only_text_for_name_for_user(user)
+    assert_text chat.name_with_arrows
+    visit chat_path(chat)
+    click_on t('ignore_all_and_see_chat')
     assert_text 'blabla'
 
     visit edit_user_registration_path

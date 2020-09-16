@@ -35,7 +35,7 @@ class Admin::UsersController < AdminController
 
   def destroy_move
     move = @user.moves.find params[:move_id]
-    move.destroy_and_archive_chats 'added_move_by_mistake'
+    move.destroy_and_archive_chats 'added_move_by_mistake', admin: true
     redirect_to admin_user_path(@user)
   end
 

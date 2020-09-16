@@ -53,11 +53,14 @@ class LandingTest < ApplicationSystemTestCase
     refute user.confirmed?
 
     assert_difference 'Chat.count', 1 do
-      assert_performed_jobs 2, only: ActionMailer::DeliveryJob do
-        visit confirmation_link
-        assert user.reload.confirmed?
-        assert_selector 'a', text: user.email_username
-        refute_selector 'a', text: t('register')
+      # 2 notification mail 1 CreateChatAndSendNotificationsJob
+      assert_performed_jobs 3 do
+        perform_enqueued_jobs do
+          visit confirmation_link
+          assert user.reload.confirmed?
+          assert_selector 'a', text: user.email_username
+          refute_selector 'a', text: t('register')
+        end
       end
     end
 

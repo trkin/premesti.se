@@ -9,7 +9,7 @@ en:
     new_match:
       chat_link: Go and complete the move or Click on Delete chat
     new_message:
-      there_are_unread_messages_in_chat_for_location: You have unread messages in a chat for location %{location}
+      there_are_unread_messages_in_chat_for_location_name_and_rotation_name: You have unread messages in a chat for location %{location_name} for rotation %{rotation_name}
       chat_link: Go and open new messages
     confirmation_instructions:
       we_notice_that_you_registered_time_ago: We notice that you registered %{time_ago} ago but have not confirm your email

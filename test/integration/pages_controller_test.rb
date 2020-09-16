@@ -14,7 +14,9 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'get public_chat' do
-    chat = create :chat
+    move = create :move
+    another_move = create :move
+    chat = Chat.create_for_moves [move, another_move]
     get public_chat_path(chat, chat.name_with_arrows)
     assert_response :success
   end

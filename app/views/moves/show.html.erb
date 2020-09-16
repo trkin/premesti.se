@@ -7,7 +7,7 @@
   (<%= @move.from_group.age_with_short_title %>)
   <div class="btn-group">
     <button type="button" class="btn btn-sm btn-link text-danger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <i class="nav-link fa fa-trash-o" aria-hidden="true"></i>
+      <i class="nav-link fa fa-trash-o" aria-hidden="true"> <%= t('delete_all_moves') %></i>
     </button>
     <div class="dropdown-menu">
       <% Move::FAILED_ARCHIVED_REASONS.each do |reason| %>
@@ -33,7 +33,7 @@
           &emsp; ↪  <span><%= group.location.name_with_address %></span>
           <div class="btn-group">
             <button type="button" class="btn btn-sm btn-link text-danger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="nav-link fa fa-trash-o" aria-hidden="true"></i>
+              <i class="nav-link fa fa-trash-o" aria-hidden="true"> <%= t('delete') %></i>
             </button>
             <div class="dropdown-menu">
               <% Move::FAILED_ARCHIVED_REASONS.each do |reason| %>
@@ -68,7 +68,7 @@
       <% end %>
     </span>
   </div>
-  <div class='col-md text-center'>
+  <div class='col-md text-center pt-2'>
     <%= link_to t('see_public_page'), public_move_path(@move, @move.group_age_and_locations_en) %>
     <br>
     <%# show_lines_map [@move.from_group.location, @move.to_groups.map(&:location)].flatten, @move.to_groups.map(&:location).map { |loc| OpenStruct.new from: @move.from_group.location, to: loc, age: @move.from_group.age }, class: 'show-lines-map-container' %>

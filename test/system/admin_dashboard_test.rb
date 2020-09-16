@@ -15,7 +15,6 @@ class AdminDashboardTest < ApplicationSystemTestCase
     manual_login user.email, password
     visit dashboard_path
 
-    click_on user.email_username
     click_on t('admin_dashboard')
     assert_equal admin_dashboard_path, page.current_path
   end

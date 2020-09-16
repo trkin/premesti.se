@@ -9,7 +9,7 @@ sr-latin:
     new_match:
       chat_link: Idite i dogovorite premeštaj ili kliknite na Obriši dogovor
     new_message:
-      there_are_unread_messages_in_chat_for_location: Imate nepročitanih poruka vezanih za dogovaranje premeštaja iz vrtića %{location}
+      there_are_unread_messages_in_chat_for_location_name_and_rotation_name: Imate nepročitanih poruka vezanih za dogovaranje premeštaja iz vrtića %{location_name} za rotaciju %{rotation_name}
       chat_link: Idite i pročitajte nove poruke
     confirmation_instructions:
       we_notice_that_you_registered_time_ago: Primetili smo da ste se registrovali pre %{time_ago} ali niste potvrdili Vaš nalog

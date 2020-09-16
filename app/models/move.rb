@@ -82,9 +82,9 @@ class Move
     touch # we need this because of cache on landing page
   end
 
-  def destroy_and_archive_chats(archived_reason)
+  def destroy_and_archive_chats(archived_reason, admin: false)
     chats.active.each do |chat|
-      chat.archive_for_move_and_reason self, archived_reason
+      chat.archive_for_move_and_reason self, archived_reason, admin: admin
     end
     destroy
   end

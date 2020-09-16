@@ -217,7 +217,7 @@ sr-latin:
   admin_archived_chat_for_location_name_with_message: 'Administrator je arhivirao dogovaranje zbog vrtića %{location_name} sa razlogom: %{message}'
   here_type_message_like: 'Ovde napišite poruku tipa: Da li tražite premeštaj u vrtić
     %{location} ?'
-  delete_all_moves: Obriši sve želje za premeštaj sa ove lokacije
+  delete_all_moves: Obriši sve želje
   delete_chat_and_my_move: Arhiviraj dogovaranje i<br> obriši moju želju
   user_canceled_account: Korisnik je obrisao nalog
   all_moves_are_deleted: Sve želje su obrisane

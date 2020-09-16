@@ -55,7 +55,7 @@ module ApplicationHelper
     alert = ''
     return alert unless current_user
     unless current_user.confirmed?
-      alert += t('my_devise.confirm_your_email_to_start_receiving_notifications', confirmation_url: resend_confirmation_instructions_path)
+      alert += t('my_devise.confirm_your_email_to_start_receiving_notifications', email: current_user.email, confirmation_url: resend_confirmation_instructions_path)
     end
     if current_user.locale != I18n.locale.to_s
       language = t('current_language', locale: current_user.locale)

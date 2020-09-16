@@ -3,11 +3,6 @@
 %>
 <h2 class='show-on-hover'>
   <%= t('my_chats') %>
-  <% if current_user.moves.chats.archived.present? %>
-    <small>
-      <%= link_to t('my_archived_chats'), my_data_path, class: 'show-on-hover-target' %>
-    </small>
-  <% end %>
 </h2>
 <div class='d-flex flex-wrap justify-content-center'>
   <% if current_user.moves.chats.active.present? %>

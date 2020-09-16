@@ -30,9 +30,6 @@ class UserFromOmniauth
     if user.new_record?
       Error.new user.errors.full_messages.join(', ')
     else
-      user.skip_confirmation! # this will just add confirmed_at = Time.now
-      # user.name = @auth.info.name # assuming the user model has a name
-      # user.image = @auth.info.image # assuming the user model has an image
       Result.new 'New', user: user
     end
   end
@@ -74,7 +71,7 @@ class UserFromOmniauth
     params = {
       email: @auth.info.email,
       password: Devise.friendly_token[0, 20],
-      confirmed_at: Time.zone.now,
+      # confirmed_at: Time.zone.now,
       locale: I18n.locale,
       auth: @auth.to_json,
       initial_referrer: @referrer,
@@ -84,6 +81,9 @@ class UserFromOmniauth
     else
       params[:google_uid] = @auth.uid
     end
+    # user.skip_confirmation! # this will just add confirmed_at = Time.now
+    # user.name = @auth.info.name # assuming the user model has a name
+    # user.image = @auth.info.image # assuming the user model has an image
     User.create params
   end
 end

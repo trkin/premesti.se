@@ -16,10 +16,11 @@ class ChatsTest < ApplicationSystemTestCase
     chat = Chat.create_for_moves [move_ab, move_bc, move_ca]
     sign_in user
     visit dashboard_path
+    assert_text chat.name_with_arrows
+    assert_text move_ab.group_age_and_locations
 
-    assert_selector 'a', text: chat.only_text_for_name_for_user(user)
-    assert_selector 'a', text: move_ab.group_age_and_locations
-    click_on chat.only_text_for_name_for_user user
+    visit chat_path(chat)
+    click_on t('ignore_all_and_see_chat')
 
     fill_in 'new-message-input', with: 'hello there'
     click_on t_crud('send', Message)
@@ -28,21 +29,19 @@ class ChatsTest < ApplicationSystemTestCase
     # find("a[title='#{t_crud('delete', Message)}']", visible: false, match: :first).click
 
     # now we archive and also delete to_group
-    click_on t('delete_chat_and_public_move')
+    text = ActionController::Base.helpers.strip_tags t('delete_chat_and_my_move')
+    click_on text
     click_on t(Move::FAILED_ARCHIVED_REASONS.first)
-    refute_selector 'a', text: chat.only_text_for_name_for_user(user)
-    refute_selector 'a', text: move_ab.group_age_and_locations
+    refute_text chat.name_with_arrows
+    refute_text move_ab.group_age_and_locations
 
     # now we are creating same to_group and it should create another chat
     move_ab.reload
-    click_on move_ab.group_age_and_locations
+    visit move_path(move_ab)
     find('label', text: t('add_request_location_for_move_from_location_name', location_name: move_ab.from_group.location.name)).click
     select2_ajax location_b.name_with_address, text: nil, selector: '#select2-to_location_id-container'
-    old = FindMatchesForOneMove::MAX_LENGTH_OF_THE_ROTATION
-    FindMatchesForOneMove::MAX_LENGTH_OF_THE_ROTATION = 3
     click_on t('add')
-    FindMatchesForOneMove::MAX_LENGTH_OF_THE_ROTATION = old
     visit dashboard_path
-    assert_selector 'a', text: chat.only_text_for_name_for_user(user)
+    assert_text move_ab.group_age_and_locations
   end
 end

@@ -71,5 +71,17 @@ class MoveTest < ActiveSupport::TestCase
     assert_equal :archived, archived_chat.reload.status
     assert_equal 1, archived_chat.messages.count
   end
+
+  test '#destroy_and_archive_chats admin: true' do
+    move = create :move
+    another_move = create :move
+    chat = Chat.create_for_moves [move, another_move]
+    archived_reason = Move::FAILED_ARCHIVED_REASONS.first
+
+    move.destroy_and_archive_chats archived_reason, admin: true
+
+    assert_equal :archived, chat.reload.status
+    assert chat.messages.map(&:text).include?(t('admin_archived_chat_for_location_name_with_message', location_name: move.from_group.location.name, message: t(archived_reason)))
+  end
 end
 

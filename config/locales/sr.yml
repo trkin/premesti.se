@@ -217,7 +217,7 @@ sr:
     договарање због вртића %{location_name} са разлогом: %{message}'
   here_type_message_like: 'Овде напишите поруку типа: Да ли тражите премештај у вртић
     %{location} ?'
-  delete_all_moves: Обриши све жеље за премештај са ове локације
+  delete_all_moves: Обриши све жеље
   delete_chat_and_my_move: Архивирај договарање и обриши моју жељу
   user_canceled_account: Корисник је обрисао налог
   all_moves_are_deleted: Све жеље су обрисане

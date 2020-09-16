@@ -80,7 +80,7 @@ sr:
     send_me_reset_password_instructions: Пошаљи упутство за промену лозинке
     resend_confirmation_instructions: Поново пошаљи упутства за потврду налога
     resend_unlock_instructions: Поново пошаљи упутства за откључавање налога
-    confirm_your_email_to_start_receiving_notifications: "Потврдите Вашу имејл адресу како бисмо Вам слали обавештења о поклапањима. <a href='%{confirmation_url}'>Поново пошаљи упутство за потврду</a>"
+    confirm_your_email_to_start_receiving_notifications: "Потврдите Вашу имејл адресу <b>%{email}</b> како бисмо Вам слали обавештења о поклапањима. <a href='%{confirmation_url}'>Поново пошаљи упутство за потврду</a>"
     can_not_sign_in: Није успела пријава.
     currently_waiting_confirmation_for: "Још увек чекамо потврду за: %{item}"
     leave_blank_if_you_dont_want_to_change_it: Остави празно ако не желиш да је промениш

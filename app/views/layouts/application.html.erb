@@ -6,6 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name='Description' content='<%= find_site_description %>'>
+    <meta property="og:image" content="<%= asset_url("premesti_se_lines_logo.png") %>" />
+    <%= yield :meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag :exception_notification %>
@@ -14,7 +16,6 @@
     <%# we use jQuery from wepbacker so asset pipeline should be included later %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=Cabin+Sketch:700|Modak" rel="stylesheet">
-    <%= yield :meta_tags %>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-36706408-4"></script>
     <script>

@@ -1,4 +1,4 @@
-<% cache [@chats.size, @chats.last.created_at] do %>
+<% cache [@chats.size, @chats.last&.created_at] do %>
   <div class='d-flex flex-wrap justify-content-center'>
     <% @chats.each do |chat| %>
       <div class='card m-2 max-card-width'>

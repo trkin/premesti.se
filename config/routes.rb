@@ -29,8 +29,6 @@ Rails.application.routes.draw do
   post 'notify-javascript-error', to: 'pages#notify_javascript_error'
   get 'sample-error-in-sidekiq', to: 'pages#sample_error_in_sidekiq'
   get 'active-chats', to: 'pages#active_chats', as: :active_chats
-  get 'all-chats', to: 'pages#all_chats', as: :all_chats
-  post 'search-all-chats', to: 'pages#search_all_chats', as: :search_all_chats
 
   get 'sign_in_as', to: 'application#sign_in_as'
 
@@ -40,6 +38,8 @@ Rails.application.routes.draw do
   get 'resend-confirmation-instructions', to: 'dashboard#resend_confirmation_instructions'
   get 'moves-for-age', to: 'dashboard#moves_for_age', as: :all_moves
   get 'moves-for-age/:age', to: 'dashboard#moves_for_age', as: :moves_for_age
+  get 'all-chats', to: 'dashboard#all_chats', as: :all_chats
+  post 'search-all-chats', to: 'dashboard#search_all_chats', as: :search_all_chats
 
   get 'my-settings', to: 'my_settings#index'
   patch 'my-settings', to: 'my_settings#update'

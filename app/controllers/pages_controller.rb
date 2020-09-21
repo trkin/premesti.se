@@ -61,14 +61,6 @@ class PagesController < ApplicationController
     @chats =  Chat.active
   end
 
-  def all_chats
-    @datatable = ChatsDatatable.new view_context
-  end
-
-  def search_all_chats
-    render json: ChatsDatatable.new(view_context)
-  end
-
   def contact
     @contact_form = ContactForm.new(
       email: current_user&.email

@@ -44,13 +44,15 @@ class Chat
   end
 
   def age_and_name_with_arrows
-    ordered_moves.last.from_group.age_with_short_title + ': ' + \
-      ([ordered_moves.last] + ordered_moves).map { |m| m.from_group.location.name }.join(Constant::ARROW_CHAR)
+    return 'no info' if ordered_groups.empty?
+    ordered_groups.last.age_with_short_title + ': ' + \
+      ordered_groups.map { |m| m.location.name }.join(Constant::ARROW_CHAR)
   end
 
   def age_and_name_with_arrows_en
-    ordered_moves.last.from_group.age_with_short_title + ': ' + \
-      ([ordered_moves.last] + ordered_moves).map { |m| m.from_group.location.name_en }.join(Constant::ARROW_CHAR)
+    return 'no info' if ordered_groups.empty?
+    ordered_groups.last.age_with_short_title + ': ' + \
+      ordered_groups.map { |m| m.location.name_en }.join(Constant::ARROW_CHAR)
   end
 
   def name_for_user(_user)

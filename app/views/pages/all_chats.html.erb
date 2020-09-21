@@ -1,0 +1,13 @@
+<%
+  landing_layout
+%>
+<%= render 'public_header' %>
+<% cache [@datatable.all_items.size, @datatable.all_items.last&.created_at] do %>
+  <div class='mt-1 container bg-white border rounded p-4'>
+    <div class='d-flex justify-content-between'>
+      <h1><%= t('count_all_chats', count: @datatable.all_items.size) %></h1>
+      <%= link_to t('see_active_chats'), active_chats_path %>
+    </div>
+    <%= @datatable.render_html search_all_chats_path(format: :json) %>
+  </div>
+<% end %>

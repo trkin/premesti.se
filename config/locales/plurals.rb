@@ -1,4 +1,6 @@
 # https://github.com/svenfuchs/i18n/blob/master/test/test_data/locales/plurals.rb
+# Usage in translate with key `count`
+# <%= t('count_users_already_buyed_a_coffee', count: 123) %>
 serbian = {
   i18n: {
     plural: {

@@ -100,7 +100,7 @@
         <% end %>
       </div>
       <div class='col-md-6'>
-        <%= t('see_all') %> <%= link_to t('see_n_active_chats', n: Chat.active.size), all_chats_path %>
+        <%= t('see_all') %> <%= link_to t('see_n_active_chats', n: Chat.active.size), active_chats_path %>
         <br>
         <small><%= t('last_chat') %></small>
         <% chat = Chat.where(featured_on_home_page: true).first %>

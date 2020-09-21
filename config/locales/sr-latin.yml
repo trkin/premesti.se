@@ -230,6 +230,14 @@ sr-latin:
   see_all_moves: Vidi sve želje
   see_n_active_moves: '%{n} aktivnih želja'
   see_n_active_chats: '%{n} aktivnih dogovaranja'
+  count_active_chats:
+    one: '%{count} aktivno dogovaranje'
+    few: '%{count} aktivna dogovaranja'
+    other: '%{count} aktivnih dogovaranja'
+  count_all_chats:
+    one: '%{count} dogovaranje'
+    few: '%{count} dogovaranja'
+    other: '%{count} dogovaranja'
   phone_number_will_show_up_in_chat_page: Telefon će se prikazivati na stranici za
     dogovaranje
   initial_chat_message_will_show_up_as_first_message_from_you: Ova poruka će biti
@@ -287,3 +295,10 @@ sr-latin:
   ignore_all_and_see_chat: Zanemari sve, daj da vidim dogovaranje
   shared: Podelio
   ignored: Zanemario
+  currently_there_is_no_active_chats: Trenutno ne postoji aktivno dogovaranje
+  active_chats: Aktivna dogovaranja
+  see_all_chats: Pogledaj sva dogovaranja
+  all_chats: Sva dogovaranja
+  see_active_chats: Pogledaj aktivna dogovaranja
+  status: Status
+  created_at: Napravljeno dana

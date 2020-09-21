@@ -36,6 +36,7 @@ group :development do
   gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
   gem 'capistrano-sidekiq'
   gem 'jekyll'
+  gem 'google-cloud-translate'
 end
 
 group :development, :test do

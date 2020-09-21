@@ -14,6 +14,7 @@
      <%= t('chat_for_group_name_and_location_names', group_name: Group.title_for_age(@chat.groups.first.age), location_names: location_names) %>
    </h4>
 <% end %>
+<%= @chat.groups.size %>
 <div class='row'>
   <div class='col-md-6'>
     <% if @chat.active? %>

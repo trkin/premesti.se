@@ -150,10 +150,10 @@ en:
   faq_8_a: The site was made by Dusan Orlovic
   system_message: System message
   new_match: New match
-  new_match_for_moves: 'There is a match between locations: %{moves}. To let the
-    system know that you are still an active user, type your message in the next
-    three days; otherwise, we will assume that you have canceled and your wish
-    will be deleted. Thank you'
+  new_match_for_moves: 'There is a match between locations: %{moves}. To let the system
+    know that you are still an active user, type your message in the next three days;
+    otherwise, we will assume that you have canceled and your wish will be deleted.
+    Thank you'
   new_message: New message
   there_is_a_match_for_your_location: There is a match for your location %{location}.
   your_move_completed_the_circle_path: Your move completed circle path %{path}.
@@ -223,8 +223,16 @@ en:
   go: Go
   see_all: See all
   see_all_moves: See all moves
-  see_n_active_moves: '%{n} active moves'
-  see_n_active_chats: '%{n} active chats'
+  see_n_active_moves: "%{n} active moves"
+  see_n_active_chats: "%{n} active chats"
+  count_active_chats:
+    one: "%{count} active bargaining"
+    few: "%{count} active bargaining"
+    other: "%{count} active arrangements"
+  count_all_chats:
+    one: "%{count} bargaining"
+    few: "%{count} arrangements"
+    other: "%{count} arrangements"
   phone_number_will_show_up_in_chat_page: The phone will appear on the chat page
   initial_chat_message_will_show_up_as_first_message_from_you: This message will be
     your first message when a match occurs
@@ -264,7 +272,8 @@ en:
   until_now_number_name_sent: "%{number_name} sent so far"
   buy: Buy
   buy_me_a_coffee: Buy me a coffee
-  to_reward_active_users: To reward active users we need to prevent inactive users. Please share this page on facebook, or buy a coffee.
+  to_reward_active_users: To reward active users we need to prevent inactive users.
+    Please share this page on facebook, or buy a coffee.
   do_you_have_a_question: Any questions ?
   note_that_there_are_other_moves: The same demand already exists for certain kindergartens
   nobody_buy_a_coffee: No one bought a coffee yet
@@ -274,8 +283,17 @@ en:
     other: "%{count} users already buyed a coffee"
   thanks: Thanks
   thanks_for_a_coffee: Thanks for a coffee
-  chat_instructions: 'Write something like: "I am interested in relocating", or "I called on the phone but he gave up on relocating" or "We willll meet at the administration to submit a request for rotation together"'
+  chat_instructions: 'Write something like: "I am interested in relocating", or "I
+    called on the phone but he gave up on relocating" or "We willll meet at the administration
+    to submit a request for rotation together"'
   help_for_chat: Help for chat
   ignore_all_and_see_chat: Ignore everything, let me see the chat
   shared: Shared
   ignored: Ignored
+  currently_there_is_no_active_chats: There is currently no active bargaining
+  active_chats: Active bargaining
+  see_all_chats: Look at all the arrangements
+  all_chats: All arrangements
+  see_active_chats: See active arrangements
+  status: Status
+  created_at: Made on

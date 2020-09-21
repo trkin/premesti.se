@@ -18,10 +18,6 @@ class DashboardController < ApplicationController
       .page(params[:page])
   end
 
-  def all_chats
-    @chats = Chat.active
-  end
-
   def buy_me_a_coffee
     if params[:chat_id]
       @chat = Chat.find params[:chat_id]

@@ -13,6 +13,13 @@
       (<%= paginate_explanation @moves %>)
     </h2>
     <%= paginate @moves %>
+    <ul>
+    <% @moves.each do |move| %>
+      <li>
+        <%= link_to move.show_locations, public_move_path(move, move.group_age_and_locations_en) %>
+      </li>
+    <% end %>
+    </ul>
     <%
       markers = @moves.map { |move| move.to_groups.present? ? [move.from_group.location, move.to_groups.map(&:location)] : nil }.flatten.compact.uniq
       lines = []

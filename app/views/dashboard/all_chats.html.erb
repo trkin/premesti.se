@@ -1,7 +1,7 @@
 <%
   landing_layout
 %>
-<%= render 'public_header' %>
+<%= render 'pages/public_header' %>
 <% cache [@datatable.all_items.size, @datatable.all_items.last&.created_at] do %>
   <div class='mt-1 container bg-white border rounded p-4'>
     <div class='d-flex justify-content-between'>

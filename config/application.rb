@@ -29,15 +29,7 @@ module PremestiSe
     # config.neo4j.session.url = 'http://localhost:7474'
     #  or
     config.neo4j.session.type = Rails.application.secrets.neo4j_type == 'bolt' ? :bolt : :http
-    config.neo4j.session.url =
-      "#{Rails.application.secrets.neo4j_type}://" +
-      Rails.application.secrets.neo4j_username.to_s + ':' +
-      Rails.application.secrets.neo4j_password.to_s + '@' +
-      Rails.application.secrets.neo4j_host.to_s + ':' +
-      (Rails.application.secrets.neo4j_type == 'bolt' ? Rails.application.secrets.neo4j_bolt_port : Rails.application.secrets.neo4j_port).to_s
-    raise "Please set env variables for NEO4J server #{config.neo4j.session.url} #{ENV['NEO4J_PORT']} ENV=#{ENV.to_hash}" unless Rails.application.secrets.values_at(
-      :neo4j_type, :neo4j_username, :neo4j_password, :neo4j_host, :neo4j_port
-    ).all?
+    config.neo4j.session.url = Rails.application.secrets.neo4j_url
     # puts 'config.neo4j.session.url=' + config.neo4j.session.url
     #  or
     # config.neo4j.session.type = :embedded

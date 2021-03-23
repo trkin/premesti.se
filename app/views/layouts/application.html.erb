@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<%= I18n.locale %>">
+<html lang="<%= I18n.locale %>" class='height-100'>
   <head>
     <title><%= t('site_title') %></title>
     <%= csrf_meta_tags %>
@@ -28,7 +28,7 @@
 
   </head>
 
-  <body class='background-gradient background-color'>
+  <body class='background-gradient background-color height-100'>
     <% if landing_layout? %>
       <%= yield %>
     <% elsif login_layout? # if login_layout? %>
@@ -70,9 +70,9 @@
                 <% end %>
                 <i class="nav-link fa fa-angle-right" aria-hidden="true"></i>
               <% else %>
-                <span class='navbar-text'>
+                <i class='navbar-text'>
                   <%= text %>
-                </span>
+                </i>
               <% end %>
             <% end %>
           </div>
@@ -118,9 +118,11 @@
       </div>
       <%= render 'layouts/alerts' %>
     <% end %> <%# else # elsif login_layout? # if login_layout? %>
-    <div class='py-4 text-center bg-light mt-2'>
-      <%=raw t 'site_disclaimer' %>
-    </div>
+    <% unless current_user.present? %>
+      <div class='py-4 text-center bg-light mt-2'>
+        <%=raw t 'site_disclaimer' %>
+      </div>
+    <% end %>
     <% unless params[:action] == 'contact' %>
       <div class='have-question'>
         <%= link_to t('do_you_have_a_question'), contact_path %>

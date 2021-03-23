@@ -7,7 +7,7 @@ sr-latin:
     mesta
   site_description_2: potrebno je da nađemo odgovarajuću zamenu, sa jednim ili više
     drugara.
-  site_description_3: Upišite Vaše želje, a mi ćemo Vam poslati imejl ✉️ kada se desi
+  site_description_3: Upišite Vaše želje, a mi ćemo Vam poslati imejl ✉ kada se desi
     poklapanje
   site_disclaimer: Ovaj sajt nije povezan sa Predškolskim ustanovama već služi za
     dogovor oko pronalaženja rokada <b>već upisane dece</b> iz vrtića. Kada se roditelji
@@ -107,6 +107,7 @@ sr-latin:
   or: ili
   find_on_map: Pronađi na mapi
   or_choose_any_on_map: ili izaberi neku na mapi
+  look_on_map: Pogledaj na mapi
   add_later: Dodaj kasnije
   problem_with_account: Problem sa nalogom ?
   send: Pošalji

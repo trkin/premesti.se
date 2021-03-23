@@ -5,7 +5,7 @@
 <% cache [@chats.size, @chats.last&.created_at] do %>
   <div class='mt-1 container bg-white border rounded p-4'>
     <div class='d-flex justify-content-between'>
-      <h1><%= t('count_active_chats', count: @chats.size) %></h1>
+      <h3><%= t('count_active_chats', count: @chats.size) %></h3>
       <%= link_to t('see_all_chats'), all_chats_path %>
     </div>
     <div class='d-flex flex-wrap justify-content-center'>

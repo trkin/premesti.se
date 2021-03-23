@@ -6,11 +6,12 @@
 %>
 <%= render 'public_header' %>
 <div class='container text-center'>
-  <h1><%= Chat.model_name.human.capitalize %></h1>
-  <div class=''>
+  <h4>
+    <%= Chat.model_name.human.capitalize %> |
     <%= @chat.age_and_name_with_arrows %>
-    <br>
-    <%= image_tag chat_static_map_url(@chat) %>
+  </h4>
+  <div class=''>
+    <%= image_tag chat_static_map_url(@chat), class: 'w-100' %>
   </div>
   <%= link_buy_me_a_coffee %>
   <%= t('or') %>

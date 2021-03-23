@@ -1,0 +1,10 @@
+# sudo ln -s /home/ubuntu/premesti.se/current/config/etc/logrotate.d/premesti.se /etc/logrotate.d/
+/home/ubuntu/premesti.se/current/log/*.log {
+  daily
+  missingok
+  rotate 7
+  compress
+  delaycompress
+  notifempty
+  copytruncate
+}

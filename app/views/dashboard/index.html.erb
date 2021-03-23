@@ -1,7 +1,7 @@
 <%
   breadcrumb
 %>
-<h2 class='show-on-hover'>
+<h2 class='font-italic show-on-hover'>
   <%= t('my_chats') %>
 </h2>
 <div class='d-flex flex-wrap justify-content-center'>
@@ -27,9 +27,9 @@
     <%= t('chats_empty_new_will_show_up_automatically') %>
   <% end %>
 </div>
-<h2>
+<h3 class='font-italic'>
   <%= t('my_moves') %>
-</h2>
+</h3>
 <div class='d-flex flex-wrap justify-content-center'>
   <% current_user.moves.each do |move| %>
     <div class='card m-2 max-card-width'>

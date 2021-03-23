@@ -282,15 +282,18 @@ module MapHelper
             setTimeout(dropMarker(i), i * interval);
             google.maps.event.addListener(marker, 'click', function() {
               infoWindow.open(map, this);
-              $('#info-description').html(this.description_for_map);
-              if (this.url_for_map) {
-                $('#info-url').attr('href', this.url_for_map)
-                .html('<h4>'+this.name+'</h4>');
-                $('#info-name').html();
-              } else {
-                $('#info-name').html('<h4>'+this.name+'</h4>');
-                $('#info-url').html();
-              }
+              let that = this;
+              setTimeout(function() {
+                $('#info-description').html(that.description_for_map);
+                if (that.url_for_map) {
+                  $('#info-url').attr('href', that.url_for_map)
+                  .html('<h4>'+that.name+'</h4>');
+                  $('#info-name').html();
+                } else {
+                  $('#info-name').html('<h4>'+that.name+'</h4>');
+                  $('#info-url').html();
+                }
+              }, 10);
             });
           }
           map.fitBounds(bounds);

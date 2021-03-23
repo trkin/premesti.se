@@ -9,14 +9,33 @@
   placeholder = nil if @chat.messages.present?
 %>
 <% if @chat.groups.present? %>
-   <% location_names = @chat.groups.map {|group| group.location.name }.to_sentence %>
-   <h4>
-     <%= t('chat_for_group_name_and_location_names', group_name: Group.title_for_age(@chat.groups.first.age), location_names: location_names) %>
-   </h4>
+  <div class='mb-3'>
+     <% location_names = @chat.groups.map {|group| group.location.name }.to_sentence %>
+     <% @chat.moves.each do |move| %>
+       <%= move.from_group.location.name %>
+       <%= move.user.email_with_phone_if_present %>
+       <% if move.user.shared_chats.include?(@chat) %>
+         <span class='badge badge-success'><%= t('shared') %></span>
+       <% end %>
+       <% if move.user.ignored_chats.include?(@chat) %>
+         <span class='badge badge-danger'><%= t('ignored') %></span>
+       <% end %>
+       <% if current_user.admin? %>
+         (only admin
+         <%= link_to move.user.email, admin_user_path(move.user) %>
+         <%= form_tag archive_chat_path(@chat, user_id: move.user.id), class: 'd-inline' do %>
+           <%= hidden_field_tag :commit, Move::ADMIN_INACTIVE_ARCHIVED_REASON %>
+           <%= button_tag Move::ADMIN_INACTIVE_ARCHIVED_REASON, class: 'btn-danger' %>
+         <% end %>
+         )
+       <% end %>
+       -
+     <% end %>
+     <%= link_to t('look_on_map'), public_chat_path(@chat, @chat.name_with_arrows) %>
+  </div>
 <% end %>
-<%= @chat.groups.size %>
 <div class='row'>
-  <div class='col-md-6'>
+  <div class='col-12'>
     <% if @chat.active? %>
       <%= bootstrap_form_for @message_decorator, url: create_message_chat_path(@chat), remote: true do |f| %>
         <%= f.text_field :text, class: '', id: 'new-message-input', placeholder: placeholder, skip_label: true, required: true, append: f.primary(t_crud('send', Message)), 'data-disable-with': t('sending'), autofocus: true %>
@@ -30,27 +49,7 @@
     <%= t('help_for_chat') %>:
     <span class=' text-muted'> <%=raw t('chat_instructions') %></small>
   </div>
-  <div class='col-md-6'>
-    <% @chat.moves.each do |move| %>
-      <%= move.from_group.location.name %>
-      <%= move.user.email_with_phone_if_present %>
-      <% if move.user.shared_chats.include?(@chat) %>
-             <span class='badge badge-success'><%= t('shared') %></span>
-      <% end %>
-      <% if move.user.ignored_chats.include?(@chat) %>
-             <span class='badge badge-danger'><%= t('ignored') %></span>
-      <% end %>
-      <% if current_user.admin? %>
-        (only admin
-        <%= link_to move.user.email, admin_user_path(move.user) %>
-        <%= form_tag archive_chat_path(@chat, user_id: move.user.id), class: 'd-inline' do %>
-          <%= hidden_field_tag :commit, Move::ADMIN_INACTIVE_ARCHIVED_REASON %>
-          <%= button_tag Move::ADMIN_INACTIVE_ARCHIVED_REASON, class: 'btn-danger' %>
-        <% end %>
-        )
-      <% end %>
-      <br>
-    <% end %>
+  <div class='col-12'>
     <% if @chat.active? %>
       <div class="btn-group pull-right">
         <% unless current_user.admin? %>
@@ -61,10 +60,6 @@
         <% end %>
       </div>
     <% end %>
-    <%= image_tag chat_static_map_url(@chat), class: 'w-100' %>
-    <button type="button" class="mt-2 pull-right btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <%= t('delete_chat_and_my_move').html_safe %>
-    </button>
     <div class="dropdown-menu">
       <% Move::FAILED_ARCHIVED_REASONS.each do |reason| %>
         <%= form_tag archive_chat_path(@chat) do %>
@@ -73,5 +68,8 @@
         <% end %>
       <% end %>
     </div>
+    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <%= t('delete_chat_and_my_move').html_safe %>
+    </button>
   </div>
 </div>

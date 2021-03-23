@@ -19,8 +19,8 @@ In source you can see usage of the:
 * sign up with facebook, google and email
 * ssl is enabled using free cloudflare https and lets encrypt
 
-Graph database is chosen since we need to store move wish like A->B, A->C, C->D,
-D->A and we want to find all matches like A->C->D->A.
+Graph database is chosen since we need to store movement wishes like A->B, A->C,
+C->D, D->A and we want to find all matches like A->C->D->A.
 
 ## Neo4j Database
 
@@ -53,9 +53,9 @@ Start neo4j server with:
 
 ~~~
 rails neo4j:start[development]
-xdg-open http://localhost:$NEO4J_PORT # http://localhost:7042/browser/
+xdg-open http://localhost:7042/browser/
 rails neo4j:start[test]
-xdg-open http://localhost:$NEO4J_TEST_PORT # http://localhost:7047/
+xdg-open http://localhost:7047/
 
 tail -f db/neo4j/development/logs/*
 ~~~
@@ -104,11 +104,16 @@ Before running localy you need to get npm packages with:
 npm install
 ~~~
 
-Than run as usual
+Look at config/secrets.yml for env that you need to export
 
-~~~
+```
+export NEO4J_TYPE=http
+export NEO4J_URL=http://neo4j:password@localhost:7042
+```
+and start the server
+```
 rails s
-~~~
+```
 
 and open browser at <http://localhost:3000>
 
@@ -236,7 +241,7 @@ applications are in June, we can show two messages.
 Do not need to create new groups for age 1 since we use
 `Group.find_or_create_by_location_id_and_age`.
 We need to destroy moves for kids that are older than 7.
-So all we need is to run on 1. September this commands:
+So all we need is to run this commands on September 1st:
 
 ~~~
 Location.all.each {|l| l.groups.query_as(:g).order('g.age DESC').pluck(:g).map { |g| g.age += 1; g.save! } }
@@ -259,4 +264,5 @@ The project is available as open source under the terms of the
 
 ## Authors
 
-This project is designed and created by duleorlovic
+This project is designed and created by
+[duleorlovic](https://github.com/duleorlovic/)

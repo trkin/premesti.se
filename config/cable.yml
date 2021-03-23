@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: <%= ENV['REDIS_URL'] %>/1
+  url: <%= Rails.application.secrets.redis_url %>/1
   channel_prefix: premesti_se_production

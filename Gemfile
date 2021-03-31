@@ -120,3 +120,5 @@ gem 'webpacker'
 # datatables
 gem 'trk_datatables', '0.2.3'
 # gem 'trk_datatables', path: '~/gems/trk_datatables'
+
+gem 'sitemap_generator'

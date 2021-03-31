@@ -35,6 +35,7 @@ group :development do
   gem 'capistrano-rails-logs-tail'
   gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
   gem 'capistrano-sidekiq'
+  gem 'capistrano-faster-assets'
   gem 'jekyll'
   gem 'google-cloud-translate'
 end

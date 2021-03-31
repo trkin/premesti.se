@@ -42,3 +42,6 @@ set :keep_releases, 5
 # https://github.com/seuros/capistrano-sidekiq
 set :bundler_path, '/home/orlovic/.rbenv/shims/bundle'
 set :init_system, :systemd
+
+# https://github.com/capistrano-plugins/capistrano-faster-assets
+set :assets_dependencies, %w[app/javascript app/assets vendor/assets Gemfile.lock yarn.lock]

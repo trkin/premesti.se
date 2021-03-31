@@ -89,6 +89,7 @@
               <%= current_user.email_username %>
             </a>
             <div class="dropdown-menu p-2 dropdown-menu-right" aria-labelledby="userDropdown">
+              <%= link_to t('dashboard'), dashboard_path, class: 'dropdown-item' %>
               <%= link_to t('my_settings'), my_settings_path, class: 'dropdown-item' %>
               <%= link_to t('my_account'), edit_user_registration_path, class: 'dropdown-item' %>
               <%= link_to t('my_data'), my_data_path, class: 'dropdown-item' %>

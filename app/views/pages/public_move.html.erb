@@ -18,7 +18,7 @@
   <%= modal id: 'find-on-map-modal', title: t('find_on_map'), fade: false %>
   <%= bootstrap_form_for @landing_signup, url: public_move_path, builder: MyFormBuilder do |f| %>
     <%= f.hidden_field :current_city %>
-    <div class='my-move m-3 d-flex flex-wrap align-items-start justify-content-center'>
+    <div class='my-move m-3 d-flex flex-wrap align-items-start justify-content-center bg-white p-2 border'>
       <div class=''>
         <%= f.select :current_location, @landing_signup.already_selected_current_location_options, { help: link_to(t('or_choose_any_on_map'), find_on_map_path(select_element: '#current_location'), "data-toggle": "modal", "data-target": "#find-on-map-modal") }, id: 'current_location', 'data-select2-ajax-initialize': select2_locations_path %>
       </div>

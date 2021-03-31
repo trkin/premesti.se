@@ -303,3 +303,4 @@ sr-latin:
   see_active_chats: Pogledaj aktivna dogovaranja
   status: Status
   created_at: Napravljeno dana
+  hi_user_name_go_to_dashboard_link: Ćao %{user_name}, pogledajte vašu <a href='%{dashboard_link}'>početnu kontrolnu tablu</a>

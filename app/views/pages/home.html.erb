@@ -49,7 +49,7 @@
       </h5>
       <div>
         <% if current_user&.moves.present? %>
-          <%= link_to t('dashboard'), dashboard_path %>
+          <%= t('hi_user_name_go_to_dashboard_link', user_name: current_user.email_username, dashboard_link: dashboard_path).html_safe %>
         <% else %>
           <%= modal id: 'find-on-map-modal', title: t('find_on_map'), fade: false %>
           <%= bootstrap_form_for @landing_signup, url: landing_signup_path, builder: MyFormBuilder, layout: :inline do |f| %>

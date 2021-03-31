@@ -298,3 +298,4 @@ en:
   see_active_chats: See active arrangements
   status: Status
   created_at: Made on
+  hi_user_name_go_to_dashboard_link: Hi %{user_name}, take a look at your <a href='%{dashboard_link}'>dashboard</a>

@@ -308,3 +308,5 @@ sr:
   see_active_chats: Погледај активна договарања
   status: Статус
   created_at: Направљено дана
+  hi_user_name_go_to_dashboard_link: Ћао %{user_name}, погледајте вашу <a href='%{dashboard_link}'>почетну
+    контролну таблу</а>

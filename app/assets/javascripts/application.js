@@ -16,3 +16,4 @@
 // app/assets/javascripts
 //= stub exception_notification
 //= require_tree .
+//

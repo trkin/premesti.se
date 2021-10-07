@@ -1,5 +1,5 @@
-# sudo ln -s /home/ubuntu/premesti.se/current/config/etc/logrotate.d/premesti.se /etc/logrotate.d/
-/home/ubuntu/premesti.se/current/log/*.log {
+# sudo ln -s /home/orlovic/premesti.se/current/config/etc/logrotate.d/premesti.se /etc/logrotate.d/
+/home/orlovic/premesti.se/current/log/*.log {
   daily
   missingok
   rotate 7

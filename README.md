@@ -248,6 +248,10 @@ Location.all.each {|l| l.groups.query_as(:g).order('g.age DESC').pluck(:g).map {
 Move.all.select {|m| m.from_group.age>7}.map {|m| m.destroy_and_archive_chats :end_of_kindergarten}
 ~~~
 
+## SEO
+
+Zameni me vrtic, zamena vrtica
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at

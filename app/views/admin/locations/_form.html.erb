@@ -3,7 +3,7 @@
     <div class="modal-body">
       <%= f.text_field :name %>
       <% if @location.new_record? %>
-        <%= f.text_field :group_ages %>
+        <%= f.text_field :group_ages, help: '1 2 3 4 5 6 7' %>
       <% end %>
       <%= f.text_field :address, required: true %>
       <%= f.text_field :latitude, id: 'latitude-input' %>

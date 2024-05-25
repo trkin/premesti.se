@@ -23,8 +23,7 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
-gem 'hiredis'
-gem 'redis', require: ['redis', 'redis/connection/hiredis']
+gem 'redis'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -44,7 +43,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'chromedriver-helper'
-  gem 'factory_bot_rails'
+  # gem 'factory_bot_rails'
   gem 'guard'
   gem 'guard-livereload', require: false
   gem 'guard-minitest'
@@ -77,9 +76,7 @@ gem 'neo4j-core', github: 'neo4jrb/neo4j-core'
 gem 'neo4j-rake_tasks', github: 'duleorlovic/neo4j-rake_tasks'
 
 # bootstrap_form_for
-gem 'bootstrap_form',
-    git: 'https://github.com/bootstrap-ruby/bootstrap_form.git',
-    branch: 'master'
+gem 'bootstrap_form'
 
 # omniauth
 gem 'omniauth-facebook'

@@ -18,6 +18,9 @@
 
 .byebug_history
 
+graph.db/
+graph.db/neo4j/development
+graph.db/neo4j/test
 db/neo4j/development
 db/neo4j/test
 .rake_tasks~

@@ -14,6 +14,20 @@ port        ENV.fetch('PORT') { 3000 }
 # Specifies the `environment` that Puma will run in.
 #
 environment ENV.fetch('RAILS_ENV') { 'development' }
+app_dir = ENV.fetch("APP_DIR") { "YOUR_APP/current" }
+directory app_dir
+
+shared_dir = ENV.fetch("SHARED_DIR") { "YOUR_APP/shared" }
+
+# Logging
+stdout_redirect "#{shared_dir}/log/puma.stdout.log", "#{shared_dir}/log/puma.stderr.log", true
+
+pidfile "#{shared_dir}/tmp/pids/puma.pid"
+state_path "#{shared_dir}/tmp/pids/puma.state"
+
+# Set up socket location
+bind "unix://#{shared_dir}/sockets/puma.sock"
+
 
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked webserver processes. If using threads and workers together
